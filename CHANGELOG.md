@@ -3,6 +3,25 @@
 
 ## Unreleased
 
+### octoplushy
+
+#### Fixed
+
+ - Use full translation keys (#454)
+
+### react
+
+#### Added
+
+ - Added ARCH D and ARCH E paper sizes to export
+ - Added ability to unfreeze an account in the in Admin component
+
+#### Fixed
+
+ - Fix Pattern Layout counter-clockwise button (#453)
+ - Fixed issue with custom pattern layout not getting applied (#241)
+ - Fixed crash in pattern layout view (#340)
+
 
 ## 4.0.3 (2024-06-09)
 
