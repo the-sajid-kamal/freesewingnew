@@ -528,7 +528,7 @@ export const DesignInfo = ({ Link = false, design = false, noDocsLink = false })
               k="FreeSewing"
               val="showcase"
               color="secondary"
-              href={`/showcase/tags/aaron`}
+              href={`/showcase/tags/${design}`}
               Link={Link}
             />
             <KeyVal
