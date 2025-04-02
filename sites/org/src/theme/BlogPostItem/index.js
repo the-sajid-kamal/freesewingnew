@@ -66,10 +66,21 @@ export default function BlogPostItem(props) {
    */
   const type = location.pathname.split('/')[1]
 
+  /*
+   * The newsletter unsubscribe page gets special treatment
+   */
+  if (location.pathname === '/newsletter/unsubscribe')
+    return (
+      <BlogPostItemContainer className={clsx(containerClassName, className)}>
+        {children}
+      </BlogPostItemContainer>
+    )
+
   return (
     <BlogPostItemContainer className={clsx(containerClassName, className)}>
       <BlogPostHeader type={type} />
       <BlogPostItemContent>
+        {location.pathname}
         <div className="mdx">{children}</div>
       </BlogPostItemContent>
       <BlogPostItemFooter />

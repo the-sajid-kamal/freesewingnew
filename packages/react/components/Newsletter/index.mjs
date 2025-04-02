@@ -1,5 +1,5 @@
 // Dependencies
-import { linkClasses, validateEmail } from '@freesewing/utils'
+import { linkClasses, validateEmail, getSearchParam } from '@freesewing/utils'
 
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
@@ -15,6 +15,7 @@ import { NoIcon, OkIcon, SaveIcon, RightIcon, WarningIcon } from '@freesewing/re
 import { EmailInput } from '@freesewing/react/components/Input'
 import { Popout } from '@freesewing/react/components/Popout'
 import { IconButton } from '@freesewing/react/components/Button'
+import { MiniTip } from '@freesewing/react/components/Mini'
 
 /*
  * Component for newsletter signup (by visitors)
@@ -117,4 +118,78 @@ export const NewsletterSignup = ({ Link = false, noP = false, noTitle = false, n
       )}
     </div>
   )
+}
+
+/*
+ * Component to handle newsletter unsubscribe links
+ *
+ * @params {object} props - All React props
+ * @param {function} props.Link - An optional framework-specific Link component
+ */
+export const NewsletterUnsubscribe = ({ Link = false }) => {
+  if (!Link) Link = WebLink
+  const ehash = getSearchParam('x')
+
+  // Hooks
+  const backend = useBackend()
+
+  // State
+  const [gone, setGone] = useState(false)
+  const [error, setError] = useState(false)
+
+  // Helper method to handle subscription
+  const unsubscribe = async () => {
+    const [status, body] = await backend.newsletterUnsubscribe(ehash)
+    if (status === 204 || status === 404) setGone(true)
+    else setError(true)
+  }
+
+  if (!ehash) return <p>This does not seem to be a valid unsubscribe link.</p>
+
+  if (gone)
+    return (
+      <>
+        <h2>Done</h2>
+        <p>This email address is no longer subscribed to the FreeSewing newsletter</p>
+      </>
+    )
+
+  if (error)
+    return (
+      <>
+        <h2>Oops</h2>
+        <p>
+          Something went wrong. This is unexpected. Please{' '}
+          <Link className={linkClasses} href="/support">
+            Contact support
+          </Link>
+        </p>
+      </>
+    )
+
+  return (
+    <>
+      <p>
+        To confirm you want to unsubscribe from the FreeSewing newsletter, click the button below:
+      </p>
+      <button
+        onClick={unsubscribe}
+        className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-large tw-w-full tw-my-4"
+      >
+        Unsubscribe
+      </button>
+      <MiniTip>
+        Sorry, but one-click unsubscribe violates internet standards (
+        <Link
+          href="/docs/about/faq/newsletter/why-unsubscribe-multiple-clicks/"
+          className={linkClasses}
+        >
+          learn more
+        </Link>
+        ).
+      </MiniTip>
+    </>
+  )
+
+  return <p>Unsubscribe here {ehash}</p>
 }

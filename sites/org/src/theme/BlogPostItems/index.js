@@ -196,13 +196,15 @@ const NewsletterItems = ({ items, slug }) => {
         </>
       ) : null}
       <ul className="mdx tw-list tw-list-disc tw-ml-8">
-        {items.map((post) => (
-          <li key={post.content.metadata.permalink}>
-            <Link href={post.content.metadata.permalink} className={linkClasses}>
-              {post.content.metadata.title}
-            </Link>
-          </li>
-        ))}
+        {items
+          .filter((post) => post.content.metadata.title.toLowerCase() !== 'unsubscribe')
+          .map((post) => (
+            <li key={post.content.metadata.permalink}>
+              <Link href={post.content.metadata.permalink} className={linkClasses}>
+                {post.content.metadata.title}
+              </Link>
+            </li>
+          ))}
       </ul>
     </DocusaurusDoc>
   )
