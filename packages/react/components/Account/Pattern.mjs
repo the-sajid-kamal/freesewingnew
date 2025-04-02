@@ -6,6 +6,7 @@ import {
   shortDate,
   horFlexClasses,
   newPatternUrl,
+  patternUrlFromState,
 } from '@freesewing/utils'
 import { urls, control as controlConfig } from '@freesewing/config'
 
@@ -379,7 +380,7 @@ const PatternHeader = ({
         {pattern.userId === account.id && (
           <>
             <Link
-              href={`/account/patterns/${pattern.design}/edit?id=${pattern.id}`}
+              href={patternUrlFromState(pattern, true)}
               className={`tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-outline ${horFlexClasses}`}
             >
               <FreeSewingIcon /> Update Pattern
