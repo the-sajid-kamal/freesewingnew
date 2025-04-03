@@ -1,6 +1,6 @@
 import Link from '@docusaurus/Link'
 import Layout from '@theme/Layout'
-import NewDesign from './_new-design.md'
+import Studio from './_studio.md'
 import SetupMonorepo from './_setup-monorepo.md'
 import MDXContent from '@theme/MDXContent'
 
@@ -92,7 +92,7 @@ export default function Home() {
             <p style={styles.cardp}>
               All you need is <a href="https://nodejs.org/">NodeJS</a>, then run:
             </p>
-            <NewDesign />
+            <Studio />
             <p style={styles.cardp}>
               This command will setup the stand-alone FreeSewing development environment for you.{' '}
               <Link href="/tutorials/getting-started-linux/dev-setup">Learn more</Link>.
@@ -101,8 +101,8 @@ export default function Home() {
           <Card title="To go far, go together" icon="🧑‍🤝‍🧑">
             <p style={styles.cardp}>
               First,{' '}
-              <a href="https://github.com/freesewing/freesewing/fork">
-                fork our monorepo on GitHub
+              <a href="https://codeberg.org/freesewing/freesewing/fork">
+                fork our monorepo on Codeberg
               </a>
               , then run:
             </p>
@@ -120,7 +120,7 @@ export default function Home() {
             </p>
             <p style={styles.cardp}>
               For documentation for makers, please refer to{' '}
-              <a href="https://freesewing.org">FreeSewing.org</a>.
+              <a href="https://freesewing.eu">FreeSewing.eu</a>.
             </p>
           </Card>
           <Card title="Git good scrub" icon="🐙">

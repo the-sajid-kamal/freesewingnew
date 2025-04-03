@@ -3,6 +3,34 @@
 
 ## Unreleased
 
+### bee
+
+#### Added
+
+ - Added the `duoNeckTieColours` option
+ - Added the `duoBandTieColours` option
+ - Added the `pointedNeckTieEnds` option
+ - Added the `pointedBandTieEnds` option
+
+#### Changed
+
+ - Reinstating the ability to toggle the colours of neck and band tie independently
+ - Reinstating the ability to toggle pointed edge of neck and band tie independently
+ - Simplify snap options
+ - Simplify Cutting Instructions
+ - Hidden tie flag message also now appears when `options.ties` is not set
+ - Neck tie is no longer hidden when `options.pointedNeckTieEnds` is `true`
+ - Band tie is no longer hidden when `options.crossBackTies` is `true`
+ - Band tie is no longer hidden when `options.pointedBandTieEnds` is `true` and `options.crossBackTies` is not set
+ - The `reversible` optinon now acts as an override for the `duoNeckTieColours` and `duoBandTieColours` options
+ - Updated `neckTieLength` when `crossBackTies` is `true`
+ - Designer note links updated for new options
+
+#### Fixed
+
+ - Neck ties no longer shown to be cut on fold
+ - Band tie locks in duo colours when `options.crossBackTies` is true (fixes incorrect notch placements)
+
 
 ## 4.0.0 (2024-04-01)
 
