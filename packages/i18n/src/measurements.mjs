@@ -9,6 +9,7 @@ export const measurements = {
   crossSeamFront: 'Cross seam front',
   head: 'Head circumference',
   heel: 'Heel circumference',
+  height: 'Height',
   highBustFront: 'High bust front',
   highBust: 'High bust',
   hips: 'Hips circumference',
