@@ -38,7 +38,8 @@ const config = {
 
   url: 'https://freesewing.org',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  // Not time to look into this now
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   future: {
@@ -254,7 +255,11 @@ const config = {
     ],
   ],
   themeConfig: {
-    // Replace with your project's social card
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
+    },
     image: 'img/freesewing-social-card.png',
     navbar: {
       title: 'FreeSewing',

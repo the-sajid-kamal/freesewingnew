@@ -15,6 +15,7 @@ export default {
   ],
   plugins: [daisyui],
   prefix: 'tw-',
+  darkMode: ['selector', 'data-theme="dark"]'],
   daisyui: {
     themes: [{ dark, light }],
     logs: true,
