@@ -99,7 +99,7 @@ export const Patterns = ({ Link = false }) => {
         </button>
         <Link
           className="tw-daisy-btn tw-daisy-btn-primary tw-capitalize tw-w-full md:tw-w-auto hover:tw-text-primary-content"
-          href="/-/"
+          href="/editor/"
         >
           <PlusIcon />
           Create a new pattern
