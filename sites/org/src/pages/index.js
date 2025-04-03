@@ -53,25 +53,6 @@ const meta = {
 }
 
 export default function Home() {
-  useEffect(() => {
-    // Check initial state
-    console.log('Initial data-theme:', document.documentElement.getAttribute('data-theme'))
-    console.log('OS prefers dark:', window.matchMedia('(prefers-color-scheme: dark)').matches)
-
-    // Monitor for changes
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.attributeName === 'data-theme') {
-          console.log('data-theme changed to:', document.documentElement.getAttribute('data-theme'))
-        }
-      })
-    })
-
-    observer.observe(document.documentElement, { attributes: true })
-
-    return () => observer.disconnect()
-  }, [])
-
   return (
     <DocusaurusPage DocusaurusLayout={Layout} {...meta} Layout={false}>
       <div className="tw-max-w-7xl tw-mx-auto tw-my-12 tw-px-4">
