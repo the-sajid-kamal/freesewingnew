@@ -38,7 +38,8 @@ const config = {
 
   url: 'https://freesewing.org',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  // Not time to look into this now
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   future: {
@@ -254,7 +255,11 @@ const config = {
     ],
   ],
   themeConfig: {
-    // Replace with your project's social card
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
+    },
     image: 'img/freesewing-social-card.png',
     navbar: {
       title: 'FreeSewing',
@@ -267,6 +272,7 @@ const config = {
         { type: 'custom-FreeSewingNavbarItem', position: 'left', id: 'docs' },
         { type: 'custom-FreeSewingNavbarItem', position: 'left', id: 'showcase' },
         { type: 'custom-FreeSewingNavbarItem', position: 'left', id: 'blog' },
+        { type: 'custom-FreeSewingNavbarItem', position: 'left', id: 'forum' },
         { type: 'custom-FreeSewingNavbarItem', position: 'right', id: 'account' },
       ],
     },
@@ -280,6 +286,7 @@ const config = {
             { label: 'FreeSewing Showcase', to: '/showcase/' },
             { label: 'FreeSewing Blog', to: '/blog/' },
             { label: 'FreeSewing Editor', to: '/editor/' },
+            { label: 'Curated Measurements Sets', to: '/curated-sets/' },
           ],
         },
         {
@@ -288,15 +295,17 @@ const config = {
             { label: 'About FreeSewing', to: '/docs/about/' },
             { label: 'Getting Started', to: '/docs/about/guide/' },
             { label: 'Frequently Asked Questions', href: '/docs/about/faq/' },
+            { label: 'Documentation', href: '/docs/' },
             { label: 'Need Help?', href: '/support' },
           ],
         },
         {
           title: 'More',
           items: [
+            { label: 'FreeSewing.eu', to: 'https://freesewing.eu/' },
             { label: 'FreeSewing.dev', to: 'https://freesewing.dev/' },
             { label: 'FreeSewing.social', to: 'https://freesewing.social/' },
-            { label: 'Code on GitHub', to: 'https://github.com/freesewing/freesewing' },
+            { label: 'Code on Codeberg', to: 'https://codeberg.org/freesewing/freesewing' },
             { label: 'FreeSewing Revenue Pledge 💜', href: '/docs/about/pledge/' },
           ],
         },

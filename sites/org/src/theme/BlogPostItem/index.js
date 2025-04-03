@@ -80,7 +80,6 @@ export default function BlogPostItem(props) {
     <BlogPostItemContainer className={clsx(containerClassName, className)}>
       <BlogPostHeader type={type} />
       <BlogPostItemContent>
-        {location.pathname}
         <div className="mdx">{children}</div>
       </BlogPostItemContent>
       <BlogPostItemFooter />
