@@ -93,7 +93,7 @@ const config = {
         docs: {
           routeBasePath: '/',
           sidebarPath: './sidebars.js',
-          editUrl: 'https://github.com/freesewing/freesewing/tree/v4/sites/dev/',
+          editUrl: 'https://codeberg.com/freesewing/freesewing/tree/develop/sites/dev/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -143,20 +143,16 @@ const config = {
           title: 'Help & Support',
           items: [
             {
+              label: 'Forum',
+              href: 'https://forum.freesewing.eu/',
+            },
+            {
               label: 'Discord',
               href: 'https://discord.freesewing.org/',
             },
             {
-              label: 'GitHub Issues',
-              href: 'https://github.com/freesewing/freesewing/issues',
-            },
-            {
-              label: 'GitHub Discussions',
-              href: 'https://github.com/freesewing/freesewing/discussions',
-            },
-            {
               label: 'All Support Options',
-              href: 'https://freesewing.org/support',
+              href: 'https://freesewing.eu/support',
             },
           ],
         },
@@ -164,25 +160,21 @@ const config = {
           title: 'More',
           items: [
             {
-              label: 'FreeSewing.org',
-              to: 'https://freesewing.org/',
+              label: 'FreeSewing.eu',
+              to: 'https://freesewing.eu/',
             },
             {
-              label: 'Blog',
-              to: 'https://freesewing.org/blog/',
+              label: 'FreeSewing.social',
+              to: 'https://freesewing.social/',
             },
             {
-              label: 'Showcase',
-              to: 'https://freesewing.org/showccase/',
-            },
-            {
-              label: 'Code on GitHub',
-              href: 'https://github.com/freesewing/freesewing',
+              label: 'Code on Codeberg',
+              href: 'https://codeberg.org/freesewing/freesewing',
             },
           ],
         },
       ],
-      copyright: `<a href="https://freesewing.org/">FreeSewing</a> is brought to you by <a href="https://github.com/joostdecock">Joost De Cock</a> and <a href="https://github.com/freesewing/freesewing/blob/develop/CONTRIBUTORS.md">contributors</a> with the financial support of <a href="https://freesewing.org/patrons/join">our patrons</a>`,
+      copyright: `<a href="https://freesewing.org/">FreeSewing</a> is brought to you by <a href="https://codeberg.eu/joostdecock">Joost De Cock</a> and <a href="https://codeberg.eu/freesewing/freesewing/blob/develop/CONTRIBUTORS.md">contributors</a> with the financial support of <a href="https://freesewing.org/patrons/join">our patrons</a>`,
     },
     prism: {
       theme: prismThemes.dracula,
