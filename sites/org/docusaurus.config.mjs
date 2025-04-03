@@ -258,7 +258,7 @@ const config = {
     colorMode: {
       defaultMode: 'light',
       disableSwitch: false,
-      respectPrefersColorScheme: true,
+      respectPrefersColorScheme: false,
     },
     image: 'img/freesewing-social-card.png',
     navbar: {
