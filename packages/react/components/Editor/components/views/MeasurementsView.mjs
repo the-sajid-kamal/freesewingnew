@@ -52,7 +52,7 @@ export const MeasurementsView = ({
    * Which is a bit confusing. So in this case, set the view to measurements.
    */
   useEffect(() => {
-    if (!config?.views || !config.views.includes(state.view)) update.view('measurements')
+    if (state.view !== 'measurements') update.view('measurements')
     if (state._.missingMeasurements && state._.missingMeasurements.length > 0)
       update.notify(
         {
