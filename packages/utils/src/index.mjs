@@ -366,7 +366,7 @@ export function measurementAsMm(value, units = 'metric') {
   } else {
     const decimal = fractionToDecimal(value)
     if (isNaN(decimal)) return false
-    return decimal * 24.5
+    return decimal * 25.4
   }
 }
 

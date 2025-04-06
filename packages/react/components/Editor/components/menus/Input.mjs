@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { i18n } from '@freesewing/collection'
 import {
   designOptionType,
@@ -188,7 +188,7 @@ export const MenuListToggle = ({ config, changed, updateHandler, name }) => {
 
 export const MenuMmInput = (props) => {
   const { updateHandler, current, config } = props
-  const units = props.state.settings?.units
+  const units = props.settings?.units
   const imperial = units === 'imperial'
   const mmUpdateHandler = useCallback(
     (path, newCurrent) => {
@@ -201,25 +201,30 @@ export const MenuMmInput = (props) => {
   )
 
   /*
-   * Set a default step that matches the unit
+   * Set a default step that matches the unit.
+   *
+   * Note that we could try to use something like 1.5875 for imperial to move in steps of 1/16 inches,
+   * but we round the mm values to two digits in the options, which would accumulate rounding errors.
+   *
+   * Because of this, we use 10ths of inches instead of 16ths of inches.
    */
-  const defaultStep = units === 'imperial' ? 0.125 : 0.1
+  const defaultStep = imperial ? 1.27 : 1 // mm
 
   return (
     <MenuSliderInput
       {...props}
       {...{
         config: {
-          step: defaultStep,
           ...config,
-          min: imperial ? config.min / 25.4 : config.min / 10,
-          max: imperial ? config.max / 25.4 : config.max / 10,
+          min: measurementAsUnits(config.min, units),
+          max: measurementAsUnits(config.max, units),
           dflt: measurementAsUnits(config.dflt, units),
+          step: measurementAsUnits(defaultStep, units),
         },
         current: current === undefined ? undefined : measurementAsUnits(current, units),
         updateHandler: mmUpdateHandler,
-        valFormatter: (val) => (units === 'imperial' ? formatFraction128(val, null) : val),
-        suffix: units === 'imperial' ? '"' : 'cm',
+        valFormatter: (val) => (imperial ? formatFraction128(val, null) : val),
+        suffix: imperial ? '"' : 'cm',
       }}
     />
   )

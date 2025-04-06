@@ -102,7 +102,7 @@ export function menuCoreSettingsStructure({ units = 'metric', sabool = false, pa
           ),
           ux: config.uxLevels.core.sa,
           min: 0,
-          max: units === 'imperial' ? 2 : 2.5,
+          max: units === 'imperial' ? 25.4 : 25, // values are in mm
           dflt: defaultSamm(units),
           icon: SaIcon,
         }
