@@ -2,18 +2,6 @@
 title: "Simon shirt : Instructions de couture"
 ---
 
-<Tip>
-
-##### Suivez la couture avec Kelly et Julian
-
-Kelly Hogaboom et Julian Collins ont fait une couture de Simone, et ils ont des vidéos de
-toutes les étapes.
-Si vous cherchez à créer ce modèle, Kelly et Julian peuvent vous guider vers la fin.
-
-Tu peux trouver tout le matériel sur le site de Kelly
-: [#simonsayssew avec kelly hogaboom & julian collins](https://agni.hogaboom.org/2020/07/simon-says-sew-with-kelly-hogaboom-and-julian-collins/)
-</Tip>
-
 ### Étape 1 : Thermocoller l'entoilage
 
 ![Thermocollez l'entoilage aux poignets](1a.png) ![Fuse l'entoilage du col](1b.png)
