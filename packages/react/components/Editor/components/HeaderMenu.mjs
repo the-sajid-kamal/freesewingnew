@@ -480,7 +480,7 @@ export const HeaderMenuSaveIcons = (props) => {
       <Button updateHandler={() => update.view('save')} tooltip="Save pattern as...">
         <SaveAsIcon className={`${size} tw-text-secondary`} />
       </Button>
-      <Button updateHandler={update.clearPattern} tooltip="Export pattern">
+      <Button updateHandler={() => update.view('export')} tooltip="Export pattern">
         <ExportIcon className={`${size} tw-text-secondary`} />
       </Button>
     </div>

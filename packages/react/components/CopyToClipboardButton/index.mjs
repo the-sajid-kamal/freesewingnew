@@ -21,18 +21,15 @@ const handleCopied = (content, setCopied, setLoadingStatus, label) => {
   setTimeout(() => setCopied(false), 1000)
 }
 
-export const CopyToClipboardButton = ({ content, label = false, sup = false }) => {
+export const CopyToClipboardButton = ({ children, content, label = false, sup = false }) => {
   const [copied, setCopied] = useState(false)
   const { setLoadingStatus } = useContext(LoadingStatusContext)
-
-  const text =
-    typeof content === 'string' ? content : strip(ReactDOMServer.renderToStaticMarkup(content))
 
   const style = sup ? 'tw-w-4 tw-h-4 tw--mt-4' : 'tw-w-5 tw-h-5'
 
   return (
     <button
-      className={copied ? 'tw-text-success' : ''}
+      className={(copied ? 'tw-text-success ' : '') + 'tw-daisy-btn tw-w-full lg:tw-w-auto'}
       onClick={() => handleCopied(content, setCopied, setLoadingStatus, label)}
     >
       {copied ? (
@@ -43,6 +40,7 @@ export const CopyToClipboardButton = ({ content, label = false, sup = false }) =
       ) : (
         <CopyIcon className={`${style} tw-text-inherit`} />
       )}
+      {children}
     </button>
   )
 }
