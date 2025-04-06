@@ -8,7 +8,7 @@ import { useMemo, useEffect } from 'react'
 /*
  * Set up the atom
  */
-const urlAtom = atomWithHash('s', {})
+const urlAtom = atomWithHash('s', { setHash: 'replaceState' })
 
 /**
  * Url state backend
