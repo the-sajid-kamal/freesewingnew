@@ -5,6 +5,7 @@ date: 20231227
 intro: "This Hi by Halbmoki was a fan favorite of the FreeSewing community."
 designs: ["hi"]
 maker: Natalia
+author: 28514
 ---
 
 This Hi's maker Halbmoki notes that it's a bit lumpy, but we guess most trans folks can relate to having lumps in the wrong places. The FreeSewing community loved this creation, lumps and all.

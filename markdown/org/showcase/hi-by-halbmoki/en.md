@@ -5,6 +5,7 @@ date: "2022-07-29"
 intro: "Halbmoki's Hi was instantly adored by the FreeSewing community!"
 title: "Hi by halbmoki"
 designs: ["hi"]
+author: 28514
 ---
 
 Halbmoki's Hi was instantly adored by the FreeSewing community!

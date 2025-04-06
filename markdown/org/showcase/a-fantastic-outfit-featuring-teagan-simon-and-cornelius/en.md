@@ -5,6 +5,7 @@ date: "2023-05-10"
 intro: "This showcase is really something special -- it features, not one, not two, but THREE FreeSewing patterns!"
 title: "A fantastic outfit featuring Teagan, Simon, and Cornelius"
 designs: ["teagan","simon","cornelius"]
+author: 24290
 ---
 
 This showcase is really something special -- it features, not one, not two, but THREE FreeSewing patterns!
