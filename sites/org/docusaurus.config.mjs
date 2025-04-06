@@ -200,7 +200,7 @@ const config = {
         docs: {
           routeBasePath: '/', //'/docs',
           sidebarPath: './sidebars.js',
-          editUrl: 'https://github.com/freesewing/freesewing/tree/v4/sites/org/',
+          editUrl: 'https://codeberg.org/freesewing/freesewing/src/branch/develop/sites/org/',
           async sidebarItemsGenerator({ defaultSidebarItemsGenerator, ...args }) {
             const sidebarItems = await defaultSidebarItemsGenerator(args)
             return customizeSidebar(sidebarItems)
@@ -213,7 +213,7 @@ const config = {
         blog: {
           path: 'blog',
           // Simple use-case: string editUrl
-          editUrl: 'https://github.com/freesewing/freesewing/site/orgdocs/',
+          editUrl: 'https://codeberg.org/freesewing/freesewing/src/branch/develop/sites/org/',
           editLocalizedFiles: false,
           blogTitle: 'FreeSewing Blog',
           blogDescription: 'News and updates from the people behind FreeSewing',
@@ -310,7 +310,7 @@ const config = {
           ],
         },
       ],
-      copyright: `<a href="https://freesewing.org/">FreeSewing</a> is brought to you by <a href="https://github.com/joostdecock">Joost De Cock</a> and <a href="https://github.com/freesewing/freesewing/blob/develop/CONTRIBUTORS.md">contributors</a> with the financial support of <a href="/patrons/join">our patrons</a>`,
+      copyright: `<a href="https://freesewing.org/">FreeSewing</a> is brought to you by <a href="https://codeberg.org/joostdecock">Joost De Cock</a> and <a href="https://codeberg.org/freesewing/freesewing/src/branch/develop/CONTRIBUTORS.md">contributors</a> with the financial support of <a href="/patrons/join">our patrons</a>`,
     },
     prism: {
       theme: prismThemes.dracula,
