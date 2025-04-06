@@ -601,6 +601,9 @@ export const HeaderMenuLayoutViewIcons = (props) => {
   const { pattern, update, state } = props
   const [tweaks, setTweaks] = useState(0)
 
+  // Is the current custom layout an actual layout?
+  const layoutValid = typeof state.ui.layout === 'object'
+
   useEffect(() => {
     /*
      * When the layout is reset, the UI won't update to changes
@@ -617,7 +620,9 @@ export const HeaderMenuLayoutViewIcons = (props) => {
 
   const applyLayout = () => {
     setTweaks(-1)
-    update.settings('layout', state.ui.layout)
+    // Do not apply layout if it is not valid
+    if (layoutValid) update.settings('layout', state.ui.layout)
+    else update.notify({ msg: 'First create a custom layout', icon: 'tip' })
   }
   const resetLayout = () => {
     setTweaks(-1)
@@ -650,7 +655,7 @@ export const HeaderMenuLayoutViewIcons = (props) => {
         <button
           className="tw-daisy-btn tw-daisy-btn-ghost tw-daisy-btn-sm tw-px-1 disabled:tw-bg-transparent tw-text-secondary"
           onClick={applyLayout}
-          disabled={tweaks === 0}
+          disabled={!layoutValid}
         >
           Apply Layout
         </button>
