@@ -1,10 +1,11 @@
 // Dependencies
 import React from 'react'
-import { draft, missingMeasurements, bundlePatternTranslations } from '../../lib/index.mjs'
+import { bundlePatternTranslations, draft, missingMeasurements } from '../../lib/index.mjs'
 // Components
 import { Null } from '@freesewing/react/components/Null'
 import { ZoomablePattern } from '../ZoomablePattern.mjs'
 import { PatternLayout } from '../PatternLayout.mjs'
+import { DraftErrorHandler } from './DraftErrorHandler.mjs'
 
 /**
  * The draft view allows users to tweak their pattern
@@ -38,7 +39,7 @@ export const DraftView = ({ Design, state, update, config, plugins = [], PluginO
   /*
    * First, attempt to draft
    */
-  const { pattern } = draft(Design, state.settings, plugins)
+  const { pattern, failure, errors } = draft(Design, state.settings, plugins)
 
   /*
    * Create object holding strings for translation
@@ -52,6 +53,7 @@ export const DraftView = ({ Design, state, update, config, plugins = [], PluginO
       const __html = pattern.render()
       output = (
         <>
+          <DraftErrorHandler {...{ failure, errors }} />
           <PluginOutput {...{ pattern, Design, state, update, config }} />
           <ZoomablePattern update={update}>
             <div className="tw-w-full tw-h-full" dangerouslySetInnerHTML={{ __html }} />
@@ -65,6 +67,7 @@ export const DraftView = ({ Design, state, update, config, plugins = [], PluginO
     renderProps = pattern.getRenderProps()
     output = (
       <>
+        <DraftErrorHandler {...{ failure, errors }} />
         <PluginOutput {...{ pattern, Design, state, update, config, strings }} />
         <ZoomablePattern
           renderProps={renderProps}

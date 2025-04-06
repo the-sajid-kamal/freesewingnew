@@ -9,6 +9,7 @@ import { Null } from '@freesewing/react/components/Null'
 import { ZoomablePattern } from '../ZoomablePattern.mjs'
 import { PatternLayout } from '../PatternLayout.mjs'
 import { Xray } from '@freesewing/react/components/Xray'
+import { DraftErrorHandler } from './DraftErrorHandler.mjs'
 
 /**
  * The inspect view allows users to inspect their pattern
@@ -47,7 +48,7 @@ export const InspectView = ({ Design, state, update, config }) => {
   /*
    * First, attempt to draft
    */
-  const { pattern } = draft(Design, state.settings)
+  const { pattern, failure, errors } = draft(Design, state.settings, plugins)
 
   /*
    * Create object holding strings for translation
@@ -57,6 +58,7 @@ export const InspectView = ({ Design, state, update, config }) => {
   const renderProps = pattern.getRenderProps()
   const output = (
     <>
+      <DraftErrorHandler {...{ failure, errors }} />
       <ZoomablePattern
         renderProps={renderProps}
         patternLocale={state.locale || 'en'}

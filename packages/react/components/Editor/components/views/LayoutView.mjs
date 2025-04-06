@@ -7,6 +7,7 @@ import { draft } from '../../lib/index.mjs'
 // Components
 import { PatternLayout } from '../PatternLayout.mjs'
 import { MovablePattern } from '../MovablePattern.mjs'
+import { DraftErrorHandler } from './DraftErrorHandler.mjs'
 
 export const LayoutView = (props) => {
   const { config, state, update, Design } = props
@@ -23,17 +24,19 @@ export const LayoutView = (props) => {
    * Now draft the pattern
    */
   const { pattern, failure, errors } = draft(Design, settings, [tilerPlugin(pageSettings)])
-  if (failure) return <p>Draft failed. FIXME: Handle this gracefully.</p>
 
   const output = (
-    <MovablePattern
-      {...{
-        update,
-        renderProps: pattern.getRenderProps(),
-        immovable: ['pages'],
-        state,
-      }}
-    />
+    <>
+      <DraftErrorHandler {...{ failure, errors }} />
+      <MovablePattern
+        {...{
+          update,
+          renderProps: pattern.getRenderProps(),
+          immovable: ['pages'],
+          state,
+        }}
+      />
+    </>
   )
 
   return <PatternLayout {...{ update, Design, output, state, pattern, config }} />
