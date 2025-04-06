@@ -1,5 +1,0 @@
----
-title: Terminologie naaien
----
-
-<ReadMore />

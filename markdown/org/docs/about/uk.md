@@ -1,5 +1,0 @@
----
-title: Про FreeSewing
----
-
-<ReadMore />
