@@ -538,6 +538,16 @@ export const DesignInfo = ({ Link = false, design = false, noDocsLink = false })
               href={`https://www.instagram.com/explore/search/keyword/?q=%23FreeSewing${capitalize(design)}`}
             />
           </div>
+
+          <div className="tw-mt-2 tw-text-sm tw-opacity-70 tw-font-medium">Documentation</div>
+          <div className="tw-flex tw-flex-row tw-flex-wrap tw-gap-1 items-center">
+            <Link href={`/docs/designs/${design}/#notes`}>Designer Notes</Link>,
+            <Link href={`/docs/designs/${design}/#needs`}>What You Need</Link>,
+            <Link href={`/docs/designs/${design}/#fabric`}>Fabric Options</Link>,
+            <Link href={`/docs/designs/${design}/#cutting`}>Cutting Instructions</Link>,
+            <Link href={`/docs/designs/${design}/options/`}>Design Options</Link>,
+            <Link href={`/docs/designs/${design}/instructions/`}>Sewing Instructions</Link>
+          </div>
           <div className="tw-my-4">{buttons}</div>
         </div>
       </div>

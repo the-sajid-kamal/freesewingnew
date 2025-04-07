@@ -1,43 +1,13 @@
 // Dependencies
 import { collection } from '@freesewing/collection'
-
-//import { urls } from '@freesewing/config'
-//import { measurements as measurementTranslations } from '@freesewing/i18n'
-//import { measurements as designMeasurements } from '@freesewing/collection'
 import { capitalize } from '@freesewing/utils'
-
-// Context
-//import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
-//import { ModalContext } from '@freesewing/react/context/Modal'
 
 // Hooks
 import React, { useState } from 'react'
-//import { useAccount } from '@freesewing/react/hooks/useAccount'
-//import { useBackend } from '@freesewing/react/hooks/useBackend'
 
 // Components
 import { Link as WebLink, AnchorLink } from '@freesewing/react/components/Link'
 import { ShowcaseIcon } from '@freesewing/react/components/Icon'
-
-/*
-// Dependencies
-import { capitalize } from 'shared/utils.mjs'
-import { linkClasses } from 'shared/components/link.mjs'
-import { designImages } from 'shared/components/designs/examples.mjs'
-import { designs } from 'shared/config/designs.mjs'
-// Context
-import { ModalContext } from 'shared/context/modal-context.mjs'
-// Hooks
-import { useTranslation } from 'next-i18next'
-import { useContext } from 'react'
-// Components
-import { ModalWrapper } from 'shared/components/wrappers/modal.mjs'
-import Link from 'next/link'
-import { Difficulty } from 'shared/components/designs/difficulty.mjs'
-import { lineDrawings } from 'shared/components/designs/linedrawings/index.mjs'
-import { DocsIcon, NewPatternIcon } from 'shared/components/icons.mjs'
-import { DesignInfo } from 'shared/components/designs/info.mjs'
-*/
 
 const linkBuilders = {
   new: (design) => `/-/?d=${design.toLowerCase()}`,
