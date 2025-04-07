@@ -48,7 +48,7 @@ export const InspectView = ({ Design, state, update, config }) => {
   /*
    * First, attempt to draft
    */
-  const { pattern, failure, errors } = draft(Design, state.settings, plugins)
+  const { pattern, failure, errors } = draft(Design, state.settings)
 
   /*
    * Create object holding strings for translation
