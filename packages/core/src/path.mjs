@@ -1,6 +1,6 @@
 import { Attributes } from './attributes.mjs'
 import { Point } from './point.mjs'
-import { Bezier } from 'bezier-js'
+import { Bezier } from './bezier.mjs'
 import {
   deg2rad,
   linesIntersect,
