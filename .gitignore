@@ -45,6 +45,7 @@ packages/new-design/shared/.gitignore
 packages/new-design/lib/banner.mjs
 sites/*/public/img/og/*
 sites/org/src/lib/i18n.mjs
+sites/org/authors.json
 
 # Org prebuild artifacts
 sites/org/src/lib/designs.mjs

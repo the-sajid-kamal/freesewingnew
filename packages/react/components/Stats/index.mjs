@@ -118,7 +118,7 @@ export const Stats = ({ Link = false }) => {
           <ol className="tw-list tw-list-inside tw-list-decimal tw-ml-4">
             {stats.topUsers.map((u) => (
               <li key={u.id}>
-                <Link href={`/users/user?id=${u.id}`} className={linkClasses}>
+                <Link href={`/users/?id=${u.id}`} className={linkClasses}>
                   {u.username}
                 </Link>
                 : {formatNumber(u.calls)}
