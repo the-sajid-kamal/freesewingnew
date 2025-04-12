@@ -15,6 +15,11 @@ import { ModalContextProvider } from '@freesewing/react/context/Modal'
 import { LoadingStatusContextProvider } from '@freesewing/react/context/LoadingStatus'
 
 /**
+ * Default setting values for the editor
+ */
+const defaultSettings = { sa: false, paperless: false, expand: false, complete: true }
+
+/**
  * FreeSewing's pattern editor
  *
  * Editor is the high-level FreeSewing component
@@ -109,19 +114,18 @@ export const Editor = ({
    * We also ensure that settings is always set to an empty object in case there
    * are no settings yet, as this avoids having to null-check them everywhere.
    */
-  const passDownState =
-    state.ui?.ux === undefined
-      ? {
-          settings: {}, // Ensure settings is always set
-          ...state,
-          ui: { ...(state.ui || {}), ux: editorConfig.defaultUx },
-          _: { ...ephemeralState, missingMeasurements },
-        }
-      : {
-          settings: {}, // Ensure settings is always set
-          ...state,
-          _: { ...ephemeralState, missingMeasurements },
-        }
+  const passDownState = {
+    ...state,
+    // Preset the default value of the pattern settings if not given.
+    // Otherwise, we would later need to be very careful
+    // when handling undefined/unset settings (including in the pattern code).
+    settings: { ...defaultSettings, ...state.settings },
+    _: { ...ephemeralState, missingMeasurements },
+  }
+
+  if (state.ui?.ux === undefined) {
+    passDownState.ui = { ...(state.ui || {}), ux: editorConfig.defaultUx }
+  }
 
   return (
     <div className="flex flex-row items-top">
