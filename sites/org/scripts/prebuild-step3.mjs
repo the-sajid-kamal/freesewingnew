@@ -59,7 +59,7 @@ const titles = {
 const userAsAuthor = (user) => ({
   name: user.profile.username,
   title: titles[user.profile.role],
-  url: `https://freesewing.org/users/user?id=${user.profile.id}`,
+  url: `https://freesewing.eu/users/?id=${user.profile.id}`,
   image_url: `https://imagedelivery.net/ouSuR9yY1bHt-fuAokSA5Q/uid-${user.profile.ihash}/public`,
   bio: user.profile.bio,
 })
@@ -67,7 +67,7 @@ const userAsAuthor = (user) => ({
 const loadUser = async (id) => {
   let result
   try {
-    result = await fetch(`https://backend3.freesewing.org/users/${id}`)
+    result = await fetch(`https://backend.freesewing.eu/users/${id}`)
   } catch (err) {
     console.warn(`Failed to load user with id ${id}`, err)
   }

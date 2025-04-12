@@ -1,5 +1,11 @@
 // Utils
-import { horFlexClasses, horFlexClassesNoSm, capitalize, getSearchParam } from '@freesewing/utils'
+import {
+  linkClasses,
+  horFlexClasses,
+  horFlexClassesNoSm,
+  capitalize,
+  getSearchParam,
+} from '@freesewing/utils'
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
 // Hooks
@@ -138,10 +144,10 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
 
   const initOauth = async (provider) => {
     setLoadingStatus([true, 'Contacting the FreeSewing backend'])
-    const result = await backend.oauthInit({ provider, language: 'en' })
-    if (result.success) {
+    const [status, body] = await backend.oauthInit(provider.toLowerCase())
+    if (status === 200 && body.result === 'success') {
       setLoadingStatus([true, `Contacting ${capitalize(provider)}`])
-      window.location.href = result.data.authUrl
+      window.location.href = body.authUrl
     }
   }
 
@@ -421,10 +427,54 @@ export const SignInConfirmation = ({ onSuccess = false }) => {
   if (!id || !check)
     return (
       <>
-        <h1>One moment pleae</h1>
+        <h1>One moment please</h1>
         <Spinner className="tw-w-8 tw-h-8 tw-m-auto tw-animate-spin" />
       </>
     )
 
   return <p>fixme</p>
+}
+
+/*
+ * This is the generic component that will handle the Oauth callback
+ */
+function OauthCallback({ provider = false }) {
+  const [error, setError] = useState(false)
+  const backend = useBackend()
+  const { setAccount, setToken, setSeenUser } = useAccount()
+
+  // Handle callback
+  useEffect(() => {
+    const oauthFlow = async () => {
+      const state = getSearchParam('state')
+      const code = getSearchParam('state')
+      const [status, body] = await backend.oauthSignIn({ state, code, provider })
+      if (status === 200 && body.account && body.token) {
+        setAccount(body.account)
+        setToken(body.token)
+        setSeenUser(body.data.account.username)
+        navigate('/welcome', true)
+      } else setError(true)
+    }
+    oauthFlow()
+  }, [])
+
+  if (!provider) return <p>You must provide a provider prop to this component</p>
+
+  return error ? (
+    <>
+      <h2>Oh no, something went wrong</h2>
+      <p>
+        Please{' '}
+        <Link className={linkClasses} href="/support">
+          escalate this to support
+        </Link>
+      </p>
+    </>
+  ) : (
+    <>
+      <h2>One moment please</h2>
+      <Spinner className="tw-w-8 tw-h-8 tw-m-auto tw-animate-spin" />
+    </>
+  )
 }

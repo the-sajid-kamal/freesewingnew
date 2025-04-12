@@ -201,7 +201,7 @@ export const User = ({ user, Link }) => {
       ></button>
       <div className="tw-w-full tw-flex tw-flex-col tw-gap-1">
         <div className="tw-w-full tw-flex tw-flex-row tw-flex-wrap tw-gap-1">
-          <Link href={`/users/user?id=${user.id}`}>{user.username}</Link>
+          <Link href={`/users/?id=${user.id}`}>{user.username}</Link>
           <KeyVal k="id" val={user.id} />
         </div>
         <div className="tw-w-full tw-flex tw-flex-row tw-flex-wrap tw-gap-1">

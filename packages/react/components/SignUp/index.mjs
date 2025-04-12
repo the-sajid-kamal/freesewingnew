@@ -86,10 +86,10 @@ export const SignUp = ({ embed = false }) => {
 
   const initOauth = async (provider) => {
     setLoadingStatus([true, 'Contacting the backend'])
-    const result = await backend.oauthInit({ provider, language: 'en' })
-    if (result.success) {
+    const [status, body] = await backend.oauthInit(provider.toLowerCase())
+    if (status === 200 && body.result === 'success') {
       setLoadingStatus([true, `Contacting ${provider}`])
-      window.location.href = result.data.authUrl
+      window.location.href = body.authUrl
     }
   }
   const Heading = embed
