@@ -7,7 +7,7 @@ import { linkClasses } from '@freesewing/utils'
 const DesignDocsLink = ({ design, item }) => (
   <a
     href={`/docs/designs/${design}/options/#${item.toLowerCase()}`}
-    className={`${linkClasses} tw-px-2`}
+    className={`${linkClasses} tw:px-2`}
     target="_BLANK"
   >
     Learn more

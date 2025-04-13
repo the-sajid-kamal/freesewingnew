@@ -17,8 +17,8 @@ export default function GoogleOauthCallbackPage() {
       title="Sign In"
       description="Sign In to your FreeSewing account to unlock all features"
     >
-      <div className="tw-flex tw-flex-col tw-items-center tw-text-base-content tw-px-4">
-        <div className="tw-max-w-lg tw-w-full">
+      <div className="tw:flex tw:flex-col tw:items-center tw:text-base-content tw:px-4">
+        <div className="tw:max-w-lg tw:w-full">
           <OauthCallback provider="google" />
         </div>
       </div>

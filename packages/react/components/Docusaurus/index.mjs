@@ -120,12 +120,12 @@ const AccountNavbarItem = ({ Link }) => {
 
 const SimpleNavbarItem = ({ label, Icon, href, Link }) => (
   <Link
-    className="tw-daisy-btn tw-daisy-btn-ghost hover:tw-no-underline hover:tw-text-base-content custom-navbar-item"
+    className="tw-daisy-btn tw-daisy-btn-ghost tw:hover:no-underline tw:hover:text-base-content custom-navbar-item"
     href={href}
   >
-    <div className="tw-flex tw-flex-row tw-gap-2 tw-items-center">
-      <Icon className="tw-w-6 tw-h-6" />
-      <span className="tw-text-lg">{label}</span>
+    <div className="tw:flex tw:flex-row tw:gap-2 tw:items-center">
+      <Icon className="tw:w-6 tw:h-6" />
+      <span className="tw:text-lg">{label}</span>
     </div>
   </Link>
 )

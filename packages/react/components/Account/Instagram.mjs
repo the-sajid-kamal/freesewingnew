@@ -34,7 +34,7 @@ export const Instagram = () => {
   }
 
   return (
-    <div className="tw-w-full">
+    <div className="tw:w-full">
       <StringInput
         id="account-github-email"
         label="GitHub Email Address"
@@ -51,9 +51,9 @@ export const Instagram = () => {
         valid={(val) => val.length > 0}
         placeholder={'joostdecock'}
       />
-      <p className="tw-text-right">
+      <p className="tw:text-right">
         <button
-          className="tw-daisy-btn tw-daisy-btn-primary tw-w-full lg:tw-w-auto tw-mt-8"
+          className="tw-daisy-btn tw-daisy-btn-primary tw:w-full tw:lg:w-auto tw:mt-8"
           onClick={save}
         >
           <SaveIcon /> Save

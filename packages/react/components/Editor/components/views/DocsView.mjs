@@ -19,11 +19,11 @@ export const DocsView = ({ state, config, update }) => {
   return (
     <>
       <HeaderMenu state={state} {...{ config, update }} />
-      <div className="tw-m-auto tw-mt-8 tw-max-w-2xl tw-px-4 tw-mb-8">
+      <div className="tw:m-auto tw:mt-8 tw:max-w-2xl tw:px-4 tw:mb-8">
         <H1>Documenation</H1>
         <Popout link>
           <H5>Understanding the FreeSewing Pattern Editor</H5>
-          <p className="tw-text-lg">
+          <p className="tw:text-lg">
             Please refer to the pattern editor documentation at:
             <br />
             <b>

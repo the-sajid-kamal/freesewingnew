@@ -27,9 +27,9 @@ export const EditSettingsView = (props) => {
   return (
     <>
       <HeaderMenu state={state} {...{ config, update }} />
-      <div className="tw-m-auto tw-mt-8 tw-max-w-4xl tw-px-4 tw-mb-8">
+      <div className="tw:m-auto tw:mt-8 tw:max-w-4xl tw:px-4 tw:mb-8">
         <H1>Edit settings by hand</H1>
-        <p className="tw-mb-4">
+        <p className="tw:mb-4">
           You can hand-edit your pattern settings below.
           <br />
           The changes will not take effect until you click the <b>Save Settings</b> button at the
@@ -106,7 +106,7 @@ export const PrimedSettingsEditor = (props) => {
         <>
           <H4>You have made changes</H4>
           <p>Your settings have been edited, and are now different from the editor settings.</p>
-          <div className="tw-grid tw-grid-cols-1 lg:tw-grid-cols-3 tw-gap-2 tw-w-full">
+          <div className="tw:grid tw:grid-cols-1 tw:lg:grid-cols-3 tw:gap-2 tw:w-full">
             <button
               className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-outline"
               onClick={() => setShowDelta(!showDelta)}
@@ -114,14 +114,14 @@ export const PrimedSettingsEditor = (props) => {
               {showDelta ? 'Hide' : 'Show'} Changes
             </button>
             <button
-              className="tw-daisy-btn tw-daisy-btn-primary tw-flex tw-flex-row tw-items-center tw-justify-between"
+              className="tw-daisy-btn tw-daisy-btn-primary tw:flex tw:flex-row tw:items-center tw:justify-between"
               onClick={save}
             >
               <OkIcon stroke={3} />
               Save Settings
             </button>
             <button
-              className="tw-daisy-btn tw-daisy-btn-error tw-daisy-btn-outline tw-flex tw-flex-row tw-items-center tw-justify-between"
+              className="tw-daisy-btn tw-daisy-btn-error tw-daisy-btn-outline tw:flex tw:flex-row tw:items-center tw:justify-between"
               onClick={revert}
             >
               <ResetIcon />
@@ -129,7 +129,7 @@ export const PrimedSettingsEditor = (props) => {
             </button>
           </div>
           {showDelta ? (
-            <div className="tw-my-4 tw-w-full tw-overflow-scroll">
+            <div className="tw:my-4 tw:w-full tw:overflow-scroll">
               <DiffViewer
                 oldValue={yaml.stringify(state.settings)}
                 newValue={yaml.stringify(settings)}

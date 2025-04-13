@@ -38,7 +38,7 @@ export const BentFront = ({ className, stroke = 1 }) => (
  * React component for the back
  */
 export const BentBack = ({
-  className = 'tw-w-full', // CSS classes to apply
+  className = 'tw:w-full', // CSS classes to apply
   stroke = 1, // Stroke width to use
 }) => {
   // Normalize stroke across designs

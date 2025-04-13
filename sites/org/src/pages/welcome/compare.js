@@ -6,7 +6,7 @@ import { Compare } from '@freesewing/react/components/Account'
 export default function WelcomeComparePage() {
   return (
     <Layout title="Welcome to FreeSewing" description="Just a few questions to set up your account">
-      <div className="tw-text-base-content tw-max-w-prose tw-text-base-content tw-text-current tw-mx-auto tw-my-8">
+      <div className="tw:text-base-content tw:max-w-prose tw:text-base-content tw:text-current tw:mx-auto tw:my-8">
         <h1>Measurements Comparison</h1>
         <p>
           Comparing measurements can help us detect problems, but if it bums you out, we can forego

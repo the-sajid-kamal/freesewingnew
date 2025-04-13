@@ -16,8 +16,8 @@ export default function EmailChangeConfirmationPage() {
       title="Confirm your new E-mail address"
       description="This should only take a second"
     >
-      <div className="tw-flex tw-flex-col tw-items-center tw-text-base-content tw-px-4">
-        <div className="tw-max-w-lg tw-w-full">
+      <div className="tw:flex tw:flex-col tw:items-center tw:text-base-content tw:px-4">
+        <div className="tw:max-w-lg tw:w-full">
           <EmailChangeConfirmation onSuccess={() => (window.location.href = '/account')} silent />
         </div>
       </div>

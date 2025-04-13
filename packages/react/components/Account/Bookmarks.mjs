@@ -88,10 +88,10 @@ export const Bookmarks = () => {
   for (const type in types) perType[type] = bookmarks.filter((b) => b.type === type)
 
   return (
-    <div className="tw-w-full">
-      <p className="tw-text-center md:tw-text-right">
+    <div className="tw:w-full">
+      <p className="tw:text-center tw:md:text-right">
         <button
-          className="tw-daisy-btn tw-daisy-btn-primary tw-capitalize tw-w-full md:tw-w-auto hover:tw-text-primary-content hover:tw-no-underline"
+          className="tw-daisy-btn tw-daisy-btn-primary tw:capitalize tw:w-full tw:md:w-auto tw:hover:text-primary-content tw:hover:no-underline"
           onClick={() =>
             setModal(
               <ModalWrapper
@@ -100,7 +100,7 @@ export const Bookmarks = () => {
                 slideFrom="right"
                 keepOpenOnClick
               >
-                <div className="tw-w-full">
+                <div className="tw:w-full">
                   <h2>New Bookmark</h2>
                   <NewBookmark onCreated={() => setRefresh(refresh + 1)} />
                 </div>
@@ -125,10 +125,10 @@ export const Bookmarks = () => {
         perType[type].length > 0 ? (
           <Fragment key={type}>
             <h2>{title}</h2>
-            <table className="tw-table tw-w-full">
-              <thead className="tw-border tw-border-base-300 tw-border-b-2 tw-border-t-0 tw-border-x-0">
+            <table className="tw:table tw:w-full">
+              <thead className="tw:border tw:border-base-300 tw:border-b-2 tw:border-t-0 tw:border-x-0">
                 <tr>
-                  <th className="tw-text-base-300 tw-text-base tw-text-left tw-w-8">
+                  <th className="tw:text-base-300 tw:text-base tw:text-left tw:w-8">
                     <input
                       type="checkbox"
                       className="tw-daisy-checkbox tw-daisy-checkbox-secondary"
@@ -136,7 +136,7 @@ export const Bookmarks = () => {
                       checked={bookmarks.length === selCount}
                     />
                   </th>
-                  <th className="tw-w-1/2">Title</th>
+                  <th className="tw:w-1/2">Title</th>
                   <th>Location</th>
                 </tr>
               </thead>
@@ -145,7 +145,7 @@ export const Bookmarks = () => {
                   .filter((bookmark) => bookmark.type === type)
                   .map((bookmark, i) => (
                     <tr key={i}>
-                      <td className="tw-text-base tw-font-medium">
+                      <td className="tw:text-base tw:font-medium">
                         <input
                           type="checkbox"
                           checked={selected[bookmark.id] ? true : false}
@@ -153,8 +153,8 @@ export const Bookmarks = () => {
                           onClick={() => toggleSelect(bookmark.id)}
                         />
                       </td>
-                      <td className="tw-text-base tw-font-medium">{bookmark.title}</td>
-                      <td className="tw-text-base tw-font-medium">
+                      <td className="tw:text-base tw:font-medium">{bookmark.title}</td>
+                      <td className="tw:text-base tw:font-medium">
                         <WebLink href={bookmark.url}>
                           {bookmark.url.length > 30
                             ? bookmark.url.slice(0, 30) + '...'
@@ -210,7 +210,7 @@ export const NewBookmark = ({ onCreated = false }) => {
 
   // Render the form
   return (
-    <div className="tw-w-full">
+    <div className="tw:w-full">
       <StringInput
         id="bookmark-title"
         label="Title"
@@ -229,9 +229,9 @@ export const NewBookmark = ({ onCreated = false }) => {
         valid={(val) => val.length > 0}
         placeholder={'https://freesewing.org/account'}
       />
-      <div className="tw-flex tw-flex-row tw-gap-2 tw-items-center tw-w-full tw-my-8">
+      <div className="tw:flex tw:flex-row tw:gap-2 tw:items-center tw:w-full tw:my-8">
         <button
-          className="tw-daisy-btn tw-daisy-btn-primary tw-grow tw-capitalize"
+          className="tw-daisy-btn tw-daisy-btn-primary tw:grow tw:capitalize"
           disabled={!(title.length > 0 && url.length > 0)}
           onClick={createBookmark}
         >
@@ -305,10 +305,10 @@ export const CreateBookmark = ({ type, title, slug }) => {
   }
 
   return (
-    <div className="tw-mt-12">
+    <div className="tw:mt-12">
       <h2>New bookmark</h2>
       <StringInput label="Title" current={name} update={setName} valid={notEmpty} labelBL={url} />
-      <button className="tw-daisy-btn tw-daisy-btn-primary tw-w-full tw-mt-4" onClick={bookmark}>
+      <button className="tw-daisy-btn tw-daisy-btn-primary tw:w-full tw:mt-4" onClick={bookmark}>
         Create bookmark
       </button>
     </div>

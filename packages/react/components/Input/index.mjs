@@ -32,7 +32,7 @@ export const _Tab = ({
   setActiveTab, // Method to set the active tab
 }) => (
   <button
-    className={`tw-text-lg tw-font-bold tw-capitalize tw-daisy-tab tw-daisy-tab-bordered tw-grow
+    className={`tw:text-lg tw:font-bold tw:capitalize tw-daisy-tab tw-daisy-tab-bordered tw:grow
     ${activeTab === id ? 'tw-daisy-tab-active' : ''}`}
     onClick={() => setActiveTab(id)}
   >
@@ -52,14 +52,14 @@ const HelpLink = ({ help, Link = false }) => {
   if (typeof help === 'function')
     return (
       <button onClick={() => help} title="Show help">
-        <HelpIcon className="tw-w-5 tw-h-5" />
+        <HelpIcon className="tw:w-5 tw:h-5" />
       </button>
     )
 
   if (typeof help === 'string')
     return (
       <Link href={help} target="_BLANK" rel="nofollow" title="Show help">
-        <HelpIcon className="tw-w-5 tw-h-5" />
+        <HelpIcon className="tw:w-5 tw:h-5" />
       </Link>
     )
 
@@ -84,7 +84,7 @@ export const FormControl = ({
   const topLabelChildren = (
     <>
       {label ? (
-        <span className="tw-daisy-label-text tw-text-sm lg:tw-text-base tw-font-bold tw-mb-1 tw-text-inherit tw-inline-flex tw-items-center tw-gap-1">
+        <span className="tw-daisy-label-text tw:text-sm tw:lg:text-base tw:font-bold tw:mb-1 tw:text-inherit tw:inline-flex tw:items-center tw:gap-1">
           {label} <HelpLink {...{ help, Link }} />
         </span>
       ) : (
@@ -92,7 +92,7 @@ export const FormControl = ({
           <HelpLink {...{ help, Link }} />
         </span>
       )}
-      {labelTR ? <span className="tw-daisy-label-text-alt tw--mb-1">{labelTR}</span> : null}
+      {labelTR ? <span className="tw-daisy-label-text-alt tw:-mb-1">{labelTR}</span> : null}
     </>
   )
   const bottomLabelChildren = (
@@ -103,13 +103,13 @@ export const FormControl = ({
   )
 
   return (
-    <div className="tw-daisy-form-control tw-w-full tw-mt-2">
+    <div className="tw-daisy-form-control tw:w-full tw:mt-2">
       {forId ? (
-        <label className="tw-daisy-label tw-pb-0" htmlFor={forId}>
+        <label className="tw-daisy-label tw:pb-0" htmlFor={forId}>
           {topLabelChildren}
         </label>
       ) : label ? (
-        <div className="tw-daisy-label tw-pb-0">{topLabelChildren}</div>
+        <div className="tw-daisy-label tw:pb-0">{topLabelChildren}</div>
       ) : null}
       {children}
       {labelBL || labelBR ? (
@@ -137,13 +137,13 @@ export const ButtonFrame = ({
 }) => (
   <button
     className={`
-    tw-daisy-btn tw-daisy-btn-ghost tw-daisy-btn-secondary tw-h-fit
-    tw-w-full ${dense ? 'tw-mt-1 tw-daisy-btn-sm tw-font-light' : 'tw-mt-2 tw-py-4 tw-h-auto tw-content-start'}
-    tw-border-2 tw-border-secondary tw-text-left tw-bg-opacity-20
-    ${accordion ? 'hover:tw-bg-transparent' : 'hover:tw-bg-secondary hover:tw-bg-opacity-10'}
-    hover:tw-border-secondary hover:tw-border-solid hover:tw-border-2
-    ${active ? 'tw-border-solid' : 'tw-border-dotted'}
-    ${active && !accordion ? 'tw-bg-secondary' : 'tw-bg-transparent'}
+    tw-daisy-btn tw-daisy-btn-ghost tw-daisy-btn-secondary tw:h-fit
+    tw:w-full ${dense ? 'tw:mt-1 tw-daisy-btn-sm tw:font-light' : 'tw:mt-2 tw:py-4 tw:h-auto tw:content-start'}
+    tw:border-2 tw:border-secondary tw:text-left tw:bg-opacity-20
+    ${accordion ? 'tw:hover:bg-transparent' : 'tw:hover:bg-secondary tw:hover:bg-opacity-10'}
+    tw:hover:border-secondary tw:hover:border-solid tw:hover:border-2
+    ${active ? 'tw:border-solid' : 'tw:border-dotted'}
+    ${active && !accordion ? 'tw:bg-secondary' : 'tw:bg-transparent'}
     `}
     onClick={onClick}
   >
@@ -176,7 +176,7 @@ export const NumberInput = ({
       placeholder={placeholder}
       value={current}
       onChange={(evt) => update(evt.target.value)}
-      className={`tw-daisy-input tw-w-full tw-daisy-input-bordered ${
+      className={`tw-daisy-input tw:w-full tw-daisy-input-bordered ${
         current === original
           ? 'tw-daisy-input-secondary'
           : valid(current)
@@ -209,7 +209,7 @@ export const StringInput = ({
       placeholder={placeholder}
       value={current}
       onChange={(evt) => update(evt.target.value)}
-      className={`tw-daisy-input tw-w-full tw-daisy-input-bordered tw-text-current ${
+      className={`tw-daisy-input tw:w-full tw-daisy-input-bordered tw:text-current ${
         current === original
           ? 'tw-daisy-input-secondary'
           : valid(current)
@@ -260,7 +260,7 @@ export const PasswordInput = ({
       forId={id}
       labelBR={
         <button
-          className="tw-btn tw-btn-primary tw-btn-ghost tw-btn-xs tw--mt-2"
+          className="tw-btn tw-btn-primary tw-btn-ghost tw-btn-xs tw:-mt-2"
           onClick={() => setReveal(!reveal)}
         >
           {reveal ? 'Hide Password' : 'Reveal Password'}
@@ -273,7 +273,7 @@ export const PasswordInput = ({
         placeholder={placeholder}
         value={current}
         onChange={(evt) => update(evt.target.value)}
-        className={`tw-daisy-input tw-w-full tw-daisy-input-bordered ${
+        className={`tw-daisy-input tw:w-full tw-daisy-input-bordered ${
           valid(current) ? 'input-success' : 'input-error'
         }`}
         {...extraProps}
@@ -304,7 +304,7 @@ export const EmailInput = ({
       placeholder={placeholder}
       value={current}
       onChange={(evt) => update(evt.target.value)}
-      className={`tw-daisy-input tw-w-full tw-daisy-input-bordered ${
+      className={`tw-daisy-input tw:w-full tw-daisy-input-bordered ${
         current === original
           ? 'tw-daisy-input-secondary'
           : valid(current)
@@ -329,7 +329,7 @@ export const DesignInput = ({
     <FormControl label={label} forId={id}>
       <select
         id={id}
-        className="tw-daisy-select tw-daisy-select-bordered tw-w-full"
+        className="tw-daisy-select tw-daisy-select-bordered tw:w-full"
         onChange={(evt) => update(evt.target.value)}
         value={current}
       >
@@ -398,7 +398,7 @@ export const ImageInput = ({
     return (
       <FormControl label={label}>
         <div
-          className="tw-bg-base-100 tw-w-full tw-h-36 tw-mb-2 tw-mx-auto tw-flex tw-flex-col tw-items-center tw-text-center tw-justify-center"
+          className="tw:bg-base-100 tw:w-full tw:h-36 tw:mb-2 tw:mx-auto tw:flex tw:flex-col tw:items-center tw:text-center tw:justify-center"
           style={{
             backgroundImage: `url(${
               uploadedId ? cloudflareImageUrl({ type: 'public', id: uploadedId }) : current
@@ -409,7 +409,7 @@ export const ImageInput = ({
           }}
         >
           <button
-            className="tw-daisy-btn tw-daisy-btn-neutral tw-daisy-btn-circle tw-opacity-50 hover:tw-opacity-100"
+            className="tw-daisy-btn tw-daisy-btn-neutral tw-daisy-btn-circle tw:opacity-50 tw:hover:opacity-100"
             onClick={() => update(original)}
           >
             <ResetIcon />
@@ -423,32 +423,32 @@ export const ImageInput = ({
       <div
         {...getRootProps()}
         className={`
-        tw-flex tw-rounded-lg tw-w-full tw-flex-col tw-items-center tw-justify-center
-        lg:tw-p-6 lg:tw-border-4 lg:tw-border-secondary lg:tw-border-dashed
+        tw:flex tw:rounded-lg tw:w-full tw:flex-col tw:items-center tw:justify-center
+        tw:lg:p-6 tw:lg:border-4 tw:lg:border-secondary tw:lg:border-dashed
       `}
       >
         <input {...getInputProps()} />
-        <p className="tw-hidden lg:tw-block tw-p-0 tw-m-0">Drag and drop and image here</p>
-        <p className="tw-hidden lg:tw-block tw-p-0 tw-my-2">or</p>
+        <p className="tw:hidden tw:lg:block tw:p-0 tw:m-0">Drag and drop and image here</p>
+        <p className="tw:hidden tw:lg:block tw:p-0 tw:my-2">or</p>
         <button
-          className={`tw-daisy-btn tw-daisy-btn-secondary tw-daisy-btn-outline tw-mt-4 tw-px-8`}
+          className={`tw-daisy-btn tw-daisy-btn-secondary tw-daisy-btn-outline tw:mt-4 tw:px-8`}
         >
           Select an image to use
         </button>
       </div>
-      <p className="tw-p-0 tw-my-2 tw-text-center">or</p>
-      <div className="tw-flex tw-flex-row tw-items-center">
+      <p className="tw:p-0 tw:my-2 tw:text-center">or</p>
+      <div className="tw:flex tw:flex-row tw:items-center">
         <input
           id={id}
           type="url"
-          className="tw-daisy-input tw-daisy-input-secondary tw-w-full tw-daisy-input-bordered"
+          className="tw-daisy-input tw-daisy-input-secondary tw:w-full tw-daisy-input-bordered"
           placeholder="Paste an image URL here"
           value={current}
           onChange={active ? (evt) => setUrl(evt.target.value) : (evt) => update(evt.target.value)}
         />
         {active && (
           <button
-            className="tw-daisy-btn tw-daisy-btn-secondary tw-ml-2 tw-capitalize"
+            className="tw-daisy-btn tw-daisy-btn-secondary tw:ml-2 tw:capitalize"
             disabled={!url || url.length < 1}
             onClick={() => upload(url, true)}
           >
@@ -482,10 +482,10 @@ export const ListInput = ({
   <FormControl label={label}>
     {list.map((item, i) => (
       <ButtonFrame key={i} active={item.val === current} onClick={() => update(item.val)}>
-        <div className="tw-w-full tw-flex tw-flex-col tw-gap-2">
-          <div className="tw-w-full tw-text-lg tw-leading-5">{item.label}</div>
+        <div className="tw:w-full tw:flex tw:flex-col tw:gap-2">
+          <div className="tw:w-full tw:text-lg tw:leading-5">{item.label}</div>
           {item.desc ? (
-            <div className="tw-w-full tw-text-normal tw-font-normal tw-normal-case tw-pt-1 tw-leading-5">
+            <div className="tw:w-full tw:text-normal tw:font-normal tw:normal-case tw:pt-1 tw:leading-5">
               {item.desc}
             </div>
           ) : null}
@@ -514,11 +514,11 @@ export const MarkdownInput = ({
   >
     <Tabs tabs={['edit', 'preview']}>
       <Tab key="edit">
-        <div className="tw-flex tw-flex-row tw-items-center tw-mt-2">
+        <div className="tw:flex tw:flex-row tw:items-center tw:mt-2">
           <textarea
             id={id}
             rows="5"
-            className="tw-daisy-textarea tw-daisy-textarea-bordered tw-daisy-textarea-lg tw-w-full"
+            className="tw-daisy-textarea tw-daisy-textarea-bordered tw-daisy-textarea-lg tw:w-full"
             value={current}
             placeholder={placeholder}
             onChange={(evt) => update(evt.target.value)}
@@ -580,15 +580,15 @@ export const MeasurementInput = ({
   let inputClasses = 'daisy-input-secondary'
   let bottomLeftLabel = null
   if (valid === true) {
-    inputClasses = 'daisy-input-success tw-outline-success'
+    inputClasses = 'daisy-input-success tw:outline-success'
     const val = `${validatedVal}${isDegree ? '°' : imperial ? '"' : 'cm'}`
     bottomLeftLabel = (
-      <span className="tw-font-medium tw-text-base tw-text-success tw--mt-2 tw-block">{val}</span>
+      <span className="tw:font-medium tw:text-base tw:text-success tw:-mt-2 tw:block">{val}</span>
     )
   } else if (valid === false) {
     inputClasses = 'daisy-input-error'
     bottomLeftLabel = (
-      <span className="tw-font-medium tw-text-error tw-text-base tw--mt-2 tw-block">
+      <span className="tw:font-medium tw:text-error tw:text-base tw:-mt-2 tw:block">
         ¯\_(ツ)_/¯
       </span>
     )
@@ -609,7 +609,7 @@ export const MeasurementInput = ({
       labelBL={bottomLeftLabel}
     >
       <label
-        className={`tw-daisy-input tw-daisy-input-bordered tw-flex tw-items-center tw-gap-2 tw-border ${inputClasses} tw-mb-1 tw-outline tw-outline-base-300 tw-bg-transparent tw-outline-2 tw-outline-offset-2`}
+        className={`tw-daisy-input tw-daisy-input-bordered tw:flex tw:items-center tw:gap-2 tw:border ${inputClasses} tw:mb-1 tw:outline tw:outline-base-300 tw:bg-transparent tw:outline-2 tw:outline-offset-2`}
       >
         <input
           id={id}
@@ -619,12 +619,12 @@ export const MeasurementInput = ({
           placeholder={placeholder}
           value={localVal}
           onChange={(evt) => localUpdate(evt.target.value)}
-          className={`tw-border-0 tw-grow-2 tw-w-full`}
+          className={`tw:border-0 tw:grow-2 tw:w-full`}
         />
         {isDegree ? '°' : imperial ? 'inch' : 'cm'}
         <label>
-          <button className="tw-text-warning hover:tw-text-error" onClick={clearValue}>
-            <TrashIcon className="tw-w-5 tw-h-5 tw--mb-1" />
+          <button className="tw:text-warning tw:hover:text-error" onClick={clearValue}>
+            <TrashIcon className="tw:w-5 tw:h-5 tw:-mb-1" />
           </button>
         </label>
       </label>
@@ -664,9 +664,9 @@ export const FileInput = ({
   if (current)
     return (
       <FormControl label={label} isValid={valid(current)}>
-        <div className="tw-bg-base-100 tw-w-full tw-h-36 tw-mb-2 tw-mx-auto tw-flex tw-flex-col tw-items-center tw-text-center tw-justify-center">
+        <div className="tw:bg-base-100 tw:w-full tw:h-36 tw:mb-2 tw:mx-auto tw:flex tw:flex-col tw:items-center tw:text-center tw:justify-center">
           <button
-            className="tw-daisy-btn tw-daisy-btn-neutral tw-daisy-btn-circle tw-opacity-50 hover:tw-opacity-100"
+            className="tw-daisy-btn tw-daisy-btn-neutral tw-daisy-btn-circle tw:opacity-50 tw:hover:opacity-100"
             onClick={() => update(original)}
           >
             <ResetIcon />
@@ -683,14 +683,14 @@ export const FileInput = ({
       <div
         {...getRootProps()}
         className={`
-        tw-flex tw-rounded-lg tw-w-full tw-flex-col tw-items-center tw-justify-center
-        sm:tw-p-6 sm:tw-border-4 sm:tw-border-secondary sm:tw-border-dashed
+        tw:flex tw:rounded-lg tw:w-full tw:flex-col tw:items-center tw:justify-center
+        tw:sm:p-6 tw:sm:border-4 tw:sm:border-secondary tw:sm:border-dashed
       `}
       >
         <input {...getInputProps()} />
-        <p className="tw-hidden lg:tw-block tw-p-0 tw-m-0">Drag and drop your file here</p>
+        <p className="tw:hidden tw:lg:block tw:p-0 tw:m-0">Drag and drop your file here</p>
         <button
-          className={`tw-daisy-btn tw-daisy-btn-secondary tw-daisy-btn-outline tw-mt-4 tw-px-8`}
+          className={`tw-daisy-btn tw-daisy-btn-secondary tw-daisy-btn-outline tw:mt-4 tw:px-8`}
         >
           Browse...
         </button>
@@ -730,7 +730,7 @@ export const ToggleInput = ({
       type="checkbox"
       value={current}
       onChange={() => update(list.indexOf(current) === 0 ? list[1] : list[0])}
-      className="tw-daisy-toggle tw-my-3 tw-daisy-toggle-primary"
+      className="tw-daisy-toggle tw:my-3 tw-daisy-toggle-primary"
       checked={list.indexOf(current) === 0 ? true : false}
     />
   </FormControl>

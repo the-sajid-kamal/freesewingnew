@@ -61,7 +61,7 @@ export const HeaderMenuIcon = (props) => {
   // FIXME: Remove this when ready
   if (!headerMenuIcons[name]) console.log('FIXME: Add headerMenuIcon for ', name)
 
-  return <Icon {...props} className={`tw-h-5 tw-w-5 ${extraClasses}`} />
+  return <Icon {...props} className={`tw:h-5 tw:w-5 ${extraClasses}`} />
 }
 
 export const HeaderMenuDraftView = (props) => {
@@ -70,7 +70,7 @@ export const HeaderMenuDraftView = (props) => {
 
   return (
     <>
-      <div className="tw-flex tw-flex-row tw-gap-0.5 lg:tw-gap-1">
+      <div className="tw:flex tw:flex-row tw:gap-0.5 tw:lg:gap-1">
         <HeaderMenuDraftViewDesignOptions {...props} i18n={i18n} />
         <HeaderMenuDraftViewCoreSettings {...props} i18n={i18n} />
         <HeaderMenuDraftViewUiPreferences {...props} i18n={i18n} />
@@ -103,8 +103,8 @@ export const HeaderMenuTestViewDesignOptions = (props) => {
       tooltip="See how design options influence the pattern being generated."
       toggle={
         <>
-          <HeaderMenuIcon name="options" extraClasses="tw-text-secondary" />
-          <span className="tw-hidden lg:tw-inline">Test Options</span>
+          <HeaderMenuIcon name="options" extraClasses="tw:text-secondary" />
+          <span className="tw:hidden tw:lg:inline">Test Options</span>
         </>
       }
     >
@@ -121,8 +121,8 @@ export const HeaderMenuTestViewDesignMeasurements = (props) => {
       tooltip="See how changes to a measurment influence the pattern being generated."
       toggle={
         <>
-          <HeaderMenuIcon name="options" extraClasses="tw-text-secondary" />
-          <span className="tw-hidden lg:tw-inline">Test Measurements</span>
+          <HeaderMenuIcon name="options" extraClasses="tw:text-secondary" />
+          <span className="tw:hidden tw:lg:inline">Test Measurements</span>
         </>
       }
     >
@@ -145,7 +145,7 @@ export const HeaderMenuDropdown = (props) => {
         disabled
         tabIndex={0}
         role="button"
-        className={`tw-daisy-btn tw-daisy-btn-ghost hover:tw-bg-secondary hover:tw-bg-opacity-20 hover:tw-border-solid hover:tw-border-2 hover:tw-border-secondary tw-border tw-border-secondary tw-border-2 tw-border-dotted tw-daisy-btn-sm tw-px-2 tw-z-20 tw-relative`}
+        className={`tw-daisy-btn tw-daisy-btn-ghost tw:hover:bg-secondary tw:hover:bg-opacity-20 tw:hover:border-solid tw:hover:border-2 tw:hover:border-secondary tw:border tw:border-secondary tw:border-2 tw:border-dotted tw-daisy-btn-sm tw:px-2 tw:z-20 tw:relative`}
       >
         {toggle}
       </button>
@@ -153,26 +153,26 @@ export const HeaderMenuDropdown = (props) => {
   ) : (
     <Tooltip tip={tooltip}>
       <div
-        className={`tw-daisy-dropdown ${open === id ? 'tw-daisy-dropdown-open tw-z-20' : ''} ${end ? ' tw-daisy-dropdown-end' : ''}`}
+        className={`tw-daisy-dropdown ${open === id ? 'tw-daisy-dropdown-open tw:z-20' : ''} ${end ? ' tw-daisy-dropdown-end' : ''}`}
       >
         <div
           tabIndex={0}
           role="button"
-          className="tw-daisy-btn tw-daisy-btn-ghost hover:tw-bg-secondary hover:tw-bg-opacity-20 tw-border-secondary/10 hover:tw-border-2 hover:tw-border-secondary tw-border tw-border-secondary tw-border-2 tw-border-solid tw-daisy-btn-sm tw-px-2 tw-z-20 tw-relative"
+          className="tw-daisy-btn tw-daisy-btn-ghost tw:hover:bg-secondary tw:hover:bg-opacity-20 tw:border-secondary/10 tw:hover:border-2 tw:hover:border-secondary tw:border tw:border-secondary tw:border-2 tw:border-solid tw-daisy-btn-sm tw:px-2 tw:z-20 tw:relative"
           onClick={() => setOpen(open === id ? false : id)}
         >
           {toggle}
         </div>
         <div
           tabIndex={0}
-          className="tw-daisy-dropdown-content tw-bg-base-100 tw-bg-opacity-90 tw-z-20 tw-shadow tw-left-0 !tw-fixed md:!tw-absolute tw-top-12 tw-w-screen md:tw-max-w-md tw-overflow-y-scroll tw-mb-12 tw-h-fit"
+          className="tw-daisy-dropdown-content tw:bg-base-100 tw:bg-opacity-90 tw:z-20 tw:shadow tw:left-0 tw:fixed! tw:md:absolute! tw:top-12 tw:w-screen tw:md:max-w-md tw:overflow-y-scroll tw:mb-12 tw:h-fit"
           style={{ maxHeight: 'calc(100vh - 12rem)' }}
         >
           {props.children}
         </div>
         {open === id && (
           <div
-            className="tw-w-screen tw-h-screen tw-absolute tw-top-10 tw-left-0 tw-opacity-0"
+            className="tw:w-screen tw:h-screen tw:absolute tw:top-10 tw:left-0 tw:opacity-0"
             style={{ width: '200vw', transform: 'translateX(-100vw)' }}
             onClick={() => setOpen(false)}
           ></div>
@@ -189,8 +189,8 @@ export const HeaderMenuDraftViewDesignOptions = (props) => (
     tooltip="These options are specific to this design. You can use them to customize your pattern in a variety of ways."
     toggle={
       <>
-        <HeaderMenuIcon name="options" extraClasses="tw-text-secondary" />
-        <span className="tw-hidden lg:tw-inline tw-capitalize">
+        <HeaderMenuIcon name="options" extraClasses="tw:text-secondary" />
+        <span className="tw:hidden tw:lg:inline tw:capitalize">
           {props.state.design ? props.state.design : 'Design'} Options
         </span>
       </>
@@ -208,8 +208,8 @@ export const HeaderMenuDraftViewCoreSettings = (props) => {
       id="coreSettings"
       toggle={
         <>
-          <HeaderMenuIcon name="settings" extraClasses="tw-text-secondary" />
-          <span className="tw-hidden lg:tw-inline">Core Settings</span>
+          <HeaderMenuIcon name="settings" extraClasses="tw:text-secondary" />
+          <span className="tw:hidden tw:lg:inline">Core Settings</span>
         </>
       }
     >
@@ -226,8 +226,8 @@ export const HeaderMenuDraftViewUiPreferences = (props) => {
       id="uiPreferences"
       toggle={
         <>
-          <HeaderMenuIcon name="ui" extraClasses="tw-text-secondary" />
-          <span className="tw-hidden lg:tw-inline">UI Preferences</span>
+          <HeaderMenuIcon name="ui" extraClasses="tw:text-secondary" />
+          <span className="tw:hidden tw:lg:inline">UI Preferences</span>
         </>
       }
     >
@@ -246,8 +246,8 @@ export const HeaderMenuDraftViewFlags = (props) => {
       id="flags"
       toggle={
         <>
-          <HeaderMenuIcon name="flag" extraClasses="tw-text-secondary" />
-          <span className="tw-hidden lg:tw-inline">
+          <HeaderMenuIcon name="flag" extraClasses="tw:text-secondary" />
+          <span className="tw:hidden tw:lg:inline">
             Flags
             <span>({count})</span>
           </span>
@@ -262,8 +262,8 @@ export const HeaderMenuDraftViewFlags = (props) => {
 export const HeaderMenuDraftViewIcons = (props) => {
   const { update, state } = props
   const Button = HeaderMenuButton
-  const size = 'tw-w-5 tw-h-5'
-  const muted = 'tw-text-current tw-opacity-50'
+  const size = 'tw:w-5 tw:h-5'
+  const muted = 'tw:text-current tw:opacity-50'
   const ux = state.ui.ux
   const levels = {
     ...props.config.uxLevels.core,
@@ -271,14 +271,14 @@ export const HeaderMenuDraftViewIcons = (props) => {
   }
 
   return (
-    <div className="tw-hidden lg:tw-flex tw-flex-row tw-flex-wrap tw-items-center tw-justify-center tw-px-0.5 lg:tw-px-1">
+    <div className="tw:hidden tw:lg:flex tw:flex-row tw:flex-wrap tw:items-center tw:justify-center tw:px-0.5 tw:lg:px-1">
       {ux >= levels.sa ? (
         <Button
           lgOnly
           updateHandler={update.toggleSa}
           tooltip="Turns Seam Allowance on or off (see Core Settings)"
         >
-          <SaIcon className={`${size} ${state.settings.sabool ? 'tw-text-secondary' : muted}`} />
+          <SaIcon className={`${size} ${state.settings.sabool ? 'tw:text-secondary' : muted}`} />
         </Button>
       ) : null}
       {ux >= levels.units ? (
@@ -291,7 +291,7 @@ export const HeaderMenuDraftViewIcons = (props) => {
         >
           <UnitsIcon
             className={`${size} ${
-              state.settings.units === 'imperial' ? 'tw-text-secondary' : muted
+              state.settings.units === 'imperial' ? 'tw:text-secondary' : muted
             }`}
           />
         </Button>
@@ -303,7 +303,7 @@ export const HeaderMenuDraftViewIcons = (props) => {
           tooltip="Turns Paperless on or off (see Core Settings)"
         >
           <PaperlessIcon
-            className={`${size} ${state.settings.paperless ? 'tw-text-secondary' : muted}`}
+            className={`${size} ${state.settings.paperless ? 'tw:text-secondary' : muted}`}
           />
         </Button>
       ) : null}
@@ -314,7 +314,7 @@ export const HeaderMenuDraftViewIcons = (props) => {
           tooltip="Turns Details on or off (see Core Settings)"
         >
           <DetailIcon
-            className={`${size} ${!state.settings.complete ? 'tw-text-secondary' : muted}`}
+            className={`${size} ${!state.settings.complete ? 'tw:text-secondary' : muted}`}
           />
         </Button>
       ) : null}
@@ -325,7 +325,7 @@ export const HeaderMenuDraftViewIcons = (props) => {
           tooltip="Turns Expand on or off (see Core Settings)"
         >
           <ExpandIcon
-            className={`${size} ${state.settings.expand ? 'tw-text-secondary' : muted}`}
+            className={`${size} ${state.settings.expand ? 'tw:text-secondary' : muted}`}
           />
         </Button>
       ) : null}
@@ -336,7 +336,7 @@ export const HeaderMenuDraftViewIcons = (props) => {
           updateHandler={() => update.ui('aside', state.ui.aside ? 0 : 1)}
           tooltip="Toggles the side menu (see UI Preferences)"
         >
-          <AsideIcon className={`${size} ${state.ui.aside ? 'tw-text-secondary' : muted}`} />
+          <AsideIcon className={`${size} ${state.ui.aside ? 'tw:text-secondary' : muted}`} />
         </Button>
       ) : null}
       {ux >= levels.renderer ? (
@@ -348,7 +348,7 @@ export const HeaderMenuDraftViewIcons = (props) => {
           tooltip="Switches the Render Engine between React and SVG (see UI Preferences)"
         >
           <RocketIcon
-            className={`${size} ${state.ui.renderer === 'svg' ? 'tw-text-secondary' : muted}`}
+            className={`${size} ${state.ui.renderer === 'svg' ? 'tw:text-secondary' : muted}`}
           />
         </Button>
       ) : null}
@@ -359,18 +359,18 @@ export const HeaderMenuDraftViewIcons = (props) => {
 export const HeaderMenuUndoIcons = (props) => {
   const { update, state, Design } = props
   const Button = HeaderMenuButton
-  const size = 'tw-w-5 tw-h-5'
+  const size = 'tw:w-5 tw:h-5'
   const undos = state._?.undos && state._.undos.length > 0 ? state._.undos : false
 
   return (
-    <div className="tw-flex tw-flex-row tw-flex-wrap tw-items-center tw-justify-center tw-px-0.5 lg:tw-px-1">
+    <div className="tw:flex tw:flex-row tw:flex-wrap tw:items-center tw:justify-center tw:px-0.5 tw:lg:px-1">
       <Button
         lgOnly
         updateHandler={() => update.restore(0, state._)}
         tooltip="Undo the most recent change"
         disabled={undos ? false : true}
       >
-        <UndoIcon className={`${size} ${undos ? 'tw-text-secondary' : ''}`} text="1" />
+        <UndoIcon className={`${size} ${undos ? 'tw:text-secondary' : ''}`} text="1" />
       </Button>
       <Button
         lgOnly
@@ -378,7 +378,7 @@ export const HeaderMenuUndoIcons = (props) => {
         tooltip="Undo all changes since the last save point"
         disabled={undos ? false : true}
       >
-        <UndoIcon className={`${size} ${undos ? 'tw-text-secondary' : ''}`} text="A" />
+        <UndoIcon className={`${size} ${undos ? 'tw:text-secondary' : ''}`} text="A" />
       </Button>
       <HeaderMenuDropdown
         end
@@ -388,13 +388,13 @@ export const HeaderMenuUndoIcons = (props) => {
         disabled={undos ? false : true}
         toggle={
           <>
-            <UndoIcon className="tw-w-4 tw-h-4" stroke={3} />
-            <span className="tw-hidden lg:tw-inline">Undo</span>
+            <UndoIcon className="tw:w-4 tw:h-4" stroke={3} />
+            <span className="tw:hidden tw:lg:inline">Undo</span>
           </>
         }
       >
         {undos ? (
-          <ul className="tw-daisy-dropdown-content tw-bg-base-100 tw-bg-opacity-90 tw-z-20 tw-shadow tw-left-0 !tw-fixed md:!tw-absolute tw-w-screen md:tw-w-96 tw-px-4 md:tw-p-2 md:tw-pt-0 tw-contents">
+          <ul className="tw-daisy-dropdown-content tw:bg-base-100 tw:bg-opacity-90 tw:z-20 tw:shadow tw:left-0 tw:fixed! tw:md:absolute! tw:w-screen tw:md:w-96 tw:px-4 tw:md:p-2 tw:md:pt-0 tw:contents">
             {undos.slice(0, 9).map((step, index) => (
               <li key={index}>
                 <UndoStep {...{ step, update, state, Design, index }} compact />
@@ -402,9 +402,9 @@ export const HeaderMenuUndoIcons = (props) => {
             ))}
             <li key="view">
               <ButtonFrame dense onClick={() => update.view('undos')}>
-                <div className="tw-flex tw-flex-row tw-items-center tw-align-center tw-justify-between tw-gap-2 tw-w-full">
-                  <div className="tw-flex tw-flex-row tw-items-center tw-align-start tw-gap-2 tw-grow">
-                    <UndoIcon className="tw-w-5 tw-h-5 tw-text-secondary" />
+                <div className="tw:flex tw:flex-row tw:items-center tw:align-center tw:justify-between tw:gap-2 tw:w-full">
+                  <div className="tw:flex tw:flex-row tw:items-center tw:align-start tw:gap-2 tw:grow">
+                    <UndoIcon className="tw:w-5 tw:h-5 tw:text-secondary" />
                     {viewLabels.undos.t}
                   </div>
                   {undos.length}
@@ -418,10 +418,10 @@ export const HeaderMenuUndoIcons = (props) => {
         updateHandler={update.clearAll}
         tooltip="Reset all settings, but keep the design and measurements"
       >
-        <TrashIcon className={`${size} tw-text-secondary`} />
+        <TrashIcon className={`${size} tw:text-secondary`} />
       </Button>
       <Button updateHandler={update.clearAll} tooltip="Reset the editor completely">
-        <ResetAllIcon className={`${size} tw-text-secondary`} />
+        <ResetAllIcon className={`${size} tw:text-secondary`} />
       </Button>
     </div>
   )
@@ -430,11 +430,11 @@ export const HeaderMenuUndoIcons = (props) => {
 export const HeaderMenuTestIcons = (props) => {
   const { update, state, Design } = props
   const Button = HeaderMenuButton
-  const size = 'tw-w-5 tw-h-5'
+  const size = 'tw:w-5 tw:h-5'
   const undos = state._?.undos && state._.undos.length > 0 ? state._.undos : false
 
   return (
-    <div className="tw-flex tw-flex-row tw-flex-wrap tw-items-center tw-justify-center tw-px-0.5 lg:tw-px-1">
+    <div className="tw:flex tw:flex-row tw:flex-wrap tw:items-center tw:justify-center tw:px-0.5 tw:lg:px-1">
       <Button
         updateHandler={() => update.settings('sample', undefined)}
         tooltip="Clear the test so you can select another"
@@ -449,7 +449,7 @@ export const HeaderMenuSaveIcons = (props) => {
   const { update, state } = props
   const backend = useBackend()
   const Button = HeaderMenuButton
-  const size = 'tw-w-5 tw-h-5'
+  const size = 'tw:w-5 tw:h-5'
   const saveable = state._?.undos && state._.undos.length > 0
 
   /*
@@ -473,22 +473,22 @@ export const HeaderMenuSaveIcons = (props) => {
   }
 
   return (
-    <div className="tw-flex tw-flex-row tw-flex-wrap tw-items-center tw-justify-center tw-px-2">
+    <div className="tw:flex tw:flex-row tw:flex-wrap tw:items-center tw:justify-center tw:px-2">
       <Button updateHandler={savePattern} tooltip="Save pattern" disabled={saveable ? false : true}>
-        <SaveIcon className={`${size} ${saveable ? 'tw-text-success' : ''}`} />
+        <SaveIcon className={`${size} ${saveable ? 'tw:text-success' : ''}`} />
       </Button>
       <Button updateHandler={() => update.view('save')} tooltip="Save pattern as...">
-        <SaveAsIcon className={`${size} tw-text-secondary`} />
+        <SaveAsIcon className={`${size} tw:text-secondary`} />
       </Button>
       <Button updateHandler={() => update.view('export')} tooltip="Export pattern">
-        <ExportIcon className={`${size} tw-text-secondary`} />
+        <ExportIcon className={`${size} tw:text-secondary`} />
       </Button>
     </div>
   )
 }
 
 export const HeaderMenuIconSpacer = () => (
-  <span className="tw-hidden lg:tw-inline tw-px-1 tw-font-bold tw-opacity-30">|</span>
+  <span className="tw:hidden tw:lg:inline tw:px-1 tw:font-bold tw:opacity-30">|</span>
 )
 
 export const HeaderMenuButton = ({
@@ -500,7 +500,7 @@ export const HeaderMenuButton = ({
 }) => (
   <Tooltip tip={tooltip}>
     <button
-      className={`${lgOnly ? 'tw-hidden lg:tw-inline' : ''} tw-daisy-btn tw-daisy-btn-ghost tw-daisy-btn-sm tw-px-1 disabled:tw-bg-transparent`}
+      className={`${lgOnly ? 'tw:hidden tw:lg:inline' : ''} tw-daisy-btn tw-daisy-btn-ghost tw-daisy-btn-sm tw:px-1 tw:disabled:bg-transparent`}
       onClick={updateHandler}
       disabled={disabled}
     >
@@ -533,19 +533,19 @@ export const HeaderMenuViewMenu = (props) => {
       output.push(
         <li
           key={i}
-          className="tw-mb-1 tw-flex tw-flex-row tw-items-center tw-justify-between tw-w-full"
+          className="tw:mb-1 tw:flex tw:flex-row tw:items-center tw:justify-between tw:w-full"
         >
           <a
-            className={`tw-w-full tw-text-base-content
-            tw-flex tw-flex-row tw-items-center tw-gap-2 md:tw-gap-4 tw-p-2 tw-px-4
-            hover:tw-cursor-pointer hover:tw-text-base-content
-            hover:tw-bg-secondary hover:tw-bg-opacity-20 ${
-              viewName === state.view ? 'tw-bg-secondary tw-bg-opacity-20' : ''
+            className={`tw:w-full tw:text-base-content
+            tw:flex tw:flex-row tw:items-center tw:gap-2 tw:md:gap-4 tw:p-2 tw:px-4
+            tw:hover:cursor-pointer tw:hover:text-base-content
+            tw:hover:bg-secondary tw:hover:bg-opacity-20 ${
+              viewName === state.view ? 'tw:bg-secondary tw:bg-opacity-20' : ''
             }`}
             onClick={() => update.view(viewName)}
           >
-            <ViewIcon view={viewName} className="tw-w-6 tw-h-6 tw-grow-0" />
-            <span className="tw-text-left tw-grow tw-font-medium">
+            <ViewIcon view={viewName} className="tw:w-6 tw:h-6 tw:grow-0" />
+            <span className="tw:text-left tw:grow tw:font-medium">
               {viewLabels[viewName]?.t || viewName}
             </span>
           </a>
@@ -561,8 +561,8 @@ export const HeaderMenuViewMenu = (props) => {
       id="views"
       toggle={
         <>
-          <HeaderMenuIcon name="right" stroke={3} extraClasses="tw-text-secondary tw-rotate-90" />
-          <span className="tw-hidden lg:tw-inline">
+          <HeaderMenuIcon name="right" stroke={3} extraClasses="tw:text-secondary tw:rotate-90" />
+          <span className="tw:hidden tw:lg:inline">
             {viewLabels[state.view] ? viewLabels[state.view].t : 'Views'}
           </span>
         </>
@@ -570,7 +570,7 @@ export const HeaderMenuViewMenu = (props) => {
     >
       <ul
         tabIndex={i}
-        className="tw-daisy-dropdown-content tw-bg-base-100 tw-bg-opacity-95 tw-z-20 tw-shadow tw-left-0 !tw-fixed md:!tw-absolute tw-w-screen md:tw-max-w-lg md:tw-pt-0 tw-mt-14 md:tw-mt-0 tw-contents"
+        className="tw-daisy-dropdown-content tw:bg-base-100 tw:bg-opacity-95 tw:z-20 tw:shadow tw:left-0 tw:fixed! tw:md:absolute! tw:w-screen tw:md:max-w-lg tw:md:pt-0 tw:mt-14 tw:md:mt-0 tw:contents"
       >
         {output}
       </ul>
@@ -586,8 +586,8 @@ export const HeaderMenuLayoutView = (props) => (
       tooltip="These options are specific to this design. You can use them to customize your pattern in a variety of ways."
       toggle={
         <>
-          <HeaderMenuIcon name="layout" extraClasses="tw-text-secondary" />
-          <span className="tw-hidden lg:tw-inline">Print Settings</span>
+          <HeaderMenuIcon name="layout" extraClasses="tw:text-secondary" />
+          <span className="tw:hidden tw:lg:inline">Print Settings</span>
         </>
       }
     >
@@ -642,10 +642,10 @@ export const HeaderMenuLayoutViewIcons = (props) => {
   return (
     <>
       <Tooltip tip="Number of pages required for the current layout">
-        <span className="tw-px-1 tw-font-bold tw-text-sm tw-block tw-h-8 tw-py-1 tw-opacity-80">
+        <span className="tw:px-1 tw:font-bold tw:text-sm tw:block tw:h-8 tw:py-1 tw:opacity-80">
           <span className="">
             {count} pages
-            <span className="tw-pl-1 tw-text-xs tw-font-medium">
+            <span className="tw:pl-1 tw:text-xs tw:font-medium">
               ({cols}x{rows}, {blank} blank)
             </span>
           </span>
@@ -653,7 +653,7 @@ export const HeaderMenuLayoutViewIcons = (props) => {
       </Tooltip>
       <Tooltip tip="Apply this layout to the pattern">
         <button
-          className="tw-daisy-btn tw-daisy-btn-ghost tw-daisy-btn-sm tw-px-1 disabled:tw-bg-transparent tw-text-secondary"
+          className="tw-daisy-btn tw-daisy-btn-ghost tw-daisy-btn-sm tw:px-1 tw:disabled:bg-transparent tw:text-secondary"
           onClick={applyLayout}
           disabled={!layoutValid}
         >
@@ -662,7 +662,7 @@ export const HeaderMenuLayoutViewIcons = (props) => {
       </Tooltip>
       <Tooltip tip="Generate a PDF that you can print">
         <button
-          className="tw-daisy-btn tw-daisy-btn-ghost tw-daisy-btn-sm tw-px-1 disabled:tw-bg-transparent tw-text-secondary"
+          className="tw-daisy-btn tw-daisy-btn-ghost tw-daisy-btn-sm tw:px-1 tw:disabled:bg-transparent tw:text-secondary"
           onClick={() => update.view('export')}
         >
           <PrintIcon />
@@ -670,7 +670,7 @@ export const HeaderMenuLayoutViewIcons = (props) => {
       </Tooltip>
       <Tooltip tip="Reset the custom layout">
         <button
-          className="tw-daisy-btn tw-daisy-btn-ghost tw-daisy-btn-sm tw-px-1 disabled:tw-bg-transparent tw-text-secondary"
+          className="tw-daisy-btn tw-daisy-btn-ghost tw-daisy-btn-sm tw:px-1 tw:disabled:bg-transparent tw:text-secondary"
           onClick={resetLayout}
         >
           <ResetIcon />
@@ -705,12 +705,12 @@ export const HeaderMenu = ({ config, Design, pattern, state, update, strings }) 
 
   return (
     <div
-      className={`tw-flex tw-sticky tw-top-0 ${
-        state.ui.kiosk ? 'tw-z-50' : 'tw-z-20'
-      } tw-transition-[top] tw-duration-300 tw-ease-in-out`}
+      className={`tw:flex tw:sticky tw:top-0 ${
+        state.ui.kiosk ? 'tw:z-50' : 'tw:z-20'
+      } tw:transition-[top] tw:duration-300 tw:ease-in-out`}
     >
       <div
-        className={`tw-flex tw-flex-row tw-flex-wrap tw-gap-0.5 lg:tw-gap-1 tw-w-full tw-items-start tw-justify-center tw-py-1 md:tw-py-1.5`}
+        className={`tw:flex tw:flex-row tw:flex-wrap tw:gap-0.5 tw:lg:gap-1 tw:w-full tw:items-start tw:justify-center tw:py-1 tw:md:py-1.5`}
       >
         <HeaderMenuViewMenu {...{ config, state, update, open, setOpen, strings }} />
         <ViewSpecificMenu {...{ config, state, update, Design, pattern, open, setOpen, strings }} />

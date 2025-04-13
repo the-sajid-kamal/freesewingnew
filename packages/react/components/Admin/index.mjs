@@ -53,12 +53,12 @@ export const SubscriberAdministration = ({ page }) => {
       {subscribers ? (
         <>
           <h5>Search subscribers</h5>
-          <div className="tw-flex tw-flex-row tw-gap-2 tw-items-center">
+          <div className="tw:flex tw:flex-row tw:gap-2 tw:items-center">
             <input
               autoFocus
               value={q}
               onChange={(evt) => setQ(evt.target.value)}
-              className="tw-daisy-input tw-w-full tw-daisy-input-bordered tw-flex tw-flex-row"
+              className="tw-daisy-input tw:w-full tw-daisy-input-bordered tw:flex tw:flex-row"
               type="text"
               placeholder="Username, ID, or E-mail address"
             />
@@ -66,22 +66,22 @@ export const SubscriberAdministration = ({ page }) => {
               <SearchIcon />
             </button>
           </div>
-          <table className="tw-table tw-my-4">
+          <table className="tw:table tw:my-4">
             <thead>
               <tr>
-                <th className="tw-text-right">Email</th>
-                <th className="tw-w-12">Language</th>
+                <th className="tw:text-right">Email</th>
+                <th className="tw:w-12">Language</th>
                 <th>Unsubscribe</th>
               </tr>
             </thead>
             <tbody>
               {hits.map((hit, i) => (
                 <tr key={i}>
-                  <td className="tw-text-right">
+                  <td className="tw:text-right">
                     <b>{hit.email}</b>
                   </td>
-                  <td className="tw-w-12">{hit.lang.toUpperCase()}</td>
-                  <td className="tw-w-full">
+                  <td className="tw:w-12">{hit.lang.toUpperCase()}</td>
+                  <td className="tw:w-full">
                     <button
                       className="tw-daisy-btn tw-daisy-btn-link"
                       onClick={() => unsubscribe(hit.ehash)}
@@ -127,15 +127,15 @@ export const UserAdministration = ({ Link = false }) => {
 
   return (
     <>
-      <div className="tw-flex tw-flex-row tw-gap-8 tw-items-start tw-w-full">
-        <div className="tw-grow">
+      <div className="tw:flex tw:flex-row tw:gap-8 tw:items-start tw:w-full">
+        <div className="tw:grow">
           <h5>Search users</h5>
-          <div className="tw-flex tw-flex-row tw-gap-2 tw-items-center">
+          <div className="tw:flex tw:flex-row tw:gap-2 tw:items-center">
             <input
               autoFocus
               value={q}
               onChange={(evt) => setQ(evt.target.value)}
-              className="tw-daisy-input tw-w-full tw-daisy-input-bordered tw-flex tw-flex-row"
+              className="tw-daisy-input tw:w-full tw-daisy-input-bordered tw:flex tw:flex-row"
               type="text"
               placeholder="Username, ID, or E-mail address"
             />
@@ -183,9 +183,9 @@ export const User = ({ user, Link }) => {
   const { setModal } = useContext(ModalContext)
 
   return (
-    <div className="tw-flex tw-flex-row tw-w-full tw-gap-4 tw-my-2">
+    <div className="tw:flex tw:flex-row tw:w-full tw:gap-4 tw:my-2">
       <button
-        className="tw-w-24 tw-h-24 tw-bg-base-100 tw-rounded-lg tw-shadow tw-shrink-0"
+        className="tw:w-24 tw:h-24 tw:bg-base-100 tw:rounded-lg tw:shadow tw:shrink-0"
         onClick={() =>
           setModal(
             <ModalWrapper>
@@ -199,16 +199,16 @@ export const User = ({ user, Link }) => {
           backgroundColor: '#ccc',
         }}
       ></button>
-      <div className="tw-w-full tw-flex tw-flex-col tw-gap-1">
-        <div className="tw-w-full tw-flex tw-flex-row tw-flex-wrap tw-gap-1">
+      <div className="tw:w-full tw:flex tw:flex-col tw:gap-1">
+        <div className="tw:w-full tw:flex tw:flex-row tw:flex-wrap tw:gap-1">
           <Link href={`/users/?id=${user.id}`}>{user.username}</Link>
           <KeyVal k="id" val={user.id} />
         </div>
-        <div className="tw-w-full tw-flex tw-flex-row tw-flex-wrap tw-gap-1">
+        <div className="tw:w-full tw:flex tw:flex-row tw:flex-wrap tw:gap-1">
           <UserRole role={user.role} />
           <AccountStatus status={user.status} />
         </div>
-        <div className="tw-w-full tw-flex tw-flex-row tw-flex-wrap tw-gap-1">
+        <div className="tw:w-full tw:flex tw:flex-row tw:flex-wrap tw:gap-1">
           <button
             className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-sm tw-daisy-btn-outline"
             onClick={() =>

@@ -62,7 +62,7 @@ export function menuCoreSettingsSaboolHandler({ toggleSa }) {
 }
 
 const CoreDocsLink = ({ item }) => (
-  <a href={`/docs/about/site/draft/#${item.toLowerCase()}`} className={`${linkClasses} tw-px-2`}>
+  <a href={`/docs/about/site/draft/#${item.toLowerCase()}`} className={`${linkClasses} tw:px-2`}>
     Learn more
   </a>
 )

@@ -36,7 +36,7 @@ export const MenuConstantInput = ({
     <input
       type={type}
       className={`
-      tw-daisy-input tw-daisy-input-bordered tw-w-full tw-text-base-content
+      tw-daisy-input tw-daisy-input-bordered tw:w-full tw:text-base-content
       ${changed ? 'tw-daisy-input-secondary' : 'tw-daisy-input-accent'}
     `}
       value={changed ? current : config.dflt}
@@ -143,16 +143,16 @@ export const MenuListInput = ({
         onClick={() => handleChange(entry)}
       >
         <div
-          className={`tw-w-full tw-flex ${
+          className={`tw:w-full tw:flex ${
             sideBySide
-              ? 'tw-flex-row tw-justify-between tw-gap-2 tw-items-center'
-              : 'tw-flex-col tw-items-start'
+              ? 'tw:flex-row tw:justify-between tw:gap-2 tw:items-center'
+              : 'tw:flex-col tw:items-start'
           }`}
         >
-          <div className="tw-font-semibold">{config.choiceTitles[entry]}</div>
+          <div className="tw:font-semibold">{config.choiceTitles[entry]}</div>
           {compact || !config.choiceDescriptions ? null : (
             <div
-              className={`${config.dense ? 'tw-text-sm tw-leading-5 tw-py-1' : 'tw-text-base'} tw-font-normal`}
+              className={`${config.dense ? 'tw:text-sm tw:leading-5 tw:py-1' : 'tw:text-base'} tw:font-normal`}
             >
               {config.choiceDescriptions[entry]}
             </div>
@@ -296,7 +296,7 @@ export const MenuSliderInput = ({
   if (override)
     return (
       <>
-        <div className="tw-flex tw-flex-row tw-justify-between">
+        <div className="tw:flex tw:flex-row tw:justify-between">
           <MenuEditOption
             {...{
               config,
@@ -314,17 +314,17 @@ export const MenuSliderInput = ({
 
   return (
     <>
-      <div className="tw-flex tw-flex-row tw-justify-between">
-        <span className="tw-opacity-50">
+      <div className="tw:flex tw:flex-row tw:justify-between">
+        <span className="tw:opacity-50">
           <span dangerouslySetInnerHTML={{ __html: valFormatter(min) + suffix }} />
         </span>
         <div
-          className={`tw-font-bold ${val === config.dflt ? 'tw-text-secondary' : 'tw-text-accent'}`}
+          className={`tw:font-bold ${val === config.dflt ? 'tw:text-secondary' : 'tw:text-accent'}`}
         >
           <span dangerouslySetInnerHTML={{ __html: valFormatter(val) + suffix }} />
           {typeof config.toAbs === 'function' ? (
             <span>
-              <span className="tw-px-2">|</span>
+              <span className="tw:px-2">|</span>
               <span
                 dangerouslySetInnerHTML={{
                   __html: formatMm(
@@ -340,7 +340,7 @@ export const MenuSliderInput = ({
             </span>
           ) : null}
         </div>
-        <span className="tw-opacity-50">
+        <span className="tw:opacity-50">
           <span dangerouslySetInnerHTML={{ __html: valFormatter(max) + suffix }} />
         </span>
       </div>
@@ -349,7 +349,7 @@ export const MenuSliderInput = ({
         {...{ min, max, value: val, step: config.step || 0.1 }}
         onChange={(evt) => handleChange(evt.target.value)}
         className={`
-          tw-daisy-range tw-daisy-range-sm tw-mt-1
+          tw-daisy-range tw-daisy-range-sm tw:mt-1
           ${changed ? 'tw-daisy-range-accent' : 'tw-daisy-range-secondary'}
         `}
       />
@@ -396,8 +396,8 @@ export const MenuEditOption = (props) => {
     return <p>This design option type does not have a component to handle manual input.</p>
 
   return (
-    <div className="tw-daisy-form-control tw-mb-2 tw-w-full">
-      <div className="tw-daisy-label tw-font-medium tw-text-accent">
+    <div className="tw-daisy-form-control tw:mb-2 tw:w-full">
+      <div className="tw-daisy-label tw:font-medium tw:text-accent">
         <label className="tw-daisy-label-text">
           <em>Enter a custom value</em>
         </label>
@@ -407,10 +407,10 @@ export const MenuEditOption = (props) => {
           </label>
         ) : null}
       </div>
-      <label className="tw-daisy-input-group tw-daisy-input-group-sm tw-flex tw-flex-row tw-items-end tw-gap-2 tw--mt-4">
+      <label className="tw-daisy-input-group tw-daisy-input-group-sm tw:flex tw:flex-row tw:items-end tw:gap-2 tw:-mt-4">
         <NumberInput value={manualEdit} update={setManualEdit} />
         <button
-          className="tw-daisy-btn tw-daisy-btn-secondary tw-mt-4"
+          className="tw-daisy-btn tw-daisy-btn-secondary tw:mt-4"
           onClick={() => onUpdate(manualEdit, units)}
         >
           <ApplyIcon />
@@ -470,8 +470,8 @@ export const MenuOnlySettingInput = (props) => {
     const [design, name] = part.split('.')
     config.choiceTitles[part] = (
       <span>
-        <span className="tw-font-medium tw-opacity-80 tw-capitalize">{design}</span>
-        <span className="tw-font-medium tw-opacity-80 tw-capitalize tw-px-2">&raquo;</span>
+        <span className="tw:font-medium tw:opacity-80 tw:capitalize">{design}</span>
+        <span className="tw:font-medium tw:opacity-80 tw:capitalize tw:px-2">&raquo;</span>
         {i18n[design].en.p[name]}
       </span>
     )

@@ -51,7 +51,7 @@ export const NewsletterSignup = ({ Link = false, noP = false, noTitle = false, n
   return (
     <div
       className={
-        noBox ? '' : 'tw-w-full tw-shadow tw-border tw-rounded-lg tw-p-4 tw-bg-secondary/5'
+        noBox ? '' : 'tw:w-full tw:shadow tw:border tw:rounded-lg tw:p-4 tw:bg-secondary/5'
       }
     >
       {subscribed ? (
@@ -60,8 +60,8 @@ export const NewsletterSignup = ({ Link = false, noP = false, noTitle = false, n
           <p>
             We have sent and email to <b>{email}</b> with a link to confirm this action.
           </p>
-          <div className="tw-ml-2 tw-pl-2 tw-border-l-4 tw-border-secondary/20">
-            <h6 className="tw-mt-2 tw-pb-0">Why do I need to confirm this?</h6>
+          <div className="tw:ml-2 tw:pl-2 tw:border-l-4 tw:border-secondary/20">
+            <h6 className="tw:mt-2 tw:pb-0">Why do I need to confirm this?</h6>
             <small>
               Without this confirmation step, anyone could attempt to {unsubscribe ? 'un' : ''}
               subcribe this E-mail address {unsubscribe ? 'from' : 'to'} our newsletter.
@@ -89,15 +89,15 @@ export const NewsletterSignup = ({ Link = false, noP = false, noTitle = false, n
               </>
             }
             labelBL={
-              <span className="tw-flex tw-flex-row tw-items-center tw-flex-wrap tw-gap-1">
+              <span className="tw:flex tw:flex-row tw:items-center tw:flex-wrap tw:gap-1">
                 {validateEmail(email) ? (
                   <>
-                    <OkIcon className="tw-text-success tw-w-5 tw-h-5" stroke={3} />
+                    <OkIcon className="tw:text-success tw:w-5 tw:h-5" stroke={3} />
                     Looks great, click below to {unsubscribe ? 'un' : ''}subscribe this address
                   </>
                 ) : (
                   <>
-                    <WarningIcon className="tw-text-error tw-w-5 tw-h-5" /> Please enter a valid
+                    <WarningIcon className="tw:text-error tw:w-5 tw:h-5" /> Please enter a valid
                     E-mail address
                   </>
                 )}
@@ -108,7 +108,7 @@ export const NewsletterSignup = ({ Link = false, noP = false, noTitle = false, n
             valid={validateEmail}
           />
           <button
-            className="tw-daisy-btn tw-daisy-btn-primary tw-w-full"
+            className="tw-daisy-btn tw-daisy-btn-primary tw:w-full"
             disabled={!validateEmail(email)}
             onClick={subscribe}
           >
@@ -174,7 +174,7 @@ export const NewsletterUnsubscribe = ({ Link = false }) => {
       </p>
       <button
         onClick={unsubscribe}
-        className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-large tw-w-full tw-my-4"
+        className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-large tw:w-full tw:my-4"
       >
         Unsubscribe
       </button>

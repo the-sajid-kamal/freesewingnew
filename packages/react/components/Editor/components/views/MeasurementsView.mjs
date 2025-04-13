@@ -22,7 +22,7 @@ import { HeaderMenu } from '../HeaderMenu.mjs'
 import { H1, H5 } from '@freesewing/react/components/Heading'
 
 const iconClasses = {
-  className: 'tw-w-8 tw-h-8 md:tw-w-10 md:tw-h-10 lg:tw-w-12 lg:tw-h-12 tw-shrink-0',
+  className: 'tw:w-8 tw:h-8 tw:md:w-10 tw:md:h-10 tw:lg:w-12 tw:lg:h-12 tw:shrink-0',
   stroke: 1.5,
 }
 
@@ -77,13 +77,13 @@ export const MeasurementsView = ({
       // User measurement set
       update.settings(['metadata'], { setName: set.name })
     update.notifySuccess(
-      <div className="tw-flex tw-flex-row tw-items-center tw-justify-between tw-w-full tw-flex-wrap tw-gap-2">
+      <div className="tw:flex tw:flex-row tw:items-center tw:justify-between tw:w-full tw:flex-wrap tw:gap-2">
         <span>Measurements loaded</span>
         <button
-          className="tw-daisy-btn tw-daisy-btn-success tw-daisy-btn-outline tw-border-white"
+          className="tw-daisy-btn tw-daisy-btn-success tw-daisy-btn-outline tw:border-white"
           onClick={() => update.view('draft')}
         >
-          <span className="tw-text-white">Load Draft View</span>
+          <span className="tw:text-white">Load Draft View</span>
         </button>
       </div>
     )
@@ -95,11 +95,11 @@ export const MeasurementsView = ({
     items.push(
       [
         <Fragment key={1}>
-          <div className={`${horFlexClasses} tw-w-full`}>
+          <div className={`${horFlexClasses} tw:w-full`}>
             <H5 id="ownsets">Choose one of your own measurements sets</H5>
             <MeasurementsSetIcon {...iconClasses} />
           </div>
-          <p className="tw-text-left">
+          <p className="tw:text-left">
             Pick any of your own measurements sets that have all required measurements to generate
             this pattern.
           </p>
@@ -115,11 +115,11 @@ export const MeasurementsView = ({
       ],
       [
         <Fragment key={1}>
-          <div className={`${horFlexClasses} tw-w-full`}>
+          <div className={`${horFlexClasses} tw:w-full`}>
             <H5 id="bookmarkedsets">Choose one of the measurements sets you have bookmarked</H5>
             <BookmarkIcon {...iconClasses} />
           </div>
-          <p className="tw-text-left">
+          <p className="tw:text-left">
             If you have bookmarked any measurements sets, you can select from those too.
           </p>
         </Fragment>,
@@ -134,11 +134,11 @@ export const MeasurementsView = ({
       ],
       [
         <Fragment key={1}>
-          <div className={`${horFlexClasses} tw-w-full`}>
+          <div className={`${horFlexClasses} tw:w-full`}>
             <H5 id="curatedsets">Choose one of FreeSewing&apos;s curated measurements sets</H5>
             <CuratedMeasurementsSetIcon {...iconClasses} />
           </div>
-          <p className="tw-text-left">
+          <p className="tw:text-left">
             If you&apos;re just looking to try out our platform, you can select from our list of
             curated measurements sets.
           </p>
@@ -148,11 +148,11 @@ export const MeasurementsView = ({
       ],
       [
         <Fragment key={1}>
-          <div className={`${horFlexClasses} tw-w-full`}>
+          <div className={`${horFlexClasses} tw:w-full`}>
             <H5 id="loadid">Load a measurements set by ID</H5>
             <FingerprintIcon {...iconClasses} />
           </div>
-          <p className="tw-text-left">
+          <p className="tw:text-left">
             If you know the ID of a measurements set — either one of your own or a public set — we
             can load it for you.
           </p>
@@ -164,11 +164,11 @@ export const MeasurementsView = ({
   // Manual editing is always an option
   items.push([
     <Fragment key={1}>
-      <div className={`${horFlexClasses} tw-w-full`}>
+      <div className={`${horFlexClasses} tw:w-full`}>
         <H5 id="editmeasurements">Edit measurements by hand</H5>
         <EditIcon {...iconClasses} />
       </div>
-      <p className="tw-text-left">You can manually set or override measurements below.</p>
+      <p className="tw:text-left">You can manually set or override measurements below.</p>
     </Fragment>,
     <MeasurementsEditor
       key={2}
@@ -180,7 +180,7 @@ export const MeasurementsView = ({
   return (
     <>
       <HeaderMenu state={state} {...{ config, update }} />
-      <div className="tw-max-w-7xl tw-mt-8 tw-mx-auto tw-px-4 tw-mb-4">
+      <div className="tw:max-w-7xl tw:mt-8 tw:mx-auto tw:px-4 tw:mb-4">
         <H1>Measurements</H1>
         {missingMeasurements && missingMeasurements.length > 0 ? (
           <Popout note dense noP>
@@ -188,11 +188,11 @@ export const MeasurementsView = ({
               To generate this pattern, we need {missingMeasurements.length} additional measurement
               {missingMeasurements.length === 1 ? '' : 's'}:
             </h3>
-            <ol className="tw-list tw-list-inside tw-flex tw-flex-row tw-flex-wrap tw-ml-0 tw-pl-0">
+            <ol className="tw:list tw:list-inside tw:flex tw:flex-row tw:flex-wrap tw:ml-0 tw:pl-0">
               {missingMeasurements.map((m, i) => (
-                <li key={i} className="tw-flex">
-                  {i > 0 ? <span className="tw-pr-2">,</span> : null}
-                  <span className="tw-font-medium">{measurementsTranslations[m]}</span>
+                <li key={i} className="tw:flex">
+                  {i > 0 ? <span className="tw:pr-2">,</span> : null}
+                  <span className="tw:font-medium">{measurementsTranslations[m]}</span>
                 </li>
               ))}
             </ol>
@@ -200,7 +200,7 @@ export const MeasurementsView = ({
         ) : (
           <Popout tip dense noP>
             <H5>We have all required measurements to draft this pattern</H5>
-            <div className="tw-flex tw-flex-row tw-flex-wrap tw-gap-2 tw-mt-2">
+            <div className="tw:flex tw:flex-row tw:flex-wrap tw:gap-2 tw:mt-2">
               <button
                 className="tw-daisy-btn tw-daisy-btn-primary"
                 onClick={() => update.view('draft')}
@@ -228,7 +228,7 @@ const LoadMeasurementsSetById = ({ loadMeasurements, update }) => {
 
   return (
     <div>
-      <div className="tw-flex tw-flex-row tw-gap-2 tw-items-end">
+      <div className="tw:flex tw:flex-row tw:gap-2 tw:items-end">
         <NumberInput
           label="Measurements Set ID"
           update={setId}
@@ -256,13 +256,13 @@ async function loadMeasurementsSet(id, backend, loadMeasurements, update) {
     loadMeasurements(result[1].set)
     update.clearLoading()
     update.notifySuccess(
-      <div className="tw-flex tw-flex-row tw-items-center tw-justify-between tw-w-full tw-flex-wrap tw-gap-2">
+      <div className="tw:flex tw:flex-row tw:items-center tw:justify-between tw:w-full tw:flex-wrap tw:gap-2">
         <span>Measurements set loaded</span>
         <button
-          className="tw-daisy-btn tw-daisy-btn-success tw-daisy-btn-outline tw-border-white"
+          className="tw-daisy-btn tw-daisy-btn-success tw-daisy-btn-outline tw:border-white"
           onClick={() => update.view('draft')}
         >
-          <span className="tw-text-white">Load Draft View</span>
+          <span className="tw:text-white">Load Draft View</span>
         </button>
       </div>
     )

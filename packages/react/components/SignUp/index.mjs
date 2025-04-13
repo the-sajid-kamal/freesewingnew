@@ -58,17 +58,17 @@ export const SignUp = ({ embed = false }) => {
     if (status === 201 && body.result === 'created') setResult('success')
     else {
       setModal(
-        <ModalWrapper bg="tw-base-100 lg:tw-bg-base-300">
-          <div className="tw-bg-base-100 tw-rounded-lg tw-p-4 lg:tw-px-8 tw-max-w-xl lg:tw-shadow-lg">
+        <ModalWrapper bg="tw-base-100 tw:lg:bg-base-300">
+          <div className="tw:bg-base-100 tw:rounded-lg tw:p-4 tw:lg:px-8 tw:max-w-xl tw:lg:shadow-lg">
             <h3>An error occured while trying to process your request</h3>
-            <p className="tw-text-lg">
+            <p className="tw:text-lg">
               Unfortunately, we cannot recover from this error, we need a human being to look into
               this.
             </p>
-            <p className="tw-text-lg">
+            <p className="tw:text-lg">
               Feel free to try again, or reach out to support so we can assist you.
             </p>
-            <div className="tw-flex tw-flex-row tw-gap-4 tw-items-center tw-justify-center tw-p-8 tw-flex-wrap">
+            <div className="tw:flex tw:flex-row tw:gap-4 tw:items-center tw:justify-center tw:p-8 tw:flex-wrap">
               <IconButton onClick={() => setResult(false)}>
                 <LeftIcon />
                 Back
@@ -93,12 +93,12 @@ export const SignUp = ({ embed = false }) => {
     }
   }
   const Heading = embed
-    ? ({ children }) => <h2 className="tw-text-inherit">{children}</h2>
-    : ({ children }) => <h1 className="tw-text-inherit">{children}</h1>
+    ? ({ children }) => <h2 className="tw:text-inherit">{children}</h2>
+    : ({ children }) => <h1 className="tw:text-inherit">{children}</h1>
 
   return (
-    <div className="tw-w-full">
-      <Heading className="tw-text-inherit">
+    <div className="tw:w-full">
+      <Heading className="tw:text-inherit">
         {result ? (
           result === 'success' ? (
             <span>Now check your inbox</span>
@@ -113,13 +113,13 @@ export const SignUp = ({ embed = false }) => {
       {result ? (
         result === 'success' ? (
           <>
-            <p className="tw-text-inherit tw-text-lg">
+            <p className="tw:text-inherit tw:text-lg">
               Go check your inbox for an email from <b>FreeSewing.org</b>
             </p>
-            <p className="tw-text-inherit tw-text-lg">
+            <p className="tw:text-inherit tw:text-lg">
               Click your personal signup link in that email to create your FreeSewing account.
             </p>
-            <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-2">
+            <div className="tw:grid tw:grid-cols-1 tw:md:grid-cols-2 tw:gap-2">
               <IconButton onClick={() => setResult(false)}>
                 <LeftIcon />
                 Back
@@ -133,14 +133,14 @@ export const SignUp = ({ embed = false }) => {
         ) : (
           <>
             robot here
-            <p className="tw-text-inherit tw-text-lg">
+            <p className="tw:text-inherit tw:text-lg">
               Unfortunately, we cannot recover from this error, we need a human being to look into
               this.
             </p>
-            <p className="tw-text-inherit tw-text-lg">
+            <p className="tw:text-inherit tw:text-lg">
               Feel free to try again, or reach out to support so we can assist you.
             </p>
-            <div className="tw-flex tw-flex-row tw-gap-4 tw-items-center tw-justify-center tw-p-8">
+            <div className="tw:flex tw:flex-row tw:gap-4 tw:items-center tw:justify-center tw:p-8">
               <button className="tw-daisy-btn tw-daisy-btn-ghost" onClick={() => setResult(false)}>
                 Back
               </button>
@@ -152,7 +152,7 @@ export const SignUp = ({ embed = false }) => {
         )
       ) : (
         <>
-          <p className="tw-text-inherit">To receive a sign-up link, enter your email address</p>
+          <p className="tw:text-inherit">To receive a sign-up link, enter your email address</p>
           <form onSubmit={signupHandler}>
             <EmailInput
               id="signup-email"
@@ -166,7 +166,7 @@ export const SignUp = ({ embed = false }) => {
             <IconButton
               onClick={signupHandler}
               btnProps={{ type: 'submit' }}
-              className="lg:tw-w-full tw-grow tw-mt-2"
+              className="tw:lg:w-full tw:grow tw:mt-2"
             >
               <EmailIcon />
               Email me a sign-up link
@@ -174,7 +174,7 @@ export const SignUp = ({ embed = false }) => {
           </form>
           {showAll ? (
             <>
-              <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-1 tw-items-center tw-mt-1">
+              <div className="tw:grid tw:grid-cols-1 tw:md:grid-cols-2 tw:gap-1 tw:items-center tw:mt-1">
                 {['Google', 'GitHub'].map((provider) => (
                   <IconButton
                     key={provider}
@@ -187,22 +187,22 @@ export const SignUp = ({ embed = false }) => {
                   </IconButton>
                 ))}
               </div>
-              <IconButton color="neutral" href="/signin" className="tw-daisy-btn-lg tw-mt-1">
-                <span className="tw-hidden md:tw-block">
-                  <KeyIcon className="tw-h-10 tw-w-10" />
+              <IconButton color="neutral" href="/signin" className="tw-daisy-btn-lg tw:mt-1">
+                <span className="tw:hidden tw:md:block">
+                  <KeyIcon className="tw:h-10 tw:w-10" />
                 </span>
                 Sign in here
               </IconButton>
-              <div className="tw-flex tw-flex-row tw-justify-center tw-mt-2">
+              <div className="tw:flex tw:flex-row tw:justify-center tw:mt-2">
                 <IconButton color="ghost" onClick={() => setShowAll(false)}>
-                  <DownIcon className="tw-w-6 tw-h-6 tw-rotate-180" />
+                  <DownIcon className="tw:w-6 tw:h-6 tw:rotate-180" />
                   Fewer options
-                  <DownIcon className="tw-w-6 tw-h-6 tw-rotate-180" />
+                  <DownIcon className="tw:w-6 tw:h-6 tw:rotate-180" />
                 </IconButton>
               </div>
             </>
           ) : (
-            <div className="tw-flex tw-flex-row tw-justify-center tw-mt-2">
+            <div className="tw:flex tw:flex-row tw:justify-center tw:mt-2">
               <IconButton color="ghost" onClick={() => setShowAll(true)}>
                 <DownIcon />
                 More options
@@ -234,7 +234,7 @@ export const SignUpConfirmation = ({ onSuccess = false }) => {
     return (
       <>
         <h1>One moment pleae</h1>
-        <Spinner className="tw-w-8 tw-h-8 tw-m-auto tw-animate-spin" />
+        <Spinner className="tw:w-8 tw:h-8 tw:m-auto tw:animate-spin" />
       </>
     )
 

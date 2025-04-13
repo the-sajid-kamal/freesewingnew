@@ -62,7 +62,7 @@ export const ImportSet = () => {
   }
 
   return (
-    <div className="tw-w-full">
+    <div className="tw:w-full">
       <FileInput
         label="Measurements file (YAML / JSON)"
         update={uploadSet}

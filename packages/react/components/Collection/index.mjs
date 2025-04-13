@@ -102,8 +102,8 @@ export const Collection = ({ Link = false, linkTo = 'about', editor = false, onC
 
   return (
     <>
-      <div className="tw-max-w-7xl tw-m-auto">
-        <div className="tw-flex tw-flex-row tw-flex-wrap tw-gap-1 tw-justify-center tw-font-medium tw-mb-2">
+      <div className="tw:max-w-7xl tw:m-auto">
+        <div className="tw:flex tw:flex-row tw:flex-wrap tw:gap-1 tw:justify-center tw:font-medium tw:mb-2">
           {Object.keys(filtered)
             .sort()
             .map((d) =>
@@ -111,7 +111,7 @@ export const Collection = ({ Link = false, linkTo = 'about', editor = false, onC
                 <button
                   key={d}
                   onClick={() => onClick(d)}
-                  className="tw-text-secondary tw-decoration-2 tw-underline tw-capitalize hover:tw-decoration-4 hover:tw-text-secondary tw-bg-transparent tw-border-0 tw-font-medium tw-p-0 tw-text-base hover:tw-cursor-pointer"
+                  className="tw:text-secondary tw:decoration-2 tw:underline tw:capitalize tw:hover:decoration-4 tw:hover:text-secondary tw:bg-transparent tw:border-0 tw:font-medium tw:p-0 tw:text-base tw:hover:cursor-pointer"
                 >
                   {d}
                 </button>
@@ -119,7 +119,7 @@ export const Collection = ({ Link = false, linkTo = 'about', editor = false, onC
                 <Link
                   key={d}
                   href={linkBuilders[linkTo](d)}
-                  className="tw-text-secondary tw-decoration-2 tw-underline tw-capitalize hover:tw-decoration-4 hover:tw-text-secondary"
+                  className="tw:text-secondary tw:decoration-2 tw:underline tw:capitalize tw:hover:decoration-4 tw:hover:text-secondary"
                 >
                   {d}
                 </Link>
@@ -128,15 +128,15 @@ export const Collection = ({ Link = false, linkTo = 'about', editor = false, onC
         </div>
         {showFilters ? (
           <>
-            <h6 className="tw-text-center tw-mb-0 tw-mt-4">
+            <h6 className="tw:text-center tw:mb-0 tw:mt-4">
               Filters ({Object.keys(filtered).length}/{collection.length})
             </h6>
-            <div className="tw-flex tw-flex-row tw-gap-1 tw-items-center tw-justify-center tw-flex-wrap tw-my-2">
+            <div className="tw:flex tw:flex-row tw:gap-1 tw:items-center tw:justify-center tw:flex-wrap tw:my-2">
               <b>Tags:</b>
               {tags.map((tag) => (
                 <button
                   key={tag}
-                  className={`tw-daisy-badge tw-font-medium hover:tw-shadow hover:tw-cursor-pointer
+                  className={`tw-daisy-badge tw:font-medium tw:hover:shadow tw:hover:cursor-pointer
                   ${
                     filter?.tag && Array.isArray(filter.tag) && filter.tag.includes(tag)
                       ? 'tw-daisy-badge-success hover:tw-daisy-badge-error'
@@ -148,12 +148,12 @@ export const Collection = ({ Link = false, linkTo = 'about', editor = false, onC
                 </button>
               ))}
             </div>
-            <div className="tw-flex tw-flex-row tw-gap-1 tw-items-center tw-justify-center tw-flex-wrap tw-my-4">
+            <div className="tw:flex tw:flex-row tw:gap-1 tw:items-center tw:justify-center tw:flex-wrap tw:my-4">
               <b>Techniques</b>
               {techniques.sort().map((tech) => (
                 <button
                   key={tech}
-                  className={`tw-daisy-badge tw-font-medium hover:tw-shadow
+                  className={`tw-daisy-badge tw:font-medium tw:hover:shadow
                  ${
                    filter?.tech && Array.isArray(filter.tech) && filter.tech.includes(tech)
                      ? 'tw-daisy-badge tw-daisy-badge-success hover:tw-daisy-badge-error'
@@ -165,7 +165,7 @@ export const Collection = ({ Link = false, linkTo = 'about', editor = false, onC
                 </button>
               ))}
             </div>
-            <div className="tw-flex tw-flex-row tw-gap-2 tw-items-center tw-justify-center tw-flex-wrap tw-my-4">
+            <div className="tw:flex tw:flex-row tw:gap-2 tw:items-center tw:justify-center tw:flex-wrap tw:my-4">
               <b>Difficulty:</b>
               {[1, 2, 3, 4, 5].map((score) => (
                 <button
@@ -181,7 +181,7 @@ export const Collection = ({ Link = false, linkTo = 'about', editor = false, onC
                 </button>
               ))}
             </div>
-            <div className="tw-flex tw-flex-row tw-gap-4 tw-items-center tw-justify-center tw-flex-wrap tw-my-2">
+            <div className="tw:flex tw:flex-row tw:gap-4 tw:items-center tw:justify-center tw:flex-wrap tw:my-2">
               <button
                 className="tw-daisy-btn tw-daisy-btn-secondary tw-daisy-btn-outline"
                 onClick={() => updateFilter('example', !filter.example)}
@@ -206,7 +206,7 @@ export const Collection = ({ Link = false, linkTo = 'about', editor = false, onC
             </div>
           </>
         ) : (
-          <div className="tw-flex tw-flex-row tw-gap-4 tw-items-center tw-justify-center tw-flex-wrap tw-my-2">
+          <div className="tw:flex tw:flex-row tw:gap-4 tw:items-center tw:justify-center tw:flex-wrap tw:my-2">
             <button
               className="tw-daisy-btn tw-daisy-btn-secondary tw-daisy-btn-outline"
               onClick={() => updateFilter('example', !filter.example)}
@@ -225,7 +225,7 @@ export const Collection = ({ Link = false, linkTo = 'about', editor = false, onC
         )}
       </div>
       <div
-        className={`tw-grid tw-grid-cols-2 tw-gap-2 tw-mt-4 tw-justify-center sm:tw-grid-cols-3 md:tw-grid-cols-4 ${editor ? 'lg:tw-grid-cols-6 2xl:tw-grid-cols-12' : ''} tw-mb-8`}
+        className={`tw:grid tw:grid-cols-2 tw:gap-2 tw:mt-4 tw:justify-center tw:sm:grid-cols-3 tw:md:grid-cols-4 ${editor ? 'tw:lg:grid-cols-6 tw:2xl:grid-cols-12' : ''} tw:mb-8`}
       >
         {Object.keys(filtered)
           .sort()
@@ -253,7 +253,7 @@ export const Collection = ({ Link = false, linkTo = 'about', editor = false, onC
 const Technique = ({ Link = WebLink, technique }) => (
   <Link
     href={`/designs/techniques/${technique}`}
-    className="tw-daisy-badge tw-daisy-badge-accent hover:tw-daisy-badge-secondary hover:tw-shadow tw-font-medium"
+    className="tw-daisy-badge tw-daisy-badge-accent hover:tw-daisy-badge-secondary tw:hover:shadow tw:font-medium"
   >
     {technique}
   </Link>
@@ -269,7 +269,7 @@ const Technique = ({ Link = WebLink, technique }) => (
 const Tag = ({ Link = WebLink, technique }) => (
   <Link
     href={`/designs/tags/${tag}`}
-    className="tw-daisy-badge tw-daisy-badge-primary hover:tw-daisy-badge-secondary hover:tw-shadow tw-font-medium"
+    className="tw-daisy-badge tw-daisy-badge-primary hover:tw-daisy-badge-secondary tw:hover:shadow tw:font-medium"
   >
     {tag}
   </Link>
@@ -292,28 +292,28 @@ const DesignCard = ({ name, lineDrawing = false, linkTo, Link, onClick }) => {
 
   const inner = (
     <div
-      className={`tw-flex tw-flex-col tw-flex-nowrap tw-items-start tw-justify-between tw-gap-2 tw-border-neutral-500 group-hover:tw-border-secondary
-      tw-w-full tw-h-full tw-border tw-border-2 tw-border-solid tw-p-0 tw-relative tw-rounded-lg tw-rounded-lg`}
+      className={`tw:flex tw:flex-col tw:flex-nowrap tw:items-start tw:justify-between tw:gap-2 tw:border-neutral-500 tw:group-hover:border-secondary
+      tw:w-full tw:h-full tw:border tw:border-2 tw:border-solid tw:p-0 tw:relative tw:rounded-lg tw:rounded-lg`}
       style={bg}
     >
       <h5
-        className={`tw-text-center tw-py-2 tw-px-4 tw-rounded-t tw-m-0 tw-w-full group-hover:tw-no-underline group-hover:tw-bg-secondary group-hover:tw-bg-opacity-70
-      ${lineDrawing ? '' : 'tw-bg-neutral tw-text-neutral-content tw-bg-opacity-80'}`}
+        className={`tw:text-center tw:py-2 tw:px-4 tw:rounded-t tw:m-0 tw:w-full tw:group-hover:no-underline tw:group-hover:bg-secondary tw:group-hover:bg-opacity-70
+      ${lineDrawing ? '' : 'tw:bg-neutral tw:text-neutral-content tw:bg-opacity-80'}`}
       >
         {about[name].name}
       </h5>
       {lineDrawing ? (
-        <div className="tw-p-1 tw-grow tw-w-full tw-h-auto tw-square tw-text-center">
-          <LineDrawing className="tw-max-w-full tw-m-auto tw-my-4 tw-text-base-content" />
+        <div className="tw:p-1 tw:grow tw:w-full tw:h-auto tw-square tw:text-center">
+          <LineDrawing className="tw:max-w-full tw:m-auto tw:my-4 tw:text-base-content" />
         </div>
       ) : (
         <span />
       )}
       <div
-        className={`tw-flex tw-flex-row tw-items-center tw-justify-center tw-py-1 tw-px-2 tw-rounded-b tw-m-0 tw-w-full
-      ${lineDrawing ? '' : `tw-text-neutral-content`}`}
+        className={`tw:flex tw:flex-row tw:items-center tw:justify-center tw:py-1 tw:px-2 tw:rounded-b tw:m-0 tw:w-full
+      ${lineDrawing ? '' : `tw:text-neutral-content`}`}
       >
-        <Difficulty score={about[name].difficulty} className="group-hover:tw-text-secondary" />
+        <Difficulty score={about[name].difficulty} className="tw:group-hover:text-secondary" />
       </div>
     </div>
   )
@@ -321,7 +321,7 @@ const DesignCard = ({ name, lineDrawing = false, linkTo, Link, onClick }) => {
   return onClick ? (
     <button
       onClick={() => onClick(name)}
-      className="hover:tw-bg-secondary hover:tw-bg-opacity-10 tw-rounded-lg tw-group hover:tw-no-underline tw-bg-transparent tw-border-0 hover:tw-cursor-pointer tw-p-0"
+      className="tw:hover:bg-secondary tw:hover:bg-opacity-10 tw:rounded-lg tw:group tw:hover:no-underline tw:bg-transparent tw:border-0 tw:hover:cursor-pointer tw:p-0"
       title={about[name].description}
     >
       {inner}
@@ -329,7 +329,7 @@ const DesignCard = ({ name, lineDrawing = false, linkTo, Link, onClick }) => {
   ) : (
     <Link
       href={linkBuilders[linkTo](name)}
-      className="hover:tw-bg-secondary hover:tw-bg-opacity-10 tw-rounded-lg tw-group hover:tw-no-underline"
+      className="tw:hover:bg-secondary tw:hover:bg-opacity-10 tw:rounded-lg tw:group tw:hover:no-underline"
       title={about[name].description}
     >
       {inner}
@@ -344,9 +344,9 @@ const DesignCard = ({ name, lineDrawing = false, linkTo, Link, onClick }) => {
  * @param {number} props.score - The difficulty score of the design (1-5)
  */
 const Difficulty = ({ score = 0, className = '' }) => (
-  <div className={`tw-flex tw-flex-row tw-items-center ${className}`}>
+  <div className={`tw:flex tw:flex-row tw:items-center ${className}`}>
     {[0, 1, 2, 3, 4].map((i) => (
-      <CircleIcon key={i} fill={i < score ? true : false} className={`tw-w-4 tw-h-4`} />
+      <CircleIcon key={i} fill={i < score ? true : false} className={`tw:w-4 tw:h-4`} />
     ))}
   </div>
 )
@@ -400,9 +400,9 @@ export const DesignInfo = ({ Link = false, design = false, noDocsLink = false })
   }
 
   const makeButton = (
-    <div className={`tw-grid tw-grid-cols-1 tw-gap-2 tw-mb-4`}>
+    <div className={`tw:grid tw:grid-cols-1 tw:gap-2 tw:mb-4`}>
       <IconButton href={`/editor/#s={"design"%3A"${design}"%2C"view"%3A"draft"}`} color="primary">
-        <NewPatternIcon className="tw-w-8 tw-h-8" />
+        <NewPatternIcon className="tw:w-8 tw:h-8" />
         New {capitalize(design)} pattern
       </IconButton>
     </div>
@@ -410,9 +410,9 @@ export const DesignInfo = ({ Link = false, design = false, noDocsLink = false })
   const buttons = noDocsLink ? (
     makeButton
   ) : (
-    <div className={`tw-grid tw-grid-cols-1 lg:tw-grid-cols-2 tw-gap-2 tw-mb-4`}>
+    <div className={`tw:grid tw:grid-cols-1 tw:lg:grid-cols-2 tw:gap-2 tw:mb-4`}>
       <IconButton href={`/docs/designs/${design}`} color="secondary">
-        <DocsIcon className="tw-w-8 tw-h-8" />
+        <DocsIcon className="tw:w-8 tw:h-8" />
         Documentation
       </IconButton>
       {makeButton}
@@ -421,15 +421,15 @@ export const DesignInfo = ({ Link = false, design = false, noDocsLink = false })
 
   return (
     <>
-      <div className="lg:tw-hidden">{buttons}</div>
-      <div className={`tw-grid tw-grid-cols-1 lg:tw-grid-cols-2 tw-gap-2`}>
-        <div className="tw-relative">
-          <div className="tw tw-top-0 tw-left-0">
+      <div className="tw:lg:hidden">{buttons}</div>
+      <div className={`tw:grid tw:grid-cols-1 tw:lg:grid-cols-2 tw:gap-2`}>
+        <div className="tw:relative">
+          <div className="tw tw:top-0 tw:left-0">
             {back ? <LineDrawingBack /> : <LineDrawing />}
           </div>
           {LineDrawingBack ? (
             <button
-              className="tw-absolute tw-top-2 tw-right-4 tw-start-auto tw-daisy-btn tw-daisy-btn-neutral tw-daisy-btn-outline tw-daisy-btn-xs"
+              className="tw:absolute tw:top-2 tw:right-4 tw:start-auto tw-daisy-btn tw-daisy-btn-neutral tw-daisy-btn-outline tw-daisy-btn-xs"
               onClick={() => setBack(!back)}
             >
               {back ? 'Front' : 'Back'} view
@@ -437,11 +437,11 @@ export const DesignInfo = ({ Link = false, design = false, noDocsLink = false })
           ) : null}
         </div>
         <div className="">
-          <div className="tw-mt-2 tw-text-sm tw-opacity-70 tw-font-medium">Description</div>
-          <span className="tw-text-xl">{about[design].description}</span>
+          <div className="tw:mt-2 tw:text-sm tw:opacity-70 tw:font-medium">Description</div>
+          <span className="tw:text-xl">{about[design].description}</span>
 
-          <div className="tw-mt-2 tw-text-sm tw-opacity-70 tw-font-medium">By</div>
-          <div className="tw-flex tw-flex-row tw-flex-wrap tw-gap-1 items-center">
+          <div className="tw:mt-2 tw:text-sm tw:opacity-70 tw:font-medium">By</div>
+          <div className="tw:flex tw:flex-row tw:flex-wrap tw:gap-1 items-center">
             {codeBy.map((code) => (
               <KeyVal key={code} k="code" val={code} color="secondary" />
             ))}
@@ -450,12 +450,12 @@ export const DesignInfo = ({ Link = false, design = false, noDocsLink = false })
             ))}
           </div>
 
-          <div className="tw-mt-2 tw-text-sm tw-opacity-70 tw-font-medium">Difficulty</div>
+          <div className="tw:mt-2 tw:text-sm tw:opacity-70 tw:font-medium">Difficulty</div>
           <Difficulty score={about[design].difficulty} />
 
           {optionalMeasurements[design].length > 0 ? (
             <>
-              <div className="tw-mt-2 tw-text-sm tw-opacity-70 tw-font-medium">
+              <div className="tw:mt-2 tw:text-sm tw:opacity-70 tw:font-medium">
                 Optional Measurements
               </div>
               <div className="">
@@ -477,7 +477,7 @@ export const DesignInfo = ({ Link = false, design = false, noDocsLink = false })
 
           {requiredMeasurements[design].length > 0 ? (
             <>
-              <div className="tw-mt-2 tw-text-sm tw-opacity-70 tw-font-medium">
+              <div className="tw:mt-2 tw:text-sm tw:opacity-70 tw:font-medium">
                 Required Measurements
               </div>
               <div className="">
@@ -497,24 +497,24 @@ export const DesignInfo = ({ Link = false, design = false, noDocsLink = false })
             </>
           ) : null}
 
-          <div className="tw-mt-2 tw-text-sm tw-opacity-70 tw-font-medium">Tags</div>
-          <div className="tw-flex tw-flex-row tw-flex-wrap tw-gap-1 items-center">
+          <div className="tw:mt-2 tw:text-sm tw:opacity-70 tw:font-medium">Tags</div>
+          <div className="tw:flex tw:flex-row tw:flex-wrap tw:gap-1 items-center">
             {tags.map((tag) => (
               <Link
                 key={tag}
-                className="tw-daisy-badge tw-daisy-badge-primary tw-font-medium hover:tw-shadow hover:tw-cursor-pointer"
+                className="tw-daisy-badge tw-daisy-badge-primary tw:font-medium tw:hover:shadow tw:hover:cursor-pointer"
                 href={`/designs/#filter={"example"%3Atrue%2C"tag"%3A["${tag}"]}`}
               >
                 {tag}
               </Link>
             ))}
           </div>
-          <div className="tw-mt-2 tw-text-sm tw-opacity-70 tw-font-medium">Techniques</div>
-          <div className="tw-flex tw-flex-row tw-flex-wrap tw-gap-1 items-center">
+          <div className="tw:mt-2 tw:text-sm tw:opacity-70 tw:font-medium">Techniques</div>
+          <div className="tw:flex tw:flex-row tw:flex-wrap tw:gap-1 items-center">
             {techniques.map((tech) => (
               <Link
                 key={tech}
-                className="tw-daisy-badge tw-daisy-badge-accent tw-font-medium hover:tw-shadow hover:tw-cursor-pointer"
+                className="tw-daisy-badge tw-daisy-badge-accent tw:font-medium tw:hover:shadow tw:hover:cursor-pointer"
                 href={`/designs/#filter={"example"%3Atrue%2C"tag"%3A["${tech}"]}`}
               >
                 {tech}
@@ -522,8 +522,8 @@ export const DesignInfo = ({ Link = false, design = false, noDocsLink = false })
             ))}
           </div>
 
-          <div className="tw-mt-2 tw-text-sm tw-opacity-70 tw-font-medium">Examples</div>
-          <div className="tw-flex tw-flex-row tw-flex-wrap tw-gap-1 items-center">
+          <div className="tw:mt-2 tw:text-sm tw:opacity-70 tw:font-medium">Examples</div>
+          <div className="tw:flex tw:flex-row tw:flex-wrap tw:gap-1 items-center">
             <KeyVal
               k="FreeSewing"
               val="showcase"
@@ -539,8 +539,8 @@ export const DesignInfo = ({ Link = false, design = false, noDocsLink = false })
             />
           </div>
 
-          <div className="tw-mt-2 tw-text-sm tw-opacity-70 tw-font-medium">Documentation</div>
-          <div className="tw-flex tw-flex-row tw-flex-wrap tw-gap-1 items-center">
+          <div className="tw:mt-2 tw:text-sm tw:opacity-70 tw:font-medium">Documentation</div>
+          <div className="tw:flex tw:flex-row tw:flex-wrap tw:gap-1 items-center">
             <Link href={`/docs/designs/${design}/#notes`}>Designer Notes</Link>,
             <Link href={`/docs/designs/${design}/#needs`}>What You Need</Link>,
             <Link href={`/docs/designs/${design}/#fabric`}>Fabric Options</Link>,
@@ -548,7 +548,7 @@ export const DesignInfo = ({ Link = false, design = false, noDocsLink = false })
             <Link href={`/docs/designs/${design}/options/`}>Design Options</Link>,
             <Link href={`/docs/designs/${design}/instructions/`}>Sewing Instructions</Link>
           </div>
-          <div className="tw-my-4">{buttons}</div>
+          <div className="tw:my-4">{buttons}</div>
         </div>
       </div>
     </>

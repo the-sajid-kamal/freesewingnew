@@ -16,20 +16,20 @@ const textShadow = {
   color: 'white',
 }
 
-const teaserClasses = `tw-absolute tw-bottom-4 tw-right-0 tw-ml-3
-  tw-rounded-l md:tw-rounded-l-lg tw-bg-neutral tw-bg-opacity-80 tw-p-1 tw-px-4 tw-font-medium
-  tw-text-neutral-content tw-text-right tw-text-sm md:tw-text-lg lg:tw-text-xl`
+const teaserClasses = `tw:absolute tw:bottom-4 tw:right-0 tw:ml-3
+  tw:rounded-l tw:md:rounded-l-lg tw:bg-neutral tw:bg-opacity-80 tw:p-1 tw:px-4 tw:font-medium
+  tw:text-neutral-content tw:text-right tw:text-sm tw:md:text-lg tw:lg:text-xl`
 
 export const BlogPostTeaser = ({ post }) => (
   <Link
-    className="tw-aspect-video tw-relative tw-shadow tw-rounded-lg"
+    className="tw:aspect-video tw:relative tw:shadow tw:rounded-lg"
     href={post.content.metadata.permalink}
   >
     <img
       src={imgUrl(post.content.metadata.permalink)}
       loading="lazy"
       className={`
-    "tw-rounded md:tw-rounded-lg tw-top-0 tw-left-0"
+    "tw:rounded tw:md:rounded-lg tw:top-0 tw:left-0"
       `}
     />
     <div className={teaserClasses} style={textShadow}>
@@ -40,14 +40,14 @@ export const BlogPostTeaser = ({ post }) => (
 
 const Breadcrumb = ({ crumb, active }) => (
   <li className="breadcrumbs__item">
-    <Link href={crumb.href} className="tw-capitalize tw-text-sm tw-breadcrumbs__link">
+    <Link href={crumb.href} className="tw:capitalize tw:text-sm tw-breadcrumbs__link">
       {crumb.label}
     </Link>
   </li>
 )
 export const Breadcrumbs = ({ breadcrumbs }) => {
   return (
-    <ul className="tw-breadcrumbs tw-text-sm">
+    <ul className="tw-breadcrumbs tw:text-sm">
       {breadcrumbs.map((crumb) => (
         <Breadcrumb crumb={crumb} active={false} key={crumb.href} />
       ))}
@@ -82,7 +82,7 @@ const BlogPostItems = ({ items }) => {
         ]}
       />
       <h1>Blog</h1>
-      <div className="tw-grid tw-grid-cols-1 tw-gap-2 lg:tw-grid-cols-2 tw-max-w-7xl tw-mb-8">
+      <div className="tw:grid tw:grid-cols-1 tw:gap-2 tw:lg:grid-cols-2 tw:max-w-7xl tw:mb-8">
         {items.map((post) => (
           <BlogPostTeaser post={post} key={post.content.metadata.permalink} />
         ))}
@@ -94,27 +94,27 @@ const BlogPostItems = ({ items }) => {
 export default BlogPostItems
 
 const ShowcasePostTeaser = ({ post }) => (
-  <div className="tw-mb-4 tw-break-inside-avoid-column">
+  <div className="tw:mb-4 tw:break-inside-avoid-column">
     <Link
-      className="tw-relative tw-block tw-p-0 tw-rounded-lg tw-drop-shadow-lg"
+      className="tw:relative tw:block tw:p-0 tw:rounded-lg tw:drop-shadow-lg"
       href={post.content.metadata.permalink}
     >
       <img
         src={imgUrl(post.content.metadata.permalink)}
         loading="lazy"
         className={`
-      "tw-rounded md:tw-rounded-lg tw-top-0 tw-left-0 tw-z-0 tw-drop-shadow-lg"
+      "tw:rounded tw:md:rounded-lg tw:top-0 tw:left-0 tw:z-0 tw:drop-shadow-lg"
         `}
       />
       <div className={teaserClasses} style={textShadow}>
         {post.content.metadata.title}
       </div>
     </Link>
-    <ul className="tw-block tw-text-right tw-font-medium tw--mt-4 tw-z-10 tw-relative">
+    <ul className="tw:block tw:text-right tw:font-medium tw:-mt-4 tw:z-10 tw:relative">
       {post.content.metadata.tags.map((tag) => (
-        <li className="tw-text-sm tw-inline tw-pr-1" key={tag.label}>
-          <Link href={tag.permalink} className="tw-text-secondary tw-captalize">
-            <span className="tw-daisy-badge tw-daisy-badge-secondary tw-capitalize">{`${tag.label}`}</span>
+        <li className="tw:text-sm tw:inline tw:pr-1" key={tag.label}>
+          <Link href={tag.permalink} className="tw:text-secondary tw-captalize">
+            <span className="tw-daisy-badge tw-daisy-badge-secondary tw:capitalize">{`${tag.label}`}</span>
           </Link>
         </li>
       ))}
@@ -141,15 +141,15 @@ const ShowcaseItems = ({ items, slug }) => {
           />
           <h1>Showcase</h1>
           <div className="tailwind-container">
-            <span className="tw-block tw-font-medium tw-text-sm tw-opacity-70">
+            <span className="tw:block tw:font-medium tw:text-sm tw:opacity-70">
               Browse by design:
             </span>
-            <ul className="mdx tw-flex tw-flex-row tw-flex-wrap tw-mb-4 tw-items-center">
+            <ul className="mdx tw:flex tw:flex-row tw:flex-wrap tw:mb-4 tw:items-center">
               {showcaseTags.map((d) => (
-                <li key={d} className="tw-inline tw-pr-0.5 tw-m-0 tw-leading-5">
+                <li key={d} className="tw:inline tw:pr-0.5 tw:m-0 tw:leading-5">
                   <Link
                     href={`/showcase/tags/${d}`}
-                    className="tw-daisy-badge tw-daisy-badge-sm tw-daisy-badge-secondary tw-capitalize tw-text-xs tw-font-medium"
+                    className="tw-daisy-badge tw-daisy-badge-sm tw-daisy-badge-secondary tw:capitalize tw:text-xs tw:font-medium"
                   >
                     {d}
                   </Link>
@@ -160,7 +160,7 @@ const ShowcaseItems = ({ items, slug }) => {
         </>
       ) : null}
       <div className="tailwind-container">
-        <div className="tw-columns-2 lg:tw-columns-3 tw-mb-4">
+        <div className="tw:columns-2 tw:lg:columns-3 tw:mb-4">
           {items.map((post) => (
             <ShowcasePostTeaser post={post} key={post.content.metadata.permalink} />
           ))}
@@ -195,7 +195,7 @@ const NewsletterItems = ({ items, slug }) => {
           <h2>Previous editions</h2>
         </>
       ) : null}
-      <ul className="mdx tw-list tw-list-disc tw-ml-8">
+      <ul className="mdx tw:list tw:list-disc tw:ml-8">
         {items
           .filter((post) => post.content.metadata.title.toLowerCase() !== 'unsubscribe')
           .map((post) => (

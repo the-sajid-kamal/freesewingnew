@@ -85,10 +85,10 @@ export const Sets = ({ Link = false }) => {
   }
 
   return (
-    <div className="tw-max-w-7xl xl:tw-pl-4">
-      <p className="tw-text-center md:tw-text-right">
+    <div className="tw:max-w-7xl tw:xl:pl-4">
+      <p className="tw:text-center tw:md:text-right">
         <Link
-          className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-outline tw-capitalize tw-w-full md:tw-w-auto tw-mr-2 tw-mb-2 hover:tw-no-underline hover:tw-text-primary-content"
+          className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-outline tw:capitalize tw:w-full tw:md:w-auto tw:mr-2 tw:mb-2 tw:hover:no-underline tw:hover:text-primary-content"
           bottom
           primary
           href="/account/import"
@@ -97,7 +97,7 @@ export const Sets = ({ Link = false }) => {
           Import Measurements Sets
         </Link>
         <button
-          className="tw-daisy-btn tw-daisy-btn-primary tw-capitalize tw-w-full md:tw-w-auto hover:tw-no-underline hover:tw-text-primary-content"
+          className="tw-daisy-btn tw-daisy-btn-primary tw:capitalize tw:w-full tw:md:w-auto tw:hover:no-underline tw:hover:text-primary-content"
           onClick={() =>
             setModal(
               <ModalWrapper keepOpenOnClick>
@@ -110,7 +110,7 @@ export const Sets = ({ Link = false }) => {
           Create a new Measurements Set
         </button>
       </p>
-      <div className="tw-flex tw-flex-row tw-gap-2 tw-border-b-2 tw-mb-4 tw-pb-4 tw-mt-8 tw-h-14 tw-items-center">
+      <div className="tw:flex tw:flex-row tw:gap-2 tw:border-b-2 tw:mb-4 tw:pb-4 tw:mt-8 tw:h-14 tw:items-center">
         <input
           type="checkbox"
           className="tw-daisy-checkbox tw-daisy-checkbox-secondary"
@@ -125,18 +125,18 @@ export const Sets = ({ Link = false }) => {
           <TrashIcon /> {selCount} Measurements Sets
         </button>
       </div>
-      <div className="tw-grid tw-grid-cols-2 lg:tw-grid-cols-4 tw-gap-2">
+      <div className="tw:grid tw:grid-cols-2 tw:lg:grid-cols-4 tw:gap-2">
         {sets.map((set, i) => (
           <div
             key={i}
-            className={`tw-flex tw-flex-row tw-items-start tw-gap-1 tw-border-2
+            className={`tw:flex tw:flex-row tw:items-start tw:gap-1 tw:border-2
           ${
             selected[set.id]
-              ? 'tw-border-solid tw-border-secondary'
-              : 'tw-border-dotted tw-border-base-300'
-          } tw-rounded-lg p-2`}
+              ? 'tw:border-solid tw:border-secondary'
+              : 'tw:border-dotted tw:border-base-300'
+          } tw:rounded-lg p-2`}
           >
-            <label className="tw-w-8 tw-h-full tw-shrink-0">
+            <label className="tw:w-8 tw:h-full tw:shrink-0">
               <input
                 type="checkbox"
                 checked={selected[set.id] ? true : false}
@@ -144,7 +144,7 @@ export const Sets = ({ Link = false }) => {
                 onClick={() => toggleSelect(set.id)}
               />
             </label>
-            <div className="tw-w-full">
+            <div className="tw:w-full">
               <MsetCard
                 control={control}
                 href={`/account/data/sets/set?id=${set.id}`}
@@ -189,9 +189,9 @@ export const MsetCard = ({
   const s = sizes[size]
 
   const wrapperProps = {
-    className: `tw-bg-base-300 tw-aspect-square tw-h-${s} tw-w-${s} tw-mb-2 tw-grow tw-w-full
-      hover:tw-cursor-pointer tw-border-0 tw-opacity-80 hover:tw-opacity-100
-      tw-mx-auto tw-flex tw-flex-col tw-items-start tw-text-center tw-justify-between tw-rounded-none md:tw-rounded shadow`,
+    className: `tw:bg-base-300 tw:aspect-square tw-h-${s} tw-w-${s} tw:mb-2 tw:grow tw:w-full
+      tw:hover:cursor-pointer tw:border-0 tw:opacity-80 tw:hover:opacity-100
+      tw:mx-auto tw:flex tw:flex-col tw:items-start tw:text-center tw:justify-between tw:rounded-none tw:md:rounded shadow`,
     style: {
       backgroundImage: `url(${cloudflareImageUrl({ type: 'w500', id: set.img })})`,
       backgroundSize: 'cover',
@@ -212,11 +212,11 @@ export const MsetCard = ({
       set.measies,
       true
     )
-    const iconClasses = 'tw-w-8 tw-h-8 tw-p-1 tw-rounded-full tw--mt-2 tw--ml-2 tw-shadow'
+    const iconClasses = 'tw:w-8 tw:h-8 tw:p-1 tw:rounded-full tw:-mt-2 tw:-ml-2 tw:shadow'
     icon = hasMeasies ? (
-      <OkIcon className={`${iconClasses} tw-bg-success tw-text-success-content`} stroke={4} />
+      <OkIcon className={`${iconClasses} tw:bg-success tw:text-success-content`} stroke={4} />
     ) : (
-      <NoIcon className={`${iconClasses} tw-bg-error tw-text-error-content`} stroke={3} />
+      <NoIcon className={`${iconClasses} tw:bg-error tw:text-error-content`} stroke={3} />
     )
     if (missing.length > 0) {
       const translated = missing.map((m) => measurementsTranslations[m])
@@ -225,7 +225,7 @@ export const MsetCard = ({
         const lastSpace = missingString.lastIndexOf(', ', maxLength)
         missingString = missingString.substring(0, lastSpace) + ', and more...'
       }
-      const measieClasses = 'tw-font-normal tw-text-xs'
+      const measieClasses = 'tw:font-normal tw:text-xs'
       missingMeasies = <span className={`${measieClasses}`}>{missingString}</span>
       linebreak = <br />
     }
@@ -234,7 +234,7 @@ export const MsetCard = ({
   const inner = (
     <>
       {icon}
-      <span className="tw-bg-neutral tw-text-neutral-content tw-px-4 tw-w-full tw-bg-opacity-50 tw-py-2 tw-rounded tw-rounded-t-none tw-font-bold tw-leading-5">
+      <span className="tw:bg-neutral tw:text-neutral-content tw:px-4 tw:w-full tw:bg-opacity-50 tw:py-2 tw:rounded tw:rounded-t-none tw:font-bold tw:leading-5">
         {set.name}
         {linebreak}
         {missingMeasies}

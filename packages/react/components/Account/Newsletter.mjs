@@ -58,21 +58,21 @@ export const Newsletter = ({ welcome = false, Link = false }) => {
       : '/docs/about/guide'
 
   return (
-    <div className="tw-w-full">
+    <div className="tw:w-full">
       <ListInput
         id="account-newsletter"
         label="Would you like to receive the FreeSewing newsletter?"
         list={['yes', 'no'].map((val) => ({
           val,
           label: (
-            <div className="tw-flex tw-flex-row tw-items-center tw-w-full tw-justify-between">
+            <div className="tw:flex tw:flex-row tw:items-center tw:w-full tw:justify-between">
               <span>
                 {val === 'yes' ? 'Yes, I would like to receive the newsletter' : 'No thanks'}
               </span>
               {val === 'yes' ? (
-                <OkIcon className="tw-w-8 tw-h-8 tw-text-success" stroke={4} />
+                <OkIcon className="tw:w-8 tw:h-8 tw:text-success" stroke={4} />
               ) : (
-                <NoIcon className="tw-w-8 tw-h-8 tw-text-error" stroke={3} />
+                <NoIcon className="tw:w-8 tw:h-8 tw:text-error" stroke={3} />
               )}
             </div>
           ),
@@ -86,17 +86,17 @@ export const Newsletter = ({ welcome = false, Link = false }) => {
       />
       {welcome ? (
         <>
-          <IconButton href={nextHref} className="tw-mt-4">
+          <IconButton href={nextHref} className="tw:mt-4">
             <RightIcon stroke={3} /> Continue
           </IconButton>
           {welcomeSteps[account?.control].length > 0 ? (
             <>
               <progress
-                className="tw-daisy-progress tw-daisy-progress-primary tw-w-full tw-mt-12"
+                className="tw-daisy-progress tw-daisy-progress-primary tw:w-full tw:mt-12"
                 value={200 / welcomeSteps[account?.control].length}
                 max="100"
               ></progress>
-              <span className="tw-pt-4 tw-text-sm tw-font-bold tw-opacity-50">
+              <span className="tw:pt-4 tw:text-sm tw:font-bold tw:opacity-50">
                 2 / {welcomeSteps[account?.control].length}
               </span>
               <WelcomeIcons
@@ -120,7 +120,7 @@ export const Newsletter = ({ welcome = false, Link = false }) => {
               Unsubscribe link
             </Link>
           </p>
-          <p className="tw-text-sm">
+          <p className="tw:text-sm">
             This link is to unsubscribe you specifically, do not share it with other subscribers.
           </p>
         </Popout>

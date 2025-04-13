@@ -54,7 +54,7 @@ export const SuccessLink = ({
   href,
   title = false,
   children,
-  className = `${linkClasses} tw-text-success-content hover:tw-text-success-content`,
+  className = `${linkClasses} tw:text-success-content tw:hover:text-success-content`,
   style = {},
 }) => (
   <a href={href} className={className} title={title ? title : ''} style={style}>
@@ -68,20 +68,20 @@ export const CardLink = ({
   icon,
   children,
   Link,
-  className = 'tw-bg-base-200 tw-text-base-content',
+  className = 'tw:bg-base-200 tw:text-base-content',
 }) => {
   if (!Link) Link = BaseLink
 
   return (
     <Link
       href={href}
-      className={`tw-px-8 tw-py-10 tw-rounded-lg tw-block ${className}
-      hover:tw-bg-secondary hover:tw-bg-opacity-10 tw-shadow-lg
-      tw-transition-color tw-duration-300 grow hover:tw-no-underline hover:tw-text-base-content`}
+      className={`tw:px-8 tw:py-10 tw:rounded-lg tw:block ${className}
+      tw:hover:bg-secondary tw:hover:bg-opacity-10 tw:shadow-lg
+      tw:transition-color tw:duration-300 grow tw:hover:no-underline tw:hover:text-base-content`}
     >
-      <h2 className="tw-mb-4 tw-text-inherit tw-flex tw-flex-row tw-gap-4 tw-justify-between tw-items-center">
+      <h2 className="tw:mb-4 tw:text-inherit tw:flex tw:flex-row tw:gap-4 tw:justify-between tw:items-center">
         {title}
-        <span className="tw-shrink-0">{icon}</span>
+        <span className="tw:shrink-0">{icon}</span>
       </h2>
       {children}
     </Link>

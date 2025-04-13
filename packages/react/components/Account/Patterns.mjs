@@ -89,7 +89,7 @@ export const Patterns = ({ Link = false }) => {
 
   return (
     <>
-      <div className="tw-flex tw-flex-row tw-flex-wrap tw-gap-2 tw-items-center tw-justify-between tw-mb-4">
+      <div className="tw:flex tw:flex-row tw:flex-wrap tw:gap-2 tw:items-center tw:justify-between tw:mb-4">
         <button
           className="tw-daisy-btn tw-daisy-btn-error"
           onClick={removeSelectedPatterns}
@@ -98,7 +98,7 @@ export const Patterns = ({ Link = false }) => {
           <TrashIcon /> {count} {t('patterns')}
         </button>
         <Link
-          className="tw-daisy-btn tw-daisy-btn-primary tw-capitalize tw-w-full md:tw-w-auto hover:tw-text-primary-content"
+          className="tw-daisy-btn tw-daisy-btn-primary tw:capitalize tw:w-full tw:md:w-auto tw:hover:text-primary-content"
           href="/editor/"
         >
           <PlusIcon />
@@ -106,8 +106,8 @@ export const Patterns = ({ Link = false }) => {
         </Link>
       </div>
       <TableWrapper>
-        <table className="tw-table tw-table-auto">
-          <thead className="tw-border tw-border-base-300 tw-border-b-2 tw-border-t-0 tw-border-x-0">
+        <table className="tw:table tw:table-auto">
+          <thead className="tw:border tw:border-base-300 tw:border-b-2 tw:border-t-0 tw:border-x-0">
             <tr className="">
               <th className="">
                 <input
@@ -120,13 +120,13 @@ export const Patterns = ({ Link = false }) => {
               {Object.keys(fields).map((field) => (
                 <th key={field}>
                   <button
-                    className="tw-daisy-btn tw-daisy-btn-link tw-capitalize tw-px-0 tw-underline hover:tw-decoration-4 tw-decoration-2 tw-text-secondary"
+                    className="tw-daisy-btn tw-daisy-btn-link tw:capitalize tw:px-0 tw:underline tw:hover:decoration-4 tw:decoration-2 tw:text-secondary"
                     onClick={() => (order === field ? setDesc(!desc) : setOrder(field))}
                   >
                     {fields[field]}{' '}
                     <RightIcon
                       stroke={3}
-                      className={`tw-w-4 tw-h-4 ${desc ? 'tw--' : 'tw-'}rotate-90 ${order === field ? '' : 'tw-opacity-0'}`}
+                      className={`tw:w-4 tw:h-4 ${desc ? 'tw--' : 'tw-'}rotate-90 ${order === field ? '' : 'tw:opacity-0'}`}
                     />
                   </button>
                 </th>
@@ -136,7 +136,7 @@ export const Patterns = ({ Link = false }) => {
           <tbody>
             {orderBy(patterns, order, desc ? 'desc' : 'asc').map((pattern, i) => (
               <tr key={i}>
-                <td className="tw-text-base tw-font-medium">
+                <td className="tw:text-base tw:font-medium">
                   <input
                     type="checkbox"
                     checked={selection[pattern.id] ? true : false}
@@ -144,8 +144,8 @@ export const Patterns = ({ Link = false }) => {
                     onClick={() => toggle(pattern.id)}
                   />
                 </td>
-                <td className="tw-text-base tw-font-medium">{pattern.id}</td>
-                <td className="tw-text-base tw-font-medium">
+                <td className="tw:text-base tw:font-medium">{pattern.id}</td>
+                <td className="tw:text-base tw:font-medium">
                   <PatternCard
                     href={`/account/data/patterns/pattern?id=${pattern.id}`}
                     pattern={pattern}
@@ -153,24 +153,24 @@ export const Patterns = ({ Link = false }) => {
                     Link={Link}
                   />
                 </td>
-                <td className="tw-text-base tw-font-medium">
+                <td className="tw:text-base tw:font-medium">
                   <Link
                     href={`/account/data/patterns/pattern?id=${pattern.id}`}
-                    className="tw-text-secondary tw-underline tw-decoration-2 hover:tw-decoration-4"
+                    className="tw:text-secondary tw:underline tw:decoration-2 tw:hover:decoration-4"
                   >
                     {pattern.name}
                   </Link>
                 </td>
-                <td className="tw-text-base tw-font-medium">
+                <td className="tw:text-base tw:font-medium">
                   <Link
                     href={`/designs/${pattern.design}`}
-                    className="tw-text-secondary tw-underline tw-decoration-2 hover:tw-decoration-4"
+                    className="tw:text-secondary tw:underline tw:decoration-2 tw:hover:decoration-4"
                   >
                     {capitalize(pattern.design)}
                   </Link>
                 </td>
-                <td className="tw-text-base tw-font-medium">{shortDate(pattern.createdAt)}</td>
-                <td className="tw-text-base tw-font-medium">
+                <td className="tw:text-base tw:font-medium">{shortDate(pattern.createdAt)}</td>
+                <td className="tw:text-base tw:font-medium">
                   {pattern.public ? <BoolYesIcon /> : <BoolNoIcon />}
                 </td>
               </tr>

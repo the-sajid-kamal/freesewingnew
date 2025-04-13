@@ -46,7 +46,7 @@ export const UserSetPicker = ({
 
   if (!hasSets)
     return (
-      <div className="tw-w-full tw-max-w-3xl tw-mx-auto">
+      <div className="tw:w-full tw:max-w-3xl tw:mx-auto">
         <Popout tip>
           <h5> You do not (yet) have any of your own measurements sets</h5>
           <p>
@@ -56,14 +56,14 @@ export const UserSetPicker = ({
           {config.hrefNewSet ? (
             <a
               href={config.hrefNewSet}
-              className="tw-daisy-btn tw-daisy-btn-accent tw-capitalize"
+              className="tw-daisy-btn tw-daisy-btn-accent tw:capitalize"
               target="_BLANK"
               rel="nofollow"
             >
               Create a new measurements set
             </a>
           ) : null}
-          <p className="tw-text-sm">
+          <p className="tw:text-sm">
             Because our patterns are bespoke, we strongly suggest you take accurate measurements.
           </p>
         </Popout>
@@ -73,7 +73,7 @@ export const UserSetPicker = ({
   return (
     <>
       {okSets.length > 0 && (
-        <div className="tw-grid tw-grid-cols-2 md:tw-grid-cols-4 lg:tw-grid-cols-6 tw-gap-2 tw-mt-4">
+        <div className="tw:grid tw:grid-cols-2 tw:md:grid-cols-4 tw:lg:grid-cols-6 tw:gap-2 tw:mt-4">
           {okSets.map((set) => (
             <MsetCard
               href={false}
@@ -87,13 +87,13 @@ export const UserSetPicker = ({
         </div>
       )}
       {lackingSets.length > 0 ? (
-        <div className="tw-my-4">
+        <div className="tw:my-4">
           <Popout note>
             <h5>
               Some of your measurements sets lack the measurements required to generate this pattern
             </h5>
           </Popout>
-          <div className="tw-grid tw-grid-cols-2 md:tw-grid-cols-4 lg:tw-grid-cols-6 tw-gap-2">
+          <div className="tw:grid tw:grid-cols-2 tw:md:grid-cols-4 tw:lg:grid-cols-6 tw:gap-2">
             {lackingSets.map((set) => (
               <MsetCard
                 {...{ set, Design }}
@@ -154,7 +154,7 @@ export const BookmarkedSetPicker = ({
   return (
     <>
       {okSets.length > 0 && (
-        <div className="tw-grid tw-grid-cols-2 md:tw-grid-cols-4 lg:tw-grid-cols-6 tw-gap-2">
+        <div className="tw:grid tw:grid-cols-2 tw:md:grid-cols-4 tw:lg:grid-cols-6 tw:gap-2">
           {okSets.map((set) => (
             <MsetCard
               href={false}
@@ -168,14 +168,14 @@ export const BookmarkedSetPicker = ({
         </div>
       )}
       {lackingSets.length > 0 && (
-        <div className="tw-my-4">
+        <div className="tw:my-4">
           <Popout note>
             <h5>
               Some of these measurements sets lack the measurements required to generate this
               pattern
             </h5>
           </Popout>
-          <div className="tw-grid tw-grid-cols-2 md:tw-grid-cols-4 lg:tw-grid-cols-6 tw-gap-2">
+          <div className="tw:grid tw:grid-cols-2 tw:md:grid-cols-4 tw:lg:grid-cols-6 tw:gap-2">
             {lackingSets.map((set) => (
               <MsetCard
                 href={false}
@@ -216,7 +216,7 @@ export const CuratedSetPicker = ({ clickHandler }) => {
   }, [])
 
   return (
-    <div className="tw-max-w-7xl">
+    <div className="tw:max-w-7xl">
       <CuratedMeasurementsSetLineup
         clickHandler={clickHandler}
         sets={orderBy(sets, 'height', 'asc')}
@@ -227,9 +227,9 @@ export const CuratedSetPicker = ({ clickHandler }) => {
 
 export const CuratedMeasurementsSetLineup = ({ sets = [], clickHandler }) => (
   <div
-    className={`tw-w-full tw-flex tw-flex-row ${
-      sets.length > 1 ? 'tw-justify-start tw-px-8' : 'tw-justify-center'
-    } tw-overflow-x-scroll`}
+    className={`tw:w-full tw:flex tw:flex-row ${
+      sets.length > 1 ? 'tw:justify-start tw:px-8' : 'tw:justify-center'
+    } tw:overflow-x-scroll`}
     style={{
       backgroundImage: `url(/img/lineup-backdrop.svg)`,
       width: 'auto',
@@ -240,7 +240,7 @@ export const CuratedMeasurementsSetLineup = ({ sets = [], clickHandler }) => (
     {sets.map((set) => {
       const props = {
         className:
-          'tw-aspect-[1/3] tw-w-auto tw-h-96 tw-bg-transparent tw-border-0 hover:tw-cursor-pointer hover:tw-bg-secondary/20',
+          'tw:aspect-1/3 tw:w-auto tw:h-96 tw:bg-transparent tw:border-0 tw:hover:cursor-pointer tw:hover:bg-secondary/20',
         style: {
           backgroundImage: `url(${cloudflareImageUrl({
             id: `cset-${set.id}`,
@@ -255,7 +255,7 @@ export const CuratedMeasurementsSetLineup = ({ sets = [], clickHandler }) => (
       }
 
       return (
-        <div className="tw-flex tw-flex-col tw-items-center" key={set.id}>
+        <div className="tw:flex tw:flex-col tw:items-center" key={set.id}>
           <button {...props} key={set.id}></button>
           <b>{set.nameEn}</b>
         </div>

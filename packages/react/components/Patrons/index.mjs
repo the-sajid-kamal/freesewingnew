@@ -6,13 +6,13 @@ import { useAccount } from '@freesewing/react/hooks/useAccount'
 
 export const PleaseSubscribe = (props = {}) => (
   <div
-    className={`tw-max-w-7xl tw-m-auto tw-px-0 tw--mt-12 tw-mb-24 ${props.dense ? '' : 'md:tw-my-24'}`}
+    className={`tw:max-w-7xl tw:m-auto tw:px-0 tw:-mt-12 tw:mb-24 ${props.dense ? '' : 'tw:md:my-24'}`}
   >
-    <div className="tw-p-1 tw-bg-gradient-to-tr tw-from-neutral tw-to-primary tw-mt-12 tw-rounded-none md:tw-rounded-lg lg:tw-rounded-xl md:tw-shadow tw-text-neutral-content tw-p-8 lg:tw-px-12 md:tw-py-0">
-      <div className="tw-flex tw-flex-col md:tw-gap-2 lg:tw-gap-12 md:tw-grid md:tw-grid-cols-2">
+    <div className="tw:p-1 tw:bg-linear-to-tr tw:from-neutral tw:to-primary tw:mt-12 tw:rounded-none tw:md:rounded-lg tw:lg:rounded-xl tw:md:shadow tw:text-neutral-content tw:p-8 tw:lg:px-12 tw:md:py-0">
+      <div className="tw:flex tw:flex-col tw:md:gap-2 tw:lg:gap-12 tw:md:grid tw:md:grid-cols-2">
         <Plea />
-        <div className="tw--mt-8 md:tw-mt-0 tw-pt-0 md:tw-pt-8 tw-pb-8 lg:tw-py-12 tw-max-w-prose tw-m-auto tw-w-full tw-m-auto">
-          <h2 className="tw-text-inherit">Support FreeSewing</h2>
+        <div className="tw:-mt-8 tw:md:mt-0 tw:pt-0 tw:md:pt-8 tw:pb-8 tw:lg:py-12 tw:max-w-prose tw:m-auto tw:w-full tw:m-auto">
+          <h2 className="tw:text-inherit">Support FreeSewing</h2>
           <Subscribe {...props} />
         </div>
       </div>
@@ -21,8 +21,8 @@ export const PleaseSubscribe = (props = {}) => (
 )
 
 export const Plea = () => (
-  <div className="md:tw-pt-8 tw-pb-8 lg:tw-py-12 tw-max-w-prose tw-w-full tw-m-auto">
-    <h2 className="tw-text-inherit tw-mb-4">
+  <div className="tw:md:pt-8 tw:pb-8 tw:lg:py-12 tw:max-w-prose tw:w-full tw:m-auto">
+    <h2 className="tw:text-inherit tw:mb-4">
       Hi friend
       <span role="img"> 👋</span>
     </h2>
@@ -33,11 +33,11 @@ export const Plea = () => (
       'Thanks in advance for considering it.',
       'love',
     ].map((txt, i) => (
-      <p className="tw-text-inherit tw-font-medium tw-mb-2" key={i}>
+      <p className="tw:text-inherit tw:font-medium tw:mb-2" key={i}>
         {txt}
       </p>
     ))}
-    <Joost className="tw-ml-12 tw--mt-8 tw-w-32" />
+    <Joost className="tw:ml-12 tw:-mt-8 tw:w-32" />
   </div>
 )
 
@@ -87,28 +87,28 @@ export const Subscribe = ({
     : paypalConfig.periods
 
   return (
-    <div className="tw-w-full">
-      <div className="tw-flex tw-flex-row tw-gap-2">
-        <div className="tw-daisy-form-control tw-w-full">
+    <div className="tw:w-full">
+      <div className="tw:flex tw:flex-row tw:gap-2">
+        <div className="tw-daisy-form-control tw:w-full">
           <label className="tw-daisy-label">
-            <span className="tw-daisy-label-text-alt tw-text-inherit">Your Contribution</span>
+            <span className="tw-daisy-label-text-alt tw:text-inherit">Your Contribution</span>
           </label>
           <input
             type="text"
             inputMode="decimal"
             placeholder="Enter amount here"
             pattern="[0-9]+([.][0-9]+)?"
-            className="tw-daisy-input tw-daisy-input-bordered tw-w-full tw-text-base-content"
+            className="tw-daisy-input tw-daisy-input-bordered tw:w-full tw:text-base-content"
             value={amount}
             onChange={(evt) => setAmount(evt.target.value)}
           />
         </div>
-        <div className="tw-form-control tw-w-24">
+        <div className="tw-form-control tw:w-24">
           <label className="tw-daisy-label">
-            <span className="tw-daisy-label-text-alt tw-text-inherit">Currency</span>
+            <span className="tw-daisy-label-text-alt tw:text-inherit">Currency</span>
           </label>
           <select
-            className="tw-daisy-select tw-daisy-select-bordered tw-text-base-content"
+            className="tw-daisy-select tw-daisy-select-bordered tw:text-base-content"
             defaultValue={currency}
             onChange={(evt) => setCurrency(evt.target.value)}
           >
@@ -122,12 +122,12 @@ export const Subscribe = ({
       </div>
       <div>
         <label className="tw-daisy-label">
-          <div className="tw-daisy-label-text-alt tw-text-inherit tw-flex tw-flex-row tw-flex-wrap tw-gap-1">
-            <span className="tw-hidden lg:tw-inline">Presets:</span>
+          <div className="tw-daisy-label-text-alt tw:text-inherit tw:flex tw:flex-row tw:flex-wrap tw:gap-1">
+            <span className="tw:hidden tw:lg:inline">Presets:</span>
             {amounts.map((val) => (
               <button
                 key={val}
-                className="tw-font-bold tw-underline tw-decoration-2 tw-px-1 hover:tw-decoration-4"
+                className="tw:font-bold tw:underline tw:decoration-2 tw:px-1 tw:hover:decoration-4"
                 onClick={() => setAmount(val)}
               >
                 {val}
@@ -136,26 +136,26 @@ export const Subscribe = ({
           </div>
         </label>
       </div>
-      <div className="tw-grid tw-grid-cols-2 md:tw-grid-cols-3 tw-gap-2 tw-mt-2">
+      <div className="tw:grid tw:grid-cols-2 tw:md:grid-cols-3 tw:gap-2 tw:mt-2">
         {periods.map((val) => (
           <div
-            className={`tw-daisy-form-control tw-border tw-border-solid tw-border-inherit tw-rounded tw-px-1 tw-flex tw-flex-col tw-justify-center ${
-              period === val ? 'tw-bg-base-100 tw-text-base-content' : ''
+            className={`tw-daisy-form-control tw:border tw:border-solid tw:border-inherit tw:rounded tw:px-1 tw:flex tw:flex-col tw:justify-center ${
+              period === val ? 'tw:bg-base-100 tw:text-base-content' : ''
             }`}
             key={val}
           >
-            <label className="tw-daisy-label tw-cursor-pointer tw-py-1.5 tw-flex tw-flex-row tw-gap-2 tw-items-center tw-overflow-clip tw-justify-start">
+            <label className="tw-daisy-label tw:cursor-pointer tw:py-1.5 tw:flex tw:flex-row tw:gap-2 tw:items-center tw:overflow-clip tw:justify-start">
               <input
                 type="radio"
                 name="period"
-                className={`tw-daisy-radio checked:tw-bg-${color} tw-border-${color} tw-daisy-radio-xs lg:tw-daisy-radio-sm tw-bg-secondary/20`}
+                className={`tw-daisy-radio checked:tw-bg-${color} tw-border-${color} tw-daisy-radio-xs lg:tw-daisy-radio-sm tw:bg-secondary/20`}
                 value={val}
                 onChange={() => setPeriod(val)}
                 checked={val === period ? 1 : 0}
               />
               <span
-                className={`tw-daisy-label-text tw-text-inherit tw-text-xs lg:tw-text-sm ${
-                  val === period ? 'tw-font-bold' : ''
+                className={`tw-daisy-label-text tw:text-inherit tw:text-xs tw:lg:text-sm ${
+                  val === period ? 'tw:font-bold' : ''
                 }`}
               >
                 {paypalConfig.periodLabels[val]}
@@ -173,16 +173,16 @@ export const Subscribe = ({
       >
         <PaypalFormBody {...{ currency, amount, period }} />
         <button
-          className={`tw-daisy-btn tw-daisy-btn-${color} tw-w-full tw-mt-4`}
+          className={`tw-daisy-btn tw-daisy-btn-${color} tw:w-full tw:mt-4`}
           disabled={!(Number(amount) > 0)}
           type="submit"
         >
           {period === 'x' ? 'Donate' : 'Subscribe'}
         </button>
-        <p className="tw-text-center tw-text-sm tw-text-neutral-content tw-mt-2 tw-opacity-80">
+        <p className="tw:text-center tw:text-sm tw:text-neutral-content tw:mt-2 tw:opacity-80">
           Don&apos;t have a PayPal account?
           <a href="https://ko-fi.com/freesewing" target="_BLANK" className={linkClasses}>
-            <b className="tw-text-neutral-content tw-pl-2">Ko-fi.com/FreeSewing</b>
+            <b className="tw:text-neutral-content tw:pl-2">Ko-fi.com/FreeSewing</b>
           </a>
         </p>
       </form>
@@ -190,7 +190,7 @@ export const Subscribe = ({
   )
 }
 
-export const Joost = ({ className = 'tw-w-32', stroke = 0 }) => (
+export const Joost = ({ className = 'tw:w-32', stroke = 0 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="currentColor"
