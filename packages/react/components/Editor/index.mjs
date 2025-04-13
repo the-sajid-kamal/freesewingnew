@@ -40,6 +40,7 @@ export const Editor = ({
   preload = {},
   setTitle = false,
   localDesigns = {},
+  measurementHelpProvider = false,
 }) => {
   /*
    * Bundle all designs
@@ -144,6 +145,7 @@ export const Editor = ({
               {...extraProps}
               {...{ view, update, designs, config: editorConfig }}
               state={passDownState}
+              measurementHelpProvider={measurementHelpProvider}
             />
           </LoadingStatusContextProvider>
         </ModalContextProvider>

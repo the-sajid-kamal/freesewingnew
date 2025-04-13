@@ -9,9 +9,10 @@ import { MeasurementInput } from '@freesewing/react/components/Input'
  * @param {object} props.state - The ViewWrapper state object
  * @param {object} props.state.settings - The current settings
  * @param {object} props.update - Helper object for updating the ViewWrapper state
+ * @param {object} props.helpProvider - A function that takes a measurement and returns a url or action to show help for that measurement
  * @return {function} MeasurementsEditor - React component
  */
-export const MeasurementsEditor = ({ Design, update, state }) => {
+export const MeasurementsEditor = ({ Design, update, state, helpProvider = false }) => {
   /*
    * Helper method to handle state updates for measurements
    */
@@ -34,6 +35,7 @@ export const MeasurementsEditor = ({ Design, update, state }) => {
               original={state.settings.measurements?.[m]}
               update={(m, newVal) => onUpdate(m, newVal)}
               id={`edit-${m}`}
+              helpProvider={helpProvider}
             />
           ))}
           <br />

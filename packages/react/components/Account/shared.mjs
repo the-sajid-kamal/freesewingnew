@@ -17,7 +17,7 @@ import {
 /*
  * A component to display a row of data
  */
-export const DisplayRow = ({ title, children, keyWidth = 'w-24' }) => (
+export const DisplayRow = ({ title, children, keyWidth = 'tw-w-24' }) => (
   <div className="tw-flex tw-flex-row tw-flex-wrap tw-items-center lg:tw-gap-4 tw-my-2 tw-w-full">
     <div
       className={`${keyWidth} tw-text-left md:tw-text-right tw-block md:tw-inline tw-font-bold tw-pr-4 tw-shrink-0`}

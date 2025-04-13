@@ -16,7 +16,7 @@ import { useDropzone } from 'react-dropzone'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
 // Components
 import { Link as WebLink } from '@freesewing/react/components/Link'
-import { TrashIcon, ResetIcon, UploadIcon } from '@freesewing/react/components/Icon'
+import { TrashIcon, ResetIcon, UploadIcon, HelpIcon } from '@freesewing/react/components/Icon'
 import { ModalWrapper } from '@freesewing/react/components/Modal'
 import { isDegreeMeasurement } from '@freesewing/config'
 import { Tabs, Tab } from '@freesewing/react/components/Tab'
@@ -49,17 +49,17 @@ export const _Tab = ({
 const HelpLink = ({ help, Link = false }) => {
   if (!Link) Link = WebLink
 
-  if (typeof helpLink === 'function')
+  if (typeof help === 'function')
     return (
       <button onClick={() => help} title="Show help">
-        <QuestionIcon className="tw-w-5 tw-h-5" />
+        <HelpIcon className="tw-w-5 tw-h-5" />
       </button>
     )
 
-  if (typeof helpLink === 'string')
+  if (typeof help === 'string')
     return (
       <Link href={help} target="_BLANK" rel="nofollow" title="Show help">
-        <QuestionIcon className="tw-w-5 tw-h-5" />
+        <HelpIcon className="tw-w-5 tw-h-5" />
       </Link>
     )
 
@@ -77,14 +77,14 @@ export const FormControl = ({
   labelBR = false, // Optional bottom-right label
   forId = false, // ID of the for element we are wrapping
   help = false, // An optional URL/method to link/show help/docs
-  Link = false, // An optionan framework-specific link components
+  Link = false, // An optional framework-specific link components
 }) => {
   if (labelBR && !labelBL) labelBL = <span></span>
 
   const topLabelChildren = (
     <>
       {label ? (
-        <span className="tw-daisy-label-text tw-text-sm lg:tw-text-base tw-font-bold tw-mb-1 tw-text-inherit">
+        <span className="tw-daisy-label-text tw-text-sm lg:tw-text-base tw-font-bold tw-mb-1 tw-text-inherit tw-inline-flex tw-items-center tw-gap-1">
           {label} <HelpLink {...{ help, Link }} />
         </span>
       ) : (
@@ -541,6 +541,7 @@ export const MeasurementInput = ({
   update, // The onChange handler
   placeholder, // The placeholder content
   id = '', // An id to tie the input to the label
+  helpProvider = false, // a function that provides a url or an action to display help for a measurement
 }) => {
   const isDegree = isDegreeMeasurement(m)
   const units = imperial ? 'imperial' : 'metric'
@@ -604,6 +605,7 @@ export const MeasurementInput = ({
     <FormControl
       label={measurementsTranslations[m] + (isDegree ? ' (°)' : '')}
       forId={id}
+      help={typeof helpProvider === 'function' ? helpProvider(m) : helpProvider}
       labelBL={bottomLeftLabel}
     >
       <label

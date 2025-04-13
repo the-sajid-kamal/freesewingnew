@@ -37,6 +37,7 @@ const iconClasses = {
  * @param {Array} props.missingMeasurements - List of missing measurements for the current design
  * @param {Object} props.state - The editor state object
  * @param {Object} props.update - Helper object for updating the editor state
+ * @param {object} props.helpProvider - A function that takes a measurement and returns a url or action to show help for that measurement
  * @return {Function} MeasurementsView - React component
  */
 export const MeasurementsView = ({
@@ -46,6 +47,7 @@ export const MeasurementsView = ({
   state,
   update,
   design,
+  measurementHelpProvider = false,
 }) => {
   /*
    * If there is no view set, completing measurements will switch to the view picker
@@ -168,7 +170,10 @@ export const MeasurementsView = ({
       </div>
       <p className="tw-text-left">You can manually set or override measurements below.</p>
     </Fragment>,
-    <MeasurementsEditor key={2} {...{ Design, config, update, state }} />,
+    <MeasurementsEditor
+      key={2}
+      {...{ Design, config, update, state, helpProvider: measurementHelpProvider }}
+    />,
     'edit',
   ])
 

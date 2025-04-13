@@ -25,8 +25,15 @@ export const AnchorLink = ({ children, id = '', title = false }) => (
  * @param {string} props.className - Any non-default CSS classes to apply
  * @param {string} props.style - Any non-default styles to apply
  */
-export const Link = ({ href, title = false, children, className = linkClasses, style = {} }) => (
-  <a href={href} className={className} title={title ? title : ''} style={style}>
+export const Link = ({
+  href,
+  title = false,
+  children,
+  className = linkClasses,
+  target,
+  style = {},
+}) => (
+  <a href={href} target={target} className={className} title={title ? title : ''} style={style}>
     {children}
   </a>
 )

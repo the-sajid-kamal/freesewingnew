@@ -18,7 +18,10 @@ const EditorPage = () => {
 
   return (
     <BareLayout title={title}>
-      <Editor setTitle={setTitle} />
+      <Editor
+        setTitle={setTitle}
+        measurementHelpProvider={(m) => `/docs/measurements/${m.toLowerCase()}`}
+      />
     </BareLayout>
   )
 }

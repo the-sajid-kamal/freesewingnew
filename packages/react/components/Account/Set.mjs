@@ -76,8 +76,9 @@ const t = (input) => {
  * @param {number} id - The ID of the measurements set to load
  * @param {bool} publicOnly - FIXME
  * @param {function} Link - An optional framework-specific Link component to use for client-side routing
+ * @param {object} measurementHelpProvider - A function that returns a url or action to show help for a specific measurement
  */
-export const Set = ({ id, publicOnly = false, Link = false }) => {
+export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvider = false }) => {
   if (!Link) Link = WebLink
 
   // Hooks
@@ -459,7 +460,7 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
                   title={<MeasurementValue {...{ m, val, imperial: !displayAsMetric }} />}
                   key={m}
                 >
-                  <span className="tw-font-medium">{m}</span>
+                  <span className="tw-font-medium">{measurementTranslations[m]}</span>
                 </DisplayRow>
               ) : null
             )}
@@ -491,6 +492,7 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
           current={mset.measies[m]}
           original={mset.measies[m]}
           update={updateMeasies}
+          helpProvider={measurementHelpProvider}
         />
       ))}
 
