@@ -6,6 +6,9 @@ import { Null } from '@freesewing/react/components/Null'
 import { ZoomablePattern } from '../ZoomablePattern.mjs'
 import { PatternLayout } from '../PatternLayout.mjs'
 import { DraftErrorHandler } from './DraftErrorHandler.mjs'
+import { i18nPlugin } from '@freesewing/plugin-i18n'
+import { themePlugin } from '@freesewing/plugin-theme'
+import { translateStrings } from '../../../Pattern/index.mjs'
 
 /**
  * The draft view allows users to tweak their pattern
@@ -39,7 +42,13 @@ export const DraftView = ({ Design, state, update, config, plugins = [], PluginO
   /*
    * First, attempt to draft
    */
-  const { pattern, failure, errors } = draft(Design, state.settings, plugins)
+  const { pattern, failure, errors } = draft(Design, state.settings, plugins, (pattern) => {
+    if (state.ui?.renderer === 'svg') {
+      const strings = bundlePatternTranslations(pattern.designConfig.data.id)
+      pattern.use(i18nPlugin, (t) => translateStrings([t], strings))
+      pattern.use(themePlugin)
+    }
+  })
 
   /*
    * Create object holding strings for translation

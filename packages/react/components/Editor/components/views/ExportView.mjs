@@ -1,6 +1,8 @@
 // Dependencies
 import { linkClasses, horFlexClasses, patternUrlFromState } from '@freesewing/utils'
 import { handleExport } from '../../lib/export/index.mjs'
+import { translateStrings } from '../../../Pattern/index.mjs'
+import { bundlePatternTranslations } from '../../lib/index.mjs'
 // Hooks
 import React, { useState } from 'react'
 // Components
@@ -33,6 +35,8 @@ export const ExportView = (props) => {
     b: `${site}${patternUrlFromState(state, false)}`,
   }
 
+  const translations = bundlePatternTranslations(props.design)
+
   const exportProps = {
     design: props.design,
     Design: props.Design,
@@ -42,6 +46,7 @@ export const ExportView = (props) => {
     setFormat,
     startLoading: update.startLoading,
     stopLoading: update.stopLoading,
+    t: (string) => translateStrings([string], translations),
   }
 
   return (

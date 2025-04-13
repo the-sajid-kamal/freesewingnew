@@ -52,9 +52,10 @@ export const bundlePatternTranslations = (design) => {
  * @param {array} plugins - Any (extra) plugins to load into the pattern
  * @return {object} data - The drafted pattern, along with errors and failure data
  */
-export function draft(Design, settings, plugins = []) {
+export function draft(Design, settings, plugins = [], pluginsHook = false) {
   const pattern = new Design(settings)
   for (const plugin of plugins) pattern.use(plugin)
+  if (pluginsHook) pluginsHook(pattern)
   const data = {
     // The pattern
     pattern,

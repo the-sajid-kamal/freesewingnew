@@ -36,7 +36,7 @@ const themedPattern = (Design, settings, overwrite, format, t) => {
 
   // add the theme and translation to the pattern
   pattern.use(themePlugin, { stripped: format !== 'svg', skipGrid: ['pages'] })
-  pattern.use(pluginI18n, (key) => key)
+  pattern.use(pluginI18n, t)
 
   return pattern
 }
