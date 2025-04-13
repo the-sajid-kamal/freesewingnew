@@ -1,6 +1,6 @@
 // Handle themes
-import { light, dark } from './themes/index.mjs'
-import daisyui from 'daisyui'
+//import { light, dark } from './themes/index.mjs'
+//import daisyui from 'daisyui'
 
 export default {
   content: [
@@ -14,15 +14,15 @@ export default {
     '../../packages/utils/src/*.mjs',
     './tailwind-force.html',
   ],
-  plugins: [daisyui],
+  //plugins: [daisyui],
   prefix: 'tw-',
   darkMode: ['selector', 'data-theme="dark"]'],
-  daisyui: {
-    themes: [{ dark, light }],
-    logs: true,
-    //themeRoot: '*',
-    prefix: 'daisy-',
-  },
+  //daisyui: {
+  //  themes: [{ dark, light }],
+  //  logs: true,
+  //  //themeRoot: '*',
+  //  prefix: 'daisy-',
+  //},
   theme: {
     extend: {
       aspectRatio: {
