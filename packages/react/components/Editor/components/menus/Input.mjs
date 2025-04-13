@@ -233,7 +233,7 @@ export const MenuMmInput = (props) => {
 /** A {@see SliderInput} to handle percentage values */
 export const MenuPctInput = ({ current, changed, updateHandler, config, ...rest }) => {
   const factor = 100
-  let pctCurrent = changed ? menuRoundPct(current, factor) : current
+  let pctCurrent = menuRoundPct(changed ? current : config.dflt, factor)
   const pctUpdateHandler = useCallback(
     (path, newVal) =>
       updateHandler(path, newVal === undefined ? undefined : menuRoundPct(newVal, 1 / factor)),
