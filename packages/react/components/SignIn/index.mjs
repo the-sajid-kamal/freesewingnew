@@ -438,7 +438,7 @@ export const SignInConfirmation = ({ onSuccess = false }) => {
 /*
  * This is the generic component that will handle the Oauth callback
  */
-function OauthCallback({ provider = false }) {
+export const OauthCallback = ({ provider = false }) => {
   const [error, setError] = useState(false)
   const backend = useBackend()
   const { setAccount, setToken, setSeenUser } = useAccount()

@@ -31,11 +31,11 @@
  - Neck ties no longer shown to be cut on fold
  - Band tie locks in duo colours when `options.crossBackTies` is true (fixes incorrect notch placements)
 
-### plugin-annotations
+### core
 
-#### Fixed
+#### Changed
 
- - Fixed incorrect anchor point of the logo due to share pathstring (#202)
+ - Replaced the reduce function upstream the upstream BezierJS library with our own improved implementation
 
 ### react
 
@@ -43,7 +43,9 @@
 
  - Fixed issues with the pattern export feature in the Editor (#218)
  - Added Jane to the Linedrawing component (#211)
+ - Fixed incorrect anchor point of the logo due to share pathstring (#202)
 
+### plugin-annotations
 
 ## 4.0.0 (2024-04-01)
 
