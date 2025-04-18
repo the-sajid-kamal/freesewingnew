@@ -31,7 +31,7 @@ export function defaultSamm(units, inMm = true) {
 export function menuCoreSettingsOnlyHandler({ updateHandler, current }) {
   return function (path, part) {
     // Is this a reset?
-    if (part === undefined || part === '__UNSET__') return updateHandler(path, part)
+    if (part === undefined || part === '__UNSET__') return updateHandler(path, '__UNSET__')
 
     // add or remove the part from the set
     let newParts = new Set(current || [])
@@ -39,7 +39,7 @@ export function menuCoreSettingsOnlyHandler({ updateHandler, current }) {
     else newParts.add(part)
 
     // if the set is now empty, reset
-    if (newParts.size < 1) newParts = undefined
+    if (newParts.size < 1) return updateHandler(path, '__UNSET__')
     // otherwise use the new set
     else newParts = [...newParts]
 
