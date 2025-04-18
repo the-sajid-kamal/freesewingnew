@@ -30,6 +30,10 @@ class Bezier extends UpstreamBezier {
     const utils = this.getUtils()
     const EPSILON = 0.001
 
+    if (!(this.length() > 0)) {
+      return []
+    }
+
     function reduceStep(bezier) {
       const splitTs = []
       let t1 = 0
@@ -50,11 +54,11 @@ class Bezier extends UpstreamBezier {
         let high = 1
         let best = t1 + EPSILON
 
-        if (low > best) {
+        if (low > high) {
           break
         }
 
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 20; i++) {
           // limit to 20 iterations max
           const mid = (low + high) / 2
           const segment = bezier.split(t1, mid)
@@ -83,6 +87,7 @@ class Bezier extends UpstreamBezier {
       // Split the curve using the collected t values
       const parts = []
       let prevT = 0
+
       for (const t of splitTs) {
         const segment = bezier.split(prevT, t)
         segment._t1 = utils.map(prevT, 0, 1, bezier._t1, bezier._t2)
