@@ -11,24 +11,24 @@ export const ZoomablePattern = forwardRef(function ZoomablePatternRef(props, ref
   const { onTransformed, zoomFunctions, setZoomFunctions } = useContext(ZoomContext)
 
   return (
-    <div className="tw-relative">
-      <div className="tw-absolute tw-top-0 tw-right-0 tw-z-20">
-        <div className="tw-flex tw-flex-row tw-gap-1 tw-items-center">
+    <div className="tw:relative">
+      <div className="tw:absolute tw:top-0 tw:right-0 tw:z-20">
+        <div className="tw:flex tw:flex-row tw:gap-1 tw:items-center">
           <button
             onClick={() => props.update.ui('rotate', rotate ? 0 : 1)}
-            className="hover:tw-text-secondary"
+            className="tw:hover:text-secondary"
           >
-            <RotateIcon className={`tw-h-6 tw-w-6 ${rotate ? 'tw-text-success' : ''}`} />
+            <RotateIcon className={`tw:h-6 tw:w-6 ${rotate ? 'tw:text-success' : ''}`} />
           </button>
           <button
             onClick={() => (zoomFunctions.zoomIn ? zoomFunctions.zoomIn() : null)}
-            className="hover:tw-text-secondary"
+            className="tw:hover:text-secondary"
           >
             <ZoomInIcon />
           </button>
           <button
             onClick={() => (zoomFunctions.zoomOut ? zoomFunctions.zoomOut() : null)}
-            className="hover:tw-text-secondary"
+            className="tw:hover:text-secondary"
           >
             <ZoomOutIcon />
           </button>
@@ -53,7 +53,7 @@ export const ZoomablePattern = forwardRef(function ZoomablePatternRef(props, ref
             <Pattern
               {...{ renderProps, components, strings }}
               ref={ref}
-              className={`freesewing pattern tw-w-full ${rotate ? 'tw--rotate-90' : ''}`}
+              className={`freesewing pattern tw:w-full ${rotate ? 'tw:-rotate-90' : ''}`}
             />
           )}
         </TransformComponent>

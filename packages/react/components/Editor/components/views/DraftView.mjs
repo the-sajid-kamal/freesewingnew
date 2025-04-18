@@ -65,7 +65,7 @@ export const DraftView = ({ Design, state, update, config, plugins = [], PluginO
           <DraftErrorHandler {...{ failure, errors }} />
           <PluginOutput {...{ pattern, Design, state, update, config }} />
           <ZoomablePattern update={update}>
-            <div className="tw-w-full tw-h-full" dangerouslySetInnerHTML={{ __html }} />
+            <div className="tw:w-full tw:h-full" dangerouslySetInnerHTML={{ __html }} />
           </ZoomablePattern>
         </>
       )

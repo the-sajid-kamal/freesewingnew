@@ -30,20 +30,20 @@ export const PatternLayout = (props) => {
 
   return (
     <ZoomContextProvider>
-      <div className="tw-flex tw-flex-col tw-h-full">
+      <div className="tw:flex tw:flex-col tw:h-full">
         <HeaderMenu
           state={props.state}
           {...{ update, Design, pattern, config, strings: props.strings }}
         />
-        <div className="tw-flex lg:tw-flex-row tw-grow lg:tw-max-h-[90vh] tw-max-h-[calc(100vh-3rem)] tw-h-full tw-py-2 lg:tw-mt-2">
-          <div className="lg:tw-w-2/3 tw-flex tw-flex-col tw-h-full tw-grow tw-p-2 tw-shadow tw-mx-2">
+        <div className="tw:flex tw:lg:flex-row tw:grow tw:lg:max-h-[90vh] tw:max-h-[calc(100vh-3rem)] tw:h-full tw:py-2 tw:lg:mt-2">
+          <div className="tw:lg:w-2/3 tw:flex tw:flex-col tw:h-full tw:grow tw:p-2 tw:shadow tw:mx-2">
             {props.output}
           </div>
           {state.ui?.aside ? (
             <div
-              className={`tw-hidden xl:tw-block tw-w-1/3 tw-shrink tw-grow-0 lg:tw-p-4 tw-max-w-2xl tw-h-full tw-overflow-scroll`}
+              className={`tw:hidden tw:xl:block tw:w-1/3 tw:shrink tw:grow-0 tw:lg:p-4 tw:max-w-2xl tw:h-full tw:overflow-scroll`}
             >
-              <h5 className="tw-capitalize">{pattern.designConfig.data.id} Options</h5>
+              <h5 className="tw:capitalize">{pattern.designConfig.data.id} Options</h5>
               <DesignOptionsMenu {...props} />
               <h5>Core Settings</h5>
               <CoreSettingsMenu {...props} />

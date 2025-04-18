@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { themes as prismThemes } from 'prism-react-renderer'
 import designs from '../../config/software/designs.json'
-import tailwindcss from 'tailwindcss'
+import tailwindPostcss from '@tailwindcss/postcss'
 import autoprefixer from 'autoprefixer'
 import smartypants from 'remark-smartypants'
 
@@ -178,12 +178,12 @@ const config = {
         },
       },
     ],
-    async function myPlugin() {
+    async function tailwindPlugin() {
       return {
-        name: 'docusaurus-tailwindcss',
+        name: 'tailwind-plugin',
         configurePostCss(postcssOptions) {
           // Appends TailwindCSS and AutoPrefixer.
-          postcssOptions.plugins.push(tailwindcss)
+          postcssOptions.plugins.push(tailwindPostcss)
           postcssOptions.plugins.push(autoprefixer)
           return postcssOptions
         },
@@ -256,9 +256,9 @@ const config = {
   ],
   themeConfig: {
     colorMode: {
-      defaultMode: 'light',
-      disableSwitch: false,
-      respectPrefersColorScheme: false,
+      // Do not be tempted to change these
+      disableSwitch: true,
+      respectPrefersColorScheme: true,
     },
     image: 'img/freesewing-social-card.png',
     navbar: {

@@ -24,7 +24,7 @@ export function BareLayout({
   children = null,
   footer = false,
   noHeader = false,
-  className = 'tw-bg-transparent tw-p-0 tw-m-0',
+  className = 'tw:bg-transparent tw:p-0 tw:m-0',
   title = 'FreeSewing.org',
   description = 'Free bespoke sewing patterns',
 }) {

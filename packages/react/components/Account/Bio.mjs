@@ -51,12 +51,12 @@ export const Bio = ({ welcome = false, Link = false }) => {
       : '/docs/about/guide'
 
   return (
-    <div className="tw-w-full">
+    <div className="tw:w-full">
       <h6>Tell people a little bit about yourself.</h6>
       <MarkdownInput id="account-bio" label="Bio" update={setBio} current={bio} placeholder="Bio" />
-      <p className="tw-text-right">
+      <p className="tw:text-right">
         <button
-          className="tw-daisy-btn tw-daisy-btn-primary tw-w-full lg:tw-w-auto tw-mt-8"
+          className="tw:daisy-btn tw:daisy-btn-primary tw:w-full tw:lg:w-auto tw:mt-8"
           onClick={save}
         >
           <SaveIcon /> Save Bio
@@ -65,17 +65,17 @@ export const Bio = ({ welcome = false, Link = false }) => {
 
       {welcome ? (
         <>
-          <IconButton href={nextHref} className="tw-mt-4">
+          <IconButton href={nextHref} className="tw:mt-4">
             <RightIcon stroke={3} /> Continue
           </IconButton>
           {welcomeSteps[account.control].length > 0 ? (
             <>
               <progress
-                className="tw-daisy-progress tw-daisy-progress-primary tw-w-full tw-mt-12"
+                className="tw:daisy-progress tw:daisy-progress-primary tw:w-full tw:mt-12"
                 value={600 / welcomeSteps[account.control].length}
                 max="100"
               ></progress>
-              <span className="tw-pt-4 tw-text-sm tw-font-bold tw-opacity-50">
+              <span className="tw:pt-4 tw:text-sm tw:font-bold tw:opacity-50">
                 6 / {welcomeSteps[account.control].length}
               </span>
               <WelcomeIcons

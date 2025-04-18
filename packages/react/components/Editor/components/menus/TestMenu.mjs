@@ -81,12 +81,12 @@ export const TestMeasurementsMenu = ({ Design, state, update }) => {
 const SampleOptionButton = ({ name, i18n, update }) => (
   <button
     className={
-      'tw-daisy-btn tw-daisy-btn-outline tw-daisy-btn-sm tw-mx-2 ' +
-      'tw-daisy-btn-secondary tw-flex tw-flex-row tw-items-center tw-justify-between'
+      'tw:daisy-btn tw:daisy-btn-outline tw:daisy-btn-sm tw:mx-2 ' +
+      'tw:daisy-btn-secondary tw:flex tw:flex-row tw:items-center tw:justify-between'
     }
     onClick={() => update.settings('sample', { type: 'option', option: name })}
   >
-    <BeakerIcon className="tw-w-5 tw-h-5" />
+    <BeakerIcon className="tw:w-5 tw:h-5" />
     <span>{i18n.en.o[name].t}</span>
   </button>
 )
@@ -94,12 +94,12 @@ const SampleOptionButton = ({ name, i18n, update }) => (
 const SampleMeasurementButton = ({ name, i18n, update }) => (
   <button
     className={
-      'tw-daisy-btn tw-daisy-btn-outline tw-daisy-btn-sm tw-mx-2 ' +
-      'tw-daisy-btn-secondary tw-flex tw-flex-row tw-items-center tw-justify-between'
+      'tw:daisy-btn tw:daisy-btn-outline tw:daisy-btn-sm tw:mx-2 ' +
+      'tw:daisy-btn-secondary tw:flex tw:flex-row tw:items-center tw:justify-between'
     }
     onClick={() => update.settings('sample', { type: 'option', option: name })}
   >
-    <BeakerIcon className="tw-w-5 tw-h-5" />
+    <BeakerIcon className="tw:w-5 tw:h-5" />
     <span>{measurementsTranslations[name]}</span>
   </button>
 )

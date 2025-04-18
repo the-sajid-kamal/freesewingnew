@@ -21,7 +21,7 @@ export const MeasurementsEditor = ({ Design, update, state, helpProvider = false
   }
 
   return (
-    <div className="tw-max-w-2xl tw-mx-auto">
+    <div className="tw:max-w-2xl tw:mx-auto">
       <h4>Required Measurements</h4>
       {Object.keys(Design.patternConfig.measurements).length === 0 ? (
         <p>This design does not require any measurements.</p>

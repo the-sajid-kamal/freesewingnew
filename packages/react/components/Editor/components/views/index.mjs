@@ -72,13 +72,13 @@ export const View = (props) => {
   if (view === 'timing') return <TimingView {...props} />
   if (view === 'picker') return <ViewPicker {...props} />
 
-  return <h1 className="tw-ext-center tw-my-12">No view component for view {props.view}</h1>
+  return <h1 className="tw:ext-center tw:my-12">No view component for view {props.view}</h1>
 }
 
 /*
  * This returns a view-specific icon
  */
-export const ViewIcon = ({ view, className = 'tw-w-6 tw-h-6' }) => {
+export const ViewIcon = ({ view, className = 'tw:w-6 tw:h-6' }) => {
   const Icon = viewIcons[view] || FixmeIcon
 
   return <Icon className={className} />

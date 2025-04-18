@@ -50,7 +50,7 @@ export const MenuDegOptionValue = ({ config, current, changed }) => (
  * @param {Function} children - The React children
  */
 export const MenuHighlightValue = ({ changed, children }) => (
-  <span className={changed ? 'tw-text-accent' : ''}> {children} </span>
+  <span className={changed ? 'tw:text-accent' : ''}> {children} </span>
 )
 
 /**

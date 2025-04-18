@@ -135,7 +135,7 @@ export const Pattern = ({ id, Link }) => {
 
   if (!edit)
     return (
-      <div className="tw-w-full">
+      <div className="tw:w-full">
         {pattern.public ? (
           <Popout note>
             <h5>This is the private view of your pattern</h5>
@@ -144,9 +144,9 @@ export const Pattern = ({ id, Link }) => {
               <br />
               But only you can access this private view.
             </p>
-            <p className="tw-text-right">
+            <p className="tw:text-right">
               <Link
-                className={`tw-daisy-btn tw-daisy-btn-secondary hover:tw-text-secondary-content hover:tw-no-underline`}
+                className={`tw:daisy-btn tw:daisy-btn-secondary tw:hover:text-secondary-content tw:hover:no-underline`}
                 href={`/pattern?id=${pattern.id}`}
               >
                 <PatternIcon />
@@ -166,7 +166,7 @@ export const Pattern = ({ id, Link }) => {
     )
 
   return (
-    <div className="tw-w-full">
+    <div className="tw:w-full">
       <h2>Edit pattern {pattern.name}</h2>
 
       {/* Name is always shown */}
@@ -204,10 +204,10 @@ export const Pattern = ({ id, Link }) => {
             {
               val: true,
               label: (
-                <div className="tw-flex tw-flex-row tw-items-center tw-flex-wrap tw-justify-between tw-w-full">
+                <div className="tw:flex tw:flex-row tw:items-center tw:flex-wrap tw:justify-between tw:w-full">
                   <span>Public Pattern</span>
                   <OkIcon
-                    className="tw-w-8 tw-h-8 tw-text-success tw-bg-base-100 tw-rounded-full tw-p-1"
+                    className="tw:w-8 tw:h-8 tw:text-success tw:bg-base-100 tw:rounded-full tw:p-1"
                     stroke={4}
                   />
                 </div>
@@ -217,10 +217,10 @@ export const Pattern = ({ id, Link }) => {
             {
               val: false,
               label: (
-                <div className="tw-flex tw-flex-row tw-items-center tw-flex-wrap tw-justify-between tw-w-full">
+                <div className="tw:flex tw:flex-row tw:items-center tw:flex-wrap tw:justify-between tw:w-full">
                   <span>Private Pattern</span>
                   <NoIcon
-                    className="tw-w-8 tw-h-8 tw-text-error tw-bg-base-100 tw-rounded-full tw-p-1"
+                    className="tw:w-8 tw:h-8 tw:text-error tw:bg-base-100 tw:rounded-full tw:p-1"
                     stroke={3}
                   />
                 </div>
@@ -237,15 +237,15 @@ export const Pattern = ({ id, Link }) => {
       {account.control >= controlConfig.account.patterns.notes ? (
         <MarkdownInput id="pattern-notes" label="Notes" update={setNotes} current={notes} />
       ) : null}
-      <div className="tw-flex tw-flex-row tw-items-center tw-align-end tw-gap-2 tw-mt-8">
+      <div className="tw:flex tw:flex-row tw:items-center tw:align-end tw:gap-2 tw:mt-8">
         <button
           onClick={() => setEdit(false)}
-          className={`tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-outline`}
+          className={`tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline`}
         >
           <ResetIcon />
           Cancel
         </button>
-        <button onClick={save} className="tw-daisy-btn tw-daisy-btn-primary tw-grow">
+        <button onClick={save} className="tw:daisy-btn tw:daisy-btn-primary tw:grow">
           <UploadIcon />
           Save Pattern
         </button>
@@ -272,7 +272,7 @@ export const PatternCard = ({
   const s = sizes[size]
 
   const wrapperProps = {
-    className: `tw-bg-base-300 tw-w-full tw-mb-2 tw-mx-auto tw-flex tw-flex-col tw-items-start tw-text-center tw-justify-center tw-rounded tw-shadow tw-py-4 tw-w-${s} tw-aspect-square`,
+    className: `tw:bg-base-300 tw:w-full tw:mb-2 tw:mx-auto tw:flex tw:flex-col tw:items-start tw:text-center tw:justify-center tw:rounded tw:shadow tw:py-4 tw:w-${s} tw:aspect-square`,
     style: {
       backgroundImage: `url(${cloudflareImageUrl({ type: 'w1000', id: pattern.img })})`,
       backgroundSize: 'cover',
@@ -315,7 +315,7 @@ export const PatternCard = ({
 const BadgeLink = ({ label, href }) => (
   <a
     href={href}
-    className="tw-daisy-badge tw-daisy-badge-secondary tw-font-bold tw-daisy-badge-lg hover:tw-text-secondary-content hover:tw-no-underline"
+    className="tw:daisy-badge tw:daisy-badge-secondary tw:font-bold tw:daisy-badge-lg tw:hover:text-secondary-content tw:hover:no-underline"
   >
     {label}
   </a>
@@ -336,19 +336,19 @@ const PatternHeader = ({
 }) => (
   <>
     <h2>{pattern.name}</h2>
-    <div className="tw-flex tw-flex-row tw-flex-wrap tw-gap-2 tw-text-sm tw-items-center tw-mb-2">
+    <div className="tw:flex tw:flex-row tw:flex-wrap tw:gap-2 tw:text-sm tw:items-center tw:mb-2">
       <KeyVal k="ID" val={pattern.id} color="secondary" />
       <KeyVal k="Created" val={<TimeAgo iso={pattern.createdAt} />} color="secondary" />
       <KeyVal k="Updated" val={<TimeAgo iso={pattern.updatedAt} />} color="secondary" />
       <KeyVal k="Public" val={pattern.public ? 'yes' : 'no'} color="secondary" />
     </div>
-    <div className="tw-flex tw-flex-wrap md:tw-flex-nowrap tw-flex-row tw-gap-2 tw-w-full">
-      <div className="tw-w-full md:tw-w-96 tw-shrink-0">
+    <div className="tw:flex tw:flex-wrap tw:md:flex-nowrap tw:flex-row tw:gap-2 tw:w-full">
+      <div className="tw:w-full tw:md:w-96 tw:shrink-0">
         <PatternCard pattern={pattern} size="md" Link={Link} />
       </div>
-      <div className="tw-flex tw-flex-col tw-justify-end tw-gap-2 tw-mb-2 tw-grow">
+      <div className="tw:flex tw:flex-col tw:justify-end tw:gap-2 tw:mb-2 tw:grow">
         {account.control > 3 && (pattern?.public || pattern.userId === account.id) ? (
-          <div className="tw-flex tw-flex-row tw-gap-2 tw-items-center">
+          <div className="tw:flex tw:flex-row tw:gap-2 tw:items-center">
             <BadgeLink label="JSON" href={`${urls.backend}/patterns/${pattern.id}.json`} />
             <BadgeLink label="YAML" href={`${urls.backend}/patterns/${pattern.id}.yaml`} />
           </div>
@@ -358,12 +358,12 @@ const PatternHeader = ({
         <button
           onClick={() =>
             setModal(
-              <ModalWrapper flex="col" justify="top lg:tw-justify-center" slideFrom="right">
+              <ModalWrapper flex="col" justify="top tw:lg:justify-center" slideFrom="right">
                 <img src={cloudflareImageUrl({ type: 'public', id: pattern.img })} />
               </ModalWrapper>
             )
           }
-          className={`tw-daisy-btn tw-daisy-btn-secondary tw-daisy-btn-outline ${horFlexClasses}`}
+          className={`tw:daisy-btn tw:daisy-btn-secondary tw:daisy-btn-outline ${horFlexClasses}`}
         >
           <ShowcaseIcon />
           Show Image
@@ -371,7 +371,7 @@ const PatternHeader = ({
         {account.control > 3 ? (
           <button
             onClick={() => togglePublic()}
-            className={`tw-daisy-btn tw-daisy-btn-${pattern.public ? 'error' : 'success'} tw-daisy-btn-outline ${horFlexClasses} hover:tw-text-${pattern.public ? 'error' : 'success'}-content`}
+            className={`tw:daisy-btn tw:daisy-btn-${pattern.public ? 'error' : 'success'} tw:daisy-btn-outline ${horFlexClasses} hover:tw:text-${pattern.public ? 'error' : 'success'}-content`}
           >
             {pattern.public ? <BoolNoIcon /> : <BoolYesIcon />}
             Make pattern {pattern.public ? 'private' : 'public'}
@@ -381,19 +381,19 @@ const PatternHeader = ({
           <>
             <Link
               href={patternUrlFromState(pattern, true)}
-              className={`tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-outline ${horFlexClasses}`}
+              className={`tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline ${horFlexClasses}`}
             >
               <FreeSewingIcon /> Update Pattern
             </Link>
             <button
-              className={`tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-outline ${horFlexClasses}`}
+              className={`tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline ${horFlexClasses}`}
               onClick={clone}
             >
               <CloneIcon /> Clone Pattern
             </button>
             <button
               onClick={() => setEdit(true)}
-              className={`tw-daisy-btn tw-daisy-btn-primary ${horFlexClasses}`}
+              className={`tw:daisy-btn tw:daisy-btn-primary ${horFlexClasses}`}
             >
               <EditIcon /> Edit Pattern Metadata
             </button>

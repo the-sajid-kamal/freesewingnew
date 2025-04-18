@@ -26,7 +26,7 @@ export const LogView = (props) => {
   return (
     <>
       <HeaderMenu state={state} {...{ config, update }} />
-      <div className="tw-m-auto tw-mt-8 tw-max-w-2xl tw-px-4 tw-mb-8">
+      <div className="tw:m-auto tw:mt-8 tw:max-w-2xl tw:px-4 tw:mb-8">
         <H1>Pattern Logs</H1>
         <Tabs tabs="Set 0 Logs, Pattern Logs">
           <Tab tabId="Set 0 Logs">

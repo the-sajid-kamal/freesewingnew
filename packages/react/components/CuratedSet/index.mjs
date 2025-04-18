@@ -45,9 +45,9 @@ export const CuratedSetLineup = ({ href = false, clickHandler = false, Link = fa
 
   return (
     <div
-      className={`tw-w-full tw-flex tw-flex-row ${
-        sets.length > 1 ? 'tw-justify-start tw-px-8' : 'tw-justify-center'
-      } tw-overflow-x-scroll`}
+      className={`tw:w-full tw:flex tw:flex-row ${
+        sets.length > 1 ? 'tw:justify-start tw:px-8' : 'tw:justify-center'
+      } tw:overflow-x-scroll`}
       style={{
         backgroundImage: `url(/img/lineup-backdrop.svg)`,
         width: 'auto',
@@ -58,7 +58,7 @@ export const CuratedSetLineup = ({ href = false, clickHandler = false, Link = fa
       {sets.map((set) => {
         const props = {
           className:
-            'tw-aspect-[1/3] tw-w-auto tw-h-96 tw-bg-transparent tw-border-0 hover:tw-cursor-pointer hover:tw-bg-secondary/20',
+            'tw:aspect-1/3 tw:w-auto tw:h-96 tw:bg-transparent tw:border-0 tw:hover:cursor-pointer tw:hover:bg-secondary/20',
           style: {
             backgroundImage: `url(${cloudflareImageUrl({
               id: `cset-${set.id}`,
@@ -73,7 +73,7 @@ export const CuratedSetLineup = ({ href = false, clickHandler = false, Link = fa
         }
 
         return (
-          <div className="tw-flex tw-flex-col tw-items-center" key={set.id}>
+          <div className="tw:flex tw:flex-col tw:items-center" key={set.id}>
             {typeof clickHandler === 'function' ? (
               <button {...props} onClick={() => clickHandler(set)}></button>
             ) : null}
@@ -118,14 +118,14 @@ export const CuratedSet = ({ Link = false, id = false }) => {
 
   return (
     <>
-      <h2 className="tw-flex tw-flex-row tw-items-center tw-gap-2">
+      <h2 className="tw:flex tw:flex-row tw:items-center tw:gap-2">
         {set.nameEn} <KeyVal k="id" val={set.id} />
       </h2>
       <Markdown>{set.notesEn}</Markdown>
       <h2>Image</h2>
       <img src={cloudflareImageUrl({ id: `cset-${set.id}`, variant: 'public' })} />
       <h2>Measurements</h2>
-      <table className="tw-table">
+      <table className="tw:table">
         <thead>
           <tr>
             <th>Measurement</th>
@@ -144,7 +144,7 @@ export const CuratedSet = ({ Link = false, id = false }) => {
             'asc'
           ).map((entry) => (
             <tr key={entry.id}>
-              <td className="tw-text-right">{entry.t}</td>
+              <td className="tw:text-right">{entry.t}</td>
               <td>{isDegreeMeasurement(entry.id) ? `${entry.val}°` : formatMm(entry.val)}</td>
               <td
                 dangerouslySetInnerHTML={{

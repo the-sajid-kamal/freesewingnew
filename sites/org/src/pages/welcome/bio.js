@@ -6,7 +6,7 @@ import { Bio } from '@freesewing/react/components/Account'
 export default function WelcomeBioPage() {
   return (
     <Layout title="Welcome to FreeSewing" description="Just a few questions to set up your account">
-      <div className="tw-text-base-content tw-max-w-prose tw-text-base-content tw-text-current tw-mx-auto tw-my-8 tw-w-full">
+      <div className="tw:text-base-content tw:max-w-prose tw:text-base-content tw:text-current tw:mx-auto tw:my-8 tw:w-full">
         <h1>Bio</h1>
         <p>Feel free to shamelessly plug your YouTube channel or link to other places.</p>
         <DocusaurusDoc>

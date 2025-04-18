@@ -407,8 +407,8 @@ const Button = ({ onClickCb, transform, Icon, children, title = '' }) => {
     <g transform={transform} className="svg-layout-button group">
       <title>{title}</title>
       <rect width={rectSize} height={rectSize} className="button" rx="2" ry="2" />
-      <Icon className="group-hover:tw-text-primary-content" />
-      <rect width={rectSize} height={rectSize} onClick={_onClick} className="tw-fill-transparent" />
+      <Icon className="tw:group-hover:text-primary-content" />
+      <rect width={rectSize} height={rectSize} onClick={_onClick} className="tw:fill-transparent" />
     </g>
   )
 }

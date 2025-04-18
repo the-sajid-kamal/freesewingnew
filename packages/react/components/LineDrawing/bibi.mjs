@@ -38,7 +38,7 @@ export const BibiFront = ({ className, stroke = 1 }) => (
  * React component for the back
  */
 export const BibiBack = ({
-  className = 'tw-w-full', // CSS classes to apply
+  className = 'tw:w-full', // CSS classes to apply
   stroke = 1, // Stroke width to use
 }) => {
   // Normalize stroke across designs

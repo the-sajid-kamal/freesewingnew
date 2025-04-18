@@ -88,7 +88,7 @@ export const DesignCard = ({ name, lineDrawing = false }) => {
       >
         <h5
           className={`text-center py-2 px-4 rounded-t-lg m-0 w-full
-        ${lineDrawing ? '' : 'bg-neutral text-neutral-content bg-opacity-70'}`}
+        ${lineDrawing ? '' : 'bg-neutral/70 text-neutral-content'}`}
         >
           {t(`designs:${name}.t`)}
         </h5>
@@ -97,11 +97,7 @@ export const DesignCard = ({ name, lineDrawing = false }) => {
         </div>
         <div
           className={`pt-0 m-0 -mt-2 text-center w-full
-        ${
-          lineDrawing
-            ? 'bg-transparent text-base-content'
-            : 'bg-neutral text-neutral-content bg-opacity-70'
-        }`}
+        ${lineDrawing ? 'bg-transparent text-base-content' : 'bg-neutral/70 text-neutral-content'}`}
         ></div>
       </div>
     </button>

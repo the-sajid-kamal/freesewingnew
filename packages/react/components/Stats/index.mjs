@@ -57,7 +57,7 @@ export const Stats = ({ Link = false }) => {
 
   if (!stats)
     return (
-      <div className="tw-text-center tw-mt-12 tw-w-full">
+      <div className="tw:text-center tw:mt-12 tw:w-full">
         <Spinner />
       </div>
     )
@@ -98,8 +98,8 @@ export const Stats = ({ Link = false }) => {
 
   return (
     <>
-      <div className="tw-max-w-7xl tw-mx-auto tw-my-12 tw-px-4">
-        <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-2">
+      <div className="tw:max-w-7xl tw:mx-auto tw:my-12 tw:px-4">
+        <div className="tw:grid tw:grid-cols-1 tw:md:grid-cols-2 tw:gap-2">
           <Stat title="Users" value={stats.user} />
           <Stat title="Patterns" value={stats.pattern} />
           <Stat title="Measurements Sets" value={stats.set} />
@@ -111,11 +111,11 @@ export const Stats = ({ Link = false }) => {
         </div>
         <h2>Top Users</h2>
         <ChartWrapper option={optionU} />
-        <small className="tw-ml-4 tw-py-1 tw-opacity-80">
+        <small className="tw:ml-4 tw:py-1 tw:opacity-80">
           <b>Note:</b> Ordered by JWT calls made to the FreeSewing backend
         </small>
-        <div className="tw-max-h-96 tw-overflow-scroll">
-          <ol className="tw-list tw-list-inside tw-list-decimal tw-ml-4">
+        <div className="tw:max-h-96 tw:overflow-scroll">
+          <ol className="tw:list tw:list-inside tw:list-decimal tw:ml-4">
             {stats.topUsers.map((u) => (
               <li key={u.id}>
                 <Link href={`/users/?id=${u.id}`} className={linkClasses}>
@@ -128,15 +128,15 @@ export const Stats = ({ Link = false }) => {
         </div>
         <h2>Top Designs</h2>
         <ChartWrapper option={optionD} />
-        <small className="tw-ml-4 tw-py-1 tw-opacity-80">
+        <small className="tw:ml-4 tw:py-1 tw:opacity-80">
           <b>Note:</b> Ordered by patterns stored in the FreeSewing backend
         </small>
-        <div className="tw-max-h-96 tw-overflow-scroll">
-          <ol className="tw-list tw-list-inside tw-list-decimal tw-ml-4">
+        <div className="tw:max-h-96 tw:overflow-scroll">
+          <ol className="tw:list tw:list-inside tw:list-decimal tw:ml-4">
             {Object.entries(stats.designs).map(([d, c]) => (
               <li key={d}>
                 <Link href={`/designs/${d}`} className={linkClasses}>
-                  <span className="tw-capitalize">{d}</span>
+                  <span className="tw:capitalize">{d}</span>
                 </Link>
                 : {formatNumber(c)}
               </li>
@@ -149,11 +149,11 @@ export const Stats = ({ Link = false }) => {
 }
 
 const Stat = ({ title, value, desc = 'Total Number Stored' }) => (
-  <div className="tw-daisy-stats tw-shadow">
-    <div className="tw-daisy-stat">
-      <div className="tw-daisy-stat-title">{title}</div>
-      <div className="tw-daisy-stat-value">{formatNumber(value)}</div>
-      <div className="tw-daisy-stat-desc">{desc}</div>
+  <div className="tw:daisy-stats tw:shadow">
+    <div className="tw:daisy-stat">
+      <div className="tw:daisy-stat-title">{title}</div>
+      <div className="tw:daisy-stat-value">{formatNumber(value)}</div>
+      <div className="tw:daisy-stat-desc">{desc}</div>
     </div>
   </div>
 )

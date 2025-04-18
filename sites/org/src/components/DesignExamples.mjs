@@ -14,13 +14,13 @@ function DesignExamples({ design }) {
     )
 
   return (
-    <div className="tw-grid tw-grid-cols-2 tw-gap-2 md:tw-grid-cols-3 2xl:tw-grid-cols-4">
+    <div className="tw:grid tw:grid-cols-2 tw:gap-2 tw:md:grid-cols-3 tw:2xl:grid-cols-4">
       {examples[design].map((example) => (
         <Link
           key={example.id}
           href={`/showcase/${example.id}/`}
           title={example.title}
-          className="tw-w-full tw-aspect-square tw-rounded-lg tw-shadow"
+          className="tw:w-full tw:aspect-square tw:rounded-lg tw:shadow"
           style={{
             backgroundImage: `url(${cloudflareImageUrl({ id: 'showcase-' + example.id })})`,
             backgroundSize: 'cover',

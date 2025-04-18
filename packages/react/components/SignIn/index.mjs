@@ -151,13 +151,13 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
     }
   }
 
-  const btnClasses = `tw-daisy-btn tw-capitalize tw-w-full tw-mt-4 ${
-    signInFailed ? 'tw-daisy-btn-warning' : 'tw-daisy-btn-primary'
-  } tw-transition-colors tw-ease-in-out tw-duration-300 ${horFlexClassesNoSm}`
+  const btnClasses = `tw:daisy-btn tw:capitalize tw:w-full tw:mt-4 ${
+    signInFailed ? 'tw:daisy-btn-warning' : 'tw:daisy-btn-primary'
+  } tw:transition-colors tw:ease-in-out tw:duration-300 ${horFlexClassesNoSm}`
   const noBueno = (
     <>
       <WarningIcon />
-      <span className="tw-pl-2">{signInFailed}</span>
+      <span className="tw:pl-2">{signInFailed}</span>
       <WarningIcon />
     </>
   )
@@ -166,22 +166,22 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
     return (
       <WrapForm>
         <H1>Email Sent</H1>
-        <p className="tw-text-inherit tw-text-lg tw-text-center">
+        <p className="tw:text-inherit tw:text-lg tw:text-center">
           Go check your inbox for an email from <b>FreeSewing.org</b>
         </p>
-        <p className="tw-text-inherit tw-text-lg tw-text-center">
+        <p className="tw:text-inherit tw:text-lg tw:text-center">
           Click the sign-in link in that email to sign in to your FreeSewing account.
         </p>
-        <div className="tw-flex tw-flex-row tw-gap-4 tw-items-center tw-justify-center tw-p-8">
+        <div className="tw:flex tw:flex-row tw:gap-4 tw:items-center tw:justify-center tw:p-8">
           <button
-            className="tw-daisy-btn tw-daisy-btn-outline tw-daisy-btn-sm"
+            className="tw:daisy-btn tw:daisy-btn-outline tw:daisy-btn-sm"
             onClick={() => setMagicLinkSent(false)}
           >
             Back
           </button>
           <Link
             href="/support"
-            className="tw-daisy-btn tw-daisy-btn-outline tw-daisy-btn-sm hover:tw-no-underline"
+            className="tw:daisy-btn tw:daisy-btn-outline tw:daisy-btn-sm tw:hover:no-underline"
           >
             Contact support
           </Link>
@@ -195,11 +195,11 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
         {...{ mfaCode, setMfaCode }}
         onSubmit={signinHandler}
         post={
-          <div className="tw-flex tw-flex-row tw-gap-4 tw-items-center tw-justify-center tw-p-8">
-            <button className="tw-daisy-btn tw-daisy-btn-ghost" onClick={() => setMfa(false)}>
+          <div className="tw:flex tw:flex-row tw:gap-4 tw:items-center tw:justify-center tw:p-8">
+            <button className="tw:daisy-btn tw:daisy-btn-ghost" onClick={() => setMfa(false)}>
               Back
             </button>
-            <Link href="/support" className="tw-daisy-btn tw-daisy-btn-ghost">
+            <Link href="/support" className="tw:daisy-btn tw:daisy-btn-ghost">
               Contact support
             </Link>
           </div>
@@ -222,7 +222,7 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
       )}
       {magicLink ? (
         <button
-          className={`${btnClasses} tw-daisy-btn-lg`}
+          className={`${btnClasses} tw:daisy-btn-lg`}
           tabIndex="-1"
           role="button"
           onClick={signinHandler}
@@ -231,11 +231,11 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
             noBueno
           ) : (
             <>
-              <span className="tw-hidden lg:tw-block">
+              <span className="tw:hidden tw:lg:block">
                 <EmailIcon />
               </span>
-              <span className="tw-pl-2">Email me a sign-in link</span>
-              <span className="tw-hidden lg:tw-block">
+              <span className="tw:pl-2">Email me a sign-in link</span>
+              <span className="tw:hidden tw:lg:block">
                 <EmailIcon />
               </span>
             </>
@@ -255,11 +255,11 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
               noBueno
             ) : (
               <>
-                <span className="tw-hidden lg:tw-block">
+                <span className="tw:hidden tw:lg:block">
                   <KeyIcon />
                 </span>
-                <span className="tw-pl-2">Sign in</span>
-                <span className="tw-hidden lg:tw-block">
+                <span className="tw:pl-2">Sign in</span>
+                <span className="tw:hidden tw:lg:block">
                   <LockIcon />
                 </span>
               </>
@@ -268,19 +268,19 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
         </>
       )}
       <button
-        className={`tw-block md:tw-flex md:tw-flex-row md:tw-justify-between md:tw-items-center tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-outline tw-w-full tw-mt-8`}
+        className={`tw:block tw:md:flex tw:md:flex-row tw:md:justify-between tw:md:items-center tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline tw:w-full tw:mt-8`}
         onClick={() => setMagicLink(!magicLink)}
       >
-        <span className="tw-hidden lg:tw-block">{magicLink ? <LockIcon /> : <EmailIcon />}</span>
+        <span className="tw:hidden tw:lg:block">{magicLink ? <LockIcon /> : <EmailIcon />}</span>
         {magicLink ? 'Use your password' : 'Email me a sign-in link'}
-        <span className="tw-hidden lg:tw-block">{magicLink ? <KeyIcon /> : <EmailIcon />}</span>
+        <span className="tw:hidden tw:lg:block">{magicLink ? <KeyIcon /> : <EmailIcon />}</span>
       </button>
-      <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-2 tw-items-center tw-mt-2">
+      <div className="tw:grid tw:grid-cols-1 tw:md:grid-cols-2 tw:gap-2 tw:items-center tw:mt-2">
         {['Google', 'Github'].map((provider) => (
           <button
             key={provider}
             id={provider}
-            className={`${horFlexClasses} tw-daisy-btn tw-daisy-btn-secondary`}
+            className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-secondary`}
             onClick={() => initOauth(provider)}
           >
             {provider === 'Google' ? <GoogleIcon stroke={0} /> : <GitHubIcon />}
@@ -290,7 +290,7 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
       </div>
       {seenBefore ? (
         <button
-          className={`${horFlexClasses} tw-daisy-btn tw-daisy-btn-neutral tw-daisy-btn-outline tw-mt-2 tw-w-full`}
+          className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-neutral tw:daisy-btn-outline tw:mt-2 tw:w-full`}
           onClick={() => setSeenUser(false)}
         >
           <UserIcon />
@@ -298,10 +298,10 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
         </button>
       ) : (
         <Link
-          className={`${horFlexClasses} tw-daisy-btn tw-daisy-btn-lg tw-daisy-btn-neutral tw-mt-2 hover:tw-text-neutral-content hover:tw-no-underline`}
+          className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-lg tw:daisy-btn-neutral tw:mt-2 tw:hover:text-neutral-content tw:hover:no-underline`}
           href="/signup"
         >
-          <FreeSewingIcon className="tw-h-10 tw-w-10" />
+          <FreeSewingIcon className="tw:h-10 tw:w-10" />
           Sign up here
         </Link>
       )}
@@ -309,12 +309,12 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
   )
 }
 
-const WrapForm = ({ children }) => <div className="tw-text-center tw-py-12">{children}</div>
+const WrapForm = ({ children }) => <div className="tw:text-center tw:py-12">{children}</div>
 
 const MfaForm = ({ mfaCode, setMfaCode, onSubmit, post = [] }) => (
   <WrapForm>
     <H1>MFA Code</H1>
-    <p className="tw-text-inherit tw-text-lg tw-text-center">
+    <p className="tw:text-inherit tw:text-lg tw:text-center">
       Please provide a one-time MFA code, or a backup scratch code
     </p>
     <MfaInput
@@ -323,16 +323,16 @@ const MfaForm = ({ mfaCode, setMfaCode, onSubmit, post = [] }) => (
       value={mfaCode}
     />
     <button
-      className={`tw-daisy-btn tw-capitalize tw-w-full tw-mt-4 tw-daisy-btn-primary ${horFlexClassesNoSm}`}
+      className={`tw:daisy-btn tw:capitalize tw:w-full tw:mt-4 tw:daisy-btn-primary ${horFlexClassesNoSm}`}
       tabIndex="-1"
       role="button"
       onClick={onSubmit}
     >
-      <span className="tw-hidden lg:tw-block">
+      <span className="tw:hidden tw:lg:block">
         <KeyIcon />
       </span>
-      <span className="tw-pl-2">Sign In</span>
-      <span className="tw-hidden lg:tw-block">
+      <span className="tw:pl-2">Sign In</span>
+      <span className="tw:hidden tw:lg:block">
         <LockIcon />
       </span>
     </button>
@@ -428,7 +428,7 @@ export const SignInConfirmation = ({ onSuccess = false }) => {
     return (
       <>
         <h1>One moment please</h1>
-        <Spinner className="tw-w-8 tw-h-8 tw-m-auto tw-animate-spin" />
+        <Spinner className="tw:w-8 tw:h-8 tw:m-auto tw:animate-spin" />
       </>
     )
 
@@ -438,7 +438,7 @@ export const SignInConfirmation = ({ onSuccess = false }) => {
 /*
  * This is the generic component that will handle the Oauth callback
  */
-function OauthCallback({ provider = false }) {
+export const OauthCallback = ({ provider = false }) => {
   const [error, setError] = useState(false)
   const backend = useBackend()
   const { setAccount, setToken, setSeenUser } = useAccount()
@@ -474,7 +474,7 @@ function OauthCallback({ provider = false }) {
   ) : (
     <>
       <h2>One moment please</h2>
-      <Spinner className="tw-w-8 tw-h-8 tw-m-auto tw-animate-spin" />
+      <Spinner className="tw:w-8 tw:h-8 tw:m-auto tw:animate-spin" />
     </>
   )
 }

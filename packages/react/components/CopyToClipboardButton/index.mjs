@@ -25,20 +25,20 @@ export const CopyToClipboardButton = ({ children, content, label = false, sup = 
   const [copied, setCopied] = useState(false)
   const { setLoadingStatus } = useContext(LoadingStatusContext)
 
-  const style = sup ? 'tw-w-4 tw-h-4 tw--mt-4' : 'tw-w-5 tw-h-5'
+  const style = sup ? 'tw:w-4 tw:h-4 tw:-mt-4' : 'tw:w-5 tw:h-5'
 
   return (
     <button
-      className={(copied ? 'tw-text-success ' : '') + 'tw-daisy-btn tw-w-full lg:tw-w-auto'}
+      className={(copied ? 'tw:text-success ' : '') + 'tw:daisy-btn tw:w-full tw:lg:w-auto'}
       onClick={() => handleCopied(content, setCopied, setLoadingStatus, label)}
     >
       {copied ? (
         <OkIcon
-          className={`${style} tw-text-success-content tw-bg-success tw-rounded-full tw-p-1`}
+          className={`${style} tw:text-success-content tw:bg-success tw:rounded-full tw:p-1`}
           stroke={4}
         />
       ) : (
-        <CopyIcon className={`${style} tw-text-inherit`} />
+        <CopyIcon className={`${style} tw:text-inherit`} />
       )}
       {children}
     </button>

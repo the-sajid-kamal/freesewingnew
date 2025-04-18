@@ -36,8 +36,8 @@ import { CardLink } from '@freesewing/react/components/Link'
 import { PleaseSubscribe } from '@freesewing/react/components/Patrons'
 
 const Card = ({ title, children, icon }) => (
-  <div className={`tw-px-8 tw-bg-primary/5 tw-py-10 tw-rounded-lg tw-block tw-shadow-lg tw-grow`}>
-    <h2 className="tw-mb-4 tw-text-inherit tw-flex tw-flex-row tw-gap-4 tw-justify-between tw-items-center tw-font-medium">
+  <div className={`tw:px-8 tw:bg-primary/5 tw:py-10 tw:rounded-lg tw:block tw:shadow-lg tw:grow`}>
+    <h2 className="tw:mb-4 tw:text-inherit tw:flex tw:flex-row tw:gap-4 tw:justify-between tw:items-center tw:font-medium">
       {title}
       {icon}
     </h2>
@@ -55,60 +55,60 @@ const meta = {
 export default function Home() {
   return (
     <DocusaurusPage DocusaurusLayout={Layout} {...meta} Layout={false}>
-      <div className="tw-max-w-7xl tw-mx-auto tw-my-12 tw-px-4">
-        <div className="tw-text-center">
-          <FreeSewingIcon className="tw-w-48 tw-h-48 tw-mx-auto tw-pr-3" />
-          <h1 className="tw-font-black tw-text-5xl lg:tw-text-7xl tw-tracking-tighter tw-mb-0 tw-pb-0">
+      <div className="tw:max-w-7xl tw:mx-auto tw:my-12 tw:px-4">
+        <div className="tw:text-center">
+          <FreeSewingIcon className="tw:w-48 tw:h-48 tw:mx-auto tw:pr-3" />
+          <h1 className="tw:font-black tw:text-5xl tw:lg:text-7xl tw:tracking-tighter tw:mb-0 tw:pb-0">
             FreeSewing
           </h1>
-          <h2 className="tw-text-xl lg:tw-text-3xl tw-font-medium tw-tracking-tighter tw-mt-0 tw-pt-0">
+          <h2 className="tw:text-xl tw:lg:text-3xl tw:font-medium tw:tracking-tighter tw:mt-0 tw:pt-0">
             Free Bespoke Sewing Patterns
           </h2>
         </div>
 
-        <div className="tw-flex tw-flex-col tw-gap-8 md:tw-grid md:tw-grid-cols-2 md:tw-gap-4 tw-mt-12 md:tw-mt-20 md:tw-px-4">
+        <div className="tw:flex tw:flex-col tw:gap-8 tw:md:grid tw:md:grid-cols-2 tw:md:gap-4 tw:mt-12 tw:md:mt-20 tw:md:px-4">
           <Card
             title="What is FreeSewing?"
-            icon={<OkIcon className="tw-w-12 tw-h-12 tw-text-success" stroke={4} />}
+            icon={<OkIcon className="tw:w-12 tw:h-12 tw:text-success" stroke={4} />}
           >
-            <p className="tw-font-medium tw-text-lg tw-mb-4">
+            <p className="tw:font-medium tw:text-lg tw:mb-4">
               FreeSewing is open source software to generate bespoke sewing patterns, loved by home
               sewers and fashion entrepreneurs alike.
             </p>
-            <p className="tw-font-medium tw-text-lg tw-mb-4">
+            <p className="tw:font-medium tw:text-lg tw:mb-4">
               Industry sizing is a bunch of lies. Join the slow fashion revolution and enjoy clothes
               that fit you.
             </p>
           </Card>
           <Card
             title="What is FreeSewing not?"
-            icon={<NoIcon className="tw-w-12 tw-h-12 tw-text-error" stroke={3} />}
+            icon={<NoIcon className="tw:w-12 tw:h-12 tw:text-error" stroke={3} />}
           >
-            <p className="tw-font-medium tw-text-lg tw-mb-4">
+            <p className="tw:font-medium tw:text-lg tw:mb-4">
               FreeSewing is not a company. We do not sell anything. We do not have staff or
               employees. We do not have an office. We do not get paid.
             </p>
-            <p className="tw-font-medium tw-text-lg">
+            <p className="tw:font-medium tw:text-lg">
               Our website does not contain any advertising. We do not track you. We do not sell your
               personal data, or use it to train AI algorithms. We do not violate your privacy.
             </p>
           </Card>
         </div>
 
-        <div className="tw-text-center tw-mt-20 md:tw-mt-20">
+        <div className="tw:text-center tw:mt-20 tw:md:mt-20">
           <HowDoesItWorkAnimation />
         </div>
 
-        <div className="tw-p-1 tw--mx-4 tw-bg-primary tw-bg-opacity-10 tw-mt-12 tw-rounded-none md:tw-rounded-lg lg:tw-rounded-xl md:tw-shadow-lg md:tw-mx-4 tw-p-8 lg:tw-px-12 md:tw-py-0">
-          <div className="tw-flex tw-flex-col md:tw-gap-8 lg:tw-gap-12 md:tw-flex md:tw-flex-row tw-m-auto">
-            <div className="tw--mx-4 md:tw-mx-0 md:tw-pt-8 tw-pb-8 lg:tw-py-12 tw-grow tw-m-auto tw-max-w-prose">
+        <div className="tw:p-1 tw:-mx-4 tw:bg-primary/5 tw:mt-12 tw:rounded-none tw:md:rounded-lg tw:lg:rounded-xl tw:md:shadow-lg tw:md:mx-4 tw:p-8 tw:lg:px-12 tw:md:py-0">
+          <div className="tw:flex tw:flex-col tw:md:gap-8 tw:lg:gap-12 tw:md:flex tw:md:flex-row tw:m-auto">
+            <div className="tw:-mx-4 tw:md:mx-0 tw:md:pt-8 tw:pb-8 tw:lg:py-12 tw:grow tw:m-auto tw:max-w-prose">
               <SignUp embed />
             </div>
-            <div className="tw--mx-4 md:tw-mx-0 md:tw-mt-0 tw-pt-0 md:tw-pt-8 tw-pb-8 lg:tw-py-12 tw-max-w-prose tw-m-auto tw-m-auto">
-              <h2 className="tw-text-inherit tw-mb-4 tw-hidden md:tw-block">Reasons to join</h2>
+            <div className="tw:-mx-4 tw:md:mx-0 tw:md:mt-0 tw:pt-0 tw:md:pt-8 tw:pb-8 tw:lg:py-12 tw:max-w-prose tw:m-auto tw:m-auto">
+              <h2 className="tw:text-inherit tw:mb-4 tw:hidden tw:md:block">Reasons to join</h2>
               <ul>
                 {[0, 1, 2, 3].map((i) => (
-                  <li className="tw-flex tw-flex-row tw-gap-2 tw-my-2" key={i}>
+                  <li className="tw:flex tw:flex-row tw:gap-2 tw:my-2" key={i}>
                     <OkIcon stroke={4} /> {reasonsToJoin[i]}
                   </li>
                 ))}
@@ -117,7 +117,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="tw-grid tw-grid-cols-1 tw-gap-2 lg:tw-grid-cols-2 tw-max-w-7xl tw-my-16">
+        <div className="tw:grid tw:grid-cols-1 tw:gap-2 tw:lg:grid-cols-2 tw:max-w-7xl tw:my-16">
           {recentBlogPosts.map((post) => (
             <BlogPostTeaser
               key={post.slug}
@@ -133,14 +133,15 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="tw-flex tw-flex-col md:tw-grid md:tw-grid-cols-2 tw-gap-4 tw-max-w-7xl tw-m-auto tw-mb-24">
+        <div className="tw:flex tw:flex-col tw:md:grid tw:md:grid-cols-2 tw:gap-4 tw:max-w-7xl tw:m-auto tw:mb-24">
           <CardLink
             Link={Link}
             href="/designs"
             title="Designs"
-            icon={<DesignIcon className="tw-w-12 tw-h-12 tw-shrink-0" />}
+            icon={<DesignIcon className="tw:w-12 tw:h-12 tw:shrink-0" />}
+            className="tw:text-base-content"
           >
-            <p className="tw-font-medium tw-text-inherit tw-italic tw-text-lg">
+            <p className="tw:font-medium tw:text-inherit tw:italic tw:text-lg">
               Browse our collection of designs, and turn them into sewing patterns that are
               made-to-measure just for you.
             </p>
@@ -149,9 +150,9 @@ export default function Home() {
             Link={Link}
             href="/showcase"
             title="Showcase"
-            icon={<ShowcaseIcon className="tw-w-12 tw-h-12 tw-shrink-0" />}
+            icon={<ShowcaseIcon className="tw:w-12 tw:h-12 tw:shrink-0" />}
           >
-            <p className="tw-font-medium tw-text-inherit tw-italic tw-text-lg">
+            <p className="tw:font-medium tw:text-inherit tw:italic tw:text-lg">
               Get inspiration from the FreeSewing community, and see how others have applied their
               creativity to our designs.
             </p>
@@ -160,9 +161,9 @@ export default function Home() {
             Link={Link}
             href="/docs/about/guide"
             title="Getting Started"
-            icon={<DocsIcon className="tw-w-12 tw-h-12 tw-shrink-0" />}
+            icon={<DocsIcon className="tw:w-12 tw:h-12 tw:shrink-0" />}
           >
-            <p className="tw-font-medium tw-text-inherit tw-italic tw-text-lg">
+            <p className="tw:font-medium tw:text-inherit tw:italic tw:text-lg">
               FreeSewing.org is unlike any sewing pattern website you know. Read this short guide to
               get the most our of our platform.
             </p>
@@ -171,9 +172,9 @@ export default function Home() {
             Link={Link}
             href="/docs/about/faq"
             title="Frequently Asked Questions"
-            icon={<HelpIcon className="tw-w-12 tw-h-12 tw-shrink-0" />}
+            icon={<HelpIcon className="tw:w-12 tw:h-12 tw:shrink-0" />}
           >
-            <p className="tw-font-medium tw-text-inherit tw-italic tw-text-lg">
+            <p className="tw:font-medium tw:text-inherit tw:italic tw:text-lg">
               Some of the questions that come up often when people discover our platform are
               answered here.
             </p>
@@ -184,13 +185,13 @@ export default function Home() {
           <PleaseSubscribe />
         </div>
 
-        <div className="tw-flex tw-flex-col md:tw-grid md:tw-grid-cols-2 tw-gap-4 tw-max-w-7xl tw-m-auto tw-mb-24">
+        <div className="tw:flex tw:flex-col tw:md:grid tw:md:grid-cols-2 tw:gap-4 tw:max-w-7xl tw:m-auto tw:mb-24">
           <CardLink
             href="/newsletter"
             title="FreeSewing Newsletter"
-            icon={<NewsletterIcon className="tw-w-12 tw-h-12 tw-shrink-0" />}
+            icon={<NewsletterIcon className="tw:w-12 tw:h-12 tw:shrink-0" />}
           >
-            <p className="tw-font-medium tw-text-inherit tw-italic tw-text-lg">
+            <p className="tw:font-medium tw:text-inherit tw:italic tw:text-lg">
               Subscribe to our newsletter and once every 3 months you'll receive an email from us
               with honest wholesome content. No tracking, no ads, no nonsense.
             </p>
@@ -198,9 +199,9 @@ export default function Home() {
           <CardLink
             href="/support"
             title="Need Help?"
-            icon={<ChatIcon className="tw-w-12 tw-h-12 tw-shrink-0" />}
+            icon={<ChatIcon className="tw:w-12 tw:h-12 tw:shrink-0" />}
           >
-            <p className="tw-font-medium tw-text-inherit tw-italic tw-text-lg">
+            <p className="tw:font-medium tw:text-inherit tw:italic tw:text-lg">
               While we are all volunteers, we have a good track record of helping people. So don't
               be shy to reach out.
             </p>
@@ -225,17 +226,17 @@ const HowDoesItWorkAnimation = () => {
   }, [step])
 
   return (
-    <div className="tw-flex tw-flex-col md:tw-grid md:tw-grid-cols-3 tw-my-12">
-      <div className="tw-relative tw-w-full">
-        <div className="tw-relative tw-h-72 md:tw-h-96 tw-overflow-hidden">
+    <div className="tw:flex tw:flex-col tw:md:grid tw:md:grid-cols-3 tw:my-12 tw:bg-transparent">
+      <div className="tw:relative tw:w-full">
+        <div className="tw:relative tw:h-72 tw:md:h-96 tw:overflow-hidden">
           {slides.map((i) => (
             <div
               key={i}
-              className={`tw-duration-700 tw-ease-in-out tw-transition-all ${
-                step === i ? 'tw-opacity-1' : 'tw-opacity-0'
-              } tw-absolute tw-top-0 tw-text-center tw-w-full`}
+              className={`tw:duration-700 tw:ease-in-out tw:transition-all ${
+                step === i ? 'tw:opacity-100' : 'tw:opacity-0'
+              } tw:absolute tw:top-0 tw:text-center tw:w-full`}
             >
-              <div className="tw-w-full tw-flex tw-flex-row tw-items-center tw-h-72 md:tw-h-96 tw-w-full tw-justify-center">
+              <div className="tw:w-full tw:flex tw:flex-row tw:items-center tw:h-72 tw:md:h-96 tw:w-full tw:justify-center">
                 {lineDrawings[i]}
               </div>
             </div>
@@ -244,19 +245,19 @@ const HowDoesItWorkAnimation = () => {
         <Nr nr={1} />
         <Title txt="Pick Any Design" />
       </div>
-      <div className="tw-relative tw-w-full">
-        <div className="tw-relative tw-h-72 md:tw-h-96 tw-overflow-hidden">
+      <div className="tw:relative tw:w-full">
+        <div className="tw:relative tw:h-72 tw:md:h-96 tw:overflow-hidden">
           {slides.map((i) => (
             <div
               key={i}
-              className={`tw-duration-700 tw-ease-in-out tw-transition-all ${
-                Math.floor(halfStep) === i ? 'tw-opacity-1' : 'tw-opacity-0'
-              } tw-absolute tw-top-0 tw-text-center tw-w-full`}
+              className={`tw:duration-700 tw:ease-in-out tw:transition-all ${
+                Math.floor(halfStep) === i ? 'tw:opacity-100' : 'tw:opacity-0'
+              } tw:absolute tw:top-0 tw:text-center tw:w-full`}
             >
-              <div className="tw-w-full tw-flex tw-flex-row tw-items-center tw-h-72 md:tw-h-96 tw-w-full tw-justify-center">
+              <div className="tw:w-full tw:flex tw:flex-row tw:items-center tw:h-72 tw:md:h-96 tw:w-full tw:justify-center">
                 <img
                   src={`/img/models/model-${i}.png`}
-                  className="tw-h-72 md:tw-h-96 tw-shrink-0 tw-px-8"
+                  className="tw:h-72 tw:md:h-96 tw:shrink-0 tw:px-8"
                 />
               </div>
             </div>
@@ -265,9 +266,9 @@ const HowDoesItWorkAnimation = () => {
           <Title txt="Add a set of measurements" />
         </div>
       </div>
-      <div className="tw-relative tw-w-full">
-        <div className="tw-relative tw-h-96 tw-overflow-hidden">
-          <div className="tw-w-full tw-flex tw-flex-row tw-items-center tw-h-72 md:tw-h-96 tw-w-full tw-justify-center">
+      <div className="tw:relative tw:w-full">
+        <div className="tw:relative tw:h-96 tw:overflow-hidden">
+          <div className="tw:w-full tw:flex tw:flex-row tw:items-center tw:h-72 tw:md:h-96 tw:w-full tw:justify-center">
             <Pattern key={step} i={step} />
           </div>
           <Nr nr={3} />
@@ -286,14 +287,14 @@ const reasonsToJoin = [
 ]
 
 const lineDrawings = [
-  <AaronFront key={1} className="tw-h-72 md:tw-h-96" />,
-  <HiFront key={2} className="tw-h-72 md:tw-h-96" />,
-  <TeaganFront key={3} className="tw-h-72 md:tw-h-96" />,
-  <WahidFront key={4} className="tw-h-72 md:tw-h-96" />,
-  <AlbertFront key={5} className="tw-h-72 md:tw-h-96" />,
-  <BruceFront key={6} className="tw-h-72 md:tw-h-96" />,
-  <SimonFront key={7} className="tw-h-72 md:tw-h-96" />,
-  <HortensiaFront key={8} className="tw-h-72 md:tw-h-96" />,
+  <AaronFront key={1} className="tw:h-72 tw:md:h-96" />,
+  <HiFront key={2} className="tw:h-72 tw:md:h-96" />,
+  <TeaganFront key={3} className="tw:h-72 tw:md:h-96" />,
+  <WahidFront key={4} className="tw:h-72 tw:md:h-96" />,
+  <AlbertFront key={5} className="tw:h-72 tw:md:h-96" />,
+  <BruceFront key={6} className="tw:h-72 tw:md:h-96" />,
+  <SimonFront key={7} className="tw:h-72 tw:md:h-96" />,
+  <HortensiaFront key={8} className="tw:h-72 tw:md:h-96" />,
 ]
 
 const patternTweaks = [
@@ -339,7 +340,7 @@ const Pattern = ({ i }) => (
     stroke="currentColor"
     strokeLinecap="round"
     strokeLinejoin="round"
-    className="tw-fill-primary tw-h-72 md:tw-h-96"
+    className="tw:fill-primary tw:h-72 tw:md:h-96"
     strokeWidth="4"
     fillOpacity="0.25"
   >
@@ -348,8 +349,8 @@ const Pattern = ({ i }) => (
 )
 
 const Nr = ({ nr }) => (
-  <div className="tw-absolute tw-top-8 tw-w-full tw--ml-20">
-    <span className="tw-bg-primary tw-text-primary-content tw-font-bold tw-rounded-full tw-w-12 tw-h-12 tw-flex tw-items-center tw-justify-center tw-align-center tw-m-auto tw-text-3xl">
+  <div className="tw:absolute tw:top-8 tw:w-full tw:-ml-20">
+    <span className="tw:bg-primary tw:text-primary-content tw:font-bold tw:rounded-full tw:w-12 tw:h-12 tw:flex tw:items-center tw:justify-center tw:align-center tw:m-auto tw:text-3xl">
       {nr}
     </span>
   </div>
@@ -359,9 +360,9 @@ const Title = ({ txt }) => {
   const shadow = `var(--ifm-background-color)`
 
   return (
-    <div className="tw-absolute tw-top-28 tw-left-0 tw-w-full">
+    <div className="tw:absolute tw:top-28 tw:left-0 tw:w-full">
       <h3
-        className="tw-text-2xl tw--rotate-12 tw-w-48 tw-text-center tw-m-auto"
+        className="tw:text-2xl tw:-rotate-12 tw:w-48 tw:text-center tw:m-auto"
         style={{
           textShadow: `1px 1px 1px   ${shadow}, -1px -1px 1px ${shadow}, -1px 1px 1px  ${shadow}, 1px -1px 1px  ${shadow}`,
         }}

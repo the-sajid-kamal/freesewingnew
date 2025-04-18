@@ -16,19 +16,19 @@ const NewLink = ({ title, Icon, description, href, Link }) => {
   const linkProps = {
     href,
     className:
-      'tw-p-8 tw--ml-4 tw--mr-4 md:tw-m-0 tw-rounded-none md:tw-rounded-xl ' +
-      'md:tw-shadow hover:tw-bg-secondary tw-bg-base-200 hover:tw-bg-opacity-10 ' +
-      'tw-w-full tw-max-w-lg hover:tw-no-underline',
+      'tw:p-8 tw:-ml-4 tw:-mr-4 tw:md:m-0 tw:rounded-none tw:md:rounded-xl ' +
+      'tw:md:shadow tw:hover:bg-secondary/10 tw:bg-base-200/10 ' +
+      'tw:w-full tw:max-w-lg tw:hover:no-underline',
   }
 
   const inner = (
     <>
-      <h4 className="tw-flex tw-flex-row tw-items-start tw-justify-between tw-w-full tw-m-0 tw-p-0 tw-text-inherit">
+      <h4 className="tw:flex tw:flex-row tw:items-start tw:justify-between tw:w-full tw:m-0 tw:p-0 tw:text-inherit">
         <span>{title}</span>
-        <Icon className="tw-w-12 tw-h-12 tw--mt-2" stroke={1.5} />
+        <Icon className="tw:w-12 tw:h-12 tw:-mt-2" stroke={1.5} />
       </h4>
       <div
-        className={`tw-normal-case tw-text-base tw-font-medium tw-text-left tw-pt-2 tw-text-inherit`}
+        className={`tw:normal-case tw:text-base tw:font-medium tw:text-left tw:pt-2 tw:text-inherit`}
       >
         {description}
       </div>
@@ -81,8 +81,8 @@ export const NewLinks = ({ Link = false }) => {
   const { account } = useAccount()
 
   return (
-    <div className="tw-w-full tw-max-w-7xl">
-      <div className="tw-grid tw-grid-cols-1 xl:tw-grid-cols-2 tw-gap-4 tw-mb-8">
+    <div className="tw:w-full tw:max-w-7xl">
+      <div className="tw:grid tw:grid-cols-1 tw:xl:grid-cols-2 tw:gap-4 tw:mb-8">
         {Object.entries(newLinks).map(([href, link]) => (
           <NewLink key={href} href={href} {...link} />
         ))}

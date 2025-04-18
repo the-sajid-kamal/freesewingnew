@@ -33,21 +33,21 @@ export const DraftErrorHandler = ({ failure, errors }) => {
         <Link href="https://codeberg.org/freesewing/freesewing/issues">report an issue</Link>.
       </p>
 
-      <div className={'tw-mt-4'}>
+      <div className={'tw:mt-4'}>
         <button
-          className={`tw-daisy-btn tw-daisy-btn-primary`}
+          className={`tw:daisy-btn tw:daisy-btn-primary`}
           onClick={() => setExpanded(!expanded)}
         >
           <ExpandIcon />
           Show error details
         </button>
-        <button className={`tw-daisy-btn tw-ml-4`} onClick={() => setHidden(true)}>
+        <button className={`tw:daisy-btn tw:ml-4`} onClick={() => setHidden(true)}>
           <CloseIcon />
           Hide
         </button>
       </div>
       {expanded ? (
-        <div className={'tw-mt-8'}>
+        <div className={'tw:mt-8'}>
           {failure ? <LogEntry key="failure" logEntry={failure} /> : null}
           {errors.map((line, i) => (
             <LogEntry key={i} logEntry={line} />

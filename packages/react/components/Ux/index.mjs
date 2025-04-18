@@ -7,7 +7,7 @@ export const Ux = ({ ux = 0 }) => (
       <CircleIcon
         key={i}
         fill={i < ux ? true : false}
-        className={`tw-w-6 tw-h-6 ${i < ux ? 'tw-stroke-secondary tw-fill-secondary' : 'tw-stroke-current'}`}
+        className={`tw:w-6 tw:h-6 ${i < ux ? 'tw:stroke-secondary tw:fill-secondary' : 'tw:stroke-current'}`}
         fillOpacity={0.3}
       />
     ))}
@@ -16,6 +16,6 @@ export const Ux = ({ ux = 0 }) => (
 
 export const UxMini = ({ ux = 0 }) => (
   <div className="flex flex-row">
-    <CircleIcon className={`tw-w-6 tw-h-6 tw-stroke-secondary tw-fill-secondary/20`} label={ux} />
+    <CircleIcon className={`tw:w-6 tw:h-6 tw:stroke-secondary tw:fill-secondary/20`} label={ux} />
   </div>
 )

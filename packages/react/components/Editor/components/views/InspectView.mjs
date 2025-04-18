@@ -68,7 +68,7 @@ export const InspectView = ({ Design, state, update, config }) => {
         <Xray
           renderProps={renderProps}
           drillProps={{ info }}
-          className={`freesewing pattern tw-w-full ${state.ui?.rotate ? 'tw--rotate-90' : ''}`}
+          className={`freesewing pattern tw:w-full ${state.ui?.rotate ? 'tw:-rotate-90' : ''}`}
           strings={strings}
         />
       </ZoomablePattern>
