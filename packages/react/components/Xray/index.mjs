@@ -17,11 +17,11 @@ export const Xray = forwardRef((props, ref) => {
   // desctructure props
   const {
     renderProps = false,
-    t = (string) => string,
     children = false,
     className = 'freesewing pattern',
     components = {},
     drillProps = {},
+    strings = [],
   } = props
 
   // Merge pattern, default, and custom components
@@ -57,7 +57,7 @@ export const Xray = forwardRef((props, ref) => {
                 stack={renderProps.stacks[stackName]}
                 settings={renderProps.settings}
                 components={mergedComponents}
-                t={t}
+                strings={strings}
                 drillProps={drillProps}
               />
             ))}

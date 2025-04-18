@@ -14,7 +14,7 @@ export const PointXray = ({
   point,
   settings,
   components,
-  t,
+  strings,
   drillProps = {},
 }) => {
   // Don't include parts outside the part bounding box
@@ -32,7 +32,9 @@ export const PointXray = ({
 
   return (
     <>
-      <Point {...{ stackName, pointName, part, point, settings, components, t, drillProps }} />
+      <Point
+        {...{ stackName, pointName, part, point, settings, components, strings, drillProps }}
+      />
       <circle
         cx={point.x}
         cy={point.y}

@@ -21,7 +21,7 @@ export const PathXray = ({
   path,
   settings,
   components,
-  t,
+  strings,
   drillProps = {},
 }) => {
   /*
@@ -87,7 +87,7 @@ export const PathXray = ({
   return (
     <g>
       {output}
-      <Path {...{ stackName, pathName, path, part, settings, components, t, drillProps }} />
+      <Path {...{ stackName, pathName, path, part, settings, components, strings, drillProps }} />
     </g>
   )
 }
