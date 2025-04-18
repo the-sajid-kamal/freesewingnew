@@ -103,6 +103,11 @@ const config = {
   ],
 
   themeConfig: {
+    colorMode: {
+      // Do not be tempted to change these
+      disableSwitch: true,
+      respectPrefersColorScheme: true,
+    },
     algolia: {
       appId: 'VBV9JOCO5C',
       apiKey: '663aefa13d332c45801dc32d9d5ea718',

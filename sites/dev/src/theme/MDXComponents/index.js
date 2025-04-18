@@ -6,7 +6,6 @@ import MDXA from '@theme/MDXComponents/A';
 import MDXPre from '@theme/MDXComponents/Pre';
 import MDXDetails from '@theme/MDXComponents/Details';
 import MDXHeading from '@theme/MDXComponents/Heading';
-import MDXUl from '@theme/MDXComponents/Ul';
 import MDXLi from '@theme/MDXComponents/Li';
 import MDXImg from '@theme/MDXComponents/Img';
 import Admonition from '@theme/Admonition';
@@ -26,7 +25,6 @@ const MDXComponents = {
   code: MDXCode,
   a: MDXA,
   pre: MDXPre,
-  ul: MDXUl,
   li: MDXLi,
   img: MDXImg,
   h1: (props) => <MDXHeading as="h1" {...props} />,
@@ -42,6 +40,9 @@ const MDXComponents = {
   // Custom FreeSewing components
   Example,
   ReadMore,
+  // Prose styles
+  ul: (props) => <ul className="tw:list tw:list-inside tw:list-disc tw:ml-2">{props.children}</ul>,
+  ol: (props) => <ul className="tw:list tw:list-inside tw:list-decimal tw:ml-2">{props.children}</ul>,
 }
 
 export default MDXComponents
