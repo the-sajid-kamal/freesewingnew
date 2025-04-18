@@ -48,7 +48,7 @@ export const KeyVal = ({
 
   return onClick === false ? (
     <button
-      className="tw-daisy-btn-ghost tw:p-0"
+      className="tw:daisy-btn-ghost tw:p-0"
       onClick={() => {
         copyToClipboard(val)
         handleCopied(setCopied, setLoadingStatus, k)
@@ -58,7 +58,7 @@ export const KeyVal = ({
     </button>
   ) : (
     <button
-      className="tw-daisy-btn-ghost tw:p-0"
+      className="tw:daisy-btn-ghost tw:p-0"
       onClick={typeof onClick === 'function' ? onClick : null}
     >
       {inner}
@@ -91,7 +91,7 @@ const LinkKeyVal = ({
     </>
   )
   const linkProps = {
-    className: 'tw-daisy-btn-ghost tw:p-0 tw:hover:no-underline tw:hover:bg-transparent',
+    className: 'tw:daisy-btn-ghost tw:p-0 tw:hover:no-underline tw:hover:bg-transparent',
     href: href,
   }
 

@@ -108,20 +108,20 @@ export const PrimedSettingsEditor = (props) => {
           <p>Your settings have been edited, and are now different from the editor settings.</p>
           <div className="tw:grid tw:grid-cols-1 tw:lg:grid-cols-3 tw:gap-2 tw:w-full">
             <button
-              className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-outline"
+              className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline"
               onClick={() => setShowDelta(!showDelta)}
             >
               {showDelta ? 'Hide' : 'Show'} Changes
             </button>
             <button
-              className="tw-daisy-btn tw-daisy-btn-primary tw:flex tw:flex-row tw:items-center tw:justify-between"
+              className="tw:daisy-btn tw:daisy-btn-primary tw:flex tw:flex-row tw:items-center tw:justify-between"
               onClick={save}
             >
               <OkIcon stroke={3} />
               Save Settings
             </button>
             <button
-              className="tw-daisy-btn tw-daisy-btn-error tw-daisy-btn-outline tw:flex tw:flex-row tw:items-center tw:justify-between"
+              className="tw:daisy-btn tw:daisy-btn-error tw:daisy-btn-outline tw:flex tw:flex-row tw:items-center tw:justify-between"
               onClick={revert}
             >
               <ResetIcon />

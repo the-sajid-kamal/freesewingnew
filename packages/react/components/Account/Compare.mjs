@@ -99,7 +99,7 @@ export const Compare = ({ welcome = false }) => {
           {welcomeSteps[account?.control].length > 0 ? (
             <>
               <progress
-                className="tw-daisy-progress tw-daisy-progress-primary tw:w-full tw:mt-12"
+                className="tw:daisy-progress tw:daisy-progress-primary tw:w-full tw:mt-12"
                 value={400 / welcomeSteps[account?.control].length}
                 max="100"
               ></progress>

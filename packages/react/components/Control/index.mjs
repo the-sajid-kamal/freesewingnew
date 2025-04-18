@@ -4,7 +4,7 @@ import { BulletIcon } from '@freesewing/react/components/Icon'
 
 export const ControlScore = ({ control, color = 'base-content' }) =>
   control ? (
-    <div className={`tw:flex tw:flex-row tw:items-center tw-text-${color}`}>
+    <div className={`tw:flex tw:flex-row tw:items-center tw:text-${color}`}>
       {Object.keys(controlDesc).map((score) => (
         <BulletIcon
           fill={control >= score ? true : false}

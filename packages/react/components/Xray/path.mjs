@@ -125,7 +125,7 @@ const PathXrayInfo = ({ path, pathName, stackName, part }) => {
             <th className="tw:flex tw:flex-row tw:flex-wrap tw:items-center tw:justify-between">
               <span>Coordinates</span>
               <button
-                className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-sm tw-daisy-btn-outline"
+                className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-sm tw:daisy-btn-outline"
                 onClick={() => setRounded(!rounded)}
               >
                 {rounded ? 'Show raw' : 'Show rounded'}
@@ -176,7 +176,7 @@ const PathXrayInfo = ({ path, pathName, stackName, part }) => {
             <th className="tw:flex tw:flex-row tw:flex-wrap tw:items-center tw:justify-between">
               <span>Coordinates</span>
               <button
-                className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-sm tw-daisy-btn-outline"
+                className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-sm tw:daisy-btn-outline"
                 onClick={() => setRounded(!rounded)}
               >
                 {rounded ? 'Show raw' : 'Show rounded'}

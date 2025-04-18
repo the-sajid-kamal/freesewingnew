@@ -29,7 +29,7 @@ export const CopyToClipboardButton = ({ children, content, label = false, sup = 
 
   return (
     <button
-      className={(copied ? 'tw:text-success ' : '') + 'tw-daisy-btn tw:w-full tw:lg:w-auto'}
+      className={(copied ? 'tw:text-success ' : '') + 'tw:daisy-btn tw:w-full tw:lg:w-auto'}
       onClick={() => handleCopied(content, setCopied, setLoadingStatus, label)}
     >
       {copied ? (

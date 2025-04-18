@@ -74,7 +74,7 @@ export const Email = ({ welcome = false, Link = false }) => {
           />
           <p className="tw:text-right">
             <button
-              className="tw-daisy-btn tw-daisy-btn-primary tw:w-full tw:lg:w-auto tw:mt-8"
+              className="tw:daisy-btn tw:daisy-btn-primary tw:w-full tw:lg:w-auto tw:mt-8"
               onClick={save}
               disabled={!valid || email.toLowerCase() === account.email}
             >

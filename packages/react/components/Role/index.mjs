@@ -23,7 +23,7 @@ const ContactSupport = ({ Link = false }) => {
 
   return (
     <div className="tw:flex tw:flex-row tw:items-center tw:justify-center tw:gap-4 tw:mt-8">
-      <Link href="/support" className="tw-daisy-btn tw-daisy-btn-success tw:w-full">
+      <Link href="/support" className="tw:daisy-btn tw:daisy-btn-success tw:w-full">
         Contact Support
       </Link>
     </div>
@@ -41,14 +41,14 @@ const AuthRequired = ({ Link, banner }) => {
       <div className="tw:grid tw:grid-cols-1 tw:md:grid-cols-2 tw:gap-2 tw:mt-8">
         <Link
           href="/signup"
-          className={`${horFlexClasses} tw-daisy-btn tw-daisy-btn-secondary tw:w-full`}
+          className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-secondary tw:w-full`}
         >
           <PlusIcon />
           Sign Up
         </Link>
         <Link
           href="/signin"
-          className={`${horFlexClasses} tw-daisy-btn tw-daisy-btn-secondary tw-daisy-btn-outline tw:w-full`}
+          className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-secondary tw:daisy-btn-outline tw:w-full`}
         >
           <LockIcon />
           Sign In
@@ -68,7 +68,7 @@ const AccountInactive = ({ Link, banner }) => {
       <p>You must activate your account via the signup link we sent you.</p>
       <p>If you cannot find the link, you can receive a new one by signing up again.</p>
       <div className="tw:flex tw:flex-row tw:items-center tw:justify-center tw:gap-4 tw:mt-8">
-        <Link href="/signup" className="tw-daisy-btn tw-daisy-btn-primary tw:w-full">
+        <Link href="/signup" className="tw:daisy-btn tw:daisy-btn-primary tw:w-full">
           Sign Up
         </Link>
       </div>
@@ -208,7 +208,7 @@ export const RoleBlock = ({ children, user = false, Link = false }) => {
       <span className="tw:text-base-100 tw:text-left">
         Hi <b>{impersonating.admin}</b>, you are currently impersonating <b>{impersonating.user}</b>
       </span>
-      <button className="tw-daisy-btn tw-daisy-btn-neutral" onClick={stopImpersonating}>
+      <button className="tw:daisy-btn tw:daisy-btn-neutral" onClick={stopImpersonating}>
         Stop Impersonating
       </button>
     </div>

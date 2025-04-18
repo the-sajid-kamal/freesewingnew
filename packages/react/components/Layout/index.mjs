@@ -33,7 +33,7 @@ export const Layout = ({ children = [], crumbs = [], description, Link = false, 
  * @param {array} props.children - The content to go in the layout
  */
 export const BaseLayout = ({ children }) => (
-  <div className="tw:flex tw:flex-row tw:items-start tw:w-full tw:justify-between tw:2xl:px-36 tw:xl:px-12 tw:px-4 tw:gap-0 tw:lg:gap-4 tw:xl:gap-8 3xl:tw-gap-12">
+  <div className="tw:flex tw:flex-row tw:items-start tw:w-full tw:justify-between tw:2xl:px-36 tw:xl:px-12 tw:px-4 tw:gap-0 tw:lg:gap-4 tw:xl:gap-8 3xl:tw:gap-12">
     {children}
   </div>
 )
@@ -70,7 +70,7 @@ export const BaseLayoutRight = ({ children = [] }) => (
  * @param {array} props.wide - Whether or not to use the wide view
  */
 export const BaseLayoutProse = ({ children = [], wide = false }) => (
-  <div className={`tw:grow tw:w-full tw:m-auto tw-max-w-${wide ? 'full' : 'prose'} tw:my-8`}>
+  <div className={`tw:grow tw:w-full tw:m-auto tw:max-w-${wide ? 'full' : 'prose'} tw:my-8`}>
     {children}
   </div>
 )

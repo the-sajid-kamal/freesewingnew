@@ -52,9 +52,9 @@ const LoadingStatus = ({ loadingStatus }) => {
       style={{ zIndex: 500 }}
     >
       <div
-        className={`tw:w-full tw:md:max-w-2xl tw:m-auto tw-bg-${color} tw:flex tw:flex-row tw:items-center tw:gap-4 tw:p-4 tw:px-4 ${fade}
-        tw:transition-opacity tw-delay-[${timeout * 1000 - 400}ms] tw:duration-300
-        tw:md:rounded-lg tw:shadow tw:text-secondary-content tw:text-lg tw:lg:text-xl tw:font-medium tw:md:bg-opacity-90`}
+        className={`tw:w-full tw:md:max-w-2xl tw:m-auto tw:bg-${color} tw:flex tw:flex-row tw:items-center tw:gap-4 tw:p-4 tw:px-4 ${fade}
+        tw:transition-opacity tw:delay-[${timeout * 1000 - 400}ms] tw:duration-300
+        tw:md:rounded-lg tw:shadow tw:text-secondary-content tw:text-lg tw:lg:text-xl tw:font-medium tw:md:bg-${color}/90`}
       >
         <span className="tw:shrink-0">{icon}</span>
         {loadingStatus[1]}
@@ -69,7 +69,7 @@ const LoadingStatus = ({ loadingStatus }) => {
 const LoadingProgress = ({ val = 0, max = 1, msg }) => (
   <div className="tw:flex tw:flex-col tw:gap-2 tw:w-full tw:grow-0">
     {msg}
-    <progress className="tw-progress tw-progress-white" value={val} max={max}></progress>
+    <progress className="tw:progress tw:progress-white" value={val} max={max}></progress>
   </div>
 )
 

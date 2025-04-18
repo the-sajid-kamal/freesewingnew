@@ -31,7 +31,7 @@ export const UndosView = ({ Design, update, state, config }) => {
             <p>When you make changes to your pattern, they will show up here.</p>
             <p>For example, you can click the button below to change the pattern rotation:</p>
             <button
-              className="tw-daisy-btn tw-daisy-btn-primary tw:capitalize"
+              className="tw:daisy-btn tw:daisy-btn-primary tw:capitalize"
               onClick={() => update.settings('ui.rotate', state.settings?.ui?.rotate ? 0 : 1)}
             >
               Example: Rotate pattern
@@ -106,7 +106,7 @@ export const UndoStep = ({ update, state, step, Design, compact = false, index =
 
   return (
     <>
-      <p className="tw:text-sm tw:italic tw:font-medium tw:opacity-70 tw:text-right tw:p-0 tw-tw-m-0 tw:-mb-2 tw:pr-2">
+      <p className="tw:text-sm tw:italic tw:font-medium tw:opacity-70 tw:text-right tw:p-0 tw:tw:m-0 tw:-mb-2 tw:pr-2">
         <UndoStepTimeAgo step={step} />
       </p>
       <ButtonFrame onClick={() => update.restore(index, state._)}>

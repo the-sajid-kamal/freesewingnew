@@ -1,13 +1,9 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
-
-/* You can override the default Infima variables here. */
 @import 'tailwindcss' prefix(tw);
-
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+@plugin "daisyui" {
+  prefix: 'daisy-';
+}
+@import './light.css';
+@import './dark.css';
 
 /*
  * Add CSS for code
@@ -54,140 +50,6 @@
 @utility markdown {
   & ul {
     @apply tw:list-inside tw:list-disc tw:ml-4;
-  }
-}
-
-@layer base {
-  :root {
-    /* Colors from tailwind that we use here*/
-    --sky-300: #7dd3fc;
-    --sky-400: #38bdf8;
-    --sky-500: #0ea5e9;
-    --sky-600: #0284c7;
-    --sky-700: #0369a1;
-    --pink-300: #f9a8d4;
-    --pink-500: #ec4899;
-    --neutral-50: #fafafa;
-    --neutral-100: #f5f5f5;
-    --neutral-200: #e5e5e5;
-    --neutral-400: #a3a3a3;
-    --neutral-500: #737373;
-    --neutral-600: #525252;
-    --neutral-900: #0a0a0a;
-    --amber-600: #d97706;
-    --red-500: #ef4444;
-    --blue-500: #3b82f6;
-    --pink-500: #ec4899;
-    --violet-500: #8b5cf6;
-
-    /* Color Palette */
-    --ifm-color-primary: var(--sky-500);
-    --ifm-color-primary-dark: var(--sky-600);
-    --ifm-color-primary-light: var(--sky-400);
-    --ifm-color-secondary: var(--sky-300);
-    --ifm-color-tertiary: var(--pink-500);
-
-    /* Text Colors */
-    --ifm-font-color-base: var(--neutral-900);
-    --ifm-font-color-light: var(--neutral-50);
-    --ifm-font-color-secondary: var(--sky-500);
-
-    /* State colors */
-    --ifm-color-success: var(--sky-400);
-
-    /* Background Colors */
-    --ifm-background-color: #fcfcfc;
-    --ifm-background-color-secondary: var(--neutral-100);
-
-    /* Borders and Outlines */
-    --ifm-border-color: var(--neutral-200);
-    --ifm-outline-color: var(--pink-300);
-
-    /* Link colors */
-    --ifm-link-color: var(--sky-600);
-    --ifm-link-hover-color: var(--sky-700);
-
-    /* Button Colors */
-    --ifm-button-color: var(--neutral-50);
-    --ifm-button-background-color: var(--sky-500);
-    --ifm-button-background-hover-color: var(--sky-700);
-    --ifm-button-border-color: var(--sky-600);
-
-    /* Font Sizes and Spacing */
-    --ifm-font-size-base: 16px;
-    --ifm-line-height-base: 1.5;
-    --ifm-spacing-unit: 8px;
-    --ifm-spacing-base: 16px;
-
-    /* Sidebar/Navigation Customizations */
-    --ifm-sidebar-background-color: var(--neutral-50);
-    --ifm-sidebar-link-color: var(--neutral-500);
-    --ifm-sidebar-link-hover-color: var(--sky-600);
-    --ifm-sidebar-active-link-color: var(--sky-600);
-    --ifm-sidebar-item-spacing: 8px;
-
-    /* Navbar Customizations */
-    --ifm-navbar-background-color: var(--neutral-50);
-    --ifm-navbar-link-color: var(--neutral-900);
-    --ifm-navbar-link-hover-color: var(--sky-500);
-
-    /* Footer colors */
-    --ifm-footer-background-color: var(--neutral-100);
-    --ifm-footer-link-color: var(--sky-600);
-
-    /*
-   * FreeSewing pattern vars
-   */
-    '--pattern-bg':var(--neutral-50);
-    '--pattern-fabric':var(--neutral-900);
-    '--pattern-lining':var(--emerald-500);
-    '--pattern-interfacing':var(--neutral-400);
-    ,'--pattern-canvas': var(--amber-600);
-    '--pattern-various':var(--red-500);
-    '--pattern-mark':var(--blue-500);
-    '--pattern-contrast':var(--pink-500);
-    '--pattern-note':var(--violet-500);
-  }
-  [data-theme='dark'] {
-    /* Text Colors */
-    --ifm-font-color-base: var(--neutral-200);
-    --ifm-font-color-light: var(--neutral-50);
-
-    /* Background Colors */
-    --ifm-background-color: var(--neutral-900);
-    --ifm-background-color-secondary: var(--neutral-100);
-
-    /* Borders and Outlines */
-    --ifm-border-color: var(--neutral-200);
-
-    /* Link colors */
-    --ifm-link-color: var(--sky-400);
-    --ifm-link-hover-color: var(--sky-500);
-
-    /* Button Colors */
-    --ifm-button-color: var(--neutral-600);
-
-    /* Navbar Customizations */
-    --ifm-navbar-background-color: var(--neutral-900);
-    --ifm-navbar-link-color: var(--neutral-50);
-    --ifm-navbar-link-hover-color: var(--sky-300);
-
-    /* Footer colors */
-    --ifm-footer-background-color: var(--neutral-900);
-    --ifm-footer-link-color: var(--sky-300);
-
-    /*
-   * FreeSewing pattern vars
-   */
-    '--pattern-bg':var(--neutral-900);
-    '--pattern-fabric':var(--neutral-5);
-    '--pattern-lining':var(--emerald-500);
-    '--pattern-interfacing':var(--neutral-400);
-    ,'--pattern-canvas': var(--amber-600);
-    '--pattern-various':var(--red-500);
-    '--pattern-mark':var(--blue-500);
-    '--pattern-contrast':var(--pink-500);
-    '--pattern-note':var(--violet-500);
   }
 }
 
@@ -293,6 +155,19 @@
 /*
  * fixes
  */
+a.no-hover-decoration:hover {
+  text-decoration: none;
+}
+a.tw\:daisy-btn {
+  color: inherit;
+}
+a.tw\:daisy-btn-primary.tw\:daisy-btn-outline {
+  color: var(--color-primary);
+}
+a.tw\:daisy-btn-primary.tw\:daisy-btn-outline:hover {
+  color: var(--color-primary-content);
+  text-decoration: none;
+}
 
 /*
  * Make the 'edit this page' link look consistent

@@ -72,10 +72,10 @@ const itemIcons = {
   reddit: <RedditIcon />,
 }
 
-const btnClasses = 'tw-daisy-btn tw:capitalize tw:flex tw:flex-row tw:justify-between'
+const btnClasses = 'tw:daisy-btn tw:capitalize tw:flex tw:flex-row tw:justify-between'
 const itemClasses =
-  'tw:flex tw:flex-row tw:items-center tw:justify-between tw:bg-opacity-10 tw:p-2 tw:px-4 tw:rounded tw:mb-1'
-const linkClasses = `tw:hover:bg-secondary tw:hover:bg-opacity-10 tw:max-w-md tw:hover:no-underline`
+  'tw:flex tw:flex-row tw:items-center tw:justify-between tw:p-2 tw:px-4 tw:rounded tw:mb-1'
+const linkClasses = `tw:hover:bg-secondary/10 tw:max-w-md tw:hover:no-underline tw:text-base-content no-hover-decoration`
 
 const titles = {
   apikeys: 'API Keys',
@@ -174,11 +174,11 @@ export const Links = ({ Link = false }) => {
                 href={`/account/data/${item}/`}
                 className={`${itemClasses} ${linkClasses}`}
               >
-                <div className="tw:flex tw:flex-row tw:items-center tw:gap-3 tw:font-medium">
+                <div className="tw:flex tw:flex-row tw:items-center tw:gap-3 tw:font-medium tw:text-base-content">
                   {itemIcons[item]}
                   {titles[item] ? titles[item] : capitalize(item)}
                 </div>
-                <div>{itemPreviews[item]}</div>
+                <div className="tw:text-base-content">{itemPreviews[item]}</div>
               </Link>
             )
           )}
@@ -195,11 +195,11 @@ export const Links = ({ Link = false }) => {
                   href={`/account/about/${item === 'img' ? 'avatar' : item}/`}
                   className={`${itemClasses} ${linkClasses}`}
                 >
-                  <div className="tw:flex tw:flex-row tw:items-center tw:gap-3 tw:font-medium">
+                  <div className="tw:flex tw:flex-row tw:items-center tw:gap-3 tw:font-medium tw:text-base-content">
                     {itemIcons[item]}
                     {titles[item] ? titles[item] : capitalize(item)}
                   </div>
-                  <div>{itemPreviews[item]}</div>
+                  <div className="tw:text-base-content">{itemPreviews[item]}</div>
                 </Link>
               )
             )}
@@ -230,11 +230,11 @@ export const Links = ({ Link = false }) => {
                 href={`/account/preferences/${item}/`}
                 className={`${itemClasses} ${linkClasses}`}
               >
-                <div className="tw:flex tw:flex-row tw:items-center tw:gap-3 tw:font-medium">
+                <div className="tw:flex tw:flex-row tw:items-center tw:gap-3 tw:font-medium tw:text-base-content">
                   {itemIcons[item]}
                   {titles[item] ? titles[item] : capitalize(item)}
                 </div>
-                <div>{itemPreviews[item]}</div>
+                <div className="tw:text-base-content">{itemPreviews[item]}</div>
               </Link>
             )
           )}
@@ -251,11 +251,11 @@ export const Links = ({ Link = false }) => {
                   href={`/account/social/${item}/`}
                   className={`${itemClasses} ${linkClasses}`}
                 >
-                  <div className="tw:flex tw:flex-row tw:items-center tw:gap-3 tw:font-medium">
+                  <div className="tw:flex tw:flex-row tw:items-center tw:gap-3 tw:font-medium tw:text-base-content">
                     {itemIcons[item]}
                     {titles[item] ? titles[item] : capitalize(item)}
                   </div>
-                  <div>{itemPreviews[item]}</div>
+                  <div className="tw:text-base-content">{itemPreviews[item]}</div>
                 </Link>
               )
             )}
@@ -273,11 +273,11 @@ export const Links = ({ Link = false }) => {
                   href={`/account/security/${item}/`}
                   className={`${itemClasses} ${linkClasses}`}
                 >
-                  <div className="tw:flex tw:flex-row tw:items-center tw:gap-3 tw:font-medium">
+                  <div className="tw:flex tw:flex-row tw:items-center tw:gap-3 tw:font-medium tw:text-base-content">
                     {itemIcons[item]}
                     {titles[item] ? titles[item] : capitalize(item)}
                   </div>
-                  <div>{itemPreviews[item]}</div>
+                  <div className="tw:text-base-content">{itemPreviews[item]}</div>
                 </Link>
               )
             )}
@@ -293,8 +293,8 @@ export const Links = ({ Link = false }) => {
                 title="Import data"
                 href="/account/actions/import/"
               >
-                <UploadIcon />
-                <span className="tw:font-medium">Import data</span>
+                <UploadIcon className="tw:w-6 tw:h-6 tw:text-base-content" />
+                <span className="tw:font-medium tw:text-base-content">Import data</span>
               </Link>
             )}
             {control > 2 && (
@@ -303,8 +303,8 @@ export const Links = ({ Link = false }) => {
                 title="Export your data"
                 href="/account/actions/export/"
               >
-                <DownloadIcon />
-                <span className="tw:font-medium">Export your data</span>
+                <DownloadIcon className="tw:w-6 tw:h-6 tw:text-base-content" />
+                <span className="tw:font-medium tw:text-base-content">Export your data</span>
               </Link>
             )}
             {control > 2 && (
@@ -313,8 +313,8 @@ export const Links = ({ Link = false }) => {
                 title="Reload account data"
                 href="/account/actions/reload/"
               >
-                <ReloadIcon />
-                <span className="tw:font-medium">Reload account data</span>
+                <ReloadIcon className="tw:w-6 tw:h-6 tw:text-base-content" />
+                <span className="tw:font-medium tw:text-base-content">Reload account data</span>
               </Link>
             )}
             {control > 3 && (
@@ -324,7 +324,9 @@ export const Links = ({ Link = false }) => {
                 href="/account/actions/restrict/"
               >
                 <CloseIcon className="tw:w-6 tw:h-6 tw:text-warning" stroke={3} />
-                <span className="tw:font-medium">Restrict processing of your data</span>
+                <span className="tw:font-medium tw:text-base-content">
+                  Restrict processing of your data
+                </span>
               </Link>
             )}
             <Link
@@ -333,7 +335,7 @@ export const Links = ({ Link = false }) => {
               href="/account/actions/remove/"
             >
               <TrashIcon className="tw:w-6 tw:h-6 tw:text-warning" />
-              <span className="tw:font-medium">Remove your account</span>
+              <span className="tw:font-medium tw:text-base-content">Remove your account</span>
             </Link>
           </div>
         )}
@@ -341,19 +343,22 @@ export const Links = ({ Link = false }) => {
 
       <div className="tw:flex tw:flex-row tw:flex-wrap tw:gap-2 tw:md:gap-4 tw:justify-end">
         {account.role === 'admin' && (
-          <Link className={`${btnClasses} tw-daisy-btn-accent tw:md:w-64`} href="/admin">
-            <WrenchIcon />
-            Administration
+          <Link
+            className={`${btnClasses} tw:daisy-btn-accent tw:md:w-64 tw:text-accent-content`}
+            href="/admin"
+          >
+            <WrenchIcon className="tw:w-6 tw:h-6 tw:text-accent-content" />
+            <span className="tw:text-accent-content">Administration</span>
           </Link>
         )}
         {control > 1 && (
-          <Link className={`${btnClasses} tw-daisy-btn-secondary tw:md:w-64`} href="/profile">
-            <UserIcon />
-            Your Profile
+          <Link className={`${btnClasses} tw:daisy-btn-secondary tw:md:w-64`} href="/profile">
+            <UserIcon className="tw:w-6 tw:h-6 tw:text-accent-content" />
+            <span className="tw:text-accent-content">Your Profile</span>
           </Link>
         )}
         <button
-          className={`${btnClasses} tw-daisy-btn-neutral tw:md:w-64`}
+          className={`${btnClasses} tw:daisy-btn-neutral tw:md:w-64`}
           onClick={() => signOut()}
         >
           <SignoutIcon />

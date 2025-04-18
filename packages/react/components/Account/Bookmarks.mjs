@@ -91,7 +91,7 @@ export const Bookmarks = () => {
     <div className="tw:w-full">
       <p className="tw:text-center tw:md:text-right">
         <button
-          className="tw-daisy-btn tw-daisy-btn-primary tw:capitalize tw:w-full tw:md:w-auto tw:hover:text-primary-content tw:hover:no-underline"
+          className="tw:daisy-btn tw:daisy-btn-primary tw:capitalize tw:w-full tw:md:w-auto tw:hover:text-primary-content tw:hover:no-underline"
           onClick={() =>
             setModal(
               <ModalWrapper
@@ -114,7 +114,7 @@ export const Bookmarks = () => {
       </p>
       {bookmarks.length > 0 ? (
         <button
-          className="tw-daisy-btn tw-daisy-btn-error"
+          className="tw:daisy-btn tw:daisy-btn-error"
           onClick={removeSelectedBookmarks}
           disabled={selCount < 1}
         >
@@ -131,7 +131,7 @@ export const Bookmarks = () => {
                   <th className="tw:text-base-300 tw:text-base tw:text-left tw:w-8">
                     <input
                       type="checkbox"
-                      className="tw-daisy-checkbox tw-daisy-checkbox-secondary"
+                      className="tw:daisy-checkbox tw:daisy-checkbox-secondary"
                       onClick={toggleSelectAll}
                       checked={bookmarks.length === selCount}
                     />
@@ -149,7 +149,7 @@ export const Bookmarks = () => {
                         <input
                           type="checkbox"
                           checked={selected[bookmark.id] ? true : false}
-                          className="tw-daisy-checkbox tw-daisy-checkbox-secondary"
+                          className="tw:daisy-checkbox tw:daisy-checkbox-secondary"
                           onClick={() => toggleSelect(bookmark.id)}
                         />
                       </td>
@@ -231,7 +231,7 @@ export const NewBookmark = ({ onCreated = false }) => {
       />
       <div className="tw:flex tw:flex-row tw:gap-2 tw:items-center tw:w-full tw:my-8">
         <button
-          className="tw-daisy-btn tw-daisy-btn-primary tw:grow tw:capitalize"
+          className="tw:daisy-btn tw:daisy-btn-primary tw:grow tw:capitalize"
           disabled={!(title.length > 0 && url.length > 0)}
           onClick={createBookmark}
         >
@@ -256,7 +256,7 @@ export const BookmarkButton = ({ slug, type, title }) => {
 
   return (
     <button
-      className={`tw-daisy-btn tw-daisy-btn-secondary tw-daisy-btn-outline ${horFlexClasses}`}
+      className={`tw:daisy-btn tw:daisy-btn-secondary tw:daisy-btn-outline ${horFlexClasses}`}
       onClick={() =>
         setModal(
           <ModalWrapper flex="col" justify="top lg:justify-center" slideFrom="right">
@@ -308,7 +308,7 @@ export const CreateBookmark = ({ type, title, slug }) => {
     <div className="tw:mt-12">
       <h2>New bookmark</h2>
       <StringInput label="Title" current={name} update={setName} valid={notEmpty} labelBL={url} />
-      <button className="tw-daisy-btn tw-daisy-btn-primary tw:w-full tw:mt-4" onClick={bookmark}>
+      <button className="tw:daisy-btn tw:daisy-btn-primary tw:w-full tw:mt-4" onClick={bookmark}>
         Create bookmark
       </button>
     </div>

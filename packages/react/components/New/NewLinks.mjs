@@ -17,7 +17,7 @@ const NewLink = ({ title, Icon, description, href, Link }) => {
     href,
     className:
       'tw:p-8 tw:-ml-4 tw:-mr-4 tw:md:m-0 tw:rounded-none tw:md:rounded-xl ' +
-      'tw:md:shadow tw:hover:bg-secondary tw:bg-base-200 tw:hover:bg-opacity-10 ' +
+      'tw:md:shadow tw:hover:bg-secondary/10 tw:bg-base-200/10 ' +
       'tw:w-full tw:max-w-lg tw:hover:no-underline',
   }
 

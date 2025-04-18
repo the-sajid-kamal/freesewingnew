@@ -99,7 +99,7 @@ export default function Home() {
           <HowDoesItWorkAnimation />
         </div>
 
-        <div className="tw:p-1 tw:-mx-4 tw:bg-primary tw:bg-opacity-10 tw:mt-12 tw:rounded-none tw:md:rounded-lg tw:lg:rounded-xl tw:md:shadow-lg tw:md:mx-4 tw:p-8 tw:lg:px-12 tw:md:py-0">
+        <div className="tw:p-1 tw:-mx-4 tw:bg-primary/5 tw:mt-12 tw:rounded-none tw:md:rounded-lg tw:lg:rounded-xl tw:md:shadow-lg tw:md:mx-4 tw:p-8 tw:lg:px-12 tw:md:py-0">
           <div className="tw:flex tw:flex-col tw:md:gap-8 tw:lg:gap-12 tw:md:flex tw:md:flex-row tw:m-auto">
             <div className="tw:-mx-4 tw:md:mx-0 tw:md:pt-8 tw:pb-8 tw:lg:py-12 tw:grow tw:m-auto tw:max-w-prose">
               <SignUp embed />
@@ -139,6 +139,7 @@ export default function Home() {
             href="/designs"
             title="Designs"
             icon={<DesignIcon className="tw:w-12 tw:h-12 tw:shrink-0" />}
+            className="tw:text-base-content"
           >
             <p className="tw:font-medium tw:text-inherit tw:italic tw:text-lg">
               Browse our collection of designs, and turn them into sewing patterns that are
@@ -225,14 +226,14 @@ const HowDoesItWorkAnimation = () => {
   }, [step])
 
   return (
-    <div className="tw:flex tw:flex-col tw:md:grid tw:md:grid-cols-3 tw:my-12">
+    <div className="tw:flex tw:flex-col tw:md:grid tw:md:grid-cols-3 tw:my-12 tw:bg-transparent">
       <div className="tw:relative tw:w-full">
         <div className="tw:relative tw:h-72 tw:md:h-96 tw:overflow-hidden">
           {slides.map((i) => (
             <div
               key={i}
               className={`tw:duration-700 tw:ease-in-out tw:transition-all ${
-                step === i ? 'tw:opacity-1' : 'tw:opacity-0'
+                step === i ? 'tw:opacity-100' : 'tw:opacity-0'
               } tw:absolute tw:top-0 tw:text-center tw:w-full`}
             >
               <div className="tw:w-full tw:flex tw:flex-row tw:items-center tw:h-72 tw:md:h-96 tw:w-full tw:justify-center">
@@ -250,7 +251,7 @@ const HowDoesItWorkAnimation = () => {
             <div
               key={i}
               className={`tw:duration-700 tw:ease-in-out tw:transition-all ${
-                Math.floor(halfStep) === i ? 'tw:opacity-1' : 'tw:opacity-0'
+                Math.floor(halfStep) === i ? 'tw:opacity-100' : 'tw:opacity-0'
               } tw:absolute tw:top-0 tw:text-center tw:w-full`}
             >
               <div className="tw:w-full tw:flex tw:flex-row tw:items-center tw:h-72 tw:md:h-96 tw:w-full tw:justify-center">

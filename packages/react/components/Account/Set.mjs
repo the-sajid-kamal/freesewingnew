@@ -218,13 +218,13 @@ export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvi
           {account.control > 2 && mset.public && mset.userId !== account.id ? (
             <div className="tw:flex tw:flex-row tw:gap-2 tw:items-center">
               <a
-                className="tw-daisy-badge tw-daisy-badge-secondary tw:font-bold tw-daisy-badge-lg"
+                className="tw:daisy-badge tw:daisy-badge-secondary tw:font-bold tw:daisy-badge-lg"
                 href={`${urls.backend}/sets/${mset.id}.json`}
               >
                 JSON
               </a>
               <a
-                className="tw-daisy-badge tw-daisy-badge-success tw:font-bold tw-daisy-badge-lg"
+                className="tw:daisy-badge tw:daisy-badge-success tw:font-bold tw:daisy-badge-lg"
                 href={`${urls.backend}/sets/${mset.id}.yaml`}
               >
                 YAML
@@ -236,7 +236,7 @@ export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvi
           {account.control > 3 && mset.userId === account.id ? (
             <div className="tw:flex tw:flex-row tw:gap-2 tw:items-center">
               <button
-                className="tw-daisy-badge tw-daisy-badge-secondary tw:font-bold tw-daisy-badge-lg"
+                className="tw:daisy-badge tw:daisy-badge-secondary tw:font-bold tw:daisy-badge-lg"
                 onClick={() =>
                   setModal(
                     <ModalWrapper keepOpenOnClick>
@@ -248,7 +248,7 @@ export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvi
                 JSON
               </button>
               <button
-                className="tw-daisy-badge tw-daisy-badge-success tw:font-bold tw-daisy-badge-lg tw:text-neutral-content"
+                className="tw:daisy-badge tw:daisy-badge-success tw:font-bold tw:daisy-badge-lg tw:text-neutral-content"
                 onClick={() =>
                   setModal(
                     <ModalWrapper keepOpenOnClick>
@@ -265,7 +265,7 @@ export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvi
           )}
           {account.id && account.control > 2 && mset.public && mset.userId !== account.id ? (
             <button
-              className="tw-daisy-btn tw-daisy-btn-primary"
+              className="tw:daisy-btn tw:daisy-btn-primary"
               title="Import measurements set"
               onClick={importSet}
             >
@@ -286,7 +286,7 @@ export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvi
                 </ModalWrapper>
               )
             }
-            className={`tw-daisy-btn tw-daisy-btn-secondary tw-btn-outline ${horFlexClasses}`}
+            className={`tw:daisy-btn tw:daisy-btn-secondary tw:btn-outline ${horFlexClasses}`}
           >
             <ShowcaseIcon />
             Show Image
@@ -299,9 +299,9 @@ export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvi
                     setSuggest(!suggest)
                     setEdit(false)
                   }}
-                  className={`tw-daisy-btn ${
-                    suggest ? 'tw-daisy-btn-neutral' : 'tw-daisy-btn-primary'
-                  } tw-daisy-btn-outline ${horFlexClasses}`}
+                  className={`tw:daisy-btn ${
+                    suggest ? 'tw:daisy-btn-neutral' : 'tw:daisy-btn-primary'
+                  } tw:daisy-btn-outline ${horFlexClasses}`}
                 >
                   {suggest ? <ResetIcon /> : <CuratedMeasurementsSetIcon />}
                   {suggest ? 'Cancel' : 'Suggest for curation'}
@@ -314,14 +314,14 @@ export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvi
                       setEdit(false)
                       setSuggest(false)
                     }}
-                    className={`tw-daisy-btn tw-daisy-btn-neutral tw-daisy-btn-outline ${horFlexClasses}`}
+                    className={`tw:daisy-btn tw:daisy-btn-neutral tw:daisy-btn-outline ${horFlexClasses}`}
                   >
                     <ResetIcon />
                     Cancel
                   </button>
                   <button
                     onClick={save}
-                    className={`tw-daisy-btn tw-daisy-btn-primary ${horFlexClasses}`}
+                    className={`tw:daisy-btn tw:daisy-btn-primary ${horFlexClasses}`}
                   >
                     <UploadIcon />
                     Save measurements set
@@ -333,7 +333,7 @@ export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvi
                     setEdit(true)
                     setSuggest(false)
                   }}
-                  className={`tw-daisy-btn tw-daisy-btn-primary ${horFlexClasses}`}
+                  className={`tw:daisy-btn tw:daisy-btn-primary ${horFlexClasses}`}
                 >
                   <EditIcon /> Edit measurements set
                 </button>
@@ -342,7 +342,7 @@ export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvi
           )}
           {account.control > 1 && account?.compare ? (
             <button
-              className="tw-daisy-btn tw-daisy-btn-secondary tw-btn-outline"
+              className="tw:daisy-btn tw:daisy-btn-secondary tw:btn-outline"
               title="Validate measurements"
               onClick={() => {
                 setRender(!render)
@@ -357,7 +357,7 @@ export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvi
           ) : null}
           {account.control > 2 && mset.userId === account.id ? (
             <button
-              className="tw-daisy-btn tw-daisy-btn-neutral"
+              className="tw:daisy-btn tw:daisy-btn-neutral"
               title="Clone measurements set"
               onClick={importSet}
             >
@@ -413,7 +413,7 @@ export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvi
                     <NoIcon className="tw:w-6 tw:h-6 tw:text-error" stroke={3} />
                   )}
                   <button
-                    className="tw-daisy-btn tw-daisy-btn-secondary tw-daisy-btn-sm"
+                    className="tw:daisy-btn tw:daisy-btn-secondary tw:daisy-btn-sm"
                     onClick={togglePublic}
                   >
                     Make {mset.public ? 'Private' : 'Public'}
@@ -474,7 +474,7 @@ export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvi
     <div className="tw:w-full">
       {heading}
       <h2 id="measies">Measurements</h2>
-      <div className="tw:bg-secondary tw:px-4 tw:pt-1 tw:pb-4 tw:rounded-lg tw:shadow tw:bg-opacity-10">
+      <div className="tw:bg-secondary/10 tw:px-4 tw:pt-1 tw:pb-4 tw:rounded-lg tw:shadow">
         <DesignInput
           update={setFilter}
           label="Filter by design"
@@ -612,7 +612,7 @@ export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvi
       ) : null}
       <button
         onClick={save}
-        className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-lg tw:flex tw:flex-row tw:items-center tw:gap-4 tw:mx-auto tw:mt-8"
+        className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-lg tw:flex tw:flex-row tw:items-center tw:gap-4 tw:mx-auto tw:mt-8"
       >
         <UploadIcon />
         Save Measurements Set
@@ -752,7 +752,7 @@ export const SuggestCset = ({ mset, Link }) => {
       </Popout>
       <MarkdownInput label="Notes" current={notes} update={setNotes} valid={() => true} />
       <button
-        className="tw-daisy-btn tw-daisy-btn-primary tw:w-full tw:mt-4"
+        className="tw:daisy-btn tw:daisy-btn-primary tw:w-full tw:mt-4"
         disabled={!(missing.length === 0 && height.length > 1 && img.length > 0)}
         onClick={suggestSet}
       >
@@ -858,7 +858,7 @@ export const RenderedCSet = ({ mset, imperial }) => {
             </li>
           </ul>
           <button
-            className={`tw-daisy-btn tw-daisy-btn-primary tw:mt-4`}
+            className={`tw:daisy-btn tw:daisy-btn-primary tw:mt-4`}
             onClick={() => setPreviewVisible(true)}
           >
             <CompareIcon />I understand, render body preview
@@ -911,7 +911,7 @@ export const NewSet = () => {
       />
       <div className="tw:flex tw:flex-row tw:gap-2 tw:items-center tw:w-full tw:mt-8 tw:mb-2">
         <button
-          className="tw-daisy-btn tw-daisy-btn-primary tw:grow tw:capitalize"
+          className="tw:daisy-btn tw:daisy-btn-primary tw:grow tw:capitalize"
           disabled={name.length < 1}
           onClick={createSet}
         >

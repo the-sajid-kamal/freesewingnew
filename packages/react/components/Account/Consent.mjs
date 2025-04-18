@@ -95,7 +95,7 @@ export const Consent = ({ signUp = false, Link = false, title = false }) => {
         <Checkbox value={consent1} setter={setConsent1} label="Yes, I do" />
       ) : (
         <button
-          className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-lg tw:w-full tw:mt-4"
+          className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-lg tw:w-full tw:mt-4"
           onClick={() => setConsent1(!consent1)}
         >
           Click here to give your consent
@@ -116,12 +116,12 @@ export const Consent = ({ signUp = false, Link = false, title = false }) => {
       ) : null}
       {!consent1 && <Popout warning>This consent is required for a FreeSewing account.</Popout>}
       {consent1 ? (
-        <button className="tw-daisy-btn tw-daisy-btn-primary tw:w-full tw:mt-4" onClick={update}>
+        <button className="tw:daisy-btn tw:daisy-btn-primary tw:w-full tw:mt-4" onClick={update}>
           {signUp ? 'Create Account' : 'Save'}
         </button>
       ) : signUp ? null : (
         <button
-          className="tw-daisy-btn tw:mt-4 tw:capitalize tw:w-full tw-daisy-btn-error"
+          className="tw:daisy-btn tw:mt-4 tw:capitalize tw:w-full tw:daisy-btn-error"
           onClick={removeAccount}
         >
           Remove your account
@@ -138,19 +138,19 @@ export const Consent = ({ signUp = false, Link = false, title = false }) => {
 
 const Checkbox = ({ value, setter, label, children = null }) => (
   <div
-    className={`tw-form-control tw:p-4 tw:hover:cursor-pointer tw:rounded tw:border-l-8 tw:my-2
+    className={`tw:form-control tw:p-4 tw:hover:cursor-pointer tw:rounded tw:border-l-8 tw:my-2
     ${value ? 'tw:border-success tw:bg-success/30' : 'tw:border-error tw:bg-error/30'}
-    btw-g-opacity-10 tw:shadow`}
+    btw:g-opacity-10 tw:shadow`}
     onClick={() => setter(value ? false : true)}
   >
-    <div className="tw-form-control tw:flex tw:flex-row tw:items-center tw:gap-2">
+    <div className="tw:form-control tw:flex tw:flex-row tw:items-center tw:gap-2">
       <input
         type="checkbox"
-        className="tw-daisy-checkbox"
+        className="tw:daisy-checkbox"
         checked={value ? 'checked' : ''}
         onChange={() => setter(value ? false : true)}
       />
-      <span className="tw-label-text">{label}</span>
+      <span className="tw:label-text">{label}</span>
     </div>
     {children}
   </div>

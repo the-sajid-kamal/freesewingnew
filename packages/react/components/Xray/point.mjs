@@ -82,7 +82,7 @@ const PointXrayInfo = ({ point, pointName, stackName, part }) => {
         <div className="tw:w-full tw:flex tw:flex-row tw:items-center tw:gap-1 tw:justify-between">
           <span>Coordinates</span>
           <button
-            className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-sm tw-daisy-btn-outline"
+            className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-sm tw:daisy-btn-outline"
             onClick={() => setRounded(!rounded)}
           >
             {rounded ? 'Show raw' : 'Show rounded'}

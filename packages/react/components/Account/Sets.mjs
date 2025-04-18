@@ -88,16 +88,16 @@ export const Sets = ({ Link = false }) => {
     <div className="tw:max-w-7xl tw:xl:pl-4">
       <p className="tw:text-center tw:md:text-right">
         <Link
-          className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-outline tw:capitalize tw:w-full tw:md:w-auto tw:mr-2 tw:mb-2 tw:hover:no-underline tw:hover:text-primary-content"
+          className="tw:daisy-btn tw:daisy-btn-secondary tw:capitalize tw:w-full tw:md:w-auto tw:mr-2 tw:hover:no-underline tw:hover:text-primary-content no-hover-decoration"
           bottom
           primary
           href="/account/import"
         >
-          <UploadIcon />
-          Import Measurements Sets
+          <UploadIcon className="tw:w-6 tw:h-6 tw:text-secondary-content" />
+          <span className="tw:text-secondary-content">Import Measurements Sets</span>
         </Link>
         <button
-          className="tw-daisy-btn tw-daisy-btn-primary tw:capitalize tw:w-full tw:md:w-auto tw:hover:no-underline tw:hover:text-primary-content"
+          className="tw:daisy-btn tw:daisy-btn-primary tw:capitalize tw:w-full tw:md:w-auto tw:hover:no-underline tw:hover:text-primary-content"
           onClick={() =>
             setModal(
               <ModalWrapper keepOpenOnClick>
@@ -113,12 +113,12 @@ export const Sets = ({ Link = false }) => {
       <div className="tw:flex tw:flex-row tw:gap-2 tw:border-b-2 tw:mb-4 tw:pb-4 tw:mt-8 tw:h-14 tw:items-center">
         <input
           type="checkbox"
-          className="tw-daisy-checkbox tw-daisy-checkbox-secondary"
+          className="tw:daisy-checkbox tw:daisy-checkbox-secondary"
           onClick={toggleSelectAll}
           checked={sets.length === selCount}
         />
         <button
-          className="tw-daisy-btn tw-daisy-btn-error"
+          className="tw:daisy-btn tw:daisy-btn-error"
           onClick={removeSelectedSets}
           disabled={selCount < 1}
         >
@@ -140,7 +140,7 @@ export const Sets = ({ Link = false }) => {
               <input
                 type="checkbox"
                 checked={selected[set.id] ? true : false}
-                className="tw-daisy-checkbox tw-daisy-checkbox-secondary"
+                className="tw:daisy-checkbox tw:daisy-checkbox-secondary"
                 onClick={() => toggleSelect(set.id)}
               />
             </label>
@@ -189,7 +189,7 @@ export const MsetCard = ({
   const s = sizes[size]
 
   const wrapperProps = {
-    className: `tw:bg-base-300 tw:aspect-square tw-h-${s} tw-w-${s} tw:mb-2 tw:grow tw:w-full
+    className: `tw:bg-base-300 tw:aspect-square tw:h-${s} tw:w-${s} tw:mb-2 tw:grow tw:w-full
       tw:hover:cursor-pointer tw:border-0 tw:opacity-80 tw:hover:opacity-100
       tw:mx-auto tw:flex tw:flex-col tw:items-start tw:text-center tw:justify-between tw:rounded-none tw:md:rounded shadow`,
     style: {
@@ -234,7 +234,7 @@ export const MsetCard = ({
   const inner = (
     <>
       {icon}
-      <span className="tw:bg-neutral tw:text-neutral-content tw:px-4 tw:w-full tw:bg-opacity-50 tw:py-2 tw:rounded tw:rounded-t-none tw:font-bold tw:leading-5">
+      <span className="tw:bg-neutral/50 tw:text-neutral-content tw:px-4 tw:w-full tw:py-2 tw:rounded tw:rounded-t-none tw:font-bold tw:leading-5">
         {set.name}
         {linebreak}
         {missingMeasies}

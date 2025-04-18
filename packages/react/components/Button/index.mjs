@@ -19,7 +19,7 @@ export const IconButton = ({
   btnProps = {},
 }) => {
   const allProps = {
-    className: `${staticLinkClasses} tw-daisy-btn-${color} hover:tw-text-${color}-content ${className}`,
+    className: `${staticLinkClasses} tw:daisy-btn-${color} hover:tw:text-${color}-content ${className}`,
     title: title,
     ...btnProps,
   }
@@ -31,4 +31,4 @@ export const IconButton = ({
 
 const staticLinkClasses =
   'tw:flex tw:flex-row tw:gap-2 tw:lg:gap-6 tw:items-center tw:grow ' +
-  'tw:justify-between tw:w-full tw:md:w-auto tw-daisy-btn tw:hover:no-underline tw:capitalize'
+  'tw:justify-between tw:w-full tw:md:w-auto tw:daisy-btn tw:hover:no-underline tw:capitalize'

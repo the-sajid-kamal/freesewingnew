@@ -35,13 +35,13 @@ export const DraftErrorHandler = ({ failure, errors }) => {
 
       <div className={'tw:mt-4'}>
         <button
-          className={`tw-daisy-btn tw-daisy-btn-primary`}
+          className={`tw:daisy-btn tw:daisy-btn-primary`}
           onClick={() => setExpanded(!expanded)}
         >
           <ExpandIcon />
           Show error details
         </button>
-        <button className={`tw-daisy-btn tw:ml-4`} onClick={() => setHidden(true)}>
+        <button className={`tw:daisy-btn tw:ml-4`} onClick={() => setHidden(true)}>
           <CloseIcon />
           Hide
         </button>

@@ -86,7 +86,7 @@ export const Username = ({ welcome = false, Link = false }) => {
       <p className="tw:text-right">
         <button
           disabled={!available}
-          className="tw-daisy-btn tw-daisy-btn-primary tw:w-full tw:lg:w-auto tw:mt-8"
+          className="tw:daisy-btn tw:daisy-btn-primary tw:w-full tw:lg:w-auto tw:mt-8"
           onClick={save}
         >
           <SaveIcon /> Save Username
@@ -101,7 +101,7 @@ export const Username = ({ welcome = false, Link = false }) => {
           {welcomeSteps[account.control].length > 0 ? (
             <>
               <progress
-                className="tw-daisy-progress tw-daisy-progress-primary tw:w-full tw:mt-12"
+                className="tw:daisy-progress tw:daisy-progress-primary tw:w-full tw:mt-12"
                 value={500 / welcomeSteps[account.control].length}
                 max="100"
               ></progress>

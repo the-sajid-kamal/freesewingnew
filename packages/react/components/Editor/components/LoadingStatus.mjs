@@ -41,7 +41,7 @@ export const LoadingStatus = ({ state, update }) => {
   }
 
   return (
-    <div className="tw:fixed tw:bottom-4 md:tw-buttom-28 tw:left-0 tw:w-full tw:z-30 tw:md:px-4 tw:md:mx-auto mb-4">
+    <div className="tw:fixed tw:bottom-4 md:tw:buttom-28 tw:left-0 tw:w-full tw:z-30 tw:md:px-4 tw:md:mx-auto mb-4">
       <div className="tw:flex tw:flex-col tw:gap-2">
         {Object.entries(state._.loading).map(([id, custom]) => {
           const conf = {
@@ -52,17 +52,17 @@ export const LoadingStatus = ({ state, update }) => {
           return (
             <div
               key={id}
-              className={`tw:w-full tw:md:max-w-2xl tw:m-auto tw-bg-${
+              className={`tw:w-full tw:md:max-w-2xl tw:m-auto tw:bg-${
                 conf.color
-              } tw-text-${conf.color}-content tw:flex tw:flex-row tw:items-center tw:gap-4 tw:p-4 tw:px-4 ${
+              } tw:text-${conf.color}-content tw:flex tw:flex-row tw:items-center tw:gap-4 tw:p-4 tw:px-4 ${
                 conf.fading ? 'tw:opacity-0' : 'tw:opacity-100'
               }
-              tw:transition-opacity tw-delay-[${config.timeout * 1000 - 400}ms] tw:duration-300
-              tw:md:rounded-lg tw:shadow tw:text-secondary-content tw:text-lg tw:lg:text-xl tw:font-medium tw:md:bg-opacity-90
+              tw:transition-opacity tw:delay-[${config.timeout * 1000 - 400}ms] tw:duration-300
+              tw:md:rounded-lg tw:shadow tw:text-secondary-content tw:text-lg tw:lg:text-xl tw:font-medium
               ${conf.color === 'info' ? 'tw:text-neutral' : ''}
               `}
             >
-              <span className={`tw:shrink-0 tw-text-${conf.color}-content`}>
+              <span className={`tw:shrink-0 tw:text-${conf.color}-content`}>
                 <Icon />
               </span>
               <div className={conf.color === 'info' ? 'tw:text-neutral tw:w-full' : 'tw:w-full'}>

@@ -67,7 +67,7 @@ const PrintActions = ({ state, update }) => (
   <SubAccordion
     items={[
       [
-        <div className="tw:w-full tw:flex tw:flex-row tw-gap2 tw:justify-between" key={1}>
+        <div className="tw:w-full tw:flex tw:flex-row tw:gap2 tw:justify-between" key={1}>
           <div className="tw:flex tw:flex-row tw:items-center tw:gap-2">
             <LeftRightIcon />
             <span>{'workbench:partTransfo'}</span>
@@ -97,7 +97,7 @@ const PrintActions = ({ state, update }) => (
         'partTransfo',
       ],
       [
-        <div className="tw:w-full tw:flex tw:flex-row tw-gap2 tw:justify-between" key={1}>
+        <div className="tw:w-full tw:flex tw:flex-row tw:gap2 tw:justify-between" key={1}>
           <div className="tw:flex tw:flex-row tw:items-center tw:gap-2">
             <ResetIcon />
             <span>{'workbench:resetPrintLayout'}</span>
@@ -108,7 +108,7 @@ const PrintActions = ({ state, update }) => (
         <Fragment key={2}>
           <p>{'workbench:resetPrintLayoutDesc'}</p>
           <button
-            className={`${horFlexClasses} tw-btn tw-btn-warning tw-btn-outline tw:w-full`}
+            className={`${horFlexClasses} tw:btn tw:btn-warning tw:btn-outline tw:w-full`}
             onClick={() => update.ui(['layouts', 'print'])}
           >
             <ResetIcon />

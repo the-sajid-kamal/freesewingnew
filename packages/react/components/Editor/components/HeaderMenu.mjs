@@ -145,7 +145,7 @@ export const HeaderMenuDropdown = (props) => {
         disabled
         tabIndex={0}
         role="button"
-        className={`tw-daisy-btn tw-daisy-btn-ghost tw:hover:bg-secondary tw:hover:bg-opacity-20 tw:hover:border-solid tw:hover:border-2 tw:hover:border-secondary tw:border tw:border-secondary tw:border-2 tw:border-dotted tw-daisy-btn-sm tw:px-2 tw:z-20 tw:relative`}
+        className={`tw:daisy-btn tw:daisy-btn-ghost tw:hover:bg-secondary/20 tw:hover:border-solid tw:hover:border-2 tw:hover:border-secondary tw:border tw:border-secondary tw:border-2 tw:border-dotted tw:daisy-btn-sm tw:px-2 tw:z-20 tw:relative`}
       >
         {toggle}
       </button>
@@ -153,19 +153,19 @@ export const HeaderMenuDropdown = (props) => {
   ) : (
     <Tooltip tip={tooltip}>
       <div
-        className={`tw-daisy-dropdown ${open === id ? 'tw-daisy-dropdown-open tw:z-20' : ''} ${end ? ' tw-daisy-dropdown-end' : ''}`}
+        className={`tw:daisy-dropdown ${open === id ? 'tw:daisy-dropdown-open tw:z-20' : ''} ${end ? ' tw:daisy-dropdown-end' : ''}`}
       >
         <div
           tabIndex={0}
           role="button"
-          className="tw-daisy-btn tw-daisy-btn-ghost tw:hover:bg-secondary tw:hover:bg-opacity-20 tw:border-secondary/10 tw:hover:border-2 tw:hover:border-secondary tw:border tw:border-secondary tw:border-2 tw:border-solid tw-daisy-btn-sm tw:px-2 tw:z-20 tw:relative"
+          className="tw:daisy-btn tw:daisy-btn-ghost tw:hover:bg-secondary/20 tw:border-secondary/10 tw:hover:border-2 tw:hover:border-secondary tw:border tw:border-secondary tw:border-2 tw:border-solid tw:daisy-btn-sm tw:px-2 tw:z-20 tw:relative"
           onClick={() => setOpen(open === id ? false : id)}
         >
           {toggle}
         </div>
         <div
           tabIndex={0}
-          className="tw-daisy-dropdown-content tw:bg-base-100 tw:bg-opacity-90 tw:z-20 tw:shadow tw:left-0 tw:fixed! tw:md:absolute! tw:top-12 tw:w-screen tw:md:max-w-md tw:overflow-y-scroll tw:mb-12 tw:h-fit"
+          className="tw:daisy-dropdown-content tw:bg-base-100/90 tw:z-20 tw:shadow tw:left-0 tw:fixed! tw:md:absolute! tw:top-12 tw:w-screen tw:md:max-w-md tw:overflow-y-scroll tw:mb-12 tw:h-fit"
           style={{ maxHeight: 'calc(100vh - 12rem)' }}
         >
           {props.children}
@@ -394,7 +394,7 @@ export const HeaderMenuUndoIcons = (props) => {
         }
       >
         {undos ? (
-          <ul className="tw-daisy-dropdown-content tw:bg-base-100 tw:bg-opacity-90 tw:z-20 tw:shadow tw:left-0 tw:fixed! tw:md:absolute! tw:w-screen tw:md:w-96 tw:px-4 tw:md:p-2 tw:md:pt-0 tw:contents">
+          <ul className="tw:daisy-dropdown-content tw:bg-base-100/90 tw:z-20 tw:shadow tw:left-0 tw:fixed! tw:md:absolute! tw:w-screen tw:md:w-96 tw:px-4 tw:md:p-2 tw:md:pt-0 tw:contents">
             {undos.slice(0, 9).map((step, index) => (
               <li key={index}>
                 <UndoStep {...{ step, update, state, Design, index }} compact />
@@ -500,7 +500,7 @@ export const HeaderMenuButton = ({
 }) => (
   <Tooltip tip={tooltip}>
     <button
-      className={`${lgOnly ? 'tw:hidden tw:lg:inline' : ''} tw-daisy-btn tw-daisy-btn-ghost tw-daisy-btn-sm tw:px-1 tw:disabled:bg-transparent`}
+      className={`${lgOnly ? 'tw:hidden tw:lg:inline' : ''} tw:daisy-btn tw:daisy-btn-ghost tw:daisy-btn-sm tw:px-1 tw:disabled:bg-transparent`}
       onClick={updateHandler}
       disabled={disabled}
     >
@@ -539,9 +539,7 @@ export const HeaderMenuViewMenu = (props) => {
             className={`tw:w-full tw:text-base-content
             tw:flex tw:flex-row tw:items-center tw:gap-2 tw:md:gap-4 tw:p-2 tw:px-4
             tw:hover:cursor-pointer tw:hover:text-base-content
-            tw:hover:bg-secondary tw:hover:bg-opacity-20 ${
-              viewName === state.view ? 'tw:bg-secondary tw:bg-opacity-20' : ''
-            }`}
+            tw:hover:bg-secondary/20 ${viewName === state.view ? 'tw:bg-secondary/20' : ''}`}
             onClick={() => update.view(viewName)}
           >
             <ViewIcon view={viewName} className="tw:w-6 tw:h-6 tw:grow-0" />
@@ -570,7 +568,7 @@ export const HeaderMenuViewMenu = (props) => {
     >
       <ul
         tabIndex={i}
-        className="tw-daisy-dropdown-content tw:bg-base-100 tw:bg-opacity-95 tw:z-20 tw:shadow tw:left-0 tw:fixed! tw:md:absolute! tw:w-screen tw:md:max-w-lg tw:md:pt-0 tw:mt-14 tw:md:mt-0 tw:contents"
+        className="tw:daisy-dropdown-content tw:bg-base-100/95tw:z-20 tw:shadow tw:left-0 tw:fixed! tw:md:absolute! tw:w-screen tw:md:max-w-lg tw:md:pt-0 tw:mt-14 tw:md:mt-0 tw:contents"
       >
         {output}
       </ul>
@@ -653,7 +651,7 @@ export const HeaderMenuLayoutViewIcons = (props) => {
       </Tooltip>
       <Tooltip tip="Apply this layout to the pattern">
         <button
-          className="tw-daisy-btn tw-daisy-btn-ghost tw-daisy-btn-sm tw:px-1 tw:disabled:bg-transparent tw:text-secondary"
+          className="tw:daisy-btn tw:daisy-btn-ghost tw:daisy-btn-sm tw:px-1 tw:disabled:bg-transparent tw:text-secondary"
           onClick={applyLayout}
           disabled={!layoutValid}
         >
@@ -662,7 +660,7 @@ export const HeaderMenuLayoutViewIcons = (props) => {
       </Tooltip>
       <Tooltip tip="Generate a PDF that you can print">
         <button
-          className="tw-daisy-btn tw-daisy-btn-ghost tw-daisy-btn-sm tw:px-1 tw:disabled:bg-transparent tw:text-secondary"
+          className="tw:daisy-btn tw:daisy-btn-ghost tw:daisy-btn-sm tw:px-1 tw:disabled:bg-transparent tw:text-secondary"
           onClick={() => update.view('export')}
         >
           <PrintIcon />
@@ -670,7 +668,7 @@ export const HeaderMenuLayoutViewIcons = (props) => {
       </Tooltip>
       <Tooltip tip="Reset the custom layout">
         <button
-          className="tw-daisy-btn tw-daisy-btn-ghost tw-daisy-btn-sm tw:px-1 tw:disabled:bg-transparent tw:text-secondary"
+          className="tw:daisy-btn tw:daisy-btn-ghost tw:daisy-btn-sm tw:px-1 tw:disabled:bg-transparent tw:text-secondary"
           onClick={resetLayout}
         >
           <ResetIcon />

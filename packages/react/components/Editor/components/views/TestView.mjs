@@ -107,7 +107,7 @@ export const TestView = ({ Design, state, update, config }) => {
                 {trm.map(({ t, m }) => (
                   <button
                     key={m}
-                    className="tw:my-0.5 tw:block tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-outline tw-daisy-btn-xs"
+                    className="tw:my-0.5 tw:block tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline tw:daisy-btn-xs"
                     onClick={() =>
                       update.settings(['sample'], { type: 'measurement', measurement: m })
                     }
@@ -123,7 +123,7 @@ export const TestView = ({ Design, state, update, config }) => {
                     {tom.map(({ t, m }) => (
                       <button
                         key={m}
-                        className="tw:my-0.5 tw:block tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-outline tw-daisy-btn-xs"
+                        className="tw:my-0.5 tw:block tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline tw:daisy-btn-xs"
                         onClick={() =>
                           update.settings(['sample'], { type: 'measurement', measurement: m })
                         }
@@ -175,7 +175,7 @@ const SampleOptionsSubMenu = ({ structure, update, level = 1 }) => {
       output.push(
         <button
           key={name}
-          className="tw:my-0.5 tw:block tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-outline tw-daisy-btn-xs"
+          className="tw:my-0.5 tw:block tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline tw:daisy-btn-xs"
           onClick={() => update.settings(['sample'], { type: 'option', option: name })}
         >
           {struct.title}

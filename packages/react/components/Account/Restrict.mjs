@@ -80,7 +80,7 @@ export const Restrict = ({ Link = false }) => {
                 <IconButton
                   onClick={clearModal}
                   color="primary"
-                  className="tw:mx-auto tw-daisy-btn-outline tw:mt-4"
+                  className="tw:mx-auto tw:daisy-btn-outline tw:mt-4"
                 >
                   <BackIcon />
                   Back to safety

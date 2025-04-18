@@ -10,7 +10,7 @@ import { FormControl } from '@freesewing/react/components/Input'
 import { MiniTip } from '@freesewing/react/components/Mini'
 
 /** @type {String} class to apply to buttons on open menu items */
-const iconButtonClass = 'tw-daisy-btn tw-daisy-btn-xs tw-daisy-btn-ghost tw:px-0 tw:text-accent'
+const iconButtonClass = 'tw:daisy-btn tw:daisy-btn-xs tw:daisy-btn-ghost tw:px-0 tw:text-accent'
 
 /**
  * A generic component for handling a menu item.
@@ -89,7 +89,7 @@ export const MenuItem = ({
     )
   const ResetButton = ({ disabled = false }) => (
     <button
-      className={`${iconButtonClass} tw:disabled:bg-opacity-0`}
+      className={iconButtonClass}
       disabled={disabled}
       onClick={(evt) => {
         evt.stopPropagation()

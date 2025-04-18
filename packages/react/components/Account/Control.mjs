@@ -77,7 +77,7 @@ export const Control = ({ welcome = false }) => {
           {welcomeSteps[control].length > 1 ? (
             <>
               <progress
-                className="tw-daisy-progress tw-daisy-progress-primary tw:w-full tw:mt-12"
+                className="tw:daisy-progress tw:daisy-progress-primary tw:w-full tw:mt-12"
                 value={100 / welcomeSteps[control].length}
                 max="100"
               ></progress>

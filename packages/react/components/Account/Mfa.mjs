@@ -107,14 +107,14 @@ export const Mfa = ({ welcome = false, title = true }) => {
           <input
             value={code}
             onChange={(evt) => setCode(evt.target.value)}
-            className="tw-daisy-input tw:w-64 tw:m-auto tw:text-4xl tw-daisy-input-bordered tw-daisy-input-lg tw:flex tw:flex-row tw:text-center tw:mb-8 tw:tracking-widest"
+            className="tw:daisy-input tw:w-64 tw:m-auto tw:text-4xl tw:daisy-input-bordered tw:daisy-input-lg tw:flex tw:flex-row tw:text-center tw:mb-8 tw:tracking-widest"
             type="text"
             inputMode="numeric"
             pattern="[0-9]{6}"
             placeholder="000000"
           />
           <button
-            className={`${horFlexClasses} tw-daisy-btn tw-daisy-btn-success tw-daisy-btn-lg tw:block tw:w-full tw:md:w-auto tw:mx-auto`}
+            className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-success tw:daisy-btn-lg tw:block tw:w-full tw:md:w-auto tw:mx-auto`}
             onClick={confirmMfa}
           >
             <LockIcon />
@@ -138,13 +138,13 @@ export const Mfa = ({ welcome = false, title = true }) => {
             <input
               value={code}
               onChange={(evt) => setCode(evt.target.value)}
-              className="tw-input tw:w-full tw:text-4xl tw-input-bordered tw-input-lg tw:flex tw:flex-row tw:text-center tw:mb-8 tw:tracking-widest"
+              className="tw:input tw:w-full tw:text-4xl tw:input-bordered tw:input-lg tw:flex tw:flex-row tw:text-center tw:mb-8 tw:tracking-widest"
               type="text"
               placeholder={'000000'}
             />
           </Bullet>
           <button
-            className={`${horFlexClasses} tw-daisy-btn tw-daisy-btn-error tw-daisy-btn-lg`}
+            className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-error tw:daisy-btn-lg`}
             onClick={disableMfa}
             disabled={code.length < 4 || password.length < 3}
           >
@@ -183,7 +183,7 @@ export const Mfa = ({ welcome = false, title = true }) => {
           {account.mfaEnabled ? (
             disable ? null : (
               <button
-                className={`${horFlexClasses} tw-daisy-btn tw-daisy-btn-primary tw:w-full tw:md:w-auto tw-daisy-btn-outline`}
+                className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-primary tw:w-full tw:md:w-auto tw:daisy-btn-outline`}
                 onClick={() => setDisable(true)}
               >
                 <NoIcon stroke={3} />
@@ -193,7 +193,7 @@ export const Mfa = ({ welcome = false, title = true }) => {
           ) : enable ? null : (
             <div>
               <button
-                className={`${horFlexClasses} tw-daisy-btn tw-daisy-btn-primary tw:w-full tw:md:w-auto tw-daisy-btn-lg`}
+                className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-primary tw:w-full tw:md:w-auto tw:daisy-btn-lg`}
                 onClick={enableMfa}
               >
                 <LockIcon />

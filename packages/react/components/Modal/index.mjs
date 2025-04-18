@@ -29,8 +29,8 @@ export const ModalWrapper = ({
   flex = 'row',
   justify = 'center',
   items = 'center',
-  bg = 'neutral lg:tw-neutral',
-  bgOpacity = '100 tw:lg:bg-opacity-70',
+  bg = 'neutral',
+  bgOpacity = '70',
   bare = false,
   keepOpenOnClick = false,
   slideFrom = 'left',
@@ -68,8 +68,8 @@ export const ModalWrapper = ({
     <div
       className={`tw:fixed tw:top-0 tw:left-0 tw:m-0 tw:p-0 tw:shadow tw:w-full tw:h-screen
         tw:transform-all tw:duration-150 ${animation}
-        tw-bg-${bg} tw-bg-opacity-${bgOpacity} tw:hover:cursor-pointer
-        tw:flex tw-flex-${flex} tw-justify-${justify} tw-items-${items} tw:lg:p-12 tw:backdrop-blur-md`}
+        tw:bg-${bg}/${bgOpacity} tw:hover:cursor-pointer
+        tw:flex tw:flex-${flex} tw:justify-${justify} tw:items-${items} tw:lg:p-12 tw:backdrop-blur-md`}
       onClick={close}
       style={{ zIndex: 250 }}
     >
@@ -84,7 +84,7 @@ export const ModalWrapper = ({
         >
           {children}
           <button
-            className="tw:fixed tw:bottom-2 tw:right-2 tw-daisy-btn tw-daisy-btn-neutral tw-daisy-btn-circle tw:lg:hidden"
+            className="tw:fixed tw:bottom-2 tw:right-2 tw:daisy-btn tw:daisy-btn-neutral tw:daisy-btn-circle tw:lg:hidden"
             onClick={close}
           >
             <CloseIcon className="tw:w-8 tw:h-8" />

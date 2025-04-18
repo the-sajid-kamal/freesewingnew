@@ -91,14 +91,14 @@ export const Patterns = ({ Link = false }) => {
     <>
       <div className="tw:flex tw:flex-row tw:flex-wrap tw:gap-2 tw:items-center tw:justify-between tw:mb-4">
         <button
-          className="tw-daisy-btn tw-daisy-btn-error"
+          className="tw:daisy-btn tw:daisy-btn-error"
           onClick={removeSelectedPatterns}
           disabled={count < 1}
         >
           <TrashIcon /> {count} {t('patterns')}
         </button>
         <Link
-          className="tw-daisy-btn tw-daisy-btn-primary tw:capitalize tw:w-full tw:md:w-auto tw:hover:text-primary-content"
+          className="tw:daisy-btn tw:daisy-btn-primary tw:capitalize tw:w-full tw:md:w-auto tw:hover:text-primary-content"
           href="/editor/"
         >
           <PlusIcon />
@@ -112,7 +112,7 @@ export const Patterns = ({ Link = false }) => {
               <th className="">
                 <input
                   type="checkbox"
-                  className="tw-daisy-checkbox tw-daisy-checkbox-secondary"
+                  className="tw:daisy-checkbox tw:daisy-checkbox-secondary"
                   onClick={toggleAll}
                   checked={patterns.length === count}
                 />
@@ -120,13 +120,13 @@ export const Patterns = ({ Link = false }) => {
               {Object.keys(fields).map((field) => (
                 <th key={field}>
                   <button
-                    className="tw-daisy-btn tw-daisy-btn-link tw:capitalize tw:px-0 tw:underline tw:hover:decoration-4 tw:decoration-2 tw:text-secondary"
+                    className="tw:daisy-btn tw:daisy-btn-link tw:capitalize tw:px-0 tw:underline tw:hover:decoration-4 tw:decoration-2 tw:text-secondary"
                     onClick={() => (order === field ? setDesc(!desc) : setOrder(field))}
                   >
                     {fields[field]}{' '}
                     <RightIcon
                       stroke={3}
-                      className={`tw:w-4 tw:h-4 ${desc ? 'tw--' : 'tw-'}rotate-90 ${order === field ? '' : 'tw:opacity-0'}`}
+                      className={`tw:w-4 tw:h-4 ${desc ? 'tw:-' : 'tw:'}rotate-90 ${order === field ? '' : 'tw:opacity-0'}`}
                     />
                   </button>
                 </th>
@@ -140,7 +140,7 @@ export const Patterns = ({ Link = false }) => {
                   <input
                     type="checkbox"
                     checked={selection[pattern.id] ? true : false}
-                    className="tw-daisy-checkbox tw-daisy-checkbox-secondary"
+                    className="tw:daisy-checkbox tw:daisy-checkbox-secondary"
                     onClick={() => toggle(pattern.id)}
                   />
                 </td>

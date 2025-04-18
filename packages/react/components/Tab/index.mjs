@@ -32,10 +32,10 @@ export const Tabs = ({ tabs = '', active = 0, children, withModal = false }) => 
 
   return (
     <div className="">
-      <div className="tw-daisy-tabs tw-daisy-tabs-bordered" role="tablist">
+      <div className="tw:daisy-tabs tw:daisy-tabs-bordered" role="tablist">
         {tablist.map((title, tabId) => {
-          const btnClasses = `tw:text-lg tw:font-bold tw:capitalize tw-daisy-tab tw:h-auto tw-daisy-tabs-bordered tw:grow tw:py-1 ${
-            activeTab === tabId ? 'tw-daisy-tab-active' : ''
+          const btnClasses = `tw:text-lg tw:font-bold tw:capitalize tw:daisy-tab tw:h-auto tw:daisy-tabs-bordered tw:grow tw:py-1 ${
+            activeTab === tabId ? 'tw:daisy-tab-active' : ''
           } tw:border-b-2 tw:border-solid tw:border-x-0 tw:border-t-0 tw:bg-transparent`
 
           return withModal && activeTab === tabId ? (
@@ -57,7 +57,7 @@ export const Tabs = ({ tabs = '', active = 0, children, withModal = false }) => 
               }
             >
               <span className="tw:pr-2">{title}</span>
-              <KioskIcon className="tw:w-6 tw:h-6 hover:tw-tw-text-secondary" />
+              <KioskIcon className="tw:w-6 tw:h-6 hover:tw:tw:text-secondary" />
             </button>
           ) : (
             <button key={tabId} className={btnClasses} onClick={() => setActiveTab(tabId)}>

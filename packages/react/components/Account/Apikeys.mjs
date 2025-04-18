@@ -104,14 +104,14 @@ export const Apikeys = ({ Link = false }) => {
     <>
       <div className="tw:flex tw:flex-row tw:flex-wrap tw:gap-2 tw:items-center tw:justify-between tw:mb-4">
         <button
-          className="tw-daisy-btn tw-daisy-btn-error"
+          className="tw:daisy-btn tw:daisy-btn-error"
           onClick={removeSelectedApikeys}
           disabled={count < 1}
         >
           <TrashIcon /> {count} API Keys
         </button>
         <button
-          className="tw-daisy-btn tw-daisy-btn-primary tw:capitalize tw:w-full tw:md:w-auto tw:hover:text-primary-content"
+          className="tw:daisy-btn tw:daisy-btn-primary tw:capitalize tw:w-full tw:md:w-auto tw:hover:text-primary-content"
           onClick={() =>
             setModal(
               <ModalWrapper keepOpenOnClick>
@@ -131,7 +131,7 @@ export const Apikeys = ({ Link = false }) => {
               <th className="">
                 <input
                   type="checkbox"
-                  className="tw-daisy-checkbox tw-daisy-checkbox-secondary"
+                  className="tw:daisy-checkbox tw:daisy-checkbox-secondary"
                   onClick={toggleAll}
                   checked={apikeys.length === count}
                 />
@@ -139,13 +139,13 @@ export const Apikeys = ({ Link = false }) => {
               {Object.keys(fields).map((field) => (
                 <th key={field}>
                   <button
-                    className="tw-daisy-btn tw-daisy-btn-link tw:capitalize tw:px-0 underline tw-hover:decoration-4 tw:decoration-2 tw:text-secondary"
+                    className="tw:daisy-btn tw:daisy-btn-link tw:capitalize tw:px-0 underline tw:hover:decoration-4 tw:decoration-2 tw:text-secondary"
                     onClick={() => (order === field ? setDesc(!desc) : setOrder(field))}
                   >
                     {fields[field]}{' '}
                     <RightIcon
                       stroke={3}
-                      className={`tw:w-4 tw:h-4 ${desc ? 'tw--' : 'tw-'}rotate-90 ${order === field ? '' : 'tw:opacity-0'}`}
+                      className={`tw:w-4 tw:h-4 ${desc ? 'tw:-' : 'tw:'}rotate-90 ${order === field ? '' : 'tw:opacity-0'}`}
                     />
                   </button>
                 </th>
@@ -159,7 +159,7 @@ export const Apikeys = ({ Link = false }) => {
                   <input
                     type="checkbox"
                     checked={selection[apikey.id] ? true : false}
-                    className="tw-daisy-checkbox tw-daisy-checkbox-secondary"
+                    className="tw:daisy-checkbox tw:daisy-checkbox-secondary"
                     onClick={() => toggle(apikey.id)}
                   />
                 </td>
@@ -171,7 +171,7 @@ export const Apikeys = ({ Link = false }) => {
                   .map((field) => (
                     <td key={field} className="tw:text-base tw:font-medium">
                       <button
-                        className="tw-daisy-btn tw-daisy-btn-link tw:text-secondary tw:hover:decoration-4"
+                        className="tw:daisy-btn tw:daisy-btn-link tw:text-secondary tw:hover:decoration-4"
                         onClick={() =>
                           setModal(
                             <ModalWrapper>
@@ -280,7 +280,7 @@ const NewApikey = ({ onCreate = false }) => {
           />
           <div className="tw:flex tw:flex-row tw:gap-2 tw:items-center tw:w-full tw:my-8">
             <button
-              className="tw-daisy-btn tw-daisy-btn-primary tw:capitalize tw:w-full tw:md:w-auto"
+              className="tw:daisy-btn tw:daisy-btn-primary tw:capitalize tw:w-full tw:md:w-auto"
               disabled={name.length < 1}
               onClick={createKey}
             >
@@ -341,7 +341,7 @@ const ExpiryPicker = ({ expires, setExpires }) => {
           min="1"
           max={731}
           value={days}
-          className="tw-daisy-range tw-daisy-range-secondary tw:w-full"
+          className="tw:daisy-range tw:daisy-range-secondary tw:w-full"
           onChange={update}
         />
       </FormControl>

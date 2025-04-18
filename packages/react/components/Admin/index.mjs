@@ -58,11 +58,11 @@ export const SubscriberAdministration = ({ page }) => {
               autoFocus
               value={q}
               onChange={(evt) => setQ(evt.target.value)}
-              className="tw-daisy-input tw:w-full tw-daisy-input-bordered tw:flex tw:flex-row"
+              className="tw:daisy-input tw:w-full tw:daisy-input-bordered tw:flex tw:flex-row"
               type="text"
               placeholder="Username, ID, or E-mail address"
             />
-            <button onClick={search} className="tw-daisy-btn tw-daisy-btn-primary">
+            <button onClick={search} className="tw:daisy-btn tw:daisy-btn-primary">
               <SearchIcon />
             </button>
           </div>
@@ -83,7 +83,7 @@ export const SubscriberAdministration = ({ page }) => {
                   <td className="tw:w-12">{hit.lang.toUpperCase()}</td>
                   <td className="tw:w-full">
                     <button
-                      className="tw-daisy-btn tw-daisy-btn-link"
+                      className="tw:daisy-btn tw:daisy-btn-link"
                       onClick={() => unsubscribe(hit.ehash)}
                     >
                       Unsubscribe
@@ -96,7 +96,7 @@ export const SubscriberAdministration = ({ page }) => {
         </>
       ) : (
         <button
-          className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-lg"
+          className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-lg"
           onClick={loadSubscribers}
         >
           Load Subscribers
@@ -135,13 +135,13 @@ export const UserAdministration = ({ Link = false }) => {
               autoFocus
               value={q}
               onChange={(evt) => setQ(evt.target.value)}
-              className="tw-daisy-input tw:w-full tw-daisy-input-bordered tw:flex tw:flex-row"
+              className="tw:daisy-input tw:w-full tw:daisy-input-bordered tw:flex tw:flex-row"
               type="text"
               placeholder="Username, ID, or E-mail address"
             />
             <button
               onClick={search}
-              className="tw-daisy-btn tw-daisy-btn-primary"
+              className="tw:daisy-btn tw:daisy-btn-primary"
               disabled={q.length < 3}
             >
               <SearchIcon />
@@ -210,7 +210,7 @@ export const User = ({ user, Link }) => {
         </div>
         <div className="tw:w-full tw:flex tw:flex-row tw:flex-wrap tw:gap-1">
           <button
-            className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-sm tw-daisy-btn-outline"
+            className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-sm tw:daisy-btn-outline"
             onClick={() =>
               setModal(
                 <ModalWrapper>
@@ -246,7 +246,7 @@ export const ImpersonateButton = ({ userId }) => {
 
   return (
     <button
-      className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-sm tw-daisy-btn-outline"
+      className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-sm tw:daisy-btn-outline"
       onClick={impersonateUser}
     >
       Impersonate

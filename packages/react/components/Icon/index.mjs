@@ -67,12 +67,12 @@ export const BackIcon = (props) => (
 
 // Looks like a red X
 export const BoolNoIcon = ({ size = 6 }) => (
-  <NoIcon className={`tw-w-${size} tw-h-${size} tw:text-error`} stroke={4} />
+  <NoIcon className={`tw:w-${size} tw:h-${size} tw:text-error`} stroke={4} />
 )
 
 // Looks like a green checkbox
 export const BoolYesIcon = ({ size = 6 }) => (
-  <OkIcon className={`tw-w-${size} tw-h-${size} tw:text-success`} stroke={4} />
+  <OkIcon className={`tw:w-${size} tw:h-${size} tw:text-success`} stroke={4} />
 )
 
 // Looks like a bookmark
@@ -258,7 +258,7 @@ export const ExportIcon = (props) => (
 
 // Looks like a ! in a triangle, is intended to be shown on an error background
 export const FailureIcon = ({ size = 6 }) => (
-  <NoIcon className={`tw-w-${size} tw-h-${size} tw:text-secondary-content`} stroke={4} />
+  <NoIcon className={`tw:w-${size} tw:h-${size} tw:text-secondary-content`} stroke={4} />
 )
 
 // Looks like a funnel
@@ -703,7 +703,7 @@ export const SpinnerIcon = (props) => (
 
 // Looks like a white checkbox, intended to be shown on a success-colored background
 export const SuccessIcon = ({ size = 6 }) => (
-  <OkIcon className={`tw-w-${size} tw-h-${size} tw:text-secondary-content`} stroke={4} />
+  <OkIcon className={`tw:w-${size} tw:h-${size} tw:text-secondary-content`} stroke={4} />
 )
 
 // Looks like the TikTok t

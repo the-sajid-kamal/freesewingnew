@@ -149,11 +149,11 @@ export const Stats = ({ Link = false }) => {
 }
 
 const Stat = ({ title, value, desc = 'Total Number Stored' }) => (
-  <div className="tw-daisy-stats tw:shadow">
-    <div className="tw-daisy-stat">
-      <div className="tw-daisy-stat-title">{title}</div>
-      <div className="tw-daisy-stat-value">{formatNumber(value)}</div>
-      <div className="tw-daisy-stat-desc">{desc}</div>
+  <div className="tw:daisy-stats tw:shadow">
+    <div className="tw:daisy-stat">
+      <div className="tw:daisy-stat-title">{title}</div>
+      <div className="tw:daisy-stat-value">{formatNumber(value)}</div>
+      <div className="tw:daisy-stat-desc">{desc}</div>
     </div>
   </div>
 )

@@ -45,7 +45,7 @@ export const Flag = ({ data, handleUpdate, strings }) => {
   const button =
     data.suggest?.text && data.suggest?.update ? (
       <button
-        className={`tw-daisy-btn tw-daisy-btn-secondary tw-daisy-btn-outline tw:flex tw:flex-row tw:items-center ${
+        className={`tw:daisy-btn tw:daisy-btn-secondary tw:daisy-btn-outline tw:flex tw:flex-row tw:items-center ${
           btnIcon ? 'tw:gap-6' : ''
         }`}
         onClick={() => handleUpdate(data.suggest.update)}
@@ -131,9 +131,9 @@ export const FlagsAccordionEntries = ({ flags, update, pattern, strings }) => {
         const title = flag.replace ? mustache.render(flag.title, flag.replace) : flag.title
 
         return [
-          <div className="tw:w-full tw:flex tw:flex-row tw-gap2 tw:justify-between" key={i}>
+          <div className="tw:w-full tw:flex tw:flex-row tw:gap2 tw:justify-between" key={i}>
             <div className="tw:flex tw:flex-row tw:items-center tw:gap-2">
-              <div className="tw-no-shrink">
+              <div className="tw:no-shrink">
                 <FlagIcon type={flag.type} />
               </div>
               <span className="tw:font-medium tw:text-left">{strings[title] || title}</span>

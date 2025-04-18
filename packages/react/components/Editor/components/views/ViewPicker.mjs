@@ -60,7 +60,7 @@ export const ViewPicker = ({ Design, update, state }) => {
       ) : null}
       {state.ui.ux < 4 ? (
         <button
-          className="tw-daisy-btn tw-daisy-btn-ghost tw:mt-2"
+          className="tw:daisy-btn tw:daisy-btn-ghost tw:mt-2"
           onClick={() => setShowDev(!showDev)}
         >
           {showDev ? 'Hide' : 'Show'} Advanced Views
@@ -75,7 +75,7 @@ const MainCard = ({ view, update, Design }) => {
 
   return (
     <button
-      className={`tw:border tw:shadow tw:p-4 tw:rounded-lg tw:w-full tw:hover:bg-secondary tw:hover:bg-opacity-20 tw:flex tw:flex-col`}
+      className={`tw:border tw:shadow tw:p-4 tw:rounded-lg tw:w-full tw:hover:bg-secondary/20 tw:flex tw:flex-col`}
       title={viewLabels[view].t}
       onClick={() => update.view(view)}
     >
@@ -98,7 +98,7 @@ const ExtraCard = ({ view, update }) => {
   const Icon = viewIcons[view]
   return (
     <button
-      className="tw:border tw:shadow tw:p-3 tw:rounded-lg tw:w-full tw:hover:bg-secondary tw:hover:bg-opacity-20 tw:flex tw:flex-col"
+      className="tw:border tw:shadow tw:p-3 tw:rounded-lg tw:w-full tw:hover:bg-secondary/20 tw:flex tw:flex-col"
       title={viewLabels[view].t}
       onClick={() => update.view(view)}
     >

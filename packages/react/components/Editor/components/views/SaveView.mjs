@@ -103,7 +103,7 @@ export const SaveView = ({ config, state, update }) => {
               </Popout>
             )}
             <button
-              className={`${classeshorFlexNoSm} tw-btn tw-btn-primary tw-btn-lg tw:w-full tw:mt-2 tw:my-8`}
+              className={`${classeshorFlexNoSm} tw:btn tw:btn-primary tw:btn-lg tw:w-full tw:mt-2 tw:my-8`}
               onClick={savePattern}
             >
               <SaveIcon className="tw:h-8 tw:w-8" />
@@ -152,14 +152,14 @@ export const SaveView = ({ config, state, update }) => {
           ) : null}
           <div className="tw:flex tw:flex-row tw:gap-2 tw:mt-8">
             <button
-              className={`tw-daisy-btn tw-daisy-btn-primary lg:tw-daisy-btn-lg tw-daisy-btn-outline`}
+              className={`tw:daisy-btn tw:daisy-btn-primary lg:tw:daisy-btn-lg tw:daisy-btn-outline`}
               onClick={update.viewBack}
               title="Cancel"
             >
               <span>Cancel</span>
             </button>
             <button
-              className={`tw:flex tw:flex-row tw:items-center tw:justify-between tw-daisy-btn tw-daisy-btn-primary lg:tw-daisy-btn-lg tw:grow`}
+              className={`tw:flex tw:flex-row tw:items-center tw:justify-between tw:daisy-btn tw:daisy-btn-primary lg:tw:daisy-btn-lg tw:grow`}
               onClick={saveAsNewPattern}
               title="Save as new pattern"
             >

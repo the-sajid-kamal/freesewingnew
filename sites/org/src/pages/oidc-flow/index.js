@@ -76,11 +76,11 @@ export default function SignInPage() {
                 <div className="tw:grid tw:grid-cols-2 tw:gap-2 tw:mt-2">
                   <button
                     type="submit"
-                    className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-outline"
+                    className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline"
                   >
                     Deny
                   </button>
-                  <button type="submit" className="tw-daisy-btn tw-daisy-btn-primary">
+                  <button type="submit" className="tw:daisy-btn tw:daisy-btn-primary">
                     Allow
                   </button>
                 </div>

@@ -36,8 +36,8 @@ export const MenuConstantInput = ({
     <input
       type={type}
       className={`
-      tw-daisy-input tw-daisy-input-bordered tw:w-full tw:text-base-content
-      ${changed ? 'tw-daisy-input-secondary' : 'tw-daisy-input-accent'}
+      tw:daisy-input tw:daisy-input-bordered tw:w-full tw:text-base-content
+      ${changed ? 'tw:daisy-input-secondary' : 'tw:daisy-input-accent'}
     `}
       value={changed ? current : config.dflt}
       onChange={(evt) => updateHandler([name], evt.target.value)}
@@ -178,7 +178,7 @@ export const MenuListToggle = ({ config, changed, updateHandler, name }) => {
   return (
     <input
       type="checkbox"
-      className={`tw-daisy-toggle ${changed ? 'tw-daisy-toggle-accent' : 'tw-daisy-toggle-secondary'}`}
+      className={`tw:daisy-toggle ${changed ? 'tw:daisy-toggle-accent' : 'tw:daisy-toggle-secondary'}`}
       checked={checked}
       onChange={doToggle}
       onClick={(evt) => evt.stopPropagation()}
@@ -349,8 +349,8 @@ export const MenuSliderInput = ({
         {...{ min, max, value: val, step: config.step || 0.1 }}
         onChange={(evt) => handleChange(evt.target.value)}
         className={`
-          tw-daisy-range tw-daisy-range-sm tw:mt-1
-          ${changed ? 'tw-daisy-range-accent' : 'tw-daisy-range-secondary'}
+          tw:daisy-range tw:daisy-range-sm tw:mt-1
+          ${changed ? 'tw:daisy-range-accent' : 'tw:daisy-range-secondary'}
         `}
       />
       {children}
@@ -396,21 +396,21 @@ export const MenuEditOption = (props) => {
     return <p>This design option type does not have a component to handle manual input.</p>
 
   return (
-    <div className="tw-daisy-form-control tw:mb-2 tw:w-full">
-      <div className="tw-daisy-label tw:font-medium tw:text-accent">
-        <label className="tw-daisy-label-text">
+    <div className="tw:daisy-form-control tw:mb-2 tw:w-full">
+      <div className="tw:daisy-label tw:font-medium tw:text-accent">
+        <label className="tw:daisy-label-text">
           <em>Enter a custom value</em>
         </label>
         {type === 'pct' && typeof config.fromAbs === 'function' ? (
-          <label className="tw-daisy-label-text">
+          <label className="tw:daisy-label-text">
             <KeyVal k="units" val={units} onClick={toggleInputUnits} color="secondary" />
           </label>
         ) : null}
       </div>
-      <label className="tw-daisy-input-group tw-daisy-input-group-sm tw:flex tw:flex-row tw:items-end tw:gap-2 tw:-mt-4">
+      <label className="tw:daisy-input-group tw:daisy-input-group-sm tw:flex tw:flex-row tw:items-end tw:gap-2 tw:-mt-4">
         <NumberInput value={manualEdit} update={setManualEdit} />
         <button
-          className="tw-daisy-btn tw-daisy-btn-secondary tw:mt-4"
+          className="tw:daisy-btn tw:daisy-btn-secondary tw:mt-4"
           onClick={() => onUpdate(manualEdit, units)}
         >
           <ApplyIcon />

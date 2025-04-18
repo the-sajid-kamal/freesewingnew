@@ -63,7 +63,7 @@ export const Remove = () => {
                 <IconButton
                   onClick={clearModal}
                   color="primary"
-                  className="tw:mx-auto tw-daisy-btn-outline tw:mt-4"
+                  className="tw:mx-auto tw:daisy-btn-outline tw:mt-4"
                 >
                   <ExitIcon />
                   Back to safety

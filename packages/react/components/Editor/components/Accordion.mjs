@@ -6,18 +6,14 @@ import React, { useState } from 'react'
  */
 const getProps = (isActive = false) => ({
   className: `tw:p-2 tw:px-4 tw:rounded-lg tw:bg-transparent tw:shadow tw:hover:cursor-pointer
-    tw:w-full tw:h-auto tw:content-start tw:text-left tw:bg-opacity-20
-    ${isActive ? 'tw:hover:bg-transparent' : 'tw:hover:bg-secondary tw:hover:bg-opacity-10'}`,
+    tw:w-full tw:h-auto tw:content-start tw:text-left
+    ${isActive ? 'tw:hover:bg-transparent' : 'tw:hover:bg-secondary/10'}`,
 })
 
 const getSubProps = (isActive) => ({
   className: `tw:p-2 tw:px-4 tw:rounded-none tw:bg-transparent tw:w-full tw:h-auto
-  tw:content-start tw:bg-secondary tw:text-left tw:bg-opacity-20
-  ${
-    isActive
-      ? 'tw:bg-opacity-100 tw:hover:bg-transparent tw:shadow'
-      : 'tw:hover:bg-opacity-10 tw:hover:bg-secondary '
-  }`,
+  tw:content-start tw:bg-secondary/20 tw:text-left
+  ${isActive ? 'tw:bg-secondary tw:hover:bg-transparent tw:shadow' : 'tw:hover:bg-secondary/10 '}`,
 })
 
 const components = {
@@ -43,7 +39,7 @@ export const BaseAccordion = ({
             <div key={i} {...propsGetter(true)}>
               <Component
                 onClick={setActive}
-                className="tw:w-full tw:bg-transparent tw:border-0 tw:hover:bg-secondary tw:hover:bg-opacity-20  tw:hover:cursor-pointer"
+                className="tw:w-full tw:bg-transparent tw:border-0 tw:hover:bg-secondary/20 tw:hover:cursor-pointer"
               >
                 {item[0]}
               </Component>

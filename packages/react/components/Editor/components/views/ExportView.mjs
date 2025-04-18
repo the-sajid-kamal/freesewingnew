@@ -101,7 +101,7 @@ export const ExportView = (props) => {
             <H3>ISO paper sizes</H3>
             {['a4', 'a3', 'a2', 'a1', 'a0'].map((format) => (
               <button
-                className={`${horFlexClasses} tw-daisy-btn tw-daisy-btn-primary tw:uppercase`}
+                className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-primary tw:uppercase`}
                 onClick={() => exportPattern({ ...exportProps, format })}
               >
                 <PrintIcon />
@@ -113,7 +113,7 @@ export const ExportView = (props) => {
             <H3>Other paper sizes</H3>
             {['letter', 'legal', 'tabloid'].map((format) => (
               <button
-                className={`${horFlexClasses} tw-daisy-btn tw-daisy-btn-primary tw:uppercase`}
+                className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-primary tw:uppercase`}
                 onClick={() => exportPattern({ ...exportProps, format })}
               >
                 <PrintIcon />
@@ -129,7 +129,7 @@ export const ExportView = (props) => {
         <div className="tw:grid tw:grid-cols-1 tw:lg:grid-cols-2 tw:gap-2 tw:mt-2">
           {['svg', 'pdf'].map((format) => (
             <button
-              className={`${horFlexClasses} tw-daisy-btn tw-daisy-btn-primary tw:uppercase`}
+              className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-primary tw:uppercase`}
               onClick={() => exportPattern({ ...exportProps, format })}
             >
               <EditIcon />
@@ -142,7 +142,7 @@ export const ExportView = (props) => {
         <div className="tw:grid tw:grid-cols-1 tw:lg:grid-cols-2 tw:gap-2 tw:mt-2">
           {['json', 'yaml'].map((format) => (
             <button
-              className={`${horFlexClasses} tw-daisy-btn tw-daisy-btn-primary tw:uppercase`}
+              className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-primary tw:uppercase`}
               onClick={() => exportPattern({ ...exportProps, format })}
             >
               <CodeIcon />

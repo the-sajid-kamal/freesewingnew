@@ -76,14 +76,14 @@ export const CardLink = ({
     <Link
       href={href}
       className={`tw:px-8 tw:py-10 tw:rounded-lg tw:block ${className}
-      tw:hover:bg-secondary tw:hover:bg-opacity-10 tw:shadow-lg
-      tw:transition-color tw:duration-300 grow tw:hover:no-underline tw:hover:text-base-content`}
+      tw:hover:bg-secondary/5 tw:shadow-lg tw:bg-base-200
+      tw:transition-color tw:duration-300 grow tw:hover:no-underline no-hover-decoration`}
     >
-      <h2 className="tw:mb-4 tw:text-inherit tw:flex tw:flex-row tw:gap-4 tw:justify-between tw:items-center">
-        {title}
-        <span className="tw:shrink-0">{icon}</span>
+      <h2 className="tw:mb-4 tw:text-base-content tw:flex tw:flex-row tw:gap-4 tw:justify-between tw:items-center">
+        <span className="tw:text-base-content">{title}</span>
+        <span className="tw:shrink-0 tw:text-base-content">{icon}</span>
       </h2>
-      {children}
+      <div className="tw:text-base-content">{children}</div>
     </Link>
   )
 }

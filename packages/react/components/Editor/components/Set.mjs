@@ -56,7 +56,7 @@ export const UserSetPicker = ({
           {config.hrefNewSet ? (
             <a
               href={config.hrefNewSet}
-              className="tw-daisy-btn tw-daisy-btn-accent tw:capitalize"
+              className="tw:daisy-btn tw:daisy-btn-accent tw:capitalize"
               target="_BLANK"
               rel="nofollow"
             >

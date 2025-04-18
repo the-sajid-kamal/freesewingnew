@@ -89,26 +89,26 @@ export const Subscribe = ({
   return (
     <div className="tw:w-full">
       <div className="tw:flex tw:flex-row tw:gap-2">
-        <div className="tw-daisy-form-control tw:w-full">
-          <label className="tw-daisy-label">
-            <span className="tw-daisy-label-text-alt tw:text-inherit">Your Contribution</span>
+        <div className="tw:daisy-form-control tw:w-full">
+          <label className="tw:daisy-label">
+            <span className="tw:daisy-label-text-alt tw:text-inherit">Your Contribution</span>
           </label>
           <input
             type="text"
             inputMode="decimal"
             placeholder="Enter amount here"
             pattern="[0-9]+([.][0-9]+)?"
-            className="tw-daisy-input tw-daisy-input-bordered tw:w-full tw:text-base-content"
+            className="tw:daisy-input tw:daisy-input-bordered tw:w-full tw:text-base-content"
             value={amount}
             onChange={(evt) => setAmount(evt.target.value)}
           />
         </div>
-        <div className="tw-form-control tw:w-24">
-          <label className="tw-daisy-label">
-            <span className="tw-daisy-label-text-alt tw:text-inherit">Currency</span>
+        <div className="tw:form-control tw:w-24">
+          <label className="tw:daisy-label">
+            <span className="tw:daisy-label-text-alt tw:text-inherit">Currency</span>
           </label>
           <select
-            className="tw-daisy-select tw-daisy-select-bordered tw:text-base-content"
+            className="tw:daisy-select tw:daisy-select-bordered tw:text-base-content"
             defaultValue={currency}
             onChange={(evt) => setCurrency(evt.target.value)}
           >
@@ -121,8 +121,8 @@ export const Subscribe = ({
         </div>
       </div>
       <div>
-        <label className="tw-daisy-label">
-          <div className="tw-daisy-label-text-alt tw:text-inherit tw:flex tw:flex-row tw:flex-wrap tw:gap-1">
+        <label className="tw:daisy-label">
+          <div className="tw:daisy-label-text-alt tw:text-inherit tw:flex tw:flex-row tw:flex-wrap tw:gap-1">
             <span className="tw:hidden tw:lg:inline">Presets:</span>
             {amounts.map((val) => (
               <button
@@ -139,22 +139,22 @@ export const Subscribe = ({
       <div className="tw:grid tw:grid-cols-2 tw:md:grid-cols-3 tw:gap-2 tw:mt-2">
         {periods.map((val) => (
           <div
-            className={`tw-daisy-form-control tw:border tw:border-solid tw:border-inherit tw:rounded tw:px-1 tw:flex tw:flex-col tw:justify-center ${
+            className={`tw:daisy-form-control tw:border tw:border-solid tw:border-inherit tw:rounded tw:px-1 tw:flex tw:flex-col tw:justify-center ${
               period === val ? 'tw:bg-base-100 tw:text-base-content' : ''
             }`}
             key={val}
           >
-            <label className="tw-daisy-label tw:cursor-pointer tw:py-1.5 tw:flex tw:flex-row tw:gap-2 tw:items-center tw:overflow-clip tw:justify-start">
+            <label className="tw:daisy-label tw:cursor-pointer tw:py-1.5 tw:flex tw:flex-row tw:gap-2 tw:items-center tw:overflow-clip tw:justify-start">
               <input
                 type="radio"
                 name="period"
-                className={`tw-daisy-radio checked:tw-bg-${color} tw-border-${color} tw-daisy-radio-xs lg:tw-daisy-radio-sm tw:bg-secondary/20`}
+                className={`tw:daisy-radio checked:tw:bg-${color} tw:border-${color} tw:daisy-radio-xs lg:tw:daisy-radio-sm tw:bg-secondary/20`}
                 value={val}
                 onChange={() => setPeriod(val)}
                 checked={val === period ? 1 : 0}
               />
               <span
-                className={`tw-daisy-label-text tw:text-inherit tw:text-xs tw:lg:text-sm ${
+                className={`tw:daisy-label-text tw:text-inherit tw:text-xs tw:lg:text-sm ${
                   val === period ? 'tw:font-bold' : ''
                 }`}
               >
@@ -173,7 +173,7 @@ export const Subscribe = ({
       >
         <PaypalFormBody {...{ currency, amount, period }} />
         <button
-          className={`tw-daisy-btn tw-daisy-btn-${color} tw:w-full tw:mt-4`}
+          className={`tw:daisy-btn tw:daisy-btn-${color} tw:w-full tw:mt-4`}
           disabled={!(Number(amount) > 0)}
           type="submit"
         >

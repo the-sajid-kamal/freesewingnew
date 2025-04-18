@@ -39,54 +39,54 @@ const TypographyPage = ({ page }) => {
           </p>
           <h3>Main button styles</h3>
           <div className="tw:flex tw:flex-row tw:gap-2 tw:flex-wrap">
-            <button className="tw-daisy-btn tw-daisy-btn-neutral">Neutral button</button>
-            <button className="tw-daisy-btn tw-daisy-btn-primary">Primary button</button>
-            <button className="tw-daisy-btn tw-daisy-btn-secondary">Secondary button</button>
-            <button className="tw-daisy-btn tw-daisy-btn-accent">Accent button</button>
+            <button className="tw:daisy-btn tw:daisy-btn-neutral">Neutral button</button>
+            <button className="tw:daisy-btn tw:daisy-btn-primary">Primary button</button>
+            <button className="tw:daisy-btn tw:daisy-btn-secondary">Secondary button</button>
+            <button className="tw:daisy-btn tw:daisy-btn-accent">Accent button</button>
           </div>
           <h3>State button styles</h3>
           <div className="tw:flex tw:flex-row tw:gap-2 tw:flex-wrap">
-            <button className="tw-daisy-btn tw-daisy-btn-info">Info button</button>
-            <button className="tw-daisy-btn tw-daisy-btn-success">Success button</button>
-            <button className="tw-daisy-btn tw-daisy-btn-warning">Warning button</button>
-            <button className="tw-daisy-btn tw-daisy-btn-error">Error button</button>
+            <button className="tw:daisy-btn tw:daisy-btn-info">Info button</button>
+            <button className="tw:daisy-btn tw:daisy-btn-success">Success button</button>
+            <button className="tw:daisy-btn tw:daisy-btn-warning">Warning button</button>
+            <button className="tw:daisy-btn tw:daisy-btn-error">Error button</button>
           </div>
           <h3>Other button styles</h3>
           <div className="tw:flex tw:flex-row tw:gap-2 tw:flex-wrap">
-            <button className="tw-daisy-btn tw-daisy-btn-ghost">Ghost button</button>
-            <button className="tw-daisy-btn tw-daisy-btn-link">Link button</button>
+            <button className="tw:daisy-btn tw:daisy-btn-ghost">Ghost button</button>
+            <button className="tw:daisy-btn tw:daisy-btn-link">Link button</button>
           </div>
           <h3>Outlined button styles</h3>
           <div className="tw:flex tw:flex-row tw:gap-2 tw:flex-wrap">
-            <button className="tw-daisy-btn tw-daisy-btn-outline tw-daisy-btn-neutral">
+            <button className="tw:daisy-btn tw:daisy-btn-outline tw:daisy-btn-neutral">
               Neutral button
             </button>
-            <button className="tw-daisy-btn tw-daisy-btn-outline tw-daisy-btn-primary">
+            <button className="tw:daisy-btn tw:daisy-btn-outline tw:daisy-btn-primary">
               Primary button
             </button>
-            <button className="tw-daisy-btn tw-daisy-btn-outline tw-daisy-btn-secondary">
+            <button className="tw:daisy-btn tw:daisy-btn-outline tw:daisy-btn-secondary">
               Secondary button
             </button>
-            <button className="tw-daisy-btn tw-daisy-btn-outline tw-daisy-btn-accent">
+            <button className="tw:daisy-btn tw:daisy-btn-outline tw:daisy-btn-accent">
               Accent button
             </button>
           </div>
           <h3>Button sizes</h3>
           <div className="tw:flex tw:flex-row tw:gap-2 tw:flex-wrap">
-            <button className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-lg">Large</button>
-            <button className="tw-daisy-btn tw-daisy-btn-primary">Normal</button>
-            <button className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-sm">Small</button>
-            <button className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-xs">Tiny</button>
-            <button className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-lg tw-daisy-btn-wide">
+            <button className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-lg">Large</button>
+            <button className="tw:daisy-btn tw:daisy-btn-primary">Normal</button>
+            <button className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-sm">Small</button>
+            <button className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-xs">Tiny</button>
+            <button className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-lg tw:daisy-btn-wide">
               Large wide
             </button>
-            <button className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-wide">
+            <button className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-wide">
               Normal wide
             </button>
-            <button className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-sm tw-daisy-btn-wide">
+            <button className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-sm tw:daisy-btn-wide">
               Small wide
             </button>
-            <button className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-xs tw-daisy-bnt-wide">
+            <button className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-xs tw:daisy-bnt-wide">
               Tiny wide
             </button>
           </div>

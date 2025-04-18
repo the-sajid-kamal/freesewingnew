@@ -11,7 +11,7 @@ export const AsideViewMenuButton = ({
 }) => {
   const className = `w-full flex flex-row items-center px-4 py-2 ${extraClasses} ${
     active
-      ? 'font-bold lg:font-normal bg-secondary bg-opacity-10 lg:bg-secondary lg:text-secondary-content lg:bg-opacity-50'
+      ? 'font-bold lg:font-normal bg-secondary/10 lg:bg-secondary/50 lg:text-secondary-content'
       : 'lg:bg-neutral lg:text-neutral-content'
   }`
   const span = <span className="block grow text-left">{label}</span>

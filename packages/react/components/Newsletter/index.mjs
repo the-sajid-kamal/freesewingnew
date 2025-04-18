@@ -108,7 +108,7 @@ export const NewsletterSignup = ({ Link = false, noP = false, noTitle = false, n
             valid={validateEmail}
           />
           <button
-            className="tw-daisy-btn tw-daisy-btn-primary tw:w-full"
+            className="tw:daisy-btn tw:daisy-btn-primary tw:w-full"
             disabled={!validateEmail(email)}
             onClick={subscribe}
           >
@@ -174,7 +174,7 @@ export const NewsletterUnsubscribe = ({ Link = false }) => {
       </p>
       <button
         onClick={unsubscribe}
-        className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-large tw:w-full tw:my-4"
+        className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-large tw:w-full tw:my-4"
       >
         Unsubscribe
       </button>

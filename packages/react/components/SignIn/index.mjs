@@ -151,8 +151,8 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
     }
   }
 
-  const btnClasses = `tw-daisy-btn tw:capitalize tw:w-full tw:mt-4 ${
-    signInFailed ? 'tw-daisy-btn-warning' : 'tw-daisy-btn-primary'
+  const btnClasses = `tw:daisy-btn tw:capitalize tw:w-full tw:mt-4 ${
+    signInFailed ? 'tw:daisy-btn-warning' : 'tw:daisy-btn-primary'
   } tw:transition-colors tw:ease-in-out tw:duration-300 ${horFlexClassesNoSm}`
   const noBueno = (
     <>
@@ -174,14 +174,14 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
         </p>
         <div className="tw:flex tw:flex-row tw:gap-4 tw:items-center tw:justify-center tw:p-8">
           <button
-            className="tw-daisy-btn tw-daisy-btn-outline tw-daisy-btn-sm"
+            className="tw:daisy-btn tw:daisy-btn-outline tw:daisy-btn-sm"
             onClick={() => setMagicLinkSent(false)}
           >
             Back
           </button>
           <Link
             href="/support"
-            className="tw-daisy-btn tw-daisy-btn-outline tw-daisy-btn-sm tw:hover:no-underline"
+            className="tw:daisy-btn tw:daisy-btn-outline tw:daisy-btn-sm tw:hover:no-underline"
           >
             Contact support
           </Link>
@@ -196,10 +196,10 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
         onSubmit={signinHandler}
         post={
           <div className="tw:flex tw:flex-row tw:gap-4 tw:items-center tw:justify-center tw:p-8">
-            <button className="tw-daisy-btn tw-daisy-btn-ghost" onClick={() => setMfa(false)}>
+            <button className="tw:daisy-btn tw:daisy-btn-ghost" onClick={() => setMfa(false)}>
               Back
             </button>
-            <Link href="/support" className="tw-daisy-btn tw-daisy-btn-ghost">
+            <Link href="/support" className="tw:daisy-btn tw:daisy-btn-ghost">
               Contact support
             </Link>
           </div>
@@ -222,7 +222,7 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
       )}
       {magicLink ? (
         <button
-          className={`${btnClasses} tw-daisy-btn-lg`}
+          className={`${btnClasses} tw:daisy-btn-lg`}
           tabIndex="-1"
           role="button"
           onClick={signinHandler}
@@ -268,7 +268,7 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
         </>
       )}
       <button
-        className={`tw:block tw:md:flex tw:md:flex-row tw:md:justify-between tw:md:items-center tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-outline tw:w-full tw:mt-8`}
+        className={`tw:block tw:md:flex tw:md:flex-row tw:md:justify-between tw:md:items-center tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline tw:w-full tw:mt-8`}
         onClick={() => setMagicLink(!magicLink)}
       >
         <span className="tw:hidden tw:lg:block">{magicLink ? <LockIcon /> : <EmailIcon />}</span>
@@ -280,7 +280,7 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
           <button
             key={provider}
             id={provider}
-            className={`${horFlexClasses} tw-daisy-btn tw-daisy-btn-secondary`}
+            className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-secondary`}
             onClick={() => initOauth(provider)}
           >
             {provider === 'Google' ? <GoogleIcon stroke={0} /> : <GitHubIcon />}
@@ -290,7 +290,7 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
       </div>
       {seenBefore ? (
         <button
-          className={`${horFlexClasses} tw-daisy-btn tw-daisy-btn-neutral tw-daisy-btn-outline tw:mt-2 tw:w-full`}
+          className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-neutral tw:daisy-btn-outline tw:mt-2 tw:w-full`}
           onClick={() => setSeenUser(false)}
         >
           <UserIcon />
@@ -298,7 +298,7 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
         </button>
       ) : (
         <Link
-          className={`${horFlexClasses} tw-daisy-btn tw-daisy-btn-lg tw-daisy-btn-neutral tw:mt-2 tw:hover:text-neutral-content tw:hover:no-underline`}
+          className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-lg tw:daisy-btn-neutral tw:mt-2 tw:hover:text-neutral-content tw:hover:no-underline`}
           href="/signup"
         >
           <FreeSewingIcon className="tw:h-10 tw:w-10" />
@@ -323,7 +323,7 @@ const MfaForm = ({ mfaCode, setMfaCode, onSubmit, post = [] }) => (
       value={mfaCode}
     />
     <button
-      className={`tw-daisy-btn tw:capitalize tw:w-full tw:mt-4 tw-daisy-btn-primary ${horFlexClassesNoSm}`}
+      className={`tw:daisy-btn tw:capitalize tw:w-full tw:mt-4 tw:daisy-btn-primary ${horFlexClassesNoSm}`}
       tabIndex="-1"
       role="button"
       onClick={onSubmit}

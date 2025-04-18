@@ -58,7 +58,7 @@ export const SignUp = ({ embed = false }) => {
     if (status === 201 && body.result === 'created') setResult('success')
     else {
       setModal(
-        <ModalWrapper bg="tw-base-100 tw:lg:bg-base-300">
+        <ModalWrapper bg="tw:base-100 tw:lg:bg-base-300">
           <div className="tw:bg-base-100 tw:rounded-lg tw:p-4 tw:lg:px-8 tw:max-w-xl tw:lg:shadow-lg">
             <h3>An error occured while trying to process your request</h3>
             <p className="tw:text-lg">
@@ -73,7 +73,7 @@ export const SignUp = ({ embed = false }) => {
                 <LeftIcon />
                 Back
               </IconButton>
-              <IconButton href="/support" className="tw-daisy-btn-outline">
+              <IconButton href="/support" className="tw:daisy-btn-outline">
                 <HelpIcon />
                 Contact support
               </IconButton>
@@ -124,7 +124,7 @@ export const SignUp = ({ embed = false }) => {
                 <LeftIcon />
                 Back
               </IconButton>
-              <IconButton href="/support" className="tw-daisy-btn-outline">
+              <IconButton href="/support" className="tw:daisy-btn-outline">
                 <HelpIcon />
                 Contact support
               </IconButton>
@@ -141,10 +141,10 @@ export const SignUp = ({ embed = false }) => {
               Feel free to try again, or reach out to support so we can assist you.
             </p>
             <div className="tw:flex tw:flex-row tw:gap-4 tw:items-center tw:justify-center tw:p-8">
-              <button className="tw-daisy-btn tw-daisy-btn-ghost" onClick={() => setResult(false)}>
+              <button className="tw:daisy-btn tw:daisy-btn-ghost" onClick={() => setResult(false)}>
                 Back
               </button>
-              <Link href="/support" className="tw-daisy-btn tw-daisy-btn-ghost">
+              <Link href="/support" className="tw:daisy-btn tw:daisy-btn-ghost">
                 Contact support
               </Link>
             </div>
@@ -187,7 +187,7 @@ export const SignUp = ({ embed = false }) => {
                   </IconButton>
                 ))}
               </div>
-              <IconButton color="neutral" href="/signin" className="tw-daisy-btn-lg tw:mt-1">
+              <IconButton color="neutral" href="/signin" className="tw:daisy-btn-lg tw:mt-1">
                 <span className="tw:hidden tw:md:block">
                   <KeyIcon className="tw:h-10 tw:w-10" />
                 </span>

@@ -17,7 +17,7 @@ const textShadow = {
 }
 
 const teaserClasses = `tw:absolute tw:bottom-4 tw:right-0 tw:ml-3
-  tw:rounded-l tw:md:rounded-l-lg tw:bg-neutral tw:bg-opacity-80 tw:p-1 tw:px-4 tw:font-medium
+  tw:rounded-l tw:md:rounded-l-lg tw:bg-neutral/80 tw:p-1 tw:px-4 tw:font-medium
   tw:text-neutral-content tw:text-right tw:text-sm tw:md:text-lg tw:lg:text-xl`
 
 export const BlogPostTeaser = ({ post }) => (
@@ -114,7 +114,7 @@ const ShowcasePostTeaser = ({ post }) => (
       {post.content.metadata.tags.map((tag) => (
         <li className="tw:text-sm tw:inline tw:pr-1" key={tag.label}>
           <Link href={tag.permalink} className="tw:text-secondary tw-captalize">
-            <span className="tw-daisy-badge tw-daisy-badge-secondary tw:capitalize">{`${tag.label}`}</span>
+            <span className="tw:daisy-badge tw:daisy-badge-secondary tw:capitalize">{`${tag.label}`}</span>
           </Link>
         </li>
       ))}
@@ -149,7 +149,7 @@ const ShowcaseItems = ({ items, slug }) => {
                 <li key={d} className="tw:inline tw:pr-0.5 tw:m-0 tw:leading-5">
                   <Link
                     href={`/showcase/tags/${d}`}
-                    className="tw-daisy-badge tw-daisy-badge-sm tw-daisy-badge-secondary tw:capitalize tw:text-xs tw:font-medium"
+                    className="tw:daisy-badge tw:daisy-badge-sm tw:daisy-badge-secondary tw:capitalize tw:text-xs tw:font-medium"
                   >
                     {d}
                   </Link>

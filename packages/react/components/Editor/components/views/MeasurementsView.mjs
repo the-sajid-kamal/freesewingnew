@@ -80,7 +80,7 @@ export const MeasurementsView = ({
       <div className="tw:flex tw:flex-row tw:items-center tw:justify-between tw:w-full tw:flex-wrap tw:gap-2">
         <span>Measurements loaded</span>
         <button
-          className="tw-daisy-btn tw-daisy-btn-success tw-daisy-btn-outline tw:border-white"
+          className="tw:daisy-btn tw:daisy-btn-success tw:daisy-btn-outline tw:border-white"
           onClick={() => update.view('draft')}
         >
           <span className="tw:text-white">Load Draft View</span>
@@ -202,13 +202,13 @@ export const MeasurementsView = ({
             <H5>We have all required measurements to draft this pattern</H5>
             <div className="tw:flex tw:flex-row tw:flex-wrap tw:gap-2 tw:mt-2">
               <button
-                className="tw-daisy-btn tw-daisy-btn-primary"
+                className="tw:daisy-btn tw:daisy-btn-primary"
                 onClick={() => update.view('draft')}
               >
                 Draft Pattern
               </button>
               <button
-                className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-outline"
+                className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline"
                 onClick={() => update.view('picker')}
               >
                 Choose a different view
@@ -236,7 +236,7 @@ const LoadMeasurementsSetById = ({ loadMeasurements, update }) => {
           valid={(val) => Number(val) == val}
         />
         <button
-          className="tw-daisy-btn tw-daisy-btn-primary"
+          className="tw:daisy-btn tw:daisy-btn-primary"
           onClick={() => loadMeasurementsSet(id, backend, loadMeasurements, update)}
         >
           Load set
@@ -259,7 +259,7 @@ async function loadMeasurementsSet(id, backend, loadMeasurements, update) {
       <div className="tw:flex tw:flex-row tw:items-center tw:justify-between tw:w-full tw:flex-wrap tw:gap-2">
         <span>Measurements set loaded</span>
         <button
-          className="tw-daisy-btn tw-daisy-btn-success tw-daisy-btn-outline tw:border-white"
+          className="tw:daisy-btn tw:daisy-btn-success tw:daisy-btn-outline tw:border-white"
           onClick={() => update.view('draft')}
         >
           <span className="tw:text-white">Load Draft View</span>

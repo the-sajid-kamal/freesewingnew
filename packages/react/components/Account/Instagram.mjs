@@ -53,7 +53,7 @@ export const Instagram = () => {
       />
       <p className="tw:text-right">
         <button
-          className="tw-daisy-btn tw-daisy-btn-primary tw:w-full tw:lg:w-auto tw:mt-8"
+          className="tw:daisy-btn tw:daisy-btn-primary tw:w-full tw:lg:w-auto tw:mt-8"
           onClick={save}
         >
           <SaveIcon /> Save

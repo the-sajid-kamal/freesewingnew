@@ -12,7 +12,7 @@ export const Breadcrumbs = ({ crumbs = [], title, Link = false }) => {
   if (Link === false) Link = RegularLink
 
   return (
-    <div className="tw-tailwind-container tw:p-0">
+    <div className="tw:tailwind-container tw:p-0">
       <ul
         className="tw:flex tw:flex-row tw:items-center tw:gap-2 tw:m-0 tw:py-4"
         style={{ paddingLeft: 0 }}
