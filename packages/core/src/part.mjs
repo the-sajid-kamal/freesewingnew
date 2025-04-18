@@ -62,6 +62,7 @@ Part.prototype.asRenderProps = function () {
     paths,
     points,
     snippets,
+    anchor: points.anchor ?? new Point(0, 0),
     attributes: this.attributes.asRenderProps(),
     height: this.height,
     width: this.width,

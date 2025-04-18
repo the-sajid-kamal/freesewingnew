@@ -54,7 +54,11 @@ export const Part = ({ stackName, partName, part, settings, components, strings,
   const { Group } = components
 
   return (
-    <Group {...getProps(part)} id={getId({ settings, stackName, partName })}>
+    <Group
+      {...getProps(part)}
+      id={getId({ settings, stackName, partName })}
+      transform={`translate(${-part.anchor.x}, ${-part.anchor.y})`}
+    >
       <PartInner {...{ stackName, partName, part, settings, components, strings, drillProps }} />
     </Group>
   )

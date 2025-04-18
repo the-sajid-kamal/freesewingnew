@@ -22,6 +22,7 @@ export const leg = {
       .join(paths.frontWaistband)
       .join(paths.frontSplit)
       .close()
+      .addClass('fabric')
 
     if (sa) paths.sa = paths.seam.offset(sa).attr('class', 'fabric sa')
 

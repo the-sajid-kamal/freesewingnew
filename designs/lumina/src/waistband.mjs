@@ -109,6 +109,8 @@ export const waistband = {
         .join(paths.waistband.reverse())
     }
 
+    points.anchor = points.waistFront
+
     paths.front = new Path()
       .move(points.waistbandFront)
       .line(points.waistFront)
@@ -152,7 +154,11 @@ export const waistband = {
       .join(paths.waistband)
       .hide()
 
-    paths.seam = new Path().move(points.waistbandFront).line(points.waistFront).join(paths.seamSA)
+    paths.seam = new Path()
+      .move(points.waistbandFront)
+      .line(points.waistFront)
+      .join(paths.seamSA)
+      .addClass('fabric')
 
     if (sa) {
       const seamSA = paths.seamSA.offset(sa)

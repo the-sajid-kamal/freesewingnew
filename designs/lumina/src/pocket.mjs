@@ -80,6 +80,7 @@ export const pocket = {
       .join(paths.frontPocket.reverse())
       .close()
       .reverse()
+      .addClass('fabric')
 
     if (sa) paths.sa = paths.seam.offset(sa).attr('class', 'fabric sa')
 
