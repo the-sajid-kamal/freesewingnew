@@ -7,16 +7,16 @@ export const urls = {
   // FreeSewing website
   website: 'https://freesewing.eu',
   // FreeSewing monorepo
-  monorepo: 'https://github.com/freesewing/freesewing',
-  // FreeSewing github organisation
-  github: 'https://github.com/freesewing',
+  monorepo: 'https://codeberg.org/freesewing/freesewing',
+  // FreeSewing codeberg organisation
+  codeberg: 'https://codeberg.org/freesewing',
   // Social media and other account links for FreeSewing
   social: {
     YouTube: 'https://www.youtube.com/@freesewing',
     Discord: 'https://discord.freesewing.org/',
     Instagram: 'https://instagram.com/freesewing_org',
     Facebook: 'https://www.facebook.com/groups/627769821272714/',
-    GitHub: 'https://github.com/freesewing',
+    Codeberg: 'https://codeberg.org/freesewing',
     Reddit: 'https://www.reddit.com/r/freesewing/',
     Mastodon: 'https://freesewing.social/@freesewing',
     Bluesky: 'https://bsky.app/profile/freesewing.org',
