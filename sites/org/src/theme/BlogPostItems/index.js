@@ -40,14 +40,14 @@ export const BlogPostTeaser = ({ post }) => (
 
 const Breadcrumb = ({ crumb, active }) => (
   <li className="breadcrumbs__item">
-    <Link href={crumb.href} className="tw:capitalize tw:text-sm tw-breadcrumbs__link">
+    <Link href={crumb.href} className="tw:capitalize tw:text-sm tw:breadcrumbs__link">
       {crumb.label}
     </Link>
   </li>
 )
 export const Breadcrumbs = ({ breadcrumbs }) => {
   return (
-    <ul className="tw-breadcrumbs tw:text-sm">
+    <ul className="tw:breadcrumbs tw:text-sm">
       {breadcrumbs.map((crumb) => (
         <Breadcrumb crumb={crumb} active={false} key={crumb.href} />
       ))}
@@ -113,7 +113,7 @@ const ShowcasePostTeaser = ({ post }) => (
     <ul className="tw:block tw:text-right tw:font-medium tw:-mt-4 tw:z-10 tw:relative">
       {post.content.metadata.tags.map((tag) => (
         <li className="tw:text-sm tw:inline tw:pr-1" key={tag.label}>
-          <Link href={tag.permalink} className="tw:text-secondary tw-captalize">
+          <Link href={tag.permalink} className="tw:text-secondary tw:captalize">
             <span className="tw:daisy-badge tw:daisy-badge-secondary tw:capitalize">{`${tag.label}`}</span>
           </Link>
         </li>
