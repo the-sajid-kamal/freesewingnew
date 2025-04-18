@@ -415,7 +415,7 @@ export const HeaderMenuUndoIcons = (props) => {
         ) : null}
       </HeaderMenuDropdown>
       <Button
-        updateHandler={update.clearAll}
+        updateHandler={update.clearPattern}
         tooltip="Reset all settings, but keep the design and measurements"
       >
         <TrashIcon className={`${size} tw-text-secondary`} />
