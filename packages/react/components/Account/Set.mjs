@@ -6,7 +6,7 @@ import {
   urls,
 } from '@freesewing/config'
 import { measurements as measurementTranslations } from '@freesewing/i18n'
-import { i18n, measurements as designMeasurements } from '@freesewing/collection'
+import { measurements as designMeasurements } from '@freesewing/collection'
 import {
   cloudflareImageUrl,
   formatMm,
@@ -31,8 +31,6 @@ import {
   CompareIcon,
   CuratedMeasurementsSetIcon,
   EditIcon,
-  FlagIcon,
-  MeasurementsSetIcon,
   NoIcon,
   OkIcon,
   ResetIcon,
@@ -58,10 +56,6 @@ import { Yaml } from '@freesewing/react/components/Yaml'
 import { Popout } from '@freesewing/react/components/Popout'
 import { bundlePatternTranslations, draft, flattenFlags } from '../Editor/lib/index.mjs'
 import { Bonny } from '@freesewing/bonny'
-import { ZoomablePattern } from '../Editor/components/ZoomablePattern.mjs'
-import { HeaderMenuDraftViewFlags } from '../Editor/components/HeaderMenu.mjs'
-import { Flag, FlagsAccordionEntries } from '../Editor/components/Flag.mjs'
-import { i18n as pluginI18n } from '@freesewing/core-plugins'
 import { MiniNote, MiniTip } from '../Mini/index.mjs'
 
 const t = (input) => {
@@ -74,7 +68,7 @@ const t = (input) => {
  *
  * @param {object} props - All React props
  * @param {number} id - The ID of the measurements set to load
- * @param {bool} publicOnly - FIXME
+ * @param {bool} publicOnly - If the set should be used with the backend.getPublicSet method
  * @param {function} Link - An optional framework-specific Link component to use for client-side routing
  * @param {object} measurementHelpProvider - A function that returns a url or action to show help for a specific measurement
  */
@@ -116,6 +110,7 @@ export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvi
         setImperial(body.set.imperial ? true : false)
         setNotes(body.set.notes)
         setMeasies(body.set.measies)
+        setDisplayAsMetric(body.set.imperial ? false : true)
         setLoadingStatus([true, 'Measurements set loaded', true, true])
       } else setLoadingStatus([true, 'An error occured while contacting the backend', true, false])
     }
@@ -123,17 +118,20 @@ export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvi
       setLoadingStatus([true, 'Contacting the backend'])
       const [status, body] = await backend.getPublicSet(id)
       if (status === 200 && body.result === 'success') {
+        const isImperial = body.units === 'imperial'
         setMset({
-          ...body.data,
+          ...body,
           public: true,
-          measies: body.data.measurements,
+          measies: body.measurements,
+          imperial: isImperial,
         })
-        setName(body.data.name)
-        setImage(body.data.image)
-        setIsPublic(body.data.public ? true : false)
-        setImperial(body.data.imperial ? true : false)
-        setNotes(body.data.notes)
-        setMeasies(body.data.measurements)
+        setName(body.name)
+        setImage(body.image)
+        setIsPublic(body.public ? true : false)
+        setImperial(isImperial)
+        setNotes(body.notes)
+        setMeasies(body.measurements)
+        setDisplayAsMetric(!isImperial)
         setLoadingStatus([true, 'Measurements set loaded', true, true])
       } else
         setLoadingStatus([
@@ -276,7 +274,7 @@ export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvi
             </button>
           ) : null}
           {account.control > 2 ? (
-            <BookmarkButton slug={`sets/${mset.id}`} title={mset.name} type="set" thing="set" />
+            <BookmarkButton slug={`set?id=${mset.id}`} title={mset.name} type="set" thing="set" />
           ) : null}
           <button
             onClick={() =>

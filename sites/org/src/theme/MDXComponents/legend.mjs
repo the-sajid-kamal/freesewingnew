@@ -1,6 +1,7 @@
 import React from 'react'
 import { Legend as LegendDesign } from '@freesewing/legend'
 import { Pattern } from '@freesewing/react/components/Pattern'
+import { i18n as pluginI18n } from '@freesewing/core-plugins'
 
 export const Legend = ({ part = '' }) => {
   const settings = {
@@ -14,6 +15,7 @@ export const Legend = ({ part = '' }) => {
   const patternProps = {
     renderProps: pattern.getRenderProps(),
     logs: pattern.getLogs(),
+    strings: pluginI18n.en,
   }
 
   return (
