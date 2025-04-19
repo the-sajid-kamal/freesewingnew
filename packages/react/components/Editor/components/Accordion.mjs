@@ -11,7 +11,7 @@ const getProps = (isActive = false) => ({
 
 const getSubProps = (isActive) => ({
   className: `tw:p-0 tw:rounded-none tw:bg-transparent tw:w-full tw:h-auto
-  tw:content-start tw:bg-secondary/20 tw:text-left tw:list-none`,
+  tw:content-start tw:text-left tw:list-none`,
 })
 
 const components = {

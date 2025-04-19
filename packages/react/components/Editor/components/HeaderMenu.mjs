@@ -543,11 +543,13 @@ export const HeaderMenuViewMenu = (props) => {
           <a
             className={`tw:w-full tw:text-base-content
             tw:flex tw:flex-row tw:items-center tw:gap-2 tw:md:gap-4 tw:p-2 tw:px-4
-            tw:hover:cursor-pointer tw:hover:text-base-content tw:hover:cursor-pointer
-            tw:hover:bg-secondary/20 ${viewName === state.view ? 'tw:bg-secondary/20' : ''}`}
+            tw:hover:cursor-pointer tw:hover:text-base-content tw:hover:cursor-pointer`}
             onClick={() => update.view(viewName)}
           >
-            <ViewIcon view={viewName} className="tw:w-6 tw:h-6 tw:grow-0 tw:text-base-content" />
+            <ViewIcon
+              view={viewName}
+              className={`tw:w-6 tw:h-6 tw:grow-0 ${viewName === state.view ? 'tw:text-secondary' : 'tw:text-base-content'}`}
+            />
             <span className="tw:text-left tw:grow tw:font-medium tw:text-base-content">
               {viewLabels[viewName]?.t || viewName}
             </span>
