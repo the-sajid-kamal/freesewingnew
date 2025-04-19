@@ -96,10 +96,10 @@ export const FormControl = ({
     </>
   )
   const bottomLabelChildren = (
-    <>
+    <div className="tw:flex tw:flex-row tw:justify-between tw:w-full tw:items-start">
       {labelBL ? <span className="tw:daisy-label-text-alt">{labelBL}</span> : null}
       {labelBR ? <span className="tw:daisy-label-text-alt">{labelBR}</span> : null}
-    </>
+    </div>
   )
 
   return (
@@ -114,11 +114,11 @@ export const FormControl = ({
       {children}
       {labelBL || labelBR ? (
         forId ? (
-          <label className="tw:daisy-label" htmlFor={forId}>
+          <label className="tw:daisy-label tw:w-full" htmlFor={forId}>
             {bottomLabelChildren}
           </label>
         ) : (
-          <div className="tw:daisy-label">{bottomLabelChildren}</div>
+          <div className="tw:daisy-label tw:w-full">{bottomLabelChildren}</div>
         )
       ) : null}
     </div>
@@ -137,7 +137,7 @@ export const ButtonFrame = ({
 }) => (
   <button
     className={`
-    tw:daisy-btn tw:daisy-btn-ghost tw:daisy-btn-secondary tw:h-fit
+    tw:daisy-btn tw:daisy-btn-ghost tw:h-fit
     tw:w-full ${dense ? 'tw:mt-1 tw:daisy-btn-sm tw:font-light' : 'tw:mt-2 tw:py-4 tw:h-auto tw:content-start'}
     tw:border-2 tw:border-secondary tw:text-left tw:bg-secondary/20
     ${accordion ? 'tw:hover:bg-transparent' : 'tw:hover:bg-secondary/10'}

@@ -41,14 +41,20 @@ export const PatternLayout = (props) => {
           </div>
           {state.ui?.aside ? (
             <div
-              className={`tw:hidden tw:xl:block tw:w-1/3 tw:shrink tw:grow-0 tw:lg:p-4 tw:max-w-2xl tw:h-full tw:overflow-scroll`}
+              className={`tw:hidden tw:md:block tw:w-1/3 tw:shrink tw:grow-0 tw:lg:p-4 tw:max-w-2xl tw:h-full tw:overflow-scroll`}
             >
               <h5 className="tw:capitalize">{pattern.designConfig.data.id} Options</h5>
-              <DesignOptionsMenu {...props} />
+              <SideMenuUl>
+                <DesignOptionsMenu {...props} />
+              </SideMenuUl>
               <h5>Core Settings</h5>
-              <CoreSettingsMenu {...props} />
+              <SideMenuUl>
+                <CoreSettingsMenu {...props} />
+              </SideMenuUl>
               <h5>UI Preferences</h5>
-              <UiPreferencesMenu {...props} />
+              <SideMenuUl>
+                <UiPreferencesMenu {...props} />
+              </SideMenuUl>
             </div>
           ) : null}
         </div>
@@ -56,3 +62,12 @@ export const PatternLayout = (props) => {
     </ZoomContextProvider>
   )
 }
+
+export const SideMenuUl = ({ children }) => (
+  <ul
+    className="tw:daisy-menu tw:daisy-dropdown-content tw:flex-nowrap tw:bg-base-200 tw:rounded-box tw:z-1 tw:w-full tw:p-0 tw:pl-0"
+    style={{ padding: 0 }}
+  >
+    {children}
+  </ul>
+)

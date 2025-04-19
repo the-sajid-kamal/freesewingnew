@@ -17,6 +17,7 @@
 
 @source '../**/*.{js,mjs,mdx}';
 @source '../../docs/**/*.mdx';
+@source '../../tailwind-force.html';
 @source '../../../../node_modules/daisyui/**/*.{js,mjs,ts,tsx}';
 @source '../../../../packages/react/components/**/*.mjs';
 @source '../../../../packages/react/context/**/*.mjs';
@@ -167,6 +168,10 @@ a.tw\:daisy-btn-primary.tw\:daisy-btn-outline {
 a.tw\:daisy-btn-primary.tw\:daisy-btn-outline:hover {
   color: var(--color-primary-content);
   text-decoration: none;
+}
+.tw\:daisy-menu {
+  --daisy-menu-active-fg: currentColor;
+  --daisy-menu-active-bg: var(--bg-transparent);
 }
 
 /*

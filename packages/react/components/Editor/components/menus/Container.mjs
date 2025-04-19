@@ -110,7 +110,7 @@ export const MenuItem = ({
         labelBR={<div className="tw:flex tw:flex-row tw:items-center tw:gap-2">{buttons}</div>}
         labelBL={
           <span
-            className={`tw:text-base tw:font-medium tw:-mt-2 tw:block ${changed ? 'tw:text-accent' : 'tw:opacity-50'}`}
+            className={`tw:text-sm tw:-mt-2 tw:block ${changed ? 'tw:text-accent' : 'tw:text-base-100-content'}`}
           >
             {changed ? 'This is a custom value' : 'This is the default value'}
           </span>

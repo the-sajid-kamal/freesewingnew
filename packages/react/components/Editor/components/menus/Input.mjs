@@ -349,7 +349,7 @@ export const MenuSliderInput = ({
         {...{ min, max, value: val, step: config.step || 0.1 }}
         onChange={(evt) => handleChange(evt.target.value)}
         className={`
-          tw:daisy-range tw:daisy-range-sm tw:mt-1
+          tw:daisy-range tw:daisy-range-sm tw:mt-1 tw:w-full
           ${changed ? 'tw:daisy-range-accent' : 'tw:daisy-range-secondary'}
         `}
       />

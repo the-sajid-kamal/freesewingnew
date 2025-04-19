@@ -24,7 +24,7 @@ const namedColors = [
   'error',
 ]
 
-const TypographyPage = ({ page }) => {
+const StylesPage = ({ page }) => {
   return (
     <Layout
       title={`FreeSewing documentation for developers and contributors`}
@@ -32,11 +32,12 @@ const TypographyPage = ({ page }) => {
     >
       <div className="tailwind-container">
         <div className="tw:text-base-content mdx tw:max-w-prose tw:text-base-content tw:max-w-prose tw:text-current tw:xl:pl-4 tw:mx-auto tw:my-8">
-          <h1>Typography</h1>
+          <h1>Styles</h1>
+          <p>This styles page shows an overview of different elements and how they are styled.</p>
           <p>
-            This typography page shows an overview of different elements and how they are styled.
+            It&apos;s a good starting point for theme development. It is also a good resource for
+            debugging styling issues.
           </p>
-          <p>It&apos;s a good starting point for theme development.</p>
           <h2>Headings (this is h2)</h2>
           {p} {p}
           <h3>This is h3</h3>
@@ -113,9 +114,19 @@ const TypographyPage = ({ page }) => {
             ))}
             {namedColors.map((color) => (
               <li key={color} className={`tw:text-${color}-content tw:bg-${color}`}>
-                tw:{color}-content tw:bg-{color}
+                tw:text-{color}-content tw:bg-{color}
               </li>
             ))}
+            {namedColors.map((color) => (
+              <li key={color} className="tw:flex tw:flex-row">
+                <div className={`tw:text-${color}-content tw:bg-${color}/80`}>
+                  tw:text-{color}-content tw:bg-{color}/80
+                </div>
+              </li>
+            ))}
+            <li className="tw:bg-primary/80 tw:text-primary-content">
+              tw:bg-primary/80 tw:text-primary-content
+            </li>
           </ul>
           <h2>Tabs</h2>
           <Tabs>
@@ -138,4 +149,4 @@ const TypographyPage = ({ page }) => {
   )
 }
 
-export default TypographyPage
+export default StylesPage

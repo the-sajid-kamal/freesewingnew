@@ -6,7 +6,6 @@ import { useBackend } from '@freesewing/react/hooks/useBackend'
 import { useDesignTranslation } from '@freesewing/react/hooks/useDesignTranslation'
 // Components
 import { Null } from '@freesewing/react/components/Null'
-import { AsideViewMenuSpacer } from './AsideViewMenu.mjs'
 import { ViewIcon, viewLabels } from './views/index.mjs'
 import { Tooltip } from './Tooltip.mjs'
 import {
@@ -118,7 +117,7 @@ export const HeaderMenuTestViewDesignMeasurements = (props) => {
     <HeaderMenuDropdown
       {...props}
       id="designMeasurements"
-      tooltip="See how changes to a measurment influence the pattern being generated."
+      tooltip="See how changes to a measurement influence the pattern being generated."
       toggle={
         <>
           <HeaderMenuIcon name="options" extraClasses="tw:text-secondary" />
@@ -133,52 +132,56 @@ export const HeaderMenuTestViewDesignMeasurements = (props) => {
 
 export const HeaderMenuDropdown = (props) => {
   const { tooltip, toggle, open, setOpen, id, end = false } = props
-  /*
-   * We need to use both !fixed and md:!absolute here to override DaisyUI's
-   * classes on dropdown-content to force the dropdown to use the available
-   * screen space on mobile, rather than be positioned under its toggle button
-   */
+  const [localOpen, setLocalOpen] = useState(false)
 
+  useEffect(() => {
+    if (open) {
+      if (open === id) setLocalOpen(true)
+      else setLocalOpen(false)
+    }
+  }, [open, id])
+
+  /*
+   * New DaisyUI 5 implementation
+   */
   return props.disabled ? (
-    <Tooltip tip={tooltip}>
-      <button
-        disabled
-        tabIndex={0}
-        role="button"
-        className={`tw:daisy-btn tw:daisy-btn-ghost tw:hover:bg-secondary/20 tw:hover:border-solid tw:hover:border-2 tw:hover:border-secondary tw:border tw:border-secondary tw:border-2 tw:border-dotted tw:daisy-btn-sm tw:px-2 tw:z-20 tw:relative`}
-      >
-        {toggle}
-      </button>
-    </Tooltip>
+    <button
+      disabled
+      data-component="Editor/HeaderMenuDropdown"
+      tabIndex={0}
+      role="button"
+      className={`tw:daisy-btn tw:daisy-btn-ghost tw:hover:bg-secondary/20 tw:hover:border-solid tw:hover:border-2 tw:hover:border-secondary tw:border tw:border-secondary tw:border-2 tw:border-dotted tw:daisy-btn-sm tw:px-2 tw:z-20 tw:relative`}
+    >
+      {toggle}
+    </button>
   ) : (
-    <Tooltip tip={tooltip}>
-      <div
-        className={`tw:daisy-dropdown ${open === id ? 'tw:daisy-dropdown-open tw:z-20' : ''} ${end ? ' tw:daisy-dropdown-end' : ''}`}
+    <>
+      <details
+        className="tw:daisy-dropdown"
+        open={localOpen}
+        data-component="Editor/HeaderMenuDropdown"
       >
-        <div
-          tabIndex={0}
-          role="button"
-          className="tw:daisy-btn tw:daisy-btn-ghost tw:hover:bg-secondary/20 tw:border-secondary/10 tw:hover:border-2 tw:hover:border-secondary tw:border tw:border-secondary tw:border-2 tw:border-solid tw:daisy-btn-sm tw:px-2 tw:z-20 tw:relative"
-          onClick={() => setOpen(open === id ? false : id)}
-        >
+        <summary className="tw:daisy-btn tw:m-1" onClick={() => setOpen(id)}>
           {toggle}
-        </div>
-        <div
-          tabIndex={0}
-          className="tw:daisy-dropdown-content tw:bg-base-100/90 tw:z-20 tw:shadow tw:left-0 tw:fixed! tw:md:absolute! tw:top-12 tw:w-screen tw:md:max-w-md tw:overflow-y-scroll tw:mb-12 tw:h-fit"
-          style={{ maxHeight: 'calc(100vh - 12rem)' }}
+        </summary>
+        <ul
+          className="tw:daisy-menu tw:daisy-dropdown-content tw:flex-nowrap tw:bg-base-200 tw:rounded-box tw:z-1 tw:w-screen tw:md:max-w-md tw:overflow-y-scroll tw:m-0 tw:p-0 tw:pl-0"
+          style={{ padding: 0, maxHeight: 'calc(100vh - 8rem)' }}
         >
           {props.children}
-        </div>
-        {open === id && (
-          <div
-            className="tw:w-screen tw:h-screen tw:absolute tw:top-10 tw:left-0 tw:opacity-0"
-            style={{ width: '200vw', transform: 'translateX(-100vw)' }}
-            onClick={() => setOpen(false)}
-          ></div>
-        )}
-      </div>
-    </Tooltip>
+        </ul>
+      </details>
+      {localOpen && (
+        <div
+          className="tw:w-screen tw:h-screen tw:fixed tw:top-10 tw:left-0 tw:opacity-100"
+          style={{ width: '200vw', transform: 'translateX(-100vw)' }}
+          onClick={() => {
+            setOpen(false)
+            setLocalOpen(false)
+          }}
+        ></div>
+      )}
+    </>
   )
 }
 
@@ -394,7 +397,7 @@ export const HeaderMenuUndoIcons = (props) => {
         }
       >
         {undos ? (
-          <ul className="tw:daisy-dropdown-content tw:bg-base-100/90 tw:z-20 tw:shadow tw:left-0 tw:fixed! tw:md:absolute! tw:w-screen tw:md:w-96 tw:px-4 tw:md:p-2 tw:md:pt-0 tw:contents">
+          <>
             {undos.slice(0, 9).map((step, index) => (
               <li key={index}>
                 <UndoStep {...{ step, update, state, Design, index }} compact />
@@ -411,7 +414,7 @@ export const HeaderMenuUndoIcons = (props) => {
                 </div>
               </ButtonFrame>
             </li>
-          </ul>
+          </>
         ) : null}
       </HeaderMenuDropdown>
       <Button
@@ -509,6 +512,8 @@ export const HeaderMenuButton = ({
   </Tooltip>
 )
 
+export const HeaderMenuSpacer = () => <li></li>
+
 export const HeaderMenuViewMenu = (props) => {
   const { config, update, state } = props
   const output = []
@@ -523,9 +528,9 @@ export const HeaderMenuViewMenu = (props) => {
     'spacer',
     'picker',
   ]) {
-    if (viewName === 'spacer') output.push(<AsideViewMenuSpacer key={i} />)
+    if (viewName === 'spacer') output.push(<HeaderMenuSpacer key={i} />)
     else if (viewName === 'spacerOver3')
-      output.push(state.ui.ux > 3 ? <AsideViewMenuSpacer key={i} /> : null)
+      output.push(state.ui.ux > 3 ? <HeaderMenuSpacer key={i} /> : null)
     else if (
       state.ui.ux >= config.uxLevels.views[viewName] &&
       (config.measurementsFreeViews.includes(viewName) || state._.missingMeasurements.length < 1)
@@ -538,12 +543,12 @@ export const HeaderMenuViewMenu = (props) => {
           <a
             className={`tw:w-full tw:text-base-content
             tw:flex tw:flex-row tw:items-center tw:gap-2 tw:md:gap-4 tw:p-2 tw:px-4
-            tw:hover:cursor-pointer tw:hover:text-base-content
+            tw:hover:cursor-pointer tw:hover:text-base-content tw:hover:cursor-pointer
             tw:hover:bg-secondary/20 ${viewName === state.view ? 'tw:bg-secondary/20' : ''}`}
             onClick={() => update.view(viewName)}
           >
-            <ViewIcon view={viewName} className="tw:w-6 tw:h-6 tw:grow-0" />
-            <span className="tw:text-left tw:grow tw:font-medium">
+            <ViewIcon view={viewName} className="tw:w-6 tw:h-6 tw:grow-0 tw:text-base-content" />
+            <span className="tw:text-left tw:grow tw:font-medium tw:text-base-content">
               {viewLabels[viewName]?.t || viewName}
             </span>
           </a>
@@ -566,12 +571,7 @@ export const HeaderMenuViewMenu = (props) => {
         </>
       }
     >
-      <ul
-        tabIndex={i}
-        className="tw:daisy-dropdown-content tw:bg-base-100/95tw:z-20 tw:shadow tw:left-0 tw:fixed! tw:md:absolute! tw:w-screen tw:md:max-w-lg tw:md:pt-0 tw:mt-14 tw:md:mt-0 tw:contents"
-      >
-        {output}
-      </ul>
+      {output}
     </HeaderMenuDropdown>
   )
 }
