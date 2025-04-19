@@ -102,7 +102,7 @@ export const Collection = ({ Link = false, linkTo = 'about', editor = false, onC
 
   return (
     <>
-      <div className="tw:max-w-7xl tw:m-auto">
+      <div className="tw:max-w-7xl tw:m-auto" data-component="Collection/Collection">
         <div className="tw:flex tw:flex-row tw:flex-wrap tw:gap-1 tw:justify-center tw:font-medium tw:mb-2">
           {Object.keys(filtered)
             .sort()
@@ -297,10 +297,12 @@ const DesignCard = ({ name, lineDrawing = false, linkTo, Link, onClick }) => {
       style={bg}
     >
       <h5
-        className={`tw:text-center tw:py-2 tw:px-4 tw:rounded-t tw:m-0 tw:w-full tw:group-hover:no-underline tw:group-hover:bg-secondary/70
-      ${lineDrawing ? '' : 'tw:bg-neutral/80 tw:text-neutral-content'}`}
+        className={`tw:text-center tw:py-2 tw:px-4 tw:rounded-t tw:m-0 tw:w-full tw:group-hover:no-underline tw:group-hover:bg-secondary/80 tw:group-hover:text-secondary-content
+      ${lineDrawing ? '' : 'tw:bg-neutral/80'}`}
       >
-        {about[name].name}
+        <span className={lineDrawing ? 'tw:text-base-100-content' : 'tw:text-neutral-content'}>
+          {about[name].name}
+        </span>
       </h5>
       {lineDrawing ? (
         <div className="tw:p-1 tw:grow tw:w-full tw:h-auto tw:square tw:text-center">
@@ -323,6 +325,7 @@ const DesignCard = ({ name, lineDrawing = false, linkTo, Link, onClick }) => {
       onClick={() => onClick(name)}
       className="tw:hover:bg-secondary/10 tw:rounded-lg tw:group tw:hover:no-underline tw:bg-transparent tw:border-0 tw:hover:cursor-pointer tw:p-0"
       title={about[name].description}
+      data-component="Collection/DesignCard"
     >
       {inner}
     </button>
@@ -331,6 +334,7 @@ const DesignCard = ({ name, lineDrawing = false, linkTo, Link, onClick }) => {
       href={linkBuilders[linkTo](name)}
       className="tw:hover:bg-secondary/10 tw:rounded-lg tw:group tw:hover:no-underline"
       title={about[name].description}
+      data-component="Collection/DesignCard"
     >
       {inner}
     </Link>
