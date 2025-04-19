@@ -107,25 +107,342 @@ const StylesPage = ({ page }) => {
           </div>
           <h2>Named colors</h2>
           <ul className="tw:list tw:list-inside tw:list-disc tw:ml-2">
-            {namedColors.map((color) => (
-              <li key={color} className={`tw:text-${color}`}>
-                tw:{color}
-              </li>
-            ))}
-            {namedColors.map((color) => (
-              <li key={color} className={`tw:text-${color}-content tw:bg-${color}`}>
-                tw:text-{color}-content tw:bg-{color}
-              </li>
-            ))}
-            {namedColors.map((color) => (
-              <li key={color} className="tw:flex tw:flex-row">
-                <div className={`tw:text-${color}-content tw:bg-${color}/80`}>
-                  tw:text-{color}-content tw:bg-{color}/80
-                </div>
-              </li>
-            ))}
-            <li className="tw:bg-primary/80 tw:text-primary-content">
-              tw:bg-primary/80 tw:text-primary-content
+            <li className="tw:text-base-100">tw:base-100</li>
+            <li className="tw:text-base-200">tw:base-200</li>
+            <li className="tw:text-base-300">tw:base-300</li>
+            <li className="tw:text-primary">tw:primary</li>
+            <li className="tw:text-secondary">tw:secondary</li>
+            <li className="tw:text-neutral">tw:neutral</li>
+            <li className="tw:text-accent">tw:accent</li>
+            <li className="tw:text-success">tw:success</li>
+            <li className="tw:text-info">tw:info</li>
+            <li className="tw:text-warning">tw:warning</li>
+            <li className="tw:text-error">tw:error</li>
+            <li className="tw:text-base-100-content tw:bg-base-100">
+              tw:text-base-100-content tw:bg-base-100
+            </li>
+            <li className="tw:text-base-200-content tw:bg-base-200">
+              tw:text-base-200-content tw:bg-base-200
+            </li>
+            <li className="tw:text-base-300-content tw:bg-base-300">
+              tw:text-base-300-content tw:bg-base-300
+            </li>
+            <li className="tw:text-primary-content tw:bg-primary">
+              tw:text-primary-content tw:bg-primary
+            </li>
+            <li className="tw:text-secondary-content tw:bg-secondary">
+              tw:text-secondary-content tw:bg-secondary
+            </li>
+            <li className="tw:text-neutral-content tw:bg-neutral">
+              tw:text-neutral-content tw:bg-neutral
+            </li>
+            <li className="tw:text-accent-content tw:bg-accent">
+              tw:text-accent-content tw:bg-accent
+            </li>
+            <li className="tw:text-success-content tw:bg-success">
+              tw:text-success-content tw:bg-success
+            </li>
+            <li className="tw:text-info-content tw:bg-info">tw:text-info-content tw:bg-info</li>
+            <li className="tw:text-warning-content tw:bg-warning">
+              tw:text-warning-content tw:bg-warning
+            </li>
+            <li className="tw:text-error-content tw:bg-error">tw:text-error-content tw:bg-error</li>
+            <li className="tw:text-base-100-content tw:bg-base-100/90">
+              tw:text-base-100-content tw:bg-base-100/90
+            </li>
+            <li className="tw:text-base-200-content tw:bg-base-200/90">
+              tw:text-base-200-content tw:bg-base-200/90
+            </li>
+            <li className="tw:text-base-300-content tw:bg-base-300/90">
+              tw:text-base-300-content tw:bg-base-300/90
+            </li>
+            <li className="tw:text-primary-content tw:bg-primary/90">
+              tw:text-primary-content tw:bg-primary/90
+            </li>
+            <li className="tw:text-secondary-content tw:bg-secondary/90">
+              tw:text-secondary-content tw:bg-secondary/90
+            </li>
+            <li className="tw:text-neutral-content tw:bg-neutral/90">
+              tw:text-neutral-content tw:bg-neutral/90
+            </li>
+            <li className="tw:text-accent-content tw:bg-accent/90">
+              tw:text-accent-content tw:bg-accent/90
+            </li>
+            <li className="tw:text-success-content tw:bg-success/90">
+              tw:text-success-content tw:bg-success/90
+            </li>
+            <li className="tw:text-info-content tw:bg-info/90">
+              tw:text-info-content tw:bg-info/90
+            </li>
+            <li className="tw:text-warning-content tw:bg-warning/90">
+              tw:text-warning-content tw:bg-warning/90
+            </li>
+            <li className="tw:text-error-content tw:bg-error/90">
+              tw:text-error-content tw:bg-error/90
+            </li>
+            <li className="tw:text-base-100-content tw:bg-base-100/80">
+              tw:text-base-100-content tw:bg-base-100/80
+            </li>
+            <li className="tw:text-base-200-content tw:bg-base-200/80">
+              tw:text-base-200-content tw:bg-base-200/80
+            </li>
+            <li className="tw:text-base-300-content tw:bg-base-300/80">
+              tw:text-base-300-content tw:bg-base-300/80
+            </li>
+            <li className="tw:text-primary-content tw:bg-primary/80">
+              tw:text-primary-content tw:bg-primary/80
+            </li>
+            <li className="tw:text-secondary-content tw:bg-secondary/80">
+              tw:text-secondary-content tw:bg-secondary/80
+            </li>
+            <li className="tw:text-neutral-content tw:bg-neutral/80">
+              tw:text-neutral-content tw:bg-neutral/80
+            </li>
+            <li className="tw:text-accent-content tw:bg-accent/80">
+              tw:text-accent-content tw:bg-accent/80
+            </li>
+            <li className="tw:text-success-content tw:bg-success/80">
+              tw:text-success-content tw:bg-success/80
+            </li>
+            <li className="tw:text-info-content tw:bg-info/80">
+              tw:text-info-content tw:bg-info/80
+            </li>
+            <li className="tw:text-warning-content tw:bg-warning/80">
+              tw:text-warning-content tw:bg-warning/80
+            </li>
+            <li className="tw:text-error-content tw:bg-error/80">
+              tw:text-error-content tw:bg-error/80
+            </li>
+            <li className="tw:text-base-100-content tw:bg-base-100/70">
+              tw:text-base-100-content tw:bg-base-100/70
+            </li>
+            <li className="tw:text-base-200-content tw:bg-base-200/70">
+              tw:text-base-200-content tw:bg-base-200/70
+            </li>
+            <li className="tw:text-base-300-content tw:bg-base-300/70">
+              tw:text-base-300-content tw:bg-base-300/70
+            </li>
+            <li className="tw:text-primary-content tw:bg-primary/70">
+              tw:text-primary-content tw:bg-primary/70
+            </li>
+            <li className="tw:text-secondary-content tw:bg-secondary/70">
+              tw:text-secondary-content tw:bg-secondary/70
+            </li>
+            <li className="tw:text-neutral-content tw:bg-neutral/70">
+              tw:text-neutral-content tw:bg-neutral/70
+            </li>
+            <li className="tw:text-accent-content tw:bg-accent/70">
+              tw:text-accent-content tw:bg-accent/70
+            </li>
+            <li className="tw:text-success-content tw:bg-success/70">
+              tw:text-success-content tw:bg-success/70
+            </li>
+            <li className="tw:text-info-content tw:bg-info/70">
+              tw:text-info-content tw:bg-info/70
+            </li>
+            <li className="tw:text-warning-content tw:bg-warning/70">
+              tw:text-warning-content tw:bg-warning/70
+            </li>
+            <li className="tw:text-error-content tw:bg-error/70">
+              tw:text-error-content tw:bg-error/70
+            </li>
+            <li className="tw:text-base-100-content tw:bg-base-100/60">
+              tw:text-base-100-content tw:bg-base-100/60
+            </li>
+            <li className="tw:text-base-200-content tw:bg-base-200/60">
+              tw:text-base-200-content tw:bg-base-200/60
+            </li>
+            <li className="tw:text-base-300-content tw:bg-base-300/60">
+              tw:text-base-300-content tw:bg-base-300/60
+            </li>
+            <li className="tw:text-primary-content tw:bg-primary/60">
+              tw:text-primary-content tw:bg-primary/60
+            </li>
+            <li className="tw:text-secondary-content tw:bg-secondary/60">
+              tw:text-secondary-content tw:bg-secondary/60
+            </li>
+            <li className="tw:text-neutral-content tw:bg-neutral/60">
+              tw:text-neutral-content tw:bg-neutral/60
+            </li>
+            <li className="tw:text-accent-content tw:bg-accent/60">
+              tw:text-accent-content tw:bg-accent/60
+            </li>
+            <li className="tw:text-success-content tw:bg-success/60">
+              tw:text-success-content tw:bg-success/60
+            </li>
+            <li className="tw:text-info-content tw:bg-info/60">
+              tw:text-info-content tw:bg-info/60
+            </li>
+            <li className="tw:text-warning-content tw:bg-warning/60">
+              tw:text-warning-content tw:bg-warning/60
+            </li>
+            <li className="tw:text-error-content tw:bg-error/60">
+              tw:text-error-content tw:bg-error/60
+            </li>
+            <li className="tw:text-base-100-content tw:bg-base-100/50">
+              tw:text-base-100-content tw:bg-base-100/50
+            </li>
+            <li className="tw:text-base-200-content tw:bg-base-200/50">
+              tw:text-base-200-content tw:bg-base-200/50
+            </li>
+            <li className="tw:text-base-300-content tw:bg-base-300/50">
+              tw:text-base-300-content tw:bg-base-300/50
+            </li>
+            <li className="tw:text-primary-content tw:bg-primary/50">
+              tw:text-primary-content tw:bg-primary/50
+            </li>
+            <li className="tw:text-secondary-content tw:bg-secondary/50">
+              tw:text-secondary-content tw:bg-secondary/50
+            </li>
+            <li className="tw:text-neutral-content tw:bg-neutral/50">
+              tw:text-neutral-content tw:bg-neutral/50
+            </li>
+            <li className="tw:text-accent-content tw:bg-accent/50">
+              tw:text-accent-content tw:bg-accent/50
+            </li>
+            <li className="tw:text-success-content tw:bg-success/50">
+              tw:text-success-content tw:bg-success/50
+            </li>
+            <li className="tw:text-info-content tw:bg-info/50">
+              tw:text-info-content tw:bg-info/50
+            </li>
+            <li className="tw:text-warning-content tw:bg-warning/50">
+              tw:text-warning-content tw:bg-warning/50
+            </li>
+            <li className="tw:text-error-content tw:bg-error/50">
+              tw:text-error-content tw:bg-error/50
+            </li>
+            <li className="tw:text-base-100-content tw:bg-base-100/40">
+              tw:text-base-100-content tw:bg-base-100/40
+            </li>
+            <li className="tw:text-base-200-content tw:bg-base-200/40">
+              tw:text-base-200-content tw:bg-base-200/40
+            </li>
+            <li className="tw:text-base-300-content tw:bg-base-300/40">
+              tw:text-base-300-content tw:bg-base-300/40
+            </li>
+            <li className="tw:text-primary-content tw:bg-primary/40">
+              tw:text-primary-content tw:bg-primary/40
+            </li>
+            <li className="tw:text-secondary-content tw:bg-secondary/40">
+              tw:text-secondary-content tw:bg-secondary/40
+            </li>
+            <li className="tw:text-neutral-content tw:bg-neutral/40">
+              tw:text-neutral-content tw:bg-neutral/40
+            </li>
+            <li className="tw:text-accent-content tw:bg-accent/40">
+              tw:text-accent-content tw:bg-accent/40
+            </li>
+            <li className="tw:text-success-content tw:bg-success/40">
+              tw:text-success-content tw:bg-success/40
+            </li>
+            <li className="tw:text-info-content tw:bg-info/40">
+              tw:text-info-content tw:bg-info/40
+            </li>
+            <li className="tw:text-warning-content tw:bg-warning/40">
+              tw:text-warning-content tw:bg-warning/40
+            </li>
+            <li className="tw:text-error-content tw:bg-error/40">
+              tw:text-error-content tw:bg-error/40
+            </li>
+            <li className="tw:text-base-100-content tw:bg-base-100/30">
+              tw:text-base-100-content tw:bg-base-100/30
+            </li>
+            <li className="tw:text-base-200-content tw:bg-base-200/30">
+              tw:text-base-200-content tw:bg-base-200/30
+            </li>
+            <li className="tw:text-base-300-content tw:bg-base-300/30">
+              tw:text-base-300-content tw:bg-base-300/30
+            </li>
+            <li className="tw:text-primary-content tw:bg-primary/30">
+              tw:text-primary-content tw:bg-primary/30
+            </li>
+            <li className="tw:text-secondary-content tw:bg-secondary/30">
+              tw:text-secondary-content tw:bg-secondary/30
+            </li>
+            <li className="tw:text-neutral-content tw:bg-neutral/30">
+              tw:text-neutral-content tw:bg-neutral/30
+            </li>
+            <li className="tw:text-accent-content tw:bg-accent/30">
+              tw:text-accent-content tw:bg-accent/30
+            </li>
+            <li className="tw:text-success-content tw:bg-success/30">
+              tw:text-success-content tw:bg-success/30
+            </li>
+            <li className="tw:text-info-content tw:bg-info/30">
+              tw:text-info-content tw:bg-info/30
+            </li>
+            <li className="tw:text-warning-content tw:bg-warning/30">
+              tw:text-warning-content tw:bg-warning/30
+            </li>
+            <li className="tw:text-error-content tw:bg-error/30">
+              tw:text-error-content tw:bg-error/30
+            </li>
+            <li className="tw:text-base-100-content tw:bg-base-100/20">
+              tw:text-base-100-content tw:bg-base-100/20
+            </li>
+            <li className="tw:text-base-200-content tw:bg-base-200/20">
+              tw:text-base-200-content tw:bg-base-200/20
+            </li>
+            <li className="tw:text-base-300-content tw:bg-base-300/20">
+              tw:text-base-300-content tw:bg-base-300/20
+            </li>
+            <li className="tw:text-primary-content tw:bg-primary/20">
+              tw:text-primary-content tw:bg-primary/20
+            </li>
+            <li className="tw:text-secondary-content tw:bg-secondary/20">
+              tw:text-secondary-content tw:bg-secondary/20
+            </li>
+            <li className="tw:text-neutral-content tw:bg-neutral/20">
+              tw:text-neutral-content tw:bg-neutral/20
+            </li>
+            <li className="tw:text-accent-content tw:bg-accent/20">
+              tw:text-accent-content tw:bg-accent/20
+            </li>
+            <li className="tw:text-success-content tw:bg-success/20">
+              tw:text-success-content tw:bg-success/20
+            </li>
+            <li className="tw:text-info-content tw:bg-info/20">
+              tw:text-info-content tw:bg-info/20
+            </li>
+            <li className="tw:text-warning-content tw:bg-warning/20">
+              tw:text-warning-content tw:bg-warning/20
+            </li>
+            <li className="tw:text-error-content tw:bg-error/20">
+              tw:text-error-content tw:bg-error/20
+            </li>
+            <li className="tw:text-base-100-content tw:bg-base-100/10">
+              tw:text-base-100-content tw:bg-base-100/10
+            </li>
+            <li className="tw:text-base-200-content tw:bg-base-200/10">
+              tw:text-base-200-content tw:bg-base-200/10
+            </li>
+            <li className="tw:text-base-300-content tw:bg-base-300/10">
+              tw:text-base-300-content tw:bg-base-300/10
+            </li>
+            <li className="tw:text-primary-content tw:bg-primary/10">
+              tw:text-primary-content tw:bg-primary/10
+            </li>
+            <li className="tw:text-secondary-content tw:bg-secondary/10">
+              tw:text-secondary-content tw:bg-secondary/10
+            </li>
+            <li className="tw:text-neutral-content tw:bg-neutral/10">
+              tw:text-neutral-content tw:bg-neutral/10
+            </li>
+            <li className="tw:text-accent-content tw:bg-accent/10">
+              tw:text-accent-content tw:bg-accent/10
+            </li>
+            <li className="tw:text-success-content tw:bg-success/10">
+              tw:text-success-content tw:bg-success/10
+            </li>
+            <li className="tw:text-info-content tw:bg-info/10">
+              tw:text-info-content tw:bg-info/10
+            </li>
+            <li className="tw:text-warning-content tw:bg-warning/10">
+              tw:text-warning-content tw:bg-warning/10
+            </li>
+            <li className="tw:text-error-content tw:bg-error/10">
+              tw:text-error-content tw:bg-error/10
             </li>
           </ul>
           <h2>Tabs</h2>
