@@ -10,6 +10,20 @@ const p = (
   </p>
 )
 
+const namedColors = [
+  'base-100',
+  'base-200',
+  'base-300',
+  'primary',
+  'secondary',
+  'neutral',
+  'accent',
+  'success',
+  'info',
+  'warning',
+  'error',
+]
+
 const TypographyPage = ({ page }) => {
   return (
     <Layout
@@ -90,6 +104,19 @@ const TypographyPage = ({ page }) => {
               Tiny wide
             </button>
           </div>
+          <h2>Named colors</h2>
+          <ul className="tw:list tw:list-inside tw:list-disc tw:ml-2">
+            {namedColors.map((color) => (
+              <li key={color} className={`tw:text-${color}`}>
+                tw:{color}
+              </li>
+            ))}
+            {namedColors.map((color) => (
+              <li key={color} className={`tw:text-${color}-content tw:bg-${color}`}>
+                tw:{color}-content tw:bg-{color}
+              </li>
+            ))}
+          </ul>
           <h2>Tabs</h2>
           <Tabs>
             <TabItem value="1" label="Tab 1">
