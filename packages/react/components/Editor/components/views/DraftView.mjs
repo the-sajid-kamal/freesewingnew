@@ -48,7 +48,9 @@ export const DraftView = ({ Design, state, update, config, plugins = [], PluginO
       const strings = bundlePatternTranslations(pattern.designConfig.data.id)
       pattern.use(i18nPlugin, (t) => translateStrings([t], strings))
       pattern.use(themePlugin)
-      pattern.use(svgAttrPlugin, { class: 'freesewing pattern' })
+      pattern.use(svgAttrPlugin, {
+        class: `freesewing pattern tw:w-full ${state.ui.rotate ? 'tw:-rotate-90' : ''}`,
+      })
     }
   })
 
