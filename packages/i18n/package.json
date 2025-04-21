@@ -1,7 +1,7 @@
 {
   "name": "@freesewing/i18n",
   "version": "4.0.0",
-  "description": "Translation for the FreeSewing project",
+  "description": "English translation for the FreeSewing project",
   "author": "Joost De Cock <joost@joost.at> (https://github.com/joostdecock)",
   "homepage": "https://freesewing.org/",
   "repository": "github:freesewing/freesewing",

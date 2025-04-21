@@ -1,7 +1,7 @@
 {
   "name": "@freesewing/core-plugins",
   "version": "4.0.0",
-  "description": "An umbrella package of essential plugins that are bundled with FreeSewing's core library",
+  "description": "An umbrella package of essential plugins that are bundled with the FreeSewing core library",
   "author": "Joost De Cock <joost@joost.at> (https://github.com/joostdecock)",
   "homepage": "https://freesewing.org/",
   "repository": "github:freesewing/freesewing",

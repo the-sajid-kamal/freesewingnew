@@ -1,4 +1,5 @@
 {
-  "version": "4.0.0-rc.8",
-  "name": "plugin-bust"
+  "id": "plugin-bust",
+  "description": "A FreeSewing plugin that helps with bust-adjusting menswear patterns",
+  "version": "4.0.0"
 }

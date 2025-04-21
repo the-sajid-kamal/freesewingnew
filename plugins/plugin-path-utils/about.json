@@ -1,4 +1,5 @@
 {
-  "version": "4.0.0-rc.8",
-  "name": "plugin-path-utils"
+  "id": "plugin-path-utils",
+  "description": "A FreeSewing plugin that adds various path helper macros",
+  "version": "4.0.0"
 }

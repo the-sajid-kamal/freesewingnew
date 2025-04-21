@@ -1,17 +1,27 @@
-import path from 'path'
-import fs from 'fs'
-import { glob } from 'glob'
+//import path from 'path'
+//import fs from 'fs'
+import {
+  fs,
+  cp,
+  readFile,
+  writeFile,
+  path,
+  glob,
+  copyFolderRecursively,
+  root,
+  readJsonFile,
+  writeJsonFile,
+} from './fs.mjs'
+//import { glob } from 'glob'
 import yaml from 'js-yaml'
 import chalk from 'chalk'
 import mustache from 'mustache'
 import conf from '../lerna.json' assert { type: 'json' }
 const { version } = conf
-import { software, publishedTypes as types, plugins } from '../config/software/index.mjs'
+import { getSoftware } from './software.mjs'
+//import { software, publishedTypes as types, plugins } from '../config/software/index.mjs'
 import { collection } from '@freesewing/collection'
 import { capitalize } from '../packages/utils/src/index.mjs'
-
-// Working directory
-const cwd = process.cwd()
 
 /*
  * When we're building a site (on Netlify for example) SITEBUILD
@@ -26,7 +36,7 @@ if (SITEBUILD) console.log('Site build | Configure monorepo accordingly')
  * This object holds info about the repository
  */
 const repo = {
-  path: cwd,
+  path: root,
   defaults: readConfigFile('defaults.yaml'),
   keywords: readConfigFile('keywords.yaml'),
   badges: SITEBUILD ? null : readConfigFile('badges.yaml'),
@@ -41,13 +51,17 @@ const repo = {
     readme: SITEBUILD ? null : readTemplateFile('readme.dflt.md'),
     pluginTests: SITEBUILD ? null : readTemplateFile('plugin.test.mjs'),
     designTests: SITEBUILD ? null : readTemplateFile('design.test.mjs.mustache'),
-    data: SITEBUILD ? null : readTemplateFile('data.dflt.mjs.mustache'),
+    collection: {
+      pkg: readTemplateFile('collection-pkg.mustache'),
+      hook: readTemplateFile('collection-hook.mustache'),
+    },
   },
-  dirs: foldersByType(),
-  contributors: SITEBUILD ? null : fs.readFileSync(path.join(cwd, 'CONTRIBUTORS.md'), 'utf-8'),
+  contributors: SITEBUILD ? null : fs.readFileSync(path.join(root, 'CONTRIBUTORS.md'), 'utf-8'),
   ac: SITEBUILD
     ? null
-    : JSON.parse(fs.readFileSync(path.join(cwd, '.all-contributorsrc'), 'utf-8')),
+    : JSON.parse(fs.readFileSync(path.join(root, '.all-contributorsrc'), 'utf-8')),
+  software: await getSoftware(),
+  hiddenDesigns: ['examples', 'legend', 'plugintest', 'rendertest', 'magde'],
 }
 
 /*
@@ -56,25 +70,64 @@ const repo = {
 const log = process.stdout
 
 // Step 0: Avoid symlink so Windows users don't complain
-const copyThese = [
+const cpFolders = [
   {
-    from: ['scripts', 'banner.mjs'],
-    to: ['packages', 'new-design', 'lib', 'banner.mjs'],
+    from: ['sites', 'org', 'plugins'],
+    to: ['sites', 'studio', 'plugins'],
+  },
+  {
+    from: ['packages', 'studio', 'template', 'docs'],
+    to: ['sites', 'studio', 'docs'],
+  },
+  {
+    from: ['packages', 'studio', 'template', 'src'],
+    to: ['sites', 'studio', 'src'],
+  },
+  {
+    from: ['packages', 'studio', 'template', 'static'],
+    to: ['sites', 'studio', 'static'],
+  },
+  {
+    from: ['packages', 'studio', 'template', 'scripts'],
+    to: ['sites', 'studio', 'scripts'],
+  },
+  {
+    from: ['sites', 'org', 'src', 'css'],
+    to: ['sites', 'studio', 'src', 'css'],
   },
 ]
-for (const cp of copyThese) {
-  fs.copyFile(path.join(repo.path, ...cp.from), path.join(repo.path, ...cp.to), () => null)
-}
+const cpFiles = [
+  {
+    from: ['sites', 'org', 'babel.config.mjs'],
+    to: ['sites', 'studio', 'babel.config.mjs'],
+  },
+  {
+    from: ['sites', 'org', 'postcss.config.js'],
+    to: ['sites', 'studio', 'postcss.config.js'],
+  },
+  {
+    from: ['sites', 'org', 'plugins'],
+    to: ['sites', 'studio', 'plugins'],
+  },
+  {
+    from: ['sites', 'org', 'src', 'pages', 'style.mjs'],
+    to: ['sites', 'studio', 'src', 'pages', 'style.mjs'],
+  },
+  {
+    from: ['sites', 'studio', 'add.mdx'],
+    to: ['sites', 'studio', 'docs', 'add.mdx'],
+  },
+]
+for (const op of cpFolders) await copyFolderRecursively(op.from, op.to)
+for (const op of cpFiles) await cp(op.from, op.to)
 
 // Step 1: Generate main README file from template
 if (!SITEBUILD) {
-  log.write(chalk.blueBright('Generating out main README file...'))
-  fs.writeFileSync(
-    path.join(repo.path, 'README.md'),
-    mustache.render(
-      fs.readFileSync(path.join(repo.path, 'config', 'templates', 'readme.main.md'), 'utf-8'),
-      { allcontributors: repo.ac.contributors.length }
-    ) + repo.contributors
+  log.write(chalk.blueBright('Templating out main README file...'))
+  const template = await readFile(['config', 'templates', 'readme.main.md'])
+  await writeFile(
+    'README.md',
+    mustache.render(template, { allcontributors: repo.ac.contributors.length }) + repo.contributors
   )
   log.write(chalk.green(' Done\n'))
 }
@@ -87,67 +140,67 @@ if (!SITEBUILD) {
 
 // Step 3: Generate package.json, README, and CHANGELOG
 log.write(chalk.blueBright('Generating package-specific files...'))
-for (const pkg of Object.values(software)) {
-  fs.writeFileSync(
-    path.join(cwd, pkg.folder, pkg.name, 'package.json'),
-    JSON.stringify(packageJson(pkg), null, 2) + '\n'
-  )
-  if (!SITEBUILD) {
-    if (pkg.type !== 'site') {
-      fs.writeFileSync(path.join(cwd, pkg.folder, pkg.name, 'README.md'), readme(pkg))
-      fs.writeFileSync(path.join(cwd, pkg.folder, pkg.name, 'CHANGELOG.md'), changelog(pkg))
-      if ([...collection, 'bonny'].includes(pkg.name)) {
-        const aboutFile = path.join(cwd, 'designs', pkg.name, 'about.json')
-        const about = JSON.parse(fs.readFileSync(aboutFile, 'utf-8'))
-        about.version = version
-        about.pkg = `@freesewing/${about.id}`
-        fs.writeFileSync(aboutFile, JSON.stringify(about, null, 2))
-      }
+for (const type of ['designs', 'packages', 'plugins']) {
+  for (const folder of Object.keys(repo.software[type])) {
+    const about = await readJsonFile([type, folder, 'about.json'])
+    await writeJsonFile([type, folder, 'package.json'], packageJson(folder, type, about))
+    if (!SITEBUILD) {
+      await writeFile([type, folder, 'README.md'], readme(folder, type, about))
+      await writeFile([type, folder, 'CHANGELOG.md'], changelog(folder, type, about))
+      await writeJsonFile([type, folder, 'about.json'], { ...about, version })
     }
   }
 }
 log.write(chalk.green(' Done\n'))
 
 // Step 4: Generate overall CHANGELOG.md
-if (!SITEBUILD) fs.writeFileSync(path.join(repo.path, 'CHANGELOG.md'), changelog('global'))
+if (!SITEBUILD) await writeFile('CHANGELOG.md', changelog('global'))
 
 // Step 5: Generate tests for designs and plugins
 if (!SITEBUILD) {
-  for (const design of collection) {
-    fs.writeFileSync(
-      path.join(repo.path, 'designs', design, 'tests', 'shared.test.mjs'),
+  for (const design in repo.software.designs) {
+    await writeFile(
+      ['designs', design, 'tests', 'shared.test.mjs'],
       mustache.render(repo.templates.designTests, { name: design, Name: capitalize(design) })
     )
   }
-  for (const plugin in plugins) {
-    fs.writeFileSync(
-      path.join(repo.path, 'plugins', plugin, 'tests', 'shared.test.mjs'),
-      repo.templates.pluginTests
-    )
+  for (const plugin in repo.software.plugins) {
+    await writeFile(['plugins', plugin, 'tests', 'shared.test.mjs'], repo.templates.pluginTests)
   }
 }
+
+// Step 6: Generate collection package and hook dynamic files
+const designList = Object.keys(repo.software.designs).filter(
+  (name) => !repo.hiddenDesigns.includes(name)
+)
+
+const designImports = designList
+  .map((name) => `import { ${capitalize(name)} as ${name} } from '@freesewing/${name}'`)
+  .join('\n')
+await writeFile(
+  ['packages', 'collection', 'src', 'index.mjs'],
+  mustache.render(repo.templates.collection.pkg, {
+    designImports,
+    designList: designList.join(',\n  '),
+  })
+)
+await writeFile(
+  ['packages', 'react', 'hooks', 'useDesign', 'index.mjs'],
+  mustache.render(repo.templates.collection.hook, {
+    designImports,
+    designList: designList.join(',\n  '),
+  })
+)
 
 // All done
 log.write(chalk.green(' All done\n'))
 process.exit()
 
-/*
- * Generates a list of folders by type
- */
-function foldersByType() {
-  const dirs = {}
-  for (const dir of types) {
-    dirs[dir] = glob.sync('*', { cwd: path.join(cwd, dir) })
-  }
-
-  return dirs
-}
-
 /**
  * Reads a template file
  */
 function readTemplateFile(file) {
-  return fs.readFileSync(path.join(cwd, 'config', 'templates', file), 'utf-8')
+  return fs.readFileSync(path.join(root, 'config', 'templates', file), 'utf-8')
 }
 
 /**
@@ -156,19 +209,19 @@ function readTemplateFile(file) {
 function readConfigFile(file, replace = false) {
   if (replace)
     return yaml.load(
-      mustache.render(fs.readFileSync(path.join(cwd, 'config', file), 'utf-8'), replace)
+      mustache.render(fs.readFileSync(path.join(root, 'config', file), 'utf-8'), replace)
     )
-  return yaml.load(fs.readFileSync(path.join(cwd, 'config', file), 'utf-8'))
+  return yaml.load(fs.readFileSync(path.join(root, 'config', file), 'utf-8'))
 }
 
 /**
  * Reads info.md from the package directory
  * Returns its contents if it exists, or an empty string if not
  */
-function readInfoFile(pkg) {
+function readInfoFile(pkg, type) {
   let markup = ''
   try {
-    markup = fs.readFileSync(path.join(cwd, pkg.folder, pkg.name, 'info.md'), 'utf-8')
+    markup = fs.readFileSync(path.join(root, type, pkg, 'info.md'), 'utf-8')
   } catch (err) {
     return ''
   }
@@ -179,44 +232,36 @@ function readInfoFile(pkg) {
 /**
  * Returns an array of keywords for a package
  */
-function keywords(pkg) {
-  if (pkg.type === 'site') return []
-  if (typeof repo.keywords[pkg.name] !== 'undefined') return repo.keywords[pkg.name]
-  if (typeof repo.keywords[pkg.type] !== 'undefined') return repo.keywords[pkg.type]
-  else {
-    console.log(
-      chalk.redBright.bold('Problem:'),
-      chalk.redBright(`No keywords for package ${pkg.name} which is of type ${pkg.type}`)
-    )
-    process.exit()
-  }
+function keywords(pkg, type) {
+  if (typeof repo.keywords[pkg] !== 'undefined') return repo.keywords[pkg]
+  if (typeof repo.keywords[type] !== 'undefined') return repo.keywords[type]
+  if (Object.keys(repo.software.designs).includes(pkg)) return repo.keywords.design
+  else return repo.keywords.other
 }
 
 /**
  * Returns an plain object of scripts for a package
  */
-function scripts(pkg) {
+function scripts(pkg, type) {
   let runScripts = {}
-  if (pkg.type !== 'site') {
-    for (const key of Object.keys(repo.scripts._)) {
-      runScripts[key] = mustache.render(repo.scripts._[key], {
-        name: pkg.name,
+  for (const key of Object.keys(repo.scripts._)) {
+    runScripts[key] = mustache.render(repo.scripts._[key], {
+      name: pkg,
+    })
+  }
+  if (typeof repo.scripts._types[type] !== 'undefined') {
+    for (const key of Object.keys(repo.scripts._types[type])) {
+      runScripts[key] = mustache.render(repo.scripts._types[type][key], {
+        name: pkg,
       })
     }
   }
-  if (typeof repo.scripts._types[pkg.type] !== 'undefined') {
-    for (const key of Object.keys(repo.scripts._types[pkg.type])) {
-      runScripts[key] = mustache.render(repo.scripts._types[pkg.type][key], {
-        name: pkg.name,
-      })
-    }
-  }
-  if (typeof repo.scripts[pkg.name] !== 'undefined') {
-    for (const key of Object.keys(repo.scripts[pkg.name])) {
-      if (repo.scripts[pkg.name][key] === '!') delete runScripts[key]
+  if (typeof repo.scripts[pkg] !== 'undefined') {
+    for (const key of Object.keys(repo.scripts[pkg])) {
+      if (repo.scripts[pkg][key] === '!') delete runScripts[key]
       else
-        runScripts[key] = mustache.render(repo.scripts[pkg.name][key], {
-          name: pkg.name,
+        runScripts[key] = mustache.render(repo.scripts[pkg][key], {
+          name: pkg,
         })
     }
   }
@@ -233,16 +278,16 @@ function scripts(pkg) {
  *  - peer (for peerDependencies)
  *
  */
-function dependencies(section, pkg) {
+function dependencies(section, pkg, type) {
   let dependencies = {}
   if (
-    typeof repo.dependencies._types[pkg.type] !== 'undefined' &&
-    typeof repo.dependencies._types[pkg.type][section] !== 'undefined'
+    typeof repo.dependencies._types[type] !== 'undefined' &&
+    typeof repo.dependencies._types[type][section] !== 'undefined'
   )
-    dependencies = repo.dependencies._types[pkg.type][section]
-  if (typeof repo.dependencies[pkg.name] === 'undefined') return dependencies
-  if (typeof repo.dependencies[pkg.name][section] !== 'undefined')
-    return { ...dependencies, ...repo.dependencies[pkg.name][section] }
+    dependencies = repo.dependencies._types[type][section]
+  if (typeof repo.dependencies[pkg] === 'undefined') return dependencies
+  if (typeof repo.dependencies[pkg][section] !== 'undefined')
+    return { ...dependencies, ...repo.dependencies[pkg][section] }
 
   return dependencies
 }
@@ -250,44 +295,34 @@ function dependencies(section, pkg) {
 /**
  * Creates a package.json file for a package
  */
-function packageJson(pkg) {
+function packageJson(pkg, type, about) {
   let pkgConf = {}
   // Let's keep these at the top
-  pkgConf.name = fullName(pkg.name)
+  pkgConf.name = fullName(about.id)
   pkgConf.version = version
-  pkgConf.description = pkg.description
+  pkgConf.description = about.description
   pkgConf = {
     ...pkgConf,
-    ...JSON.parse(mustache.render(repo.templates.pkg, { name: pkg.name })),
+    ...JSON.parse(mustache.render(repo.templates.pkg, { name: about.id })),
   }
-  pkgConf.keywords = pkgConf.keywords.concat(keywords(pkg))
-  pkgConf.scripts = scripts(pkg)
+  pkgConf.keywords = pkgConf.keywords.concat(keywords(pkg, type))
+  pkgConf.scripts = scripts(pkg, type)
 
-  if (repo.exceptions.skipTests.indexOf(pkg.name) !== -1) {
-    pkgConf.scripts.test = `echo "skipping tests for ${pkg.name}"`
-    pkgConf.scripts.testci = `echo "skipping tests for ${pkg.name}"`
+  if (repo.exceptions.skipTests.includes(pkg)) {
+    pkgConf.scripts.test = `echo "skipping tests for ${about.id}"`
+    pkgConf.scripts.testci = `echo "skipping tests for ${about.id}"`
   }
-  pkgConf.dependencies = dependencies('_', pkg)
-  pkgConf.devDependencies = dependencies('dev', pkg)
-  pkgConf.peerDependencies = dependencies('peer', pkg)
-  if (typeof repo.exceptions.packageJson[pkg.name] !== 'undefined') {
+  pkgConf.dependencies = dependencies('_', pkg, type)
+  pkgConf.devDependencies = dependencies('dev', pkg, type)
+  pkgConf.peerDependencies = dependencies('peer', pkg, type)
+  if (typeof repo.exceptions.packageJson[pkg] !== 'undefined') {
     pkgConf = {
       ...pkgConf,
-      ...repo.exceptions.packageJson[pkg.name],
+      ...repo.exceptions.packageJson[pkg],
     }
-    for (let key of Object.keys(repo.exceptions.packageJson[pkg.name])) {
-      if (repo.exceptions.packageJson[pkg.name][key] === '!') delete pkgConf[key]
+    for (let key of Object.keys(repo.exceptions.packageJson[pkg])) {
+      if (repo.exceptions.packageJson[pkg][key] === '!') delete pkgConf[key]
     }
-  }
-
-  if (pkg.type === 'site') {
-    delete pkgConf.keywords
-    delete pkgConf.type
-    delete pkgConf.module
-    delete pkgConf.exports
-    delete pkgConf.files
-    delete pkgConf.publishConfig
-    pkgConf.private = true
   }
 
   return pkgConf
@@ -325,19 +360,19 @@ function formatBadge(badge, name, fullname) {
  * Returns the full (namespaced) name of a package
  */
 function fullName(name) {
-  if (repo.exceptions.noNamespace.indexOf(name) !== -1) return name
+  if (repo.exceptions.noNamespace.includes(name)) return name
   else return `@freesewing/${name}`
 }
 
 /**
  * Creates a README.md file for a package
  */
-function readme(pkg) {
+function readme(pkg, type, about) {
   let markup = mustache.render(repo.templates.readme, {
-    fullname: fullName(pkg.name),
-    description: pkg.description,
-    badges: badges(pkg.name),
-    info: readInfoFile(pkg),
+    fullname: fullName(pkg),
+    description: about.description,
+    badges: badges(pkg, type),
+    info: readInfoFile(pkg, type),
     contributors: repo.contributors,
   })
 
@@ -349,8 +384,8 @@ function readme(pkg) {
  */
 function changelog(pkg) {
   let markup = mustache.render(repo.templates.changelog, {
-    fullname: pkg === 'global' ? 'FreeSewing (global)' : fullName(pkg.name),
-    changelog: pkg === 'global' ? globalChangelog() : packageChangelog(pkg.name),
+    fullname: pkg === 'global' ? 'FreeSewing (global)' : fullName(pkg),
+    changelog: pkg === 'global' ? globalChangelog() : packageChangelog(pkg),
   })
 
   return markup
@@ -366,7 +401,12 @@ function globalChangelog() {
     markup += '\n## ' + v
     if (v !== 'Unreleased') markup += ' (' + formatDate(changes.date) + ')'
     markup += '\n\n'
-    for (let pkg of ['global', ...Object.keys(software)]) {
+    for (let pkg of [
+      'global',
+      ...Object.keys(repo.software.designs),
+      ...Object.keys(repo.software.plugins),
+      ...Object.keys(repo.software.packages),
+    ]) {
       let changed = false
       for (let type of repo.changetypes) {
         if (
@@ -447,14 +487,7 @@ function formatDate(date) {
  * Make sure we have (at least) a description for each package
  */
 function validate() {
-  for (const type in repo.dirs) {
-    for (const dir of repo.dirs[type]) {
-      if (typeof software?.[dir]?.description !== 'string') {
-        log.write(chalk.redBright(` No description for package ${type}/${dir}` + '\n'))
-        return false
-      }
-    }
-  }
+  // Nothing to validate, perhaps we should change that
 
   return true
 }

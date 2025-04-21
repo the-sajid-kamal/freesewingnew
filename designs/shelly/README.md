@@ -32,7 +32,7 @@
 
 # @freesewing/shelly
 
-A FreeSewing pattern for a raglan shirt, perfect for swimshirts
+A FreeSewing pattern for a raglan shirt, perfect for swim shirts
 
 
 

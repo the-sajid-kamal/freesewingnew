@@ -15,14 +15,12 @@
   },
   "keywords": [
     "freesewing",
-    "plugin",
-    "sewing pattern",
-    "sewing",
     "design",
-    "parametric design",
-    "made to measure",
     "diy",
-    "fashion"
+    "fashion",
+    "made to measure",
+    "parametric design",
+    "sewing"
   ],
   "type": "module",
   "module": "src/index.mjs",

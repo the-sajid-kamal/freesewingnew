@@ -6,6 +6,7 @@ import { Benjamin as benjamin } from '@freesewing/benjamin'
 import { Bent as bent } from '@freesewing/bent'
 import { Bibi as bibi } from '@freesewing/bibi'
 import { Bob as bob } from '@freesewing/bob'
+import { Bonny as bonny } from '@freesewing/bonny'
 import { Breanna as breanna } from '@freesewing/breanna'
 import { Brian as brian } from '@freesewing/brian'
 import { Bruce as bruce } from '@freesewing/bruce'
@@ -25,6 +26,7 @@ import { Huey as huey } from '@freesewing/huey'
 import { Hugo as hugo } from '@freesewing/hugo'
 import { Jaeger as jaeger } from '@freesewing/jaeger'
 import { Jane as jane } from '@freesewing/jane'
+import { Lily as lily } from '@freesewing/lily'
 import { Lucy as lucy } from '@freesewing/lucy'
 import { Lumina as lumina } from '@freesewing/lumina'
 import { Lumira as lumira } from '@freesewing/lumira'
@@ -55,8 +57,6 @@ import { Wahid as wahid } from '@freesewing/wahid'
 import { Walburga as walburga } from '@freesewing/walburga'
 import { Waralee as waralee } from '@freesewing/waralee'
 import { Yuri as yuri } from '@freesewing/yuri'
-import { Lily as lily } from '@freesewing/lily'
-import { Bonny as bonny } from '@freesewing/bonny'
 
 export const designs = {
   aaron,
@@ -67,6 +67,7 @@ export const designs = {
   bent,
   bibi,
   bob,
+  bonny,
   breanna,
   brian,
   bruce,
@@ -86,6 +87,7 @@ export const designs = {
   hugo,
   jaeger,
   jane,
+  lily,
   lucy,
   lumina,
   lumira,
@@ -116,8 +118,6 @@ export const designs = {
   walburga,
   waralee,
   yuri,
-  lily,
-  bonny,
 }
 
 export const useDesign = (design) => (designs[design] ? designs[design] : false)

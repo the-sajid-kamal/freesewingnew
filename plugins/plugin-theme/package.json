@@ -1,7 +1,6 @@
 {
-  "name": "@freesewing/plugin-theme",
+  "name": "@freesewing/undefined",
   "version": "4.0.0",
-  "description": "A FreeSewing plugin that provides a default theme",
   "author": "Joost De Cock <joost@joost.at> (https://github.com/joostdecock)",
   "homepage": "https://freesewing.org/",
   "repository": "github:freesewing/freesewing",
@@ -15,14 +14,12 @@
   },
   "keywords": [
     "freesewing",
-    "plugin",
-    "sewing pattern",
-    "sewing",
     "design",
-    "parametric design",
-    "made to measure",
     "diy",
-    "fashion"
+    "fashion",
+    "made to measure",
+    "parametric design",
+    "sewing"
   ],
   "type": "module",
   "module": "src/index.mjs",

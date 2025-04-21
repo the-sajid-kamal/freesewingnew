@@ -35,6 +35,17 @@ sites/*/yarn.lock
 # Docusaurus cache
 .docusaurus
 
+# Sites get some files from org via the reconfigure script
+sites/studio/postcss.config.js
+sites/studio/babel.config.mjs
+sites/studio/plugins
+sites/studio/src/css
+sites/studio/designs
+sites/studio/docs
+sites/studio/src
+sites/studio/scripts
+sites/studio/static
+
 # Sites prebuild artifacts
 sites/*/public/locales/*/*.json
 !sites/sde/public/locales/*/*.json

@@ -211,17 +211,17 @@
 
  - The `@freesewing/i18n` package holds translations in English for where they are needed
 
-### studio
-
-#### Added
-
- - Added `@freesewing/studio`, our new development environment
-
 ### react
 
 #### Added
 
  - The `@freesewing/react` package holds shared components, hooks, and context for our React-based frontends
+
+### studio
+
+#### Added
+
+ - Added `@freesewing/studio`, our new development environment
 
 ### utils
 

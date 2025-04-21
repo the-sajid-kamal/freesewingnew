@@ -4,11 +4,11 @@ _:
   tips: 'node ../../scripts/help.mjs'
   lint: "npx eslint 'src/**' 'tests/*.mjs'"
 _types:
-  design:
+  designs:
     prettier: "npx prettier --write 'src/*.mjs' 'tests/*.mjs'"
     test: &test 'npx mocha tests/*.test.mjs'
     testci: &testci 'NODE_OPTIONS="--conditions=internal" npx mocha tests/*.test.mjs --reporter ../../tests/reporters/terse.js'
-  plugin:
+  plugins:
     prettier: "npx prettier --write 'src/*.mjs' 'tests/*.mjs'"
     test: *test
     testci: *testci

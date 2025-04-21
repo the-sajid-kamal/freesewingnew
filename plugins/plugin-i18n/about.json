@@ -1,4 +1,5 @@
 {
-  "version": "4.0.0-rc.8",
-  "name": "plugin-i18n"
+  "id": "plugin-i18n",
+  "description": "A FreeSewing plugin for pattern translation",
+  "version": "4.0.0"
 }

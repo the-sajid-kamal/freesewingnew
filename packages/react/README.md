@@ -32,7 +32,7 @@
 
 # @freesewing/react
 
-React components, hooks and context  by&#x2F;for FreeSewing
+React components, hooks and context for FreeSewing frontends
 
 
 

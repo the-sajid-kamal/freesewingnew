@@ -75,6 +75,7 @@ export const designs = {
   bent,
   bibi,
   bob,
+  bonny,
   breanna,
   brian,
   bruce,
