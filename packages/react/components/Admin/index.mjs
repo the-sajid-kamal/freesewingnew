@@ -181,6 +181,21 @@ export const Hits = ({ results, Link = false }) => {
 
 export const User = ({ user, Link }) => {
   const { setModal } = useContext(ModalContext)
+  const { setLoadingStatus } = useContext(LoadingStatusContext)
+  const backend = useBackend()
+
+  /*
+   * We had a bug with the signUp flow where consent was
+   * not set. Users cannot get out of this, so this allows
+   * admins to grant consent on their behalf.
+   */
+  const setConsent = async () => {
+    setLoadingStatus([true, 'Contacting backend'])
+    const [status, body] = await backend.adminUpdateUser({ id: user.id, data: { consent: 2 } })
+    if (status === 200 && body.result === 'success') {
+      setLoadingStatus([true, 'Consent updated', true, true])
+    } else setLoadingStatus([true, 'An error occured', true, false])
+  }
 
   return (
     <div className="tw:flex tw:flex-row tw:w-full tw:gap-4 tw:my-2">
@@ -222,6 +237,14 @@ export const User = ({ user, Link }) => {
             Details
           </button>
           <ImpersonateButton userId={user.id} />
+          {user.consent < 1 ? (
+            <button
+              className="tw:daisy-btn tw:daisy-btn-warning tw:daisy-btn-sm"
+              onClick={setConsent}
+            >
+              Grant Consent
+            </button>
+          ) : null}
         </div>
       </div>
     </div>

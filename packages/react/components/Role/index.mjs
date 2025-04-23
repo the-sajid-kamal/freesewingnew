@@ -8,11 +8,9 @@ import { useBackend } from '@freesewing/react/hooks/useBackend'
 import { Link as DefaultLink } from '@freesewing/react/components/Link'
 import { LockIcon, PlusIcon } from '@freesewing/react/components/Icon'
 import { Spinner } from '@freesewing/react/components/Spinner'
+import { Popout } from '@freesewing/react/components/Popout'
 import { H1, H2, H3 } from '@freesewing/react/components/Heading'
-
-//import { ConsentForm, ns as gdprNs } from 'shared/components/gdpr/form.mjs'
-
-const ConsentForm = () => null
+import { Consent } from '@freesewing/react/components/Account'
 
 const Wrap = ({ children }) => (
   <div className="tw:m-auto tw:max-w-xl tw:text-center tw:mt-8 tw:p-8">{children}</div>
@@ -144,7 +142,20 @@ const ConsentLacking = ({ banner, refresh }) => {
     <Wrap>
       <div className="tw:text-left">
         {banner}
-        <ConsentForm submit={updateConsent} />
+        <Popout warning>
+          <h2>Your account lacks consent</h2>
+          <p>
+            This should have been taken care of when onboarding your account, but due to a earlier
+            bug in the registration, a small subsection of accounts ended up in this state.
+          </p>
+          <p>
+            Please complete the form to give your consent, that may resolve the matter.
+            <br />
+            If it does not, please <a href="/support">contact support</a> so we may help you.
+          </p>
+        </Popout>
+        <h1>Consent & Privacy</h1>
+        <Consent submit={updateConsent} />
       </div>
     </Wrap>
   )
@@ -167,32 +178,35 @@ export const RoleBlock = ({ children, user = false, Link = false }) => {
    * Avoid hydration errors
    */
   useEffect(() => {
-    if (admin?.account?.username && account?.username)
+    if (admin?.account?.username && account?.username && !impersonating.admin)
       setImpersonating({
         admin: admin.account.username,
         user: account.username,
       })
+  }, [admin])
+
+  useEffect(() => {
     const verifyUser = async () => {
-      const [status, data] = await backend.ping()
-      if (status === 200 && data.result === 'success') {
-        // Refresh account in local storage
-        setAccount({
-          ...account,
-          ...data.account,
-          bestBefore: Date.now() + 3600000,
-        })
-      } else {
-        if (data?.error?.error) setError(data.error.error)
+      if (!error) {
+        const [status, data] = await backend.ping()
+        if (status === 200 && data.result === 'success') {
+          // Refresh account in local storage
+          setAccount({
+            ...account,
+            ...data.account,
+            bestBefore: Date.now() + 3600000,
+          })
+        } else if (status === 451) setError('consentLacking')
         else {
-          signOut()
+          console.log({ status, data })
+          if (data?.error?.error) setError(data.error.error)
+          else signOut()
         }
+        setReady(true)
       }
-      setReady(true)
     }
-    if (token) {
-      // Don't hammer the backend. Check once per hour.
-      if (!account.bestBefore || account.bestBefore < Date.now()) verifyUser()
-    }
+    // Don't hammer the backend. Check once per hour.
+    if (token && !error && (!account.bestBefore || account.bestBefore < Date.now())) verifyUser()
     setReady(true)
   }, [admin, refreshCount, signOut])
 
@@ -201,7 +215,7 @@ export const RoleBlock = ({ children, user = false, Link = false }) => {
     setError(false)
   }
 
-  if (!ready) return <Spinner />
+  if (!ready) <Spinner />
 
   const banner = impersonating ? (
     <div className="tw:bg-warning tw:rounded-lg tw:shadow tw:py-4 tw:px-6 tw:flex tw:flex-row tw:items-center tw:gap-4 tw:justify-between">
