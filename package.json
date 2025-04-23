@@ -20,7 +20,7 @@
     "eu": "cd sites/org && npm run start",
     "dev": "cd sites/dev && npm run start",
     "studio": "cd sites/studio && npm run start",
-    "kickstart": "npm install && husky && npm run tips",
+    "kickstart": "npm install && husky && npm run reconfigure && npm run tips",
     "cleanall": "npx nx run-many --target=clean",
     "test": "npx nx run-many --target=test",
     "e2e": "npx nx run-many --target=e2e",
