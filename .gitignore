@@ -57,6 +57,7 @@ packages/new-design/lib/banner.mjs
 sites/*/public/img/og/*
 sites/org/src/lib/i18n.mjs
 sites/org/authors.json
+sites/org/src/lib/designinfo.mjs
 
 # Org prebuild artifacts
 sites/org/src/lib/designs.mjs

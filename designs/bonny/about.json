@@ -8,5 +8,6 @@
   "tags": [],
   "techniques": [],
   "version": "4.0.0",
-  "pkg": "@freesewing/bonny"
+  "pkg": "@freesewing/bonny",
+  "hide": true
 }
