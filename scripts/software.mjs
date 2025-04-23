@@ -5,7 +5,7 @@ export const getDesigns = async () => {
   const list = await getFolders('designs')
   for (const design of list) {
     const data = await readJsonFile(['designs', design, 'about.json'])
-    designs[design] = data
+    if (!data.hide) designs[design] = data
   }
 
   return designs
