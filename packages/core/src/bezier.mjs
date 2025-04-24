@@ -38,7 +38,15 @@ class Bezier extends UpstreamBezier {
       const splitTs = []
       let t1 = 0
 
-      if (bezier._t2 - bezier._t1 < EPSILON || bezier.simple()) {
+      // This is a inverted to return [] on NaN _tX values
+      // since NaN compared with something is always false
+      if (!(bezier._t2 - bezier._t1 >= EPSILON)) {
+        // very short, ignore
+        return []
+      }
+
+      if (bezier.simple()) {
+        // already simple
         return [bezier]
       }
 
