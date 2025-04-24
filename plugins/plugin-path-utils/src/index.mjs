@@ -485,7 +485,8 @@ const hemMacro = function (
 }
 
 export const plugin = {
-  ...about,
+  name: about.id,
+  version: about.version,
   macros: {
     join: joinMacro,
     offset: offsetMacro,

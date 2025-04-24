@@ -45,7 +45,8 @@ for (const plugin of bundledPlugins) {
 }
 
 export const plugin = {
-  ...about,
+  name: about.id,
+  version: about.version,
   store,
   hooks,
   macros,

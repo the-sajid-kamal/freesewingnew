@@ -1,7 +1,8 @@
 import about from '../about.json' with { type: 'json' }
 
 export const plugin = {
-  ...about,
+  name: about.id,
+  version: about.version,
   hooks: {
     preDraft: function ({ settings }) {
       for (const set of settings) {

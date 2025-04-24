@@ -1,7 +1,8 @@
 import about from '../about.json' with { type: 'json' }
 
 export const plugin = {
-  ...about,
+  name: about.id,
+  version: about.version,
   macros: {
     flip: function (so, { paths, points, snippets }) {
       const axis = so?.axis === 'y' ? 'y' : 'x'

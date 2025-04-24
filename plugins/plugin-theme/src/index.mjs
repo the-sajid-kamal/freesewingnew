@@ -21,7 +21,8 @@ const grid = {
 }
 
 export const plugin = {
-  ...about,
+  name: about.id,
+  version: about.version,
   hooks: {
     preRender: function (svg, data = {}) {
       const current = svg.attributes.get('class')

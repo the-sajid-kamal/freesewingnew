@@ -2,7 +2,8 @@ import about from '../about.json' with { type: 'json' }
 import { pack } from './growing-packer.mjs'
 
 export const plugin = {
-  ...about,
+  name: about.id,
+  version: about.version,
   store: [['pack', pack]],
 }
 

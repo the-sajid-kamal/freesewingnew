@@ -1,7 +1,8 @@
 import about from '../about.json' with { type: 'json' }
 
 export const plugin = {
-  ...about,
+  name: about.id,
+  version: about.version,
   hooks: {
     preRender: function (svg, attributes = {}) {
       for (const key of Object.keys(attributes)) svg.attributes.set(key, attributes[key])

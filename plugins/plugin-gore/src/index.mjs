@@ -1,7 +1,8 @@
 import about from '../about.json' with { type: 'json' }
 
 export const plugin = {
-  ...about,
+  name: about.id,
+  version: about.version,
   macros: {
     gore: function (so, { points, paths, Path }) {
       const from = so.from

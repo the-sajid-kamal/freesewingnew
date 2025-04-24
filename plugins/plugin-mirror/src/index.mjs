@@ -36,7 +36,8 @@ const mirrorGen = (start, end) => {
 const capFirst = (string) => string.charAt(0).toUpperCase() + string.slice(1)
 
 export const plugin = {
-  ...about,
+  name: about.id,
+  version: about.version,
   macros: {
     mirror: function ({
       mirror,
