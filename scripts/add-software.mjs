@@ -1,12 +1,22 @@
-import fs from 'fs'
-import path from 'path'
+import {
+  fs,
+  cp,
+  path,
+  globDir,
+  copyFolderRecursively,
+  rm,
+  root,
+  templateOut,
+  writeJsonFile,
+} from './fs.mjs'
 import prompts from 'prompts'
 import chalk from 'chalk'
 import { banner } from './banner.mjs'
-import mustache from 'mustache'
 import { execSync } from 'child_process'
 import languages from '../config/languages.json' assert { type: 'json' }
 import { getDesigns, getPlugins } from './software.mjs'
+import conf from '../lerna.json' assert { type: 'json' }
+const { version } = conf
 
 const designs = await getDesigns()
 const plugins = await getPlugins()
@@ -19,7 +29,6 @@ export const getInput = async () => {
   let template = false
   let name = false
   let finalName = false
-  const cwd = process.cwd()
 
   // while we're not finalized on a name
   while (finalName === false) {
@@ -58,7 +67,7 @@ export const getInput = async () => {
     ).name
 
     // check whether a folder with that name already exists
-    const dest = path.join(cwd, type + 's', type === 'plugin' ? `plugin-${name}` : name)
+    const dest = path.join(root, type + 's', type === 'plugin' ? `plugin-${name}` : name)
     try {
       const dir = await opendir(dest)
       dir.close()
@@ -115,8 +124,9 @@ async function addDesign({ name, template }) {
       console.log(valid)
       process.exit()
     }
-    createDesign(name, template)
+    await createDesign(name, template)
     execSync('npm run reconfigure')
+    execSync('npm install')
     console.log(`
 
   👉  We've created your design skeleton at ${chalk.green('designs/' + name)}
@@ -179,58 +189,39 @@ function validatePluginName(name) {
   else return ' 🙈 Please use only [a-z], no spaces, no capitals, no nothing 🤷'
 }
 
-function createDesign(name) {
-  const template = ['config', 'templates', 'design']
-  const design = ['designs', name]
-  const description = 'A FreeSewing pattern that needs a description'
-  const capitalized_name = name.charAt(0).toUpperCase() + name.slice(1)
+async function createDesign(name, template) {
+  const src = ['packages', 'studio', 'template', 'designs', `.${template}`]
+  const target = ['designs', name]
+  const Name = name.charAt(0).toUpperCase() + name.slice(1)
 
-  // Add to designs config file
-  designs[name] = {
-    code: 'Coder name',
-    description: description,
-    design: 'Designer name',
-    difficulty: 1,
-    lab: true,
-    org: true,
-    tags: ['tagname'],
-    techniques: ['techname'],
+  // Copy template folder
+  await copyFolderRecursively(src, target)
+
+  // Template various mustache files
+  const files = (await globDir(target, '**/*.mustache'))
+    .map((file) => file.split(`designs${path.sep}${name}${path.sep}`).pop().split(path.sep))
+    .map((found) => ({
+      from: [...target, ...found],
+      to: [...target, ...found.slice(0, -1), found.slice(-1).pop().split('.mustache')[0]],
+    }))
+  for (const file of files) {
+    await templateOut(file.from, file.to, { name, Name })
+    await rm(file.from)
   }
-  //write(['config', 'software', 'designs.json'], JSON.stringify(orderDesigns(designs), null, 2))
 
-  // Create folders
-  mkdir([...design, 'src'])
-  mkdir([...design, 'i18n'])
-  mkdir([...design, 'tests'])
-
-  // Create package.json
-  templateOut([...template, 'package.json.mustache'], [...design, 'package.json'], {
-    name,
-    description,
+  // Create about.json
+  await writeJsonFile([...target, 'about.json'], {
+    id: name,
+    code: 'Your name here',
+    design: 'Your name here',
+    description: 'A FreeSewing pattern that needs a description',
+    name: `${Name} Something`,
+    difficulty: 2,
+    tags: [],
+    techniques: [],
+    version,
+    pkg: `@freesewing/${name}`,
   })
-
-  // Create src/index.mjs
-  templateOut([...template, 'src', 'index.mjs.mustache'], [...design, 'src', 'index.mjs'], {
-    capitalized_name,
-  })
-
-  // Copy i18n/index.mjs
-  cp([...template, 'i18n', 'index.mjs'], [...design, 'i18n', 'index.mjs'])
-
-  // Create i18n translation files
-  for (const language of languages)
-    templateOut([...template, 'i18n', 'en.json'], [...design, 'i18n', `${language}.json`], {
-      title: capitalized_name,
-      description,
-    })
-
-  // Create tests file
-  cp([...template, 'tests', 'shared.test.mjs'], [...design, 'tests', 'shared.test.mjs'])
-
-  // Copy source
-  for (const file of ['box.mjs']) {
-    cp([...template, 'src', file], [...design, 'src', file])
-  }
 }
 
 function createPlugin(name) {
@@ -258,49 +249,6 @@ function createPlugin(name) {
     name,
     capitalized_name,
   })
-}
-
-function templateOut(from, to, data) {
-  try {
-    fs.writeFileSync(
-      path.join(process.cwd(), ...to),
-      mustache.render(fs.readFileSync(path.join(process.cwd(), ...from), 'utf-8'), data)
-    )
-  } catch (err) {
-    console.log(err)
-  }
-
-  return true
-}
-
-function write(to, data) {
-  try {
-    fs.writeFileSync(path.join(process.cwd(), ...to), data)
-  } catch (err) {
-    console.log(err)
-  }
-
-  return true
-}
-
-function mkdir(dir) {
-  try {
-    fs.mkdirSync(path.join(process.cwd(), ...dir), { recursive: true })
-  } catch (err) {
-    console.log(err)
-  }
-
-  return true
-}
-
-function cp(from, to) {
-  try {
-    fs.copyFileSync(path.join(process.cwd(), ...from), path.join(process.cwd(), ...to))
-  } catch (err) {
-    console.log(err)
-  }
-
-  return true
 }
 
 function orderDesigns(designs) {
