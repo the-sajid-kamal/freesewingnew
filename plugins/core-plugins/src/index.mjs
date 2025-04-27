@@ -1,18 +1,20 @@
 import { annotationsPlugin, i18n as annotationsI18n } from '@freesewing/plugin-annotations'
+import { binpackPlugin } from '@freesewing/plugin-bin-pack'
+import { escapeTextPlugin } from '@freesewing/plugin-escape-text'
 import { measurementsPlugin } from '@freesewing/plugin-measurements'
 import { mirrorPlugin } from '@freesewing/plugin-mirror'
 import { roundPlugin } from '@freesewing/plugin-round'
 import { sprinklePlugin } from '@freesewing/plugin-sprinkle'
-import { binpackPlugin } from '@freesewing/plugin-bin-pack'
 import about from '../about.json' with { type: 'json' }
 
 const bundledPlugins = [
   annotationsPlugin,
+  binpackPlugin,
+  escapeTextPlugin,
   measurementsPlugin,
   mirrorPlugin,
   roundPlugin,
   sprinklePlugin,
-  binpackPlugin,
 ]
 
 const hooks = {}

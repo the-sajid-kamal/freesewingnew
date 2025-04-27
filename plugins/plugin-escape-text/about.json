@@ -1,0 +1,5 @@
+{
+  "id": "plugin-escape-text",
+  "description": "A FreeSewing plugin to escape user-provided text in SVG output",
+  "version": "4.0.0"
+}
