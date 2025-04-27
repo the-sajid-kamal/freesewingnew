@@ -4,6 +4,7 @@ import {
   path,
   globDir,
   copyFolderRecursively,
+  mkdir,
   rm,
   root,
   templateOut,
@@ -185,8 +186,8 @@ function validatePluginName(name) {
   if (Object.keys(plugins).includes(pluginName.toLowerCase()))
     return `Sorry but ${pluginName} is already taken so you'll need to pick something else`
 
-  if (/^([a-z]+)$/.test(name)) return true
-  else return ' 🙈 Please use only [a-z], no spaces, no capitals, no nothing 🤷'
+  if (/^([a-z-]+)$/.test(name)) return true
+  else return ' 🙈 Please use only [a-z] or dash, no spaces, no capitals, no nothing 🤷'
 }
 
 async function createDesign(name, template) {
