@@ -210,84 +210,73 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
   return (
     <WrapForm>
       <H1>{seenBefore ? `Welcome back ${seenUser}` : 'Welcome'}</H1>
-      <H4>Sign in to FreeSewing</H4>
-      {!seenBefore && (
-        <StringInput
-          label="Your Email address, Username, or User #"
-          update={setUsername}
-          placeholder="Your Email address, Username, or User #"
-          value={username}
-          valid={(val) => val.length > 1}
-        />
-      )}
-      {magicLink ? (
-        <button
-          className={`${btnClasses} tw:daisy-btn-lg`}
-          tabIndex="-1"
-          role="button"
-          onClick={signinHandler}
-        >
-          {signInFailed ? (
-            noBueno
-          ) : (
-            <>
-              <span className="tw:hidden tw:lg:block">
-                <EmailIcon />
-              </span>
-              <span className="tw:pl-2">Email me a sign-in link</span>
-              <span className="tw:hidden tw:lg:block">
-                <EmailIcon />
-              </span>
-            </>
-          )}
-        </button>
-      ) : (
-        <>
-          <PasswordInput
-            label="Your Password"
-            update={setPassword}
-            current={password}
-            valid={(val) => val.length > 0}
-            onKeyDown={triggerSubmit}
+      <fieldset className="tw:daisy-fieldset tw:border-base-300 tw:border tw:rounded-box tw:p-4 tw:mb-4">
+        <legend className="tw:daisy-fieldset-legend">Sign in to FreeSewing</legend>
+        {!seenBefore && (
+          <StringInput
+            label="Your Email address, Username, or User #"
+            update={setUsername}
+            placeholder="Your Email address, Username, or User #"
+            value={username}
+            valid={(val) => val.length > 1}
           />
-          <button className={btnClasses} tabIndex="-1" role="button" onClick={signinHandler}>
+        )}
+        {magicLink ? (
+          <button
+            className={`${btnClasses} tw:daisy-btn-lg`}
+            tabIndex="-1"
+            role="button"
+            onClick={signinHandler}
+          >
             {signInFailed ? (
               noBueno
             ) : (
               <>
                 <span className="tw:hidden tw:lg:block">
-                  <KeyIcon />
+                  <EmailIcon />
                 </span>
-                <span className="tw:pl-2">Sign in</span>
+                <span className="tw:pl-2">Email me a sign-in link</span>
                 <span className="tw:hidden tw:lg:block">
-                  <LockIcon />
+                  <EmailIcon />
                 </span>
               </>
             )}
           </button>
-        </>
-      )}
-      <button
-        className={`tw:block tw:md:flex tw:md:flex-row tw:md:justify-between tw:md:items-center tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline tw:w-full tw:mt-8`}
-        onClick={() => setMagicLink(!magicLink)}
-      >
-        <span className="tw:hidden tw:lg:block">{magicLink ? <LockIcon /> : <EmailIcon />}</span>
-        {magicLink ? 'Use your password' : 'Email me a sign-in link'}
-        <span className="tw:hidden tw:lg:block">{magicLink ? <KeyIcon /> : <EmailIcon />}</span>
-      </button>
-      <div className="tw:grid tw:grid-cols-1 tw:md:grid-cols-2 tw:gap-2 tw:items-center tw:mt-2">
-        {['Google', 'Github'].map((provider) => (
-          <button
-            key={provider}
-            id={provider}
-            className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-secondary`}
-            onClick={() => initOauth(provider)}
-          >
-            {provider === 'Google' ? <GoogleIcon stroke={0} /> : <GitHubIcon />}
-            <span>Sign in with {provider}</span>
-          </button>
-        ))}
-      </div>
+        ) : (
+          <>
+            <PasswordInput
+              label="Your Password"
+              update={setPassword}
+              current={password}
+              valid={(val) => val.length > 0}
+              onKeyDown={triggerSubmit}
+            />
+            <button className={btnClasses} tabIndex="-1" role="button" onClick={signinHandler}>
+              {signInFailed ? (
+                noBueno
+              ) : (
+                <>
+                  <span className="tw:hidden tw:lg:block">
+                    <KeyIcon />
+                  </span>
+                  <span className="tw:pl-2">Sign in</span>
+                  <span className="tw:hidden tw:lg:block">
+                    <LockIcon />
+                  </span>
+                </>
+              )}
+            </button>
+          </>
+        )}
+        <button
+          className={`tw:block tw:md:flex tw:md:flex-row tw:md:justify-between tw:md:items-center tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline tw:w-full tw:mt-1`}
+          onClick={() => setMagicLink(!magicLink)}
+        >
+          <span className="tw:hidden tw:lg:block">{magicLink ? <LockIcon /> : <EmailIcon />}</span>
+          {magicLink ? 'Use your password' : 'Email me a sign-in link'}
+          <span className="tw:hidden tw:lg:block">{magicLink ? <KeyIcon /> : <EmailIcon />}</span>
+        </button>
+      </fieldset>
       {seenBefore ? (
         <button
           className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-neutral tw:daisy-btn-outline tw:mt-2 tw:w-full`}
@@ -301,8 +290,10 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
           className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-lg tw:daisy-btn-neutral tw:mt-2 tw:hover:text-neutral-content tw:hover:no-underline`}
           href="/signup"
         >
-          <FreeSewingIcon className="tw:h-10 tw:w-10" />
-          Sign up here
+          <span className="tw:text-neutral-content">
+            <FreeSewingIcon className="tw:h-8 tw:w-8" />
+          </span>
+          <span className="tw:text-neutral-content">Sign up here</span>
         </Link>
       )}
     </WrapForm>
