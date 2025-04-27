@@ -152,64 +152,34 @@ export const SignUp = ({ embed = false }) => {
         )
       ) : (
         <>
-          <p className="tw:text-inherit">To receive a sign-up link, enter your email address</p>
-          <form onSubmit={signupHandler}>
-            <EmailInput
-              id="signup-email"
-              label="Email address"
-              current={email}
-              original={''}
-              valid={() => emailValid}
-              placeholder="Email address"
-              update={updateEmail}
-            />
-            <IconButton
-              onClick={signupHandler}
-              btnProps={{ type: 'submit' }}
-              className="tw:lg:w-full tw:grow tw:mt-2"
-            >
-              <EmailIcon />
-              Email me a sign-up link
-            </IconButton>
-          </form>
-          {showAll ? (
-            <>
-              <div className="tw:grid tw:grid-cols-1 tw:md:grid-cols-2 tw:gap-1 tw:items-center tw:mt-1">
-                {['Google', 'GitHub'].map((provider) => (
-                  <IconButton
-                    key={provider}
-                    id={provider}
-                    color="secondary"
-                    onClick={() => initOauth(provider)}
-                  >
-                    {provider === 'Google' ? <GoogleIcon stroke={0} /> : <GitHubIcon />}
-                    <span>Sign up with {provider}</span>
-                  </IconButton>
-                ))}
-              </div>
-              <IconButton color="neutral" href="/signin" className="tw:daisy-btn-lg tw:mt-1">
-                <span className="tw:hidden tw:md:block">
-                  <KeyIcon className="tw:h-10 tw:w-10" />
-                </span>
-                Sign in here
+          <fieldset className="tw:daisy-fieldset tw:border-base-300 tw:border tw:rounded-box tw:p-4 tw:mb-4">
+            <legend className="tw:daisy-fieldset-legend">Sign up for FreeSewing</legend>
+            <form onSubmit={signupHandler}>
+              <EmailInput
+                id="signup-email"
+                label="Email address"
+                current={email}
+                original={''}
+                valid={() => emailValid}
+                placeholder="Email address"
+                update={updateEmail}
+              />
+              <IconButton
+                onClick={signupHandler}
+                btnProps={{ type: 'submit' }}
+                className="tw:lg:w-full tw:grow tw:mt-2"
+              >
+                <EmailIcon />
+                Email me a sign-up link
               </IconButton>
-              <div className="tw:flex tw:flex-row tw:justify-center tw:mt-2">
-                <IconButton color="ghost" onClick={() => setShowAll(false)}>
-                  <DownIcon className="tw:w-6 tw:h-6 tw:rotate-180" />
-                  Fewer options
-                  <DownIcon className="tw:w-6 tw:h-6 tw:rotate-180" />
-                </IconButton>
-              </div>
-            </>
-          ) : (
-            <div className="tw:flex tw:flex-row tw:justify-center tw:mt-2">
-              <IconButton color="ghost" onClick={() => setShowAll(true)}>
-                <DownIcon />
-                More options
-                <DownIcon />
-              </IconButton>
-            </div>
-          )}
+            </form>
+          </fieldset>
+          <IconButton color="neutral" href="/signin" className="tw:daisy-btn-lg tw:mt-4">
+            <span className="tw:hidden tw:md:block tw:text-neutral-content">
+              <KeyIcon className="tw:h-8 tw:w-8" />
+            </span>
+            <span className="tw:text-neutral-content">Sign in here</span>
+          </IconButton>
         </>
       )}
     </div>
