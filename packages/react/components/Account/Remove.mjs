@@ -1,3 +1,5 @@
+// Dependencies
+import { navigate } from '@freesewing/utils'
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
 import { ModalContext } from '@freesewing/react/context/Modal'
@@ -29,10 +31,11 @@ export const Remove = () => {
   // Helper method to remove the account
   const removeAccount = async () => {
     setLoadingStatus([true, 'Talking to the backend'])
-    const result = await backend.removeAccount()
-    if (result.success) {
+    const [status, body] = await backend.removeAccount()
+    if (status === 200 && body.result === 'success') {
       setLoadingStatus([true, 'Done. Or rather, gone.', true, true])
       signOut()
+      navigate('/')
     } else setLoadingStatus([true, 'An error occured. Please report this', true, false])
   }
 
