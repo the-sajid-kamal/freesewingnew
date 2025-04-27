@@ -15,11 +15,6 @@ import { ModalContextProvider } from '@freesewing/react/context/Modal'
 import { LoadingStatusContextProvider } from '@freesewing/react/context/LoadingStatus'
 
 /**
- * Default setting values for the editor
- */
-const defaultSettings = { sa: false, paperless: false, expand: false, complete: true }
-
-/**
  * FreeSewing's pattern editor
  *
  * Editor is the high-level FreeSewing component
@@ -117,10 +112,6 @@ export const Editor = ({
    */
   const passDownState = {
     ...state,
-    // Preset the default value of the pattern settings if not given.
-    // Otherwise, we would later need to be very careful
-    // when handling undefined/unset settings (including in the pattern code).
-    settings: { ...defaultSettings, ...state.settings },
     _: { ...ephemeralState, missingMeasurements },
   }
 
