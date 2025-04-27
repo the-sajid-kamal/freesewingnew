@@ -197,6 +197,20 @@ export const User = ({ user, Link }) => {
     } else setLoadingStatus([true, 'An error occured', true, false])
   }
 
+  /*
+   * Disable MFA for users who locked themselves out
+   */
+  const disableMfa = async () => {
+    setLoadingStatus([true, 'Contacting backend'])
+    const [status, body] = await backend.adminUpdateUser({
+      id: user.id,
+      data: { mfaEnabled: false },
+    })
+    if (status === 200 && body.result === 'success') {
+      setLoadingStatus([true, 'MFA disabled', true, true])
+    } else setLoadingStatus([true, 'An error occured', true, false])
+  }
+
   return (
     <div className="tw:flex tw:flex-row tw:w-full tw:gap-4 tw:my-2">
       <button
@@ -237,6 +251,15 @@ export const User = ({ user, Link }) => {
             Details
           </button>
           <ImpersonateButton userId={user.id} />
+          {user.mfaEnabled ? (
+            <button
+              className="tw:daisy-btn tw:daisy-btn-warning tw:daisy-btn-sm"
+              onClick={disableMfa}
+            >
+              Disable MFA
+            </button>
+          ) : null}
+
           {user.consent < 1 ? (
             <button
               className="tw:daisy-btn tw:daisy-btn-warning tw:daisy-btn-sm"
