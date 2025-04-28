@@ -312,19 +312,27 @@ export const HeaderMenuDraftViewIcons = (props) => {
       {ux >= levels.complete ? (
         <Button
           lgOnly
-          updateHandler={() => update.settings('complete', settings.complete ? 0 : 1)}
+          updateHandler={() =>
+            update.settings('complete', [false, 0, '0'].includes(settings.complete) ? 1 : 0)
+          }
           tooltip="Turns Details on or off (see Core Settings)"
         >
-          <DetailIcon className={`${size} ${!settings.complete ? 'tw:text-secondary' : muted}`} />
+          <DetailIcon
+            className={`${size} ${[false, 0, '0'].includes(settings.complete) ? 'tw:text-secondary' : muted}`}
+          />
         </Button>
       ) : null}
       {ux >= levels.expand ? (
         <Button
           lgOnly
-          updateHandler={() => update.settings('expand', settings.expand ? 0 : 1)}
+          updateHandler={() =>
+            update.settings('expand', [false, 0, '0'].includes(settings.expand) ? 1 : 0)
+          }
           tooltip="Turns Expand on or off (see Core Settings)"
         >
-          <ExpandIcon className={`${size} ${settings.expand ? 'tw:text-secondary' : muted}`} />
+          <ExpandIcon
+            className={`${size} ${[false, 0, '0'].includes(settings.expand) ? 'tw:text-secondary' : muted}`}
+          />
         </Button>
       ) : null}
       <HeaderMenuIconSpacer />
