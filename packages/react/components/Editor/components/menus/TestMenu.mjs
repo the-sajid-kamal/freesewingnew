@@ -16,14 +16,15 @@ import { BeakerIcon, OptionsIcon } from '@freesewing/react/components/Icon'
  * @param {Object} props.update - Object holding state handlers
  */
 export const TestOptionsMenu = ({ Design, state, i18n, update }) => {
+  const { settings = {} } = state // Guard against undefined settings
   const structure = useMemo(
     () =>
       menuDesignOptionsStructure(
         Design.designConfig.data.id,
         Design.patternConfig.options,
-        state.settings
+        settings
       ),
-    [Design.designConfig.data.id, Design.patternConfig, state.settings]
+    [Design.designConfig.data.id, Design.patternConfig, settings]
   )
 
   return (

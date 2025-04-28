@@ -21,7 +21,8 @@ const levels = ['error', 'warn', 'info', 'debug']
  */
 export const LogView = (props) => {
   const { state, config, update } = props
-  const { pattern } = draft(props.Design, state.settings)
+  const { settings = {} } = state // Guard against undefined settings
+  const { pattern } = draft(props.Design, settings)
 
   return (
     <>

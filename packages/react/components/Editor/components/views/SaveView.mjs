@@ -23,6 +23,7 @@ import { HeaderMenu } from '../HeaderMenu.mjs'
  * @param {Object} props.update - Helper object for updating the editor state
  */
 export const SaveView = ({ config, state, update }) => {
+  const { settings = {} } = state // Guard against undefined settings
   // Hooks
   const backend = useBackend()
 
@@ -34,7 +35,7 @@ export const SaveView = ({ config, state, update }) => {
   const [saveAs] = useState(false) // FIXME
 
   const addSettingsToNotes = () => {
-    setNotes(notes + '\n\n#### Settings\n\n```yaml\n' + yaml.dump(state.settings) + '\n````')
+    setNotes(notes + '\n\n#### Settings\n\n```yaml\n' + yaml.dump(settings) + '\n````')
   }
 
   const saveAsNewPattern = async () => {
@@ -44,7 +45,7 @@ export const SaveView = ({ config, state, update }) => {
       design: state.design,
       name,
       public: false,
-      settings: state.settings,
+      settings,
       data: {},
     }
     if (withNotes) patternData.notes = notes
@@ -69,7 +70,7 @@ export const SaveView = ({ config, state, update }) => {
     setLoadingStatus([true, 'Saving pattern...'])
     const patternData = {
       design: state.design,
-      settings: state.settings,
+      settings,
       name,
       public: false,
       data: {},

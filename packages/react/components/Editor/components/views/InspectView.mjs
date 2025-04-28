@@ -24,6 +24,7 @@ import { DraftErrorHandler } from './DraftErrorHandler.mjs'
  * @return {function} DraftView - React component
  */
 export const InspectView = ({ Design, state, update, config }) => {
+  const { settings = {} } = state // Guard against undefined settings
   const { setModal, clearModal, modalContent } = useContext(ModalContext)
 
   const info = {
@@ -48,7 +49,7 @@ export const InspectView = ({ Design, state, update, config }) => {
   /*
    * First, attempt to draft
    */
-  const { pattern, failure, errors } = draft(Design, state.settings)
+  const { pattern, failure, errors } = draft(Design, settings)
 
   /*
    * Create object holding strings for translation

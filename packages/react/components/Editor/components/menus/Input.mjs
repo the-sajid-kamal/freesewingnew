@@ -282,6 +282,7 @@ export const MenuSliderInput = ({
   state,
   Design,
 }) => {
+  const { settings = {} } = state // Guard against undefined settings
   const { max, min } = config
   const handleChange = useSharedHandlers({
     current,
@@ -330,10 +331,10 @@ export const MenuSliderInput = ({
                   __html: formatMm(
                     config.toAbs(
                       val / 100,
-                      state.settings,
-                      mergeOptions(state.settings, Design.patternConfig.options)
+                      settings,
+                      mergeOptions(settings, Design.patternConfig.options)
                     ),
-                    state.settings?.units
+                    settings.units
                   ),
                 }}
               />
@@ -360,25 +361,22 @@ export const MenuSliderInput = ({
 
 export const MenuEditOption = (props) => {
   const { config, handleChange } = props
+  const { settings = {} } = props.state // Guard against undefined settings
   const type = designOptionType(config)
 
   const [manualEdit, setManualEdit] = useState(props.current)
   const [abs, setAbs] = useState(false)
   const [units, setUnits] = useState(
-    abs
-      ? props.state.settings?.units === 'imperial'
-        ? 'inch'
-        : 'cm'
-      : defaultConfig.menuOptionEditLabels[type]
+    abs ? (settings.units === 'imperial' ? 'inch' : 'cm') : defaultConfig.menuOptionEditLabels[type]
   )
 
   const onUpdate = useCallback(
     (validVal, units) => {
       if (validVal !== null && validVal !== false) {
         if (type === 'pct' && units === 'cm')
-          return handleChange(config.fromAbs(Number(validVal) * 1000, props.state.settings))
+          return handleChange(config.fromAbs(Number(validVal) * 1000, settings))
         if (type === 'pct' && units === 'inch')
-          return handleChange(config.fromAbs(Number(validVal) * 2540, props.state.settings))
+          return handleChange(config.fromAbs(Number(validVal) * 2540, settings))
         return handleChange(validVal)
       }
     },
@@ -387,7 +385,7 @@ export const MenuEditOption = (props) => {
 
   const toggleInputUnits = () => {
     if (abs) setUnits(defaultConfig.menuOptionEditLabels[type])
-    else setUnits(props.state.settings?.units === 'imperial' ? 'inch' : 'cm')
+    else setUnits(settings.units === 'imperial' ? 'inch' : 'cm')
     setAbs(!abs)
     console.log('in toogg;e')
   }

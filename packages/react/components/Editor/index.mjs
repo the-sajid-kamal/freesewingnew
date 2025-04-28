@@ -157,6 +157,7 @@ export const Editor = ({
  * @param (object) props.config - The editor config
  */
 const viewfinder = ({ design, designs, state, config }) => {
+  const { settings = {} } = state // Guard against undefined settings
   /*
    * Grab Design from props or state and make them extra props
    */
@@ -174,7 +175,7 @@ const viewfinder = ({ design, designs, state, config }) => {
    */
   const [measurementsOk, missingMeasurements] = hasRequiredMeasurements(
     designs[design],
-    state.settings?.measurements
+    settings.measurements
   )
   if (missingMeasurements) extraProps.missingMeasurements = missingMeasurements
 

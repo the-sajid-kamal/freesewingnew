@@ -17,6 +17,7 @@ import { getUndoStepData } from '../../lib/index.mjs'
  * @param {object} update - ViewWrapper state update object
  */
 export const UndosView = ({ Design, update, state, config }) => {
+  const { settings = {} } = state // Guard against undefined settings
   const steps = orderBy(state._.undos, 'time', 'desc')
 
   return (
@@ -32,7 +33,7 @@ export const UndosView = ({ Design, update, state, config }) => {
             <p>For example, you can click the button below to change the pattern rotation:</p>
             <button
               className="tw:daisy-btn tw:daisy-btn-primary tw:capitalize"
-              onClick={() => update.settings('ui.rotate', state.settings?.ui?.rotate ? 0 : 1)}
+              onClick={() => update.settings('ui.rotate', settings.ui?.rotate ? 0 : 1)}
             >
               Example: Rotate pattern
             </button>
@@ -71,6 +72,7 @@ export const UndoStepTimeAgo = ({ step }) => {
 }
 
 export const UndoStep = ({ update, state, step, Design, compact = false, index = 0 }) => {
+  const { settings = {} } = state // Guard against undefined settings
   /*
    * Ensure path is always an array
    */
@@ -79,7 +81,7 @@ export const UndoStep = ({ update, state, step, Design, compact = false, index =
   /*
    * Figure this out once
    */
-  const imperial = state.settings?.units === 'imperial' ? true : false
+  const imperial = settings.units === 'imperial' ? true : false
 
   /*
    * Metadata can be ignored
