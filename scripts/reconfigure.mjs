@@ -51,6 +51,7 @@ const repo = {
     collection: {
       pkg: readTemplateFile('collection-pkg.mustache'),
       hook: readTemplateFile('collection-hook.mustache'),
+      i18n: readTemplateFile('collection-i18n.mustache'),
     },
   },
   contributors: SITEBUILD ? null : fs.readFileSync(path.join(root, 'CONTRIBUTORS.md'), 'utf-8'),
@@ -186,6 +187,16 @@ await writeFile(
   ['packages', 'collection', 'src', 'index.mjs'],
   mustache.render(repo.templates.collection.pkg, {
     designImports,
+    designList: designList.join(',\n  '),
+  })
+)
+const designI18n = designList
+  .map((name) => `import { i18n as ${name} } from '@freesewing/${name}'`)
+  .join('\n')
+await writeFile(
+  ['packages', 'collection', 'src', 'i18n.mjs'],
+  mustache.render(repo.templates.collection.i18n, {
+    designI18n,
     designList: designList.join(',\n  '),
   })
 )
