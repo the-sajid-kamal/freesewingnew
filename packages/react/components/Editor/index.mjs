@@ -13,6 +13,7 @@ import { AsideViewMenu } from './components/AsideViewMenu.mjs'
 import { LoadingStatus } from './components/LoadingStatus.mjs'
 import { ModalContextProvider } from '@freesewing/react/context/Modal'
 import { LoadingStatusContextProvider } from '@freesewing/react/context/LoadingStatus'
+import { useAccount } from '../../hooks/useAccount/index.mjs'
 
 /**
  * FreeSewing's pattern editor
@@ -115,8 +116,10 @@ export const Editor = ({
     _: { ...ephemeralState, missingMeasurements },
   }
 
+  const { account } = useAccount()
+
   if (state.ui?.ux === undefined) {
-    passDownState.ui = { ...(state.ui || {}), ux: editorConfig.defaultUx }
+    passDownState.ui = { ...(state.ui || {}), ux: account.control }
   }
 
   return (
