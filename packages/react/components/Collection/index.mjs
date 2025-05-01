@@ -302,8 +302,8 @@ const DesignCard = ({ name, lineDrawing = false, linkTo, Link, onClick }) => {
         </span>
       </h5>
       {lineDrawing ? (
-        <div className="tw:p-1 tw:grow tw:w-full tw:h-auto tw:square tw:text-center">
-          <LineDrawing className="tw:max-w-full tw:m-auto tw:my-4 tw:text-base-content" />
+        <div className="tw:grow tw:w-full tw:h-auto tw:square tw:text-center">
+          <LineDrawing className="tw:w-5/6 tw:m-auto tw:my-0 tw:text-base-content" />
         </div>
       ) : (
         <span />
