@@ -118,8 +118,12 @@ export const Editor = ({
 
   const { account } = useAccount()
 
+  // this should be just account.control, but there was a bug where a non-logged-in user had an
+  // object stored in account.control in localStorage instead of an integer
+  const ux = Number.isInteger(account.control) ? account.control : 3
+
   if (state.ui?.ux === undefined) {
-    passDownState.ui = { ...(state.ui || {}), ux: account.control }
+    passDownState.ui = { ...(state.ui || {}), ux: ux }
   }
 
   return (
