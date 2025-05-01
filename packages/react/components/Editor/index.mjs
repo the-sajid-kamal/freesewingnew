@@ -122,6 +122,15 @@ export const Editor = ({
   // object stored in account.control in localStorage instead of an integer
   const ux = Number.isInteger(account.control) ? account.control : 3
 
+  /*
+   * Ensure we respect the units in the user's account
+   * But only if not units are set
+   */
+  if (!state.settings?.units && account.imperial) {
+    if (passDownState.settings) passDownState.settings.units = 'imperial'
+    else passDownState.settings = { units: 'imperial' }
+  }
+
   if (state.ui?.ux === undefined) {
     passDownState.ui = { ...(state.ui || {}), ux: ux }
   }

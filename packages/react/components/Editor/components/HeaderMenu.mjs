@@ -3,6 +3,7 @@ import { missingMeasurements, flattenFlags } from '../lib/index.mjs'
 // Hooks
 import React, { useState, useEffect } from 'react'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
+import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useDesignTranslation } from '@freesewing/react/hooks/useDesignTranslation'
 // Components
 import { Null } from '@freesewing/react/components/Null'
@@ -69,7 +70,7 @@ export const HeaderMenuDraftView = (props) => {
 
   return (
     <>
-      <div className="tw:flex tw:flex-row tw:gap-0.5 tw:lg:gap-1">
+      <div className="tw:flex tw:flex-row tw:items-center tw:gap-0.5 tw:lg:gap-1">
         <HeaderMenuDraftViewDesignOptions {...props} i18n={i18n} />
         <HeaderMenuDraftViewCoreSettings {...props} i18n={i18n} />
         <HeaderMenuDraftViewUiPreferences {...props} i18n={i18n} />
@@ -265,24 +266,31 @@ export const HeaderMenuDraftViewFlags = (props) => {
 export const HeaderMenuDraftViewIcons = (props) => {
   const { update, state } = props
   const { settings = {} } = state // Guard against undefined settings
+  const { account } = useAccount() // we need to know the user's preferred units
+  const accountUnits = account.imperial ? 'imperial' : 'metric'
   const Button = HeaderMenuButton
   const size = 'tw:w-5 tw:h-5'
-  const muted = 'tw:text-current tw:opacity-50'
   const ux = state.ui.ux
   const levels = {
     ...props.config.uxLevels.core,
     ...props.config.uxLevels.ui,
   }
 
+  // Visual indication between default and non-default settings
+  const style = {
+    dflt: 'tw:text-current tw:opacity-50',
+    custom: 'tw:text-accent',
+  }
+
   return (
-    <div className="tw:hidden tw:lg:flex tw:flex-row tw:flex-wrap tw:items-center tw:justify-center tw:px-0.5 tw:lg:px-1">
+    <div className="tw:hidden tw:lg:flex tw:flex-row tw:items-center tw:min-h-12  tw:flex-wrap tw:items-center tw:justify-center tw:px-0.5 tw:lg:px-1">
       {ux >= levels.sa ? (
         <Button
           lgOnly
           updateHandler={update.toggleSa}
           tooltip="Turns Seam Allowance on or off (see Core Settings)"
         >
-          <SaIcon className={`${size} ${settings.sabool ? 'tw:text-secondary' : muted}`} />
+          <SaIcon className={`${size} ${settings.sabool ? style.custom : style.dflt}`} />
         </Button>
       ) : null}
       {ux >= levels.units ? (
@@ -294,7 +302,7 @@ export const HeaderMenuDraftViewIcons = (props) => {
           tooltip="Switches Units between metric and imperial (see Core Settings)"
         >
           <UnitsIcon
-            className={`${size} ${settings.units === 'imperial' ? 'tw:text-secondary' : muted}`}
+            className={`${size} ${settings.units === accountUnits ? style.dflt : style.custom}`}
           />
         </Button>
       ) : null}
@@ -304,9 +312,7 @@ export const HeaderMenuDraftViewIcons = (props) => {
           updateHandler={() => update.settings('paperless', settings.paperless ? 0 : 1)}
           tooltip="Turns Paperless on or off (see Core Settings)"
         >
-          <PaperlessIcon
-            className={`${size} ${settings.paperless ? 'tw:text-secondary' : muted}`}
-          />
+          <PaperlessIcon className={`${size} ${settings.paperless ? style.custom : style.dflt}`} />
         </Button>
       ) : null}
       {ux >= levels.complete ? (
@@ -318,7 +324,7 @@ export const HeaderMenuDraftViewIcons = (props) => {
           tooltip="Turns Details on or off (see Core Settings)"
         >
           <DetailIcon
-            className={`${size} ${[false, 0, '0'].includes(settings.complete) ? 'tw:text-secondary' : muted}`}
+            className={`${size} ${[false, 0, '0'].includes(settings.complete) ? style.custom : style.dflt}`}
           />
         </Button>
       ) : null}
@@ -331,7 +337,7 @@ export const HeaderMenuDraftViewIcons = (props) => {
           tooltip="Turns Expand on or off (see Core Settings)"
         >
           <ExpandIcon
-            className={`${size} ${[false, 0, '0'].includes(settings.expand) ? 'tw:text-secondary' : muted}`}
+            className={`${size} ${[false, 0, '0'].includes(settings.expand) ? style.custom : style.dflt}`}
           />
         </Button>
       ) : null}
@@ -342,7 +348,7 @@ export const HeaderMenuDraftViewIcons = (props) => {
           updateHandler={() => update.ui('aside', state.ui.aside ? 0 : 1)}
           tooltip="Toggles the side menu (see UI Preferences)"
         >
-          <AsideIcon className={`${size} ${state.ui.aside ? 'tw:text-secondary' : muted}`} />
+          <AsideIcon className={`${size} ${state.ui.aside ? style.custom : style.dflt}`} />
         </Button>
       ) : null}
       {ux >= levels.renderer ? (
@@ -354,7 +360,7 @@ export const HeaderMenuDraftViewIcons = (props) => {
           tooltip="Switches the Render Engine between React and SVG (see UI Preferences)"
         >
           <RocketIcon
-            className={`${size} ${state.ui.renderer === 'svg' ? 'tw:text-secondary' : muted}`}
+            className={`${size} ${state.ui.renderer === 'svg' ? style.custom : style.dflt}`}
           />
         </Button>
       ) : null}
@@ -369,7 +375,7 @@ export const HeaderMenuUndoIcons = (props) => {
   const undos = state._?.undos && state._.undos.length > 0 ? state._.undos : false
 
   return (
-    <div className="tw:flex tw:flex-row tw:flex-wrap tw:items-center tw:justify-center tw:px-0.5 tw:lg:px-1">
+    <div className="tw:flex tw:flex-row tw:items-center tw:min-h-12 tw:flex-wrap tw:items-center tw:justify-center tw:px-0.5 tw:lg:px-1">
       <Button
         lgOnly
         updateHandler={() => update.restore(0, state._)}
@@ -478,7 +484,7 @@ export const HeaderMenuSaveIcons = (props) => {
   }
 
   return (
-    <div className="tw:flex tw:flex-row tw:flex-wrap tw:items-center tw:justify-center tw:px-2">
+    <div className="tw:flex tw:flex-row tw:items-center tw:min-h-12 tw:flex-wrap tw:items-center tw:justify-center tw:px-2">
       <Button updateHandler={savePattern} tooltip="Save pattern" disabled={saveable ? false : true}>
         <SaveIcon className={`${size} ${saveable ? 'tw:text-success' : ''}`} />
       </Button>
@@ -689,11 +695,6 @@ const headerMenus = {
   test: HeaderMenuTestView,
   layout: HeaderMenuLayoutView,
   timing: HeaderMenuDraftView,
-  //HeaderMenuDraftViewDesignOptions,
-  //HeaderMenuDraftViewCoreSettings,
-  //HeaderMenuDraftViewUiPreferences,
-  //HeaderMenuDraftViewFlags,
-  //HeaderMenuDraftViewIcons,
 }
 
 export const HeaderMenu = ({ config, Design, pattern, state, update, strings }) => {
@@ -713,7 +714,7 @@ export const HeaderMenu = ({ config, Design, pattern, state, update, strings }) 
       } tw:transition-[top] tw:duration-300 tw:ease-in-out`}
     >
       <div
-        className={`tw:flex tw:flex-row tw:flex-wrap tw:gap-0.5 tw:lg:gap-1 tw:w-full tw:items-start tw:justify-center tw:py-1 tw:md:py-1.5`}
+        className={`tw:flex tw:flex-row tw:items-center tw:flex-wrap tw:gap-0.5 tw:lg:gap-1 tw:w-full tw:items-start tw:justify-center tw:py-1 tw:md:py-1.5`}
       >
         <HeaderMenuViewMenu {...{ config, state, update, open, setOpen, strings }} />
         <ViewSpecificMenu {...{ config, state, update, Design, pattern, open, setOpen, strings }} />
