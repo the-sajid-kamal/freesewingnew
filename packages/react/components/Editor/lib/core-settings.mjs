@@ -67,7 +67,12 @@ const CoreDocsLink = ({ item }) => (
   </a>
 )
 
-export function menuCoreSettingsStructure({ units = 'metric', sabool = false, parts = [] }) {
+export function menuCoreSettingsStructure({
+  units = 'metric',
+  sabool = false,
+  parts = [],
+  accountUnits = 'metric',
+}) {
   return {
     sabool: {
       dense: true,
@@ -118,7 +123,7 @@ export function menuCoreSettingsStructure({ units = 'metric', sabool = false, pa
       ),
       ux: config.uxLevels.core.units,
       list: ['metric', 'imperial'],
-      dflt: 'metric',
+      dflt: accountUnits,
       choiceTitles: {
         metric: 'Metric Units (cm)',
         imperial: 'Imperial Units (inch)',

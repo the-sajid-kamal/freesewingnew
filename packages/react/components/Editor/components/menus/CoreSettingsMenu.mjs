@@ -1,4 +1,5 @@
 import React from 'react'
+import { useAccount } from '@freesewing/react/hooks/useAccount'
 import {
   menuCoreSettingsOnlyHandler,
   menuCoreSettingsSaboolHandler,
@@ -32,11 +33,13 @@ import { SettingsIcon } from '@freesewing/react/components/Icon'
  */
 export const CoreSettingsMenu = ({ Design, state, i18n, update }) => {
   const { settings = {} } = state // Guard against undefined settings
+  const { account } = useAccount() // We need to know the user's preferred units
 
   const structure = menuCoreSettingsStructure({
     units: settings.units,
     sabool: settings.sabool,
     parts: Design.patternConfig.draftOrder,
+    accountUnits: account.imperial ? 'imperial' : 'metric',
   })
 
   const inputs = {
