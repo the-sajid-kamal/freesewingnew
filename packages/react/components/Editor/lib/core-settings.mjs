@@ -240,7 +240,7 @@ export function menuCoreSettingsStructure({ units = 'metric', sabool = false, pa
       ),
       ux: config.uxLevels.core.margin,
       min: 0,
-      max: 2.5,
+      max: measurementAsMm(units === 'imperial' ? 1.25 : 3, units),
       dflt: measurementAsMm(units === 'imperial' ? 0.125 : 0.2, units),
       icon: MarginIcon,
     },
