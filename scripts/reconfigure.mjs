@@ -92,6 +92,14 @@ const cpFolders = [
     from: ['sites', 'org', 'src', 'css'],
     to: ['sites', 'studio', 'src', 'css'],
   },
+  {
+    from: ['sites', 'org', 'src', 'pages', 'signin'],
+    to: ['sites', 'studio', 'src', 'pages', 'signin'],
+  },
+  {
+    from: ['sites', 'org', 'src', 'pages', 'signup'],
+    to: ['sites', 'studio', 'src', 'pages', 'signup'],
+  },
 ]
 const cpFiles = [
   {
