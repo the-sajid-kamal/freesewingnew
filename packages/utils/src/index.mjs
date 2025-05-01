@@ -62,6 +62,22 @@ export function clone(obj) {
   return JSON.parse(JSON.stringify(obj))
 }
 
+/**
+ * A method to escapte test that needs to be included in the SVG
+ *
+ * This is for user-provided text, such as the measrements set name
+ *
+ * @param {string} text - Text to escape
+ * @return {string} escaped - The escapted text
+ */
+export function escapeSvgText(text) {
+  return String(text)
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
+}
+
 /*
  * Returns the URL of a user avatar (on cloudflare)
  * based on the ihash and Variant
