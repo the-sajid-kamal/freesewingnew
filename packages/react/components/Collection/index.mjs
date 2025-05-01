@@ -129,7 +129,7 @@ export const Collection = ({ Link = false, linkTo = 'about', editor = false, onC
         {showFilters ? (
           <>
             <h6 className="tw:text-center tw:mb-0 tw:mt-4">
-              Filters ({Object.keys(filtered).length}/{collection.length})
+              Filtered Designs ({Object.keys(filtered).length}/{collection.length})
             </h6>
             <div className="tw:flex tw:flex-row tw:gap-1 tw:items-center tw:justify-center tw:flex-wrap tw:my-2">
               <b>Tags:</b>
