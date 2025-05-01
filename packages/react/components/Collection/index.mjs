@@ -278,10 +278,7 @@ const Tag = ({ Link = WebLink, technique }) => (
 const DesignCard = ({ name, lineDrawing = false, linkTo, Link, onClick }) => {
   if (!Link) Link = WebLink
 
-  const LineDrawing =
-    lineDrawing && lineDrawings[name]
-      ? lineDrawings[name]
-      : ({ className }) => <div className={className}></div>
+  const LineDrawing = lineDrawing && lineDrawings[name] ? lineDrawings[name] : MissingLinedrawing
   const exampleImageUrl = examples.href[name] ? examples.href[name] : noExample
   const bg = { aspectRatio: '1/1.4' }
   if (!lineDrawing) {
