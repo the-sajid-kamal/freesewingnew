@@ -4,11 +4,12 @@
 import fs from 'fs'
 import path from 'path'
 import { glob } from 'glob'
+import mustache from 'mustache'
 
 /**
  * Re-export these
  */
-export { fs, path, glob }
+export { fs, path, glob, mustache }
 
 /**
  * The monorepo root folder
@@ -152,6 +153,26 @@ export async function readJsonFile(
   }
 
   return content
+}
+
+/**
+ * Templates out a file with mustache
+ *
+ * @param {array} from - The source template file
+ * @param {array} to - The destination file
+ * @param {object] data - Substitutions for the template
+ */
+export async function templateOut(from, to, data) {
+  if (!Array.isArray(from)) from = [from]
+  if (!Array.isArray(to)) to = [to]
+  try {
+    const src = await readFile(from)
+    await writeFile(to, mustache.render(src, data))
+  } catch (err) {
+    console.log(err)
+  }
+
+  return true
 }
 
 /**

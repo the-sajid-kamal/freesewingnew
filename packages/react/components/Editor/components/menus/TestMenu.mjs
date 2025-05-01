@@ -16,14 +16,15 @@ import { BeakerIcon, OptionsIcon } from '@freesewing/react/components/Icon'
  * @param {Object} props.update - Object holding state handlers
  */
 export const TestOptionsMenu = ({ Design, state, i18n, update }) => {
+  const { settings = {} } = state // Guard against undefined settings
   const structure = useMemo(
     () =>
       menuDesignOptionsStructure(
         Design.designConfig.data.id,
         Design.patternConfig.options,
-        state.settings
+        settings
       ),
-    [Design.designConfig.data.id, Design.patternConfig, state.settings]
+    [Design.designConfig.data.id, Design.patternConfig, settings]
   )
 
   return (
@@ -97,7 +98,7 @@ const SampleMeasurementButton = ({ name, i18n, update }) => (
       'tw:daisy-btn tw:daisy-btn-outline tw:daisy-btn-sm tw:mx-2 ' +
       'tw:daisy-btn-secondary tw:flex tw:flex-row tw:items-center tw:justify-between'
     }
-    onClick={() => update.settings('sample', { type: 'option', option: name })}
+    onClick={() => update.settings('sample', { type: 'measurement', measurement: name })}
   >
     <BeakerIcon className="tw:w-5 tw:h-5" />
     <span>{measurementsTranslations[name]}</span>

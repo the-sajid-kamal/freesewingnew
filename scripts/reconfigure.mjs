@@ -1,5 +1,3 @@
-//import path from 'path'
-//import fs from 'fs'
 import {
   fs,
   cp,
@@ -12,7 +10,6 @@ import {
   readJsonFile,
   writeJsonFile,
 } from './fs.mjs'
-//import { glob } from 'glob'
 import yaml from 'js-yaml'
 import chalk from 'chalk'
 import mustache from 'mustache'
@@ -191,6 +188,8 @@ await writeFile(
     designList: designList.join(',\n  '),
   })
 )
+
+// Step 7: Remove sites/studio/node_modules
 
 // All done
 log.write(chalk.green(' All done\n'))

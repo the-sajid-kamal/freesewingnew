@@ -159,10 +159,11 @@ export function getUiPreferenceUndoStepData({ step }) {
 
 export function getCoreSettingUndoStepData({ step, state, Design }) {
   const field = step.path[1]
+  const { settings = {} } = state // Guard against undefined settings
   const structure = menuCoreSettingsStructure({
     language: state.language,
-    units: state.settings.units,
-    sabool: state.settings.sabool,
+    units: settings.units,
+    sabool: settings.sabool,
     parts: Design.patternConfig.draftOrder,
   })
 

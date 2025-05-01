@@ -22,6 +22,7 @@ import { EditIcon, CodeIcon, TipIcon, PrintIcon } from '@freesewing/react/compon
  */
 export const ExportView = (props) => {
   const { config, state, update } = props
+  const { settings = {} } = state // Guard against undefined settings
   const [link, setLink] = useState(false)
   const [format, setFormat] = useState(false)
 
@@ -41,7 +42,7 @@ export const ExportView = (props) => {
     design: props.design,
     Design: props.Design,
     ui: props.state.ui,
-    settings: props.state.settings,
+    settings,
     setLink,
     setFormat,
     startLoading: update.startLoading,

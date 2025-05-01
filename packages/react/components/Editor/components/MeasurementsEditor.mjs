@@ -20,6 +20,11 @@ export const MeasurementsEditor = ({ Design, update, state, helpProvider = false
     update.settings(['measurements', m], newVal)
   }
 
+  /*
+   * Ensure settings is not undefined
+   */
+  const { settings = {} } = state
+
   return (
     <div className="tw:max-w-2xl tw:mx-auto">
       <h4>Required Measurements</h4>
@@ -31,8 +36,8 @@ export const MeasurementsEditor = ({ Design, update, state, helpProvider = false
             <MeasurementInput
               key={m}
               m={m}
-              imperial={state.settings.units === 'imperial' ? true : false}
-              original={state.settings.measurements?.[m]}
+              imperial={settings.units === 'imperial' ? true : false}
+              original={settings.measurements?.[m]}
               update={(m, newVal) => onUpdate(m, newVal)}
               id={`edit-${m}`}
               helpProvider={helpProvider}
@@ -49,8 +54,8 @@ export const MeasurementsEditor = ({ Design, update, state, helpProvider = false
           <MeasurementInput
             key={m}
             m={m}
-            imperial={state.settings.units === 'umperial' ? true : false}
-            original={state.settings.measurements?.[m]}
+            imperial={settings.units === 'umperial' ? true : false}
+            original={settings.measurements?.[m]}
             update={(m, newVal) => onUpdate(m, newVal)}
             id={`edit-${m}`}
           />

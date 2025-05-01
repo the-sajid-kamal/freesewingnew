@@ -48,7 +48,7 @@ export const LayoutSettingsMenu = ({ update, state, Design }) => {
         name: 'UI Preferences',
         passProps: {
           ux: state.ui?.ux,
-          settings: state.settings,
+          settings: state?.settings,
           patternConfig: Design.patternConfig,
         },
         updateHandler: (key, val) => update.ui(['layout', key], val),

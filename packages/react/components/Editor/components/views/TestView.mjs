@@ -143,14 +143,15 @@ export const TestView = ({ Design, state, update, config }) => {
 }
 
 const SampleOptionsMenu = ({ Design, state, update }) => {
+  const { settings = {} } = state // Guard against undefined settings
   const structure = useMemo(
     () =>
       menuDesignOptionsStructure(
         Design.designConfig.data.id,
         Design.patternConfig.options,
-        state.settings
+        settings
       ),
-    [Design.designConfig.data.id, Design.patternConfig, state.settings]
+    [Design.designConfig.data.id, Design.patternConfig, settings]
   )
 
   return <SampleOptionsSubMenu structure={structure} update={update} />

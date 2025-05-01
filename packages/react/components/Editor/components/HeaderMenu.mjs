@@ -264,6 +264,7 @@ export const HeaderMenuDraftViewFlags = (props) => {
 
 export const HeaderMenuDraftViewIcons = (props) => {
   const { update, state } = props
+  const { settings = {} } = state // Guard against undefined settings
   const Button = HeaderMenuButton
   const size = 'tw:w-5 tw:h-5'
   const muted = 'tw:text-current tw:opacity-50'
@@ -281,54 +282,56 @@ export const HeaderMenuDraftViewIcons = (props) => {
           updateHandler={update.toggleSa}
           tooltip="Turns Seam Allowance on or off (see Core Settings)"
         >
-          <SaIcon className={`${size} ${state.settings.sabool ? 'tw:text-secondary' : muted}`} />
+          <SaIcon className={`${size} ${settings.sabool ? 'tw:text-secondary' : muted}`} />
         </Button>
       ) : null}
       {ux >= levels.units ? (
         <Button
           lgOnly
           updateHandler={() =>
-            update.settings('units', state.settings.units === 'imperial' ? 'metric' : 'imperial')
+            update.settings('units', settings.units === 'imperial' ? 'metric' : 'imperial')
           }
           tooltip="Switches Units between metric and imperial (see Core Settings)"
         >
           <UnitsIcon
-            className={`${size} ${
-              state.settings.units === 'imperial' ? 'tw:text-secondary' : muted
-            }`}
+            className={`${size} ${settings.units === 'imperial' ? 'tw:text-secondary' : muted}`}
           />
         </Button>
       ) : null}
       {ux >= levels.paperless ? (
         <Button
           lgOnly
-          updateHandler={() => update.settings('paperless', state.settings.paperless ? 0 : 1)}
+          updateHandler={() => update.settings('paperless', settings.paperless ? 0 : 1)}
           tooltip="Turns Paperless on or off (see Core Settings)"
         >
           <PaperlessIcon
-            className={`${size} ${state.settings.paperless ? 'tw:text-secondary' : muted}`}
+            className={`${size} ${settings.paperless ? 'tw:text-secondary' : muted}`}
           />
         </Button>
       ) : null}
       {ux >= levels.complete ? (
         <Button
           lgOnly
-          updateHandler={() => update.settings('complete', state.settings.complete ? 0 : 1)}
+          updateHandler={() =>
+            update.settings('complete', [false, 0, '0'].includes(settings.complete) ? 1 : 0)
+          }
           tooltip="Turns Details on or off (see Core Settings)"
         >
           <DetailIcon
-            className={`${size} ${!state.settings.complete ? 'tw:text-secondary' : muted}`}
+            className={`${size} ${[false, 0, '0'].includes(settings.complete) ? 'tw:text-secondary' : muted}`}
           />
         </Button>
       ) : null}
       {ux >= levels.expand ? (
         <Button
           lgOnly
-          updateHandler={() => update.settings('expand', state.settings.expand ? 0 : 1)}
+          updateHandler={() =>
+            update.settings('expand', [false, 0, '0'].includes(settings.expand) ? 1 : 0)
+          }
           tooltip="Turns Expand on or off (see Core Settings)"
         >
           <ExpandIcon
-            className={`${size} ${state.settings.expand ? 'tw:text-secondary' : muted}`}
+            className={`${size} ${[false, 0, '0'].includes(settings.expand) ? 'tw:text-secondary' : muted}`}
           />
         </Button>
       ) : null}
@@ -450,6 +453,7 @@ export const HeaderMenuTestIcons = (props) => {
 
 export const HeaderMenuSaveIcons = (props) => {
   const { update, state } = props
+  const { settings = {} } = state // Guard against undefined settings
   const backend = useBackend()
   const Button = HeaderMenuButton
   const size = 'tw:w-5 tw:h-5'
@@ -463,9 +467,7 @@ export const HeaderMenuSaveIcons = (props) => {
     if (pid) {
       const loadingId = 'savePattern'
       update.startLoading(loadingId)
-      const patternData = {
-        settings: state.settings,
-      }
+      const patternData = { settings }
       const result = await backend.updatePattern(pid, patternData)
       if (result[0] === 200) {
         update.stopLoading(loadingId)
@@ -599,6 +601,7 @@ export const HeaderMenuLayoutView = (props) => (
 
 export const HeaderMenuLayoutViewIcons = (props) => {
   const { pattern, update, state } = props
+  const { settings = {} } = state // Guard against undefined settings
   const [tweaks, setTweaks] = useState(0)
 
   // Is the current custom layout an actual layout?
@@ -611,12 +614,12 @@ export const HeaderMenuLayoutViewIcons = (props) => {
      */
     if (
       tweaks === 0 &&
-      typeof props.state.ui?.layout === 'object' &&
-      typeof props.state.settings?.layout !== 'object'
+      typeof state.ui?.layout === 'object' &&
+      typeof settings?.layout !== 'object'
     )
       applyLayout()
     setTweaks(tweaks + 1)
-  }, [props.state.ui.layout])
+  }, [state.ui.layout])
 
   const applyLayout = () => {
     setTweaks(-1)
@@ -633,7 +636,7 @@ export const HeaderMenuLayoutViewIcons = (props) => {
   const pages = pattern.setStores[0].get('pages', {})
   const format = state.ui.print?.pages?.size
     ? state.ui.print.pages.size
-    : state.settings?.units === 'imperial'
+    : settings.units === 'imperial'
       ? 'letter'
       : 'a4'
   const { cols, rows, count } = pages

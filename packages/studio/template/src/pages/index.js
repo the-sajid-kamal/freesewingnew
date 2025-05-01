@@ -36,7 +36,7 @@ export default function Home() {
           </h2>
         </div>
 
-        <div className="tw:flex tw:flex-col tw:gap-8 md:tw:grid md:tw:grid-cols-2 md:tw:gap-4 tw:mt-12 md:tw:mt-20 md:tw:px-4">
+        <div className="tw:grid tw:grid-cols-1 tw:md:grid-cols-2 tw:gap-4 tw:mt-12 md:tw:mt-20 md:tw:px-4">
           <Card
             title="Batteries Included"
             icon={<OkIcon className="tw:w-12 tw:h-12 tw:text-success" stroke={4} />}

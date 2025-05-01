@@ -35,14 +35,19 @@ import { OptionsIcon } from '@freesewing/react/components/Icon'
  * @param {Object} props.update - Object holding state handlers
  */
 export const DesignOptionsMenu = ({ Design, isFirst = true, state, i18n, update }) => {
+  /*
+   * Ensure state is not undefined
+   */
+  const { settings = {} } = state
+
   const structure = useMemo(
     () =>
       menuDesignOptionsStructure(
         Design.designConfig.data.id,
         Design.patternConfig.options,
-        state.settings
+        settings
       ),
-    [Design.designConfig.data.id, Design.patternConfig, state.settings]
+    [Design.designConfig.data.id, Design.patternConfig, settings]
   )
   const updateHandler = useCallback(
     (name, value = '__UNSET__') => update.settings(['options', ...name], value),
@@ -76,14 +81,14 @@ export const DesignOptionsMenu = ({ Design, isFirst = true, state, i18n, update 
       {...{
         structure,
         ux: state.ui.ux,
-        currentValues: state.settings.options || {},
+        currentValues: settings.options || {},
         Icon: OptionsIcon,
         Item: (props) => <DesignOption {...{ inputs, values, update, Design }} {...props} />,
         isFirst,
         name: 'Design Options',
         passProps: {
           ux: state.ui.ux,
-          settings: state.settings,
+          settings,
           patternConfig: Design.patternConfig,
         },
         updateHandler,

@@ -31,9 +31,11 @@ import { SettingsIcon } from '@freesewing/react/components/Icon'
  * @param {Object} props.update - Object holding state handlers
  */
 export const CoreSettingsMenu = ({ Design, state, i18n, update }) => {
+  const { settings = {} } = state // Guard against undefined settings
+
   const structure = menuCoreSettingsStructure({
-    units: state.settings?.units,
-    sabool: state.settings?.sabool,
+    units: settings.units,
+    sabool: settings.sabool,
     parts: Design.patternConfig.draftOrder,
   })
 
@@ -66,7 +68,7 @@ export const CoreSettingsMenu = ({ Design, state, i18n, update }) => {
       {...{
         structure,
         ux: state.ui.ux,
-        currentValues: state.settings || {},
+        currentValues: settings,
         Icon: SettingsIcon,
         Item: (props) => (
           <CoreSetting updateHandler={update} {...{ inputs, values, Design, i18n }} {...props} />
@@ -75,7 +77,7 @@ export const CoreSettingsMenu = ({ Design, state, i18n, update }) => {
         name: 'Core Settings',
         passProps: {
           ux: state.ui.ux,
-          settings: state.settings,
+          settings,
           patternConfig: Design.patternConfig,
           toggleSa: update.toggleSa,
         },

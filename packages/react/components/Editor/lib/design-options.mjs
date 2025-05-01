@@ -111,7 +111,8 @@ export function menuDesignOptionsStructure(design, options, settings, asFullList
  * Since these structures can be nested with option groups, this needs some extra logic
  */
 export function getOptionStructure(option, Design, state) {
-  const structure = menuDesignOptionsStructure(Design.patternConfig.options, state.settings)
+  const { settings = {} } = state // Guard against undefined settings
+  const structure = menuDesignOptionsStructure(Design.patternConfig.options, settings)
 
   return findOption(structure, option)
 }

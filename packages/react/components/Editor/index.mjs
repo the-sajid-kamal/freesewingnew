@@ -13,11 +13,7 @@ import { AsideViewMenu } from './components/AsideViewMenu.mjs'
 import { LoadingStatus } from './components/LoadingStatus.mjs'
 import { ModalContextProvider } from '@freesewing/react/context/Modal'
 import { LoadingStatusContextProvider } from '@freesewing/react/context/LoadingStatus'
-
-/**
- * Default setting values for the editor
- */
-const defaultSettings = { sa: false, paperless: false, expand: false, complete: true }
+import { useAccount } from '../../hooks/useAccount/index.mjs'
 
 /**
  * FreeSewing's pattern editor
@@ -117,15 +113,17 @@ export const Editor = ({
    */
   const passDownState = {
     ...state,
-    // Preset the default value of the pattern settings if not given.
-    // Otherwise, we would later need to be very careful
-    // when handling undefined/unset settings (including in the pattern code).
-    settings: { ...defaultSettings, ...state.settings },
     _: { ...ephemeralState, missingMeasurements },
   }
 
+  const { account } = useAccount()
+
+  // this should be just account.control, but there was a bug where a non-logged-in user had an
+  // object stored in account.control in localStorage instead of an integer
+  const ux = Number.isInteger(account.control) ? account.control : 3
+
   if (state.ui?.ux === undefined) {
-    passDownState.ui = { ...(state.ui || {}), ux: editorConfig.defaultUx }
+    passDownState.ui = { ...(state.ui || {}), ux: ux }
   }
 
   return (
@@ -166,6 +164,7 @@ export const Editor = ({
  * @param (object) props.config - The editor config
  */
 const viewfinder = ({ design, designs, state, config }) => {
+  const { settings = {} } = state // Guard against undefined settings
   /*
    * Grab Design from props or state and make them extra props
    */
@@ -183,7 +182,7 @@ const viewfinder = ({ design, designs, state, config }) => {
    */
   const [measurementsOk, missingMeasurements] = hasRequiredMeasurements(
     designs[design],
-    state.settings?.measurements
+    settings.measurements
   )
   if (missingMeasurements) extraProps.missingMeasurements = missingMeasurements
 

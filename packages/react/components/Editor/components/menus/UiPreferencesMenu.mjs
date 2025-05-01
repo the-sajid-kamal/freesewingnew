@@ -10,6 +10,7 @@ export const UiPreferencesMenu = ({ update, state, Design }) => {
   const structure = menuUiPreferencesStructure()
 
   const drillProps = { Design, state, update }
+  const { settings = {} } = state // Guard against undefined settings
   const inputs = {
     aside: (props) => <MenuListInput {...drillProps} {...props} />,
     ux: (props) => <MenuUxSettingInput {...drillProps} {...props} />,
@@ -37,7 +38,7 @@ export const UiPreferencesMenu = ({ update, state, Design }) => {
         language: state.locale,
         passProps: {
           ux: state.ui?.ux,
-          settings: state.settings,
+          settings,
           patternConfig: Design.patternConfig,
         },
         updateHandler: update.ui,

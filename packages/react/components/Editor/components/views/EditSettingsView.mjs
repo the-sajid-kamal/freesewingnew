@@ -21,7 +21,7 @@ import { yaml as yamlLang } from '@codemirror/lang-yaml'
  * @param {Object} props.update - Helper object for updating the editor state
  */
 export const EditSettingsView = (props) => {
-  const [settings, setSettings] = useState(props.state.settings)
+  const [settings, setSettings] = useState(props.state?.settings || {})
   const { state, config, update } = props
 
   return (
@@ -49,21 +49,22 @@ export const PrimedSettingsEditor = (props) => {
    * Destructure props
    */
   const { state } = props
+  const stateSettings = state.settings || {} // Guard against undefined settings
 
   /*
    * React state
    */
   /* eslint-disable-next-line no-unused-vars */
-  const [settings, update, setSettings] = useStateObject(state.settings) // Holds the settings
+  const [settings, update, setSettings] = useStateObject(stateSettings) // Holds the settings
   const [showDelta, setShowDelta] = useState(false)
-  const [localYaml, setLocalYaml] = useState(yaml.stringify(state.settings)) // Holds the settings as YAML
+  const [localYaml, setLocalYaml] = useState(yaml.stringify(stateSettings)) // Holds the settings as YAML
 
   /*
    * Method to revert to the settings in the editor state
    */
   const revert = () => {
-    setSettings(clone(state.settings))
-    setLocalYaml(yaml.stringify(state.settings))
+    setSettings(clone(stateSettings))
+    setLocalYaml(yaml.stringify(stateSettings))
   }
 
   /*
@@ -79,7 +80,7 @@ export const PrimedSettingsEditor = (props) => {
    * Handle settings delta
    */
   const delta =
-    diffCheck(yaml.stringify(state.settings), yaml.stringify(settings)).length > 1 ? true : false
+    diffCheck(yaml.stringify(stateSettings), yaml.stringify(settings)).length > 1 ? true : false
 
   const onChangeYaml = (input) => {
     let newSettings
@@ -131,7 +132,7 @@ export const PrimedSettingsEditor = (props) => {
           {showDelta ? (
             <div className="tw:my-4 tw:w-full tw:overflow-scroll">
               <DiffViewer
-                oldValue={yaml.stringify(state.settings)}
+                oldValue={yaml.stringify(stateSettings)}
                 newValue={yaml.stringify(settings)}
                 extraLinesSurroundingDiff="1"
                 fromTitle="Currently deployed settings"
