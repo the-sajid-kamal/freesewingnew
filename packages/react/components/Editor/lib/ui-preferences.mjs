@@ -81,7 +81,6 @@ export function menuUiPreferencesStructure() {
     renderer: {
       dense: true,
       title: 'Pattern render engine',
-      about: 'Change the way the pattern is rendered on screen',
       about: (
         <span>
           Change the underlying method for rendering the pattern on screen.

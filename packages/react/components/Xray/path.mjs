@@ -24,6 +24,10 @@ export const PathXray = ({
   strings,
   drillProps = {},
 }) => {
+  if (path.hidden) {
+    return null
+  }
+
   /*
    * We use the Path component from Pattern here
    * If we would extract Path from the components passed down,
@@ -76,8 +80,8 @@ export const PathXray = ({
     >
       <animate
         attributeName="stroke-dashoffset"
-        from="0"
-        to="30"
+        from="30"
+        to="0"
         dur="2s"
         repeatCount="indefinite"
       />
