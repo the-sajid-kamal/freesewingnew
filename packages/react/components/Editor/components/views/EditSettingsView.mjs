@@ -4,12 +4,14 @@ import yaml from 'yaml'
 // Hooks
 import React, { useState } from 'react'
 import { useStateObject } from '@freesewing/react/hooks/useStateObject'
+import { useColorMode } from '@docusaurus/theme-common'
 // Components
 import { H1, H4 } from '@freesewing/react/components/Heading'
 import { DiffViewer, diffCheck } from '@freesewing/react/components/DiffViewer'
 import { HeaderMenu } from '../HeaderMenu.mjs'
 import { ResetIcon, OkIcon } from '@freesewing/react/components/Icon'
 import CodeMirror from '@uiw/react-codemirror'
+import { basicDark, basicLight } from '@uiw/codemirror-themes-all'
 import { yaml as yamlLang } from '@codemirror/lang-yaml'
 
 /**
@@ -45,6 +47,9 @@ export const EditSettingsView = (props) => {
  * This is the React component for the settings editor itself
  */
 export const PrimedSettingsEditor = (props) => {
+  const { colorMode } = useColorMode()
+  const editorTheme = colorMode === 'dark' ? basicDark : basicLight
+
   /*
    * Destructure props
    */
@@ -102,6 +107,7 @@ export const PrimedSettingsEditor = (props) => {
         height="50vh"
         onChange={onChangeYaml}
         extensions={[yamlLang()]}
+        theme={editorTheme}
       />
       {delta ? (
         <>
