@@ -47,7 +47,7 @@ html[data-theme='dark'] {
   --ifm-sidebar-item-spacing: 8px;
 
   /* Navbar Customizations */
-  --ifm-navbar-background-color: oklch(0.985 0 0);
+  --ifm-navbar-background-color: oklch(0.205 0 0);
   --ifm-navbar-link-color: oklch(0.97 0 0);
   --ifm-navbar-link-hover-color: oklch(0.685 0.169 237.323);
 
