@@ -42,7 +42,7 @@ ${!stripped ? 'svg.freesewing ' : ''}path.sample-focus {
 const round = (value) => Math.round(value * 1e2) / 1e2
 
 const colors = {
-  fabric: '#212121',
+  fabric: 'currentColor',
   lining: '#10b981',
   interfacing: '#a3a3a3',
   canvas: '#d97706',
@@ -69,7 +69,7 @@ export const buildStylesheet = (scale = 1, stripped) => `
   ${!stripped ? '/* Defaults */' : ''}
   ${!stripped ? 'svg.freesewing ' : ''}path,
   ${!stripped ? 'svg.freesewing ' : ''}circle {
-    stroke: #000;
+    stroke: currentColor;
     stroke-opacity: 1;
     stroke-width: ${round(0.3 * scale)};
     stroke-linecap: round;
@@ -191,7 +191,7 @@ export const buildStylesheet = (scale = 1, stripped) => `
     font-size: ${round(5 * scale)}px;
     font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
       Arial, sans-serif;
-    fill: #000;
+    fill: currentColor;
     text-anchor: start;
     font-weight: 200;
     dominant-baseline: ideographic;
