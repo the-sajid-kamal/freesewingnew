@@ -224,7 +224,7 @@ const PathXrayInfo = ({ path, pathName, stackName, part }) => {
         </tbody>
       </table>
       <H6>Pathstring</H6>
-      <Highlight>{path.d}</Highlight>
+      <Highlight language="SVG">{path.d}</Highlight>
     </div>
   )
 }

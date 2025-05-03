@@ -34,6 +34,10 @@ export const Highlight = ({
 
   const preProps = {
     className: `language-${language} hljs tw:text-base tw:lg:text-lg tw:whitespace-break-spaces tw:overflow-scroll tw:pr-4`,
+    // We have to force the background to override the ifm-pre-backround var
+    style: {
+      backgroundColor: 'var(--code-background-color)',
+    },
   }
   if (raw) preProps.dangerouslySetInnerHTML = { __html: raw }
 
