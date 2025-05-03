@@ -204,7 +204,7 @@ a.tw\:daisy-btn-primary.tw\:daisy-btn-outline:hover {
   }
 }
 nav.navbar {
-  background-color: var(--ifm-background-color);
+  background-color: var(--ifm-background-surface-color);
 }
 
 /*
