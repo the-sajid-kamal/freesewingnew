@@ -94,6 +94,10 @@ sites/dev/public/mstile-150x150.png
 sites/dev/public/safari-pinned-tab.svg
 sites/dev/public/site.webmanifest
 
+# react docs
+packages/react/docs
+
+
 # Node dependencies
 node_modules
 

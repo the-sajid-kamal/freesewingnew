@@ -31,10 +31,10 @@ export const Tabs = ({ tabs = '', active = 0, children, withModal = false }) => 
   )
 
   return (
-    <div className="">
-      <div className="tw:daisy-tabs tw:daisy-tabs-bordered" role="tablist">
+    <div className="tw:border tw:border-base-300 tw:rounded-lg tw:pt-2">
+      <div role="tablist" className="tw:daisy-tabs tw:daisy-tabs-border" role="tablist">
         {tablist.map((title, tabId) => {
-          const btnClasses = `tw:text-lg tw:font-bold tw:capitalize tw:daisy-tab tw:h-auto tw:daisy-tabs-bordered tw:grow tw:py-1 ${
+          const btnClasses = `tw:text-lg tw:font-bold tw:capitalize tw:daisy-tab tw:h-auto tw:grow tw:py-1 ${
             activeTab === tabId ? 'tw:daisy-tab-active' : ''
           } tw:border-b-2 tw:border-solid tw:border-x-0 tw:border-t-0 tw:bg-transparent`
 
@@ -66,7 +66,7 @@ export const Tabs = ({ tabs = '', active = 0, children, withModal = false }) => 
           )
         })}
       </div>
-      <div>{childrenWithTabSetter}</div>
+      <div className="tw:p-4 tw:pb-2">{childrenWithTabSetter}</div>
     </div>
   )
 }
