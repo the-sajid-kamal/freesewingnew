@@ -1,5 +1,5 @@
 import about from '../about.json' with { type: 'json' }
-import { sampleStyle, paperlessStyle, buildStylesheet } from './css.mjs'
+import { colors, darkColors, sampleStyle, paperlessStyle, buildStylesheet } from './css.mjs'
 
 const grid = {
   metric: `
@@ -71,3 +71,6 @@ export const plugin = {
 // More specifically named exports
 export const themePlugin = plugin
 export const pluginTheme = plugin
+
+// Re-export default and dark mode colors
+export { colors, darkColors }

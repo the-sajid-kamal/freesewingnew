@@ -1,6 +1,9 @@
 // Dependencies
 import React from 'react'
 import { bundlePatternTranslations, draft, missingMeasurements } from '../../lib/index.mjs'
+import { colors, darkColors } from '@freesewing/plugin-theme'
+// Hooks
+import { useColorMode } from '@docusaurus/theme-common'
 // Components
 import { Null } from '@freesewing/react/components/Null'
 import { ZoomablePattern } from '../ZoomablePattern.mjs'
@@ -26,6 +29,10 @@ import { translateStrings } from '../../../Pattern/index.mjs'
  * @return {function} DraftView - React component
  */
 export const DraftView = ({ Design, state, update, config, plugins = [], PluginOutput = Null }) => {
+  /*
+   * We need to manipulate the theme for SVG in the browser
+   */
+  const { colorMode } = useColorMode()
   /*
    * Don't trust that we have all measurements
    *
@@ -63,13 +70,20 @@ export const DraftView = ({ Design, state, update, config, plugins = [], PluginO
   let renderProps = false
   if (state.ui?.renderer === 'svg') {
     try {
-      const __html = pattern.render()
+      let __html = pattern.render()
+      if (colorMode === 'dark') {
+        for (const color of Object.keys(colors))
+          __html = __html.replaceAll(`: ${colors[color]};`, `: ${darkColors[color]};`)
+      }
       output = (
         <>
           <DraftErrorHandler {...{ failure, errors }} />
           <PluginOutput {...{ pattern, Design, state, update, config }} />
           <ZoomablePattern update={update}>
-            <div className="tw:w-full tw:h-full" dangerouslySetInnerHTML={{ __html }} />
+            <div
+              className="tw:w-full tw:h-full tw:text-base-content"
+              dangerouslySetInnerHTML={{ __html }}
+            />
           </ZoomablePattern>
         </>
       )
