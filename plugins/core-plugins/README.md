@@ -32,7 +32,7 @@
 
 # @freesewing/core-plugins
 
-An umbrella package of essential plugins that are bundled with FreeSewing&#39;s core library
+An umbrella package of essential plugins that are bundled with the FreeSewing core library
 
 
 # Plugins

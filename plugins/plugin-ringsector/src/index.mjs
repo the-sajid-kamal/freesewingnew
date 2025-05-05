@@ -44,7 +44,8 @@ const keys = [
  * The plugin object itself
  */
 export const plugin = {
-  ...about,
+  name: about.id,
+  version: about.version,
   macros: {
     rmringsector: function (id = 'ringsector', { points, paths, store, part }) {
       const storeRoot = ['parts', part.name, 'macros', '@freesewing/plugin-ringsector', 'ids', id]

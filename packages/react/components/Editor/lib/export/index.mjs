@@ -3,7 +3,7 @@ import fileSaver from 'file-saver'
 import { themePlugin } from '@freesewing/plugin-theme'
 import { pluginI18n } from '@freesewing/plugin-i18n'
 import { tilerPlugin } from './plugin-tiler.mjs'
-import { capitalize, formatMm, get } from '@freesewing/utils'
+import { capitalize, escapeSvgText, formatMm, get } from '@freesewing/utils'
 import mustache from 'mustache'
 import he from 'he'
 import yaml from 'js-yaml'
@@ -36,7 +36,7 @@ const themedPattern = (Design, settings, overwrite, format, t) => {
 
   // add the theme and translation to the pattern
   pattern.use(themePlugin, { stripped: format !== 'svg', skipGrid: ['pages'] })
-  pattern.use(pluginI18n, (key) => key)
+  pattern.use(pluginI18n, t)
 
   return pattern
 }
@@ -144,8 +144,9 @@ export const handleExport = async ({
 
       // Save the measurement set name to pattern stores
       if (settings?.metadata?.setName) {
-        pattern.store.set('data.setName', settings.metadata.setName)
-        for (const store of pattern.setStores) store.set('data.setName', settings.metadata.setName)
+        pattern.store.set('data.setName', escapeSvgText(settings.metadata.setName))
+        for (const store of pattern.setStores)
+          store.set('data.setName', escapeSvgText(settings.metadata.setName))
       }
 
       // draft and render the pattern

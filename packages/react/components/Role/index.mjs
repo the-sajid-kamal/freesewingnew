@@ -8,22 +8,20 @@ import { useBackend } from '@freesewing/react/hooks/useBackend'
 import { Link as DefaultLink } from '@freesewing/react/components/Link'
 import { LockIcon, PlusIcon } from '@freesewing/react/components/Icon'
 import { Spinner } from '@freesewing/react/components/Spinner'
+import { Popout } from '@freesewing/react/components/Popout'
 import { H1, H2, H3 } from '@freesewing/react/components/Heading'
-
-//import { ConsentForm, ns as gdprNs } from 'shared/components/gdpr/form.mjs'
-
-const ConsentForm = () => null
+import { Consent } from '@freesewing/react/components/Account'
 
 const Wrap = ({ children }) => (
-  <div className="tw-m-auto tw-max-w-xl tw-text-center tw-mt-8 tw-p-8">{children}</div>
+  <div className="tw:m-auto tw:max-w-xl tw:text-center tw:mt-8 tw:p-8">{children}</div>
 )
 
 const ContactSupport = ({ Link = false }) => {
   if (!Link) Link = DefaultLink
 
   return (
-    <div className="tw-flex tw-flex-row tw-items-center tw-justify-center tw-gap-4 tw-mt-8">
-      <Link href="/support" className="tw-daisy-btn tw-daisy-btn-success tw-w-full">
+    <div className="tw:flex tw:flex-row tw:items-center tw:justify-center tw:gap-4 tw:mt-8">
+      <Link href="/support" className="tw:daisy-btn tw:daisy-btn-success tw:w-full">
         Contact Support
       </Link>
     </div>
@@ -38,17 +36,17 @@ const AuthRequired = ({ Link, banner }) => {
       {banner}
       <H3>Authentication Required</H3>
       <p>This functionality requires a FreeSewing account</p>
-      <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-2 tw-mt-8">
+      <div className="tw:grid tw:grid-cols-1 tw:md:grid-cols-2 tw:gap-2 tw:mt-8">
         <Link
           href="/signup"
-          className={`${horFlexClasses} tw-daisy-btn tw-daisy-btn-secondary tw-w-full`}
+          className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-secondary tw:w-full`}
         >
           <PlusIcon />
           Sign Up
         </Link>
         <Link
           href="/signin"
-          className={`${horFlexClasses} tw-daisy-btn tw-daisy-btn-secondary tw-daisy-btn-outline tw-w-full`}
+          className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-secondary tw:daisy-btn-outline tw:w-full`}
         >
           <LockIcon />
           Sign In
@@ -67,8 +65,8 @@ const AccountInactive = ({ Link, banner }) => {
       <H3>Account Inactive</H3>
       <p>You must activate your account via the signup link we sent you.</p>
       <p>If you cannot find the link, you can receive a new one by signing up again.</p>
-      <div className="tw-flex tw-flex-row tw-items-center tw-justify-center tw-gap-4 tw-mt-8">
-        <Link href="/signup" className="tw-daisy-btn tw-daisy-btn-primary tw-w-full">
+      <div className="tw:flex tw:flex-row tw:items-center tw:justify-center tw:gap-4 tw:mt-8">
+        <Link href="/signup" className="tw:daisy-btn tw:daisy-btn-primary tw:w-full">
           Sign Up
         </Link>
       </div>
@@ -142,9 +140,22 @@ const ConsentLacking = ({ banner, refresh }) => {
 
   return (
     <Wrap>
-      <div className="tw-text-left">
+      <div className="tw:text-left">
         {banner}
-        <ConsentForm submit={updateConsent} />
+        <Popout warning>
+          <h2>Your account lacks consent</h2>
+          <p>
+            This should have been taken care of when onboarding your account, but due to a earlier
+            bug in the registration, a small subsection of accounts ended up in this state.
+          </p>
+          <p>
+            Please complete the form to give your consent, that may resolve the matter.
+            <br />
+            If it does not, please <a href="/support">contact support</a> so we may help you.
+          </p>
+        </Popout>
+        <h1>Consent & Privacy</h1>
+        <Consent submit={updateConsent} />
       </div>
     </Wrap>
   )
@@ -167,32 +178,35 @@ export const RoleBlock = ({ children, user = false, Link = false }) => {
    * Avoid hydration errors
    */
   useEffect(() => {
-    if (admin?.account?.username && account?.username)
+    if (admin?.account?.username && account?.username && !impersonating.admin)
       setImpersonating({
         admin: admin.account.username,
         user: account.username,
       })
+  }, [admin])
+
+  useEffect(() => {
     const verifyUser = async () => {
-      const [status, data] = await backend.ping()
-      if (status === 200 && data.result === 'success') {
-        // Refresh account in local storage
-        setAccount({
-          ...account,
-          ...data.account,
-          bestBefore: Date.now() + 3600000,
-        })
-      } else {
-        if (data?.error?.error) setError(data.error.error)
+      if (!error) {
+        const [status, data] = await backend.ping()
+        if (status === 200 && data.result === 'success') {
+          // Refresh account in local storage
+          setAccount({
+            ...account,
+            ...data.account,
+            bestBefore: Date.now() + 3600000,
+          })
+        } else if (status === 451) setError('consentLacking')
         else {
-          signOut()
+          console.log({ status, data })
+          if (data?.error?.error) setError(data.error.error)
+          else signOut()
         }
+        setReady(true)
       }
-      setReady(true)
     }
-    if (token) {
-      // Don't hammer the backend. Check once per hour.
-      if (!account.bestBefore || account.bestBefore < Date.now()) verifyUser()
-    }
+    // Don't hammer the backend. Check once per hour.
+    if (token && !error && (!account.bestBefore || account.bestBefore < Date.now())) verifyUser()
     setReady(true)
   }, [admin, refreshCount, signOut])
 
@@ -201,14 +215,14 @@ export const RoleBlock = ({ children, user = false, Link = false }) => {
     setError(false)
   }
 
-  if (!ready) return <Spinner />
+  if (!ready) <Spinner />
 
   const banner = impersonating ? (
-    <div className="tw-bg-warning tw-rounded-lg tw-shadow tw-py-4 tw-px-6 tw-flex tw-flex-row tw-items-center tw-gap-4 tw-justify-between">
-      <span className="tw-text-base-100 tw-text-left">
+    <div className="tw:bg-warning tw:rounded-lg tw:shadow tw:py-4 tw:px-6 tw:flex tw:flex-row tw:items-center tw:gap-4 tw:justify-between">
+      <span className="tw:text-base-100 tw:text-left">
         Hi <b>{impersonating.admin}</b>, you are currently impersonating <b>{impersonating.user}</b>
       </span>
-      <button className="tw-daisy-btn tw-daisy-btn-neutral" onClick={stopImpersonating}>
+      <button className="tw:daisy-btn tw:daisy-btn-neutral" onClick={stopImpersonating}>
         Stop Impersonating
       </button>
     </div>

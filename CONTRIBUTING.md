@@ -50,12 +50,10 @@ We publish a lot of JavaScript packages on NPM. You can find the full list [in t
 
 This file is mostly geared towards code contributors, but there's plenty of other ways you can contribute.
 
-As it happens, we keep a list of suggestions at: https://freesewing.dev/howtos/ways-to-contribute
-
 ### Your first contribution
 
 Unsure where to begin contributing to FreeSewing? 
-You can start by looking through the issues labeled [good first issue](https://github.com/freesewing/freesewing/issues?q=is%3Aissue+is%3Aopen+label%3A%22%F0%9F%91%8D+good+first+issue%22).
+You can start by looking through the issues labeled [good first issue](https://codeberg.org/freesewing/freesewing/issues?q=&type=all&sort=&state=open&labels=344963).
 
 Don't be afraid to take on an issue. If you get stuck, [we'll help you out](https://discord.freesewing.org/).
 

@@ -32,7 +32,7 @@
 
 # @freesewing/collection
 
-All FreeSewing designs bundles into one pacakge, our collection
+All FreeSewing designs bundled into one package, our collection
 
 
 

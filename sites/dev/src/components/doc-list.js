@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from '@docusaurus/Link';
+import Link from '@docusaurus/Link'
 
 const DocList = ({ items }) => {
   const links = []
@@ -13,7 +13,7 @@ const DocList = ({ items }) => {
     }
   }
 
-  return <ul>{links}</ul>
+  return <ul className="tw:list tw:list-inside tw:list-disc tw:ml-2">{links}</ul>
 }
 
 export default DocList

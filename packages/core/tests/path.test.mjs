@@ -157,6 +157,19 @@ describe('Path', () => {
       expect(round(bbox.bottomRight.y)).to.equal(38.26)
     })
 
+    it('Should offset a problematic curve', () => {
+      // https://codeberg.org/freesewing/freesewing/issues/286
+      const curve = new Path()
+        .move(new Point(233.58820676923352, 437.7581608165166))
+        .curve(
+          new Point(231.23631634571132, 415.3814181707305),
+          new Point(221.70910430613077, 371.13489592600627),
+          new Point(219.35721388260856, 348.75815328022014)
+        )
+      const offset = curve.offset(10)
+      expect(offset.length()).to.be.greaterThan(0)
+    })
+
     it('Should offset a curve where cp1 = start', () => {
       const curve = new Path().move(new Point(0, 0))._curve(new Point(123, 34), new Point(23, 4))
       const offset = curve.offset(10)

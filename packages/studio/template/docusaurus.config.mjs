@@ -1,8 +1,5 @@
-import path from 'node:path'
 import { themes as prismThemes } from 'prism-react-renderer'
-//import designs from '../../config/software/designs.json'
-import tailwindcss from 'tailwindcss'
-import autoprefixer from 'autoprefixer'
+import { docusaurusPlugins } from './plugins/index.mjs'
 import smartypants from 'remark-smartypants'
 
 const config = {
@@ -22,51 +19,7 @@ const config = {
   /*
    * We need to make sure we can import from .mjs files
    */
-  plugins: [
-    () => ({
-      name: 'mjs-loader',
-      configureWebpack() {
-        return {
-          module: {
-            rules: [
-              {
-                test: /\.mjs$/,
-                include: /node_modules/,
-                type: 'javascript/auto',
-                use: {
-                  loader: 'babel-loader',
-                  options: {
-                    presets: ['@babel/preset-env', '@babel/preset-react'],
-                  },
-                },
-              },
-              {
-                test: /\.mjs$/,
-                exclude: /node_modules/,
-                use: {
-                  loader: 'babel-loader',
-                  options: {
-                    presets: ['@babel/preset-react'],
-                  },
-                },
-              },
-            ],
-          },
-        }
-      },
-    }),
-    async function myPlugin() {
-      return {
-        name: 'docusaurus-tailwindcss',
-        configurePostCss(postcssOptions) {
-          // Appends TailwindCSS and AutoPrefixer.
-          postcssOptions.plugins.push(tailwindcss)
-          postcssOptions.plugins.push(autoprefixer)
-          return postcssOptions
-        },
-      }
-    },
-  ],
+  plugins: docusaurusPlugins,
   i18n: { defaultLocale: 'en', locales: ['en'] },
   presets: [
     [
@@ -84,6 +37,11 @@ const config = {
     ],
   ],
   themeConfig: {
+    colorMode: {
+      // Do not be tempted to change these
+      disableSwitch: true,
+      respectPrefersColorScheme: true,
+    },
     image: 'img/freesewing-social-card.png',
     navbar: {
       title: 'FreeSewing Studio',

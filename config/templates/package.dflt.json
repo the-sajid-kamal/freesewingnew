@@ -17,7 +17,7 @@
     ".": "./src/index.mjs"
   },
   "scripts": {
-    "testonly": "BABEL_ENV=production ../../node_modules/.bin/_mocha tests/*.test.js --require @babel/register",
+    "test": "npx mocha tests/*.test.mjs",
     "publish": "npm publish --access public"
   },
   "peerDependencies": {},

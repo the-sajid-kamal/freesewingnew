@@ -3,7 +3,7 @@ import React, { forwardRef } from 'react'
 import { getId, getProps } from './utils.mjs'
 
 export const PartInner = forwardRef(
-  ({ stackName, partName, part, settings, components, strings }, ref) => {
+  ({ stackName, partName, part, settings, components, strings, drillProps }, ref) => {
     const { Group, Path, Point, Snippet } = components
 
     return (
@@ -15,7 +15,7 @@ export const PartInner = forwardRef(
             topLeft={part.topLeft}
             bottomRight={part.bottomRight}
             units={settings[0].units}
-            {...{ stackName, partName, pathName, part, settings, components, strings }}
+            {...{ stackName, partName, pathName, part, settings, components, strings, drillProps }}
           />
         ))}
         {Object.keys(part.points).map((pointName) => (
@@ -24,14 +24,23 @@ export const PartInner = forwardRef(
             point={part.points[pointName]}
             topLeft={part.topLeft}
             bottomRight={part.bottomRight}
-            {...{ stackName, partName, pointName, part, settings, components, strings }}
+            {...{ stackName, partName, pointName, part, settings, components, strings, drillProps }}
           />
         ))}
         {Object.keys(part.snippets).map((snippetName) => (
           <Snippet
             key={snippetName}
             snippet={part.snippets[snippetName]}
-            {...{ stackName, partName, snippetName, part, settings, components, strings }}
+            {...{
+              stackName,
+              partName,
+              snippetName,
+              part,
+              settings,
+              components,
+              strings,
+              drillProps,
+            }}
           />
         ))}
       </Group>
@@ -41,12 +50,16 @@ export const PartInner = forwardRef(
 
 PartInner.displayName = 'PartInner'
 
-export const Part = ({ stackName, partName, part, settings, components, strings }) => {
+export const Part = ({ stackName, partName, part, settings, components, strings, drillProps }) => {
   const { Group } = components
 
   return (
-    <Group {...getProps(part)} id={getId({ settings, stackName, partName })}>
-      <PartInner {...{ stackName, partName, part, settings, components, strings }} />
+    <Group
+      {...getProps(part)}
+      id={getId({ settings, stackName, partName })}
+      transform={`translate(${-part.anchor.x}, ${-part.anchor.y})`}
+    >
+      <PartInner {...{ stackName, partName, part, settings, components, strings, drillProps }} />
     </Group>
   )
 }

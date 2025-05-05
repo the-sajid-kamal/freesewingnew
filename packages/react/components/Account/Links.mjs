@@ -72,10 +72,10 @@ const itemIcons = {
   reddit: <RedditIcon />,
 }
 
-const btnClasses = 'tw-daisy-btn tw-capitalize tw-flex tw-flex-row tw-justify-between'
+const btnClasses = 'tw:daisy-btn tw:capitalize tw:flex tw:flex-row tw:justify-between'
 const itemClasses =
-  'tw-flex tw-flex-row tw-items-center tw-justify-between tw-bg-opacity-10 tw-p-2 tw-px-4 tw-rounded tw-mb-1'
-const linkClasses = `hover:tw-bg-secondary hover:tw-bg-opacity-10 tw-max-w-md hover:tw-no-underline`
+  'tw:flex tw:flex-row tw:items-center tw:justify-between tw:p-2 tw:px-4 tw:rounded tw:mb-1'
+const linkClasses = `tw:hover:bg-secondary/10 tw:max-w-md tw:hover:no-underline tw:text-base-content no-hover-decoration`
 
 const titles = {
   apikeys: 'API Keys',
@@ -142,7 +142,7 @@ export const Links = ({ Link = false }) => {
     img: (
       <img
         src={cloudflareImageUrl({ type: 'sq100', id: `uid-${account.ihash}` })}
-        className="tw-w-8 tw-h-8 tw-aspect-square tw-rounded-full shadow"
+        className="tw:w-8 tw:h-8 tw:aspect-square tw:rounded-full shadow"
       />
     ),
     units: account.imperial ? 'Imperial' : 'Metric',
@@ -158,14 +158,14 @@ export const Links = ({ Link = false }) => {
     (i) => i !== 'github'
   ))
     itemPreviews[social] = account.data[social] || (
-      <NoIcon className="tw-text-base-content tw-w-6 tw-h-6" stroke={2} />
+      <NoIcon className="tw:text-base-content tw:w-6 tw:h-6" stroke={2} />
     )
 
   return (
-    <div className="tw-w-full">
-      <div className="tw-grid tw-grid-cols-1 xl:tw-grid-cols-2 tw-gap-4 tw-mb-8">
+    <div className="tw:w-full">
+      <div className="tw:grid tw:grid-cols-1 tw:xl:grid-cols-2 tw:gap-4 tw:mb-8">
         <div>
-          <h4 className="tw-my-2">Your Data</h4>
+          <h4 className="tw:my-2">Your Data</h4>
           {Object.keys(controlConfig.account.fields.data).map((item) =>
             controlConfig.flat[item] > control ? null : (
               <Link
@@ -174,11 +174,11 @@ export const Links = ({ Link = false }) => {
                 href={`/account/data/${item}/`}
                 className={`${itemClasses} ${linkClasses}`}
               >
-                <div className="tw-flex tw-flex-row tw-items-center tw-gap-3 tw-font-medium">
+                <div className="tw:flex tw:flex-row tw:items-center tw:gap-3 tw:font-medium tw:text-base-content">
                   {itemIcons[item]}
                   {titles[item] ? titles[item] : capitalize(item)}
                 </div>
-                <div>{itemPreviews[item]}</div>
+                <div className="tw:text-base-content">{itemPreviews[item]}</div>
               </Link>
             )
           )}
@@ -186,7 +186,7 @@ export const Links = ({ Link = false }) => {
 
         {control > 1 && (
           <div>
-            <h4 className="tw-my-2">About You</h4>
+            <h4 className="tw:my-2">About You</h4>
             {Object.keys(controlConfig.account.fields.info).map((item) =>
               controlConfig.flat[item] > control ? null : (
                 <Link
@@ -195,23 +195,23 @@ export const Links = ({ Link = false }) => {
                   href={`/account/about/${item === 'img' ? 'avatar' : item}/`}
                   className={`${itemClasses} ${linkClasses}`}
                 >
-                  <div className="tw-flex tw-flex-row tw-items-center tw-gap-3 tw-font-medium">
+                  <div className="tw:flex tw:flex-row tw:items-center tw:gap-3 tw:font-medium tw:text-base-content">
                     {itemIcons[item]}
                     {titles[item] ? titles[item] : capitalize(item)}
                   </div>
-                  <div>{itemPreviews[item]}</div>
+                  <div className="tw:text-base-content">{itemPreviews[item]}</div>
                 </Link>
               )
             )}
-            <div className={`${itemClasses} tw-opacity-60 tw-max-w-md`}>
-              <div className="tw-flex tw-flex-row tw-items-center tw-gap-3 tw-font-medium">
+            <div className={`${itemClasses} tw:opacity-60 tw:max-w-md`}>
+              <div className="tw:flex tw:flex-row tw:items-center tw:gap-3 tw:font-medium">
                 <OkIcon stroke={3} />
                 <span>Role</span>
               </div>
-              <div className="tw-capitalize">{account.role}</div>
+              <div className="tw:capitalize">{account.role}</div>
             </div>
-            <div className={`${itemClasses} tw-opacity-60 tw-max-w-md`}>
-              <div className="tw-flex tw-flex-row tw-items-center tw-gap-3 tw-font-medium">
+            <div className={`${itemClasses} tw:opacity-60 tw:max-w-md`}>
+              <div className="tw:flex tw:flex-row tw:items-center tw:gap-3 tw:font-medium">
                 <FingerprintIcon />
                 <span>ID</span>
               </div>
@@ -221,7 +221,7 @@ export const Links = ({ Link = false }) => {
         )}
 
         <div>
-          <h4 className="tw-my-2">Preferences</h4>
+          <h4 className="tw:my-2">Preferences</h4>
           {Object.keys(controlConfig.account.fields.settings).map((item) =>
             controlConfig.flat[item] > control ? null : (
               <Link
@@ -230,11 +230,11 @@ export const Links = ({ Link = false }) => {
                 href={`/account/preferences/${item}/`}
                 className={`${itemClasses} ${linkClasses}`}
               >
-                <div className="tw-flex tw-flex-row tw-items-center tw-gap-3 tw-font-medium">
+                <div className="tw:flex tw:flex-row tw:items-center tw:gap-3 tw:font-medium tw:text-base-content">
                   {itemIcons[item]}
                   {titles[item] ? titles[item] : capitalize(item)}
                 </div>
-                <div>{itemPreviews[item]}</div>
+                <div className="tw:text-base-content">{itemPreviews[item]}</div>
               </Link>
             )
           )}
@@ -242,7 +242,7 @@ export const Links = ({ Link = false }) => {
 
         {control > 2 && (
           <div>
-            <h4 className="tw-my-2">Linked Identities</h4>
+            <h4 className="tw:my-2">Linked Identities</h4>
             {Object.keys(controlConfig.account.fields.identities).map((item) =>
               controlConfig.flat[item] > control ? null : (
                 <Link
@@ -251,11 +251,11 @@ export const Links = ({ Link = false }) => {
                   href={`/account/social/${item}/`}
                   className={`${itemClasses} ${linkClasses}`}
                 >
-                  <div className="tw-flex tw-flex-row tw-items-center tw-gap-3 tw-font-medium">
+                  <div className="tw:flex tw:flex-row tw:items-center tw:gap-3 tw:font-medium tw:text-base-content">
                     {itemIcons[item]}
                     {titles[item] ? titles[item] : capitalize(item)}
                   </div>
-                  <div>{itemPreviews[item]}</div>
+                  <div className="tw:text-base-content">{itemPreviews[item]}</div>
                 </Link>
               )
             )}
@@ -264,7 +264,7 @@ export const Links = ({ Link = false }) => {
 
         {control > 1 && (
           <div>
-            <h4 className="tw-my-2">Security</h4>
+            <h4 className="tw:my-2">Security</h4>
             {Object.keys(controlConfig.account.fields.security).map((item) =>
               controlConfig.flat[item] > control ? null : (
                 <Link
@@ -273,11 +273,11 @@ export const Links = ({ Link = false }) => {
                   href={`/account/security/${item}/`}
                   className={`${itemClasses} ${linkClasses}`}
                 >
-                  <div className="tw-flex tw-flex-row tw-items-center tw-gap-3 tw-font-medium">
+                  <div className="tw:flex tw:flex-row tw:items-center tw:gap-3 tw:font-medium tw:text-base-content">
                     {itemIcons[item]}
                     {titles[item] ? titles[item] : capitalize(item)}
                   </div>
-                  <div>{itemPreviews[item]}</div>
+                  <div className="tw:text-base-content">{itemPreviews[item]}</div>
                 </Link>
               )
             )}
@@ -286,15 +286,15 @@ export const Links = ({ Link = false }) => {
 
         {control > 1 && (
           <div>
-            <h4 className="tw-my-2">Actions</h4>
+            <h4 className="tw:my-2">Actions</h4>
             {control > 2 && (
               <Link
                 className={`${itemClasses} ${linkClasses}`}
                 title="Import data"
                 href="/account/actions/import/"
               >
-                <UploadIcon />
-                <span className="tw-font-medium">Import data</span>
+                <UploadIcon className="tw:w-6 tw:h-6 tw:text-base-content" />
+                <span className="tw:font-medium tw:text-base-content">Import data</span>
               </Link>
             )}
             {control > 2 && (
@@ -303,8 +303,8 @@ export const Links = ({ Link = false }) => {
                 title="Export your data"
                 href="/account/actions/export/"
               >
-                <DownloadIcon />
-                <span className="tw-font-medium">Export your data</span>
+                <DownloadIcon className="tw:w-6 tw:h-6 tw:text-base-content" />
+                <span className="tw:font-medium tw:text-base-content">Export your data</span>
               </Link>
             )}
             {control > 2 && (
@@ -313,8 +313,8 @@ export const Links = ({ Link = false }) => {
                 title="Reload account data"
                 href="/account/actions/reload/"
               >
-                <ReloadIcon />
-                <span className="tw-font-medium">Reload account data</span>
+                <ReloadIcon className="tw:w-6 tw:h-6 tw:text-base-content" />
+                <span className="tw:font-medium tw:text-base-content">Reload account data</span>
               </Link>
             )}
             {control > 3 && (
@@ -323,8 +323,10 @@ export const Links = ({ Link = false }) => {
                 title="Restrict processing of your data"
                 href="/account/actions/restrict/"
               >
-                <CloseIcon className="tw-w-6 tw-h-6 tw-text-warning" stroke={3} />
-                <span className="tw-font-medium">Restrict processing of your data</span>
+                <CloseIcon className="tw:w-6 tw:h-6 tw:text-warning" stroke={3} />
+                <span className="tw:font-medium tw:text-base-content">
+                  Restrict processing of your data
+                </span>
               </Link>
             )}
             <Link
@@ -332,28 +334,31 @@ export const Links = ({ Link = false }) => {
               title="Remove your account"
               href="/account/actions/remove/"
             >
-              <TrashIcon className="tw-w-6 tw-h-6 tw-text-warning" />
-              <span className="tw-font-medium">Remove your account</span>
+              <TrashIcon className="tw:w-6 tw:h-6 tw:text-warning" />
+              <span className="tw:font-medium tw:text-base-content">Remove your account</span>
             </Link>
           </div>
         )}
       </div>
 
-      <div className="tw-flex tw-flex-row tw-flex-wrap tw-gap-2 md:tw-gap-4 tw-justify-end">
+      <div className="tw:flex tw:flex-row tw:flex-wrap tw:gap-2 tw:md:gap-4 tw:justify-end">
         {account.role === 'admin' && (
-          <Link className={`${btnClasses} tw-daisy-btn-accent md:tw-w-64`} href="/admin">
-            <WrenchIcon />
-            Administration
+          <Link
+            className={`${btnClasses} tw:daisy-btn-accent tw:md:w-64 tw:text-accent-content`}
+            href="/admin"
+          >
+            <WrenchIcon className="tw:w-6 tw:h-6 tw:text-accent-content" />
+            <span className="tw:text-accent-content">Administration</span>
           </Link>
         )}
         {control > 1 && (
-          <Link className={`${btnClasses} tw-daisy-btn-secondary md:tw-w-64`} href="/profile">
-            <UserIcon />
-            Your Profile
+          <Link className={`${btnClasses} tw:daisy-btn-secondary tw:md:w-64`} href="/profile">
+            <UserIcon className="tw:w-6 tw:h-6 tw:text-accent-content" />
+            <span className="tw:text-accent-content">Your Profile</span>
           </Link>
         )}
         <button
-          className={`${btnClasses} tw-daisy-btn-neutral md:tw-w-64`}
+          className={`${btnClasses} tw:daisy-btn-neutral tw:md:w-64`}
           onClick={() => signOut()}
         >
           <SignoutIcon />

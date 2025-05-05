@@ -4,7 +4,7 @@ import { linkClasses } from '@freesewing/utils'
 import { AsideIcon, RotateIcon, RocketIcon, UxIcon } from '@freesewing/react/components/Icon'
 
 const UiDocsLink = ({ item }) => (
-  <a href={`/docs/about/site/draft/#${item.toLowerCase()}`} className={`${linkClasses} tw-px-2`}>
+  <a href={`/docs/about/site/draft/#${item.toLowerCase()}`} className={`${linkClasses} tw:px-2`}>
     Learn more
   </a>
 )
@@ -81,7 +81,6 @@ export function menuUiPreferencesStructure() {
     renderer: {
       dense: true,
       title: 'Pattern render engine',
-      about: 'Change the way the pattern is rendered on screen',
       about: (
         <span>
           Change the underlying method for rendering the pattern on screen.

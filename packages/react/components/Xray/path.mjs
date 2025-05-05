@@ -21,9 +21,13 @@ export const PathXray = ({
   path,
   settings,
   components,
-  t,
+  strings,
   drillProps = {},
 }) => {
+  if (path.hidden) {
+    return null
+  }
+
   /*
    * We use the Path component from Pattern here
    * If we would extract Path from the components passed down,
@@ -69,15 +73,15 @@ export const PathXray = ({
       }}
       strokeWidth="12"
       strokeDasharray="20 10"
-      className="hover:tw-cursor-pointer tw-opacity-0 hover:tw-opacity-30"
+      className="tw:hover:cursor-pointer tw:opacity-0 tw:hover:opacity-30"
       onClick={() =>
         info?.set ? info.set(<PathXrayInfo {...{ path, pathName, part, stackName }} />) : null
       }
     >
       <animate
         attributeName="stroke-dashoffset"
-        from="0"
-        to="30"
+        from="30"
+        to="0"
         dur="2s"
         repeatCount="indefinite"
       />
@@ -87,7 +91,7 @@ export const PathXray = ({
   return (
     <g>
       {output}
-      <Path {...{ stackName, pathName, path, part, settings, components, t, drillProps }} />
+      <Path {...{ stackName, pathName, path, part, settings, components, strings, drillProps }} />
     </g>
   )
 }
@@ -98,14 +102,14 @@ const PathXrayInfo = ({ path, pathName, stackName, part }) => {
   const rounder = rounded ? round : (val) => val
 
   return (
-    <div className="tw-max-w-2xl">
+    <div className="tw:max-w-2xl">
       <H5>
         Path <code>{pathName}</code> of <code>{stackName}</code>
       </H5>
       {Object.keys(path.attributes.list).length > 0 ? (
         <>
           <H6>Attributes</H6>
-          <div className="tw-flex tw-flex-row tw-flex-wrap tw-gap-1 tw-items-center">
+          <div className="tw:flex tw:flex-row tw:flex-wrap tw:gap-1 tw:items-center">
             {Object.entries(path.attributes.list).map(([k, val]) => (
               <KeyVal color="secondary" key={k} k={k} val={val} />
             ))}
@@ -118,14 +122,14 @@ const PathXrayInfo = ({ path, pathName, stackName, part }) => {
         </>
       ) : null}
       <H6>Dimensions</H6>
-      <table className="tw-table tw-table-auto tw-font-fixed tw-w-full">
+      <table className="tw:table tw:table-auto tw:font-fixed tw:w-full">
         <thead>
           <tr>
             <th>Type</th>
-            <th className="tw-flex tw-flex-row tw-flex-wrap tw-items-center tw-justify-between">
+            <th className="tw:flex tw:flex-row tw:flex-wrap tw:items-center tw:justify-between">
               <span>Coordinates</span>
               <button
-                className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-sm tw-daisy-btn-outline"
+                className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-sm tw:daisy-btn-outline"
                 onClick={() => setRounded(!rounded)}
               >
                 {rounded ? 'Show raw' : 'Show rounded'}
@@ -135,33 +139,33 @@ const PathXrayInfo = ({ path, pathName, stackName, part }) => {
         </thead>
         <tbody>
           <tr>
-            <td className="tw-text-right tw-font-bold tw-w-16">TopLeft</td>
-            <td className="tw-flex tw-flex-row tw-flex-wrap tw-gap-1 tw-items-center">
+            <td className="tw:text-right tw:font-bold tw:w-16">TopLeft</td>
+            <td className="tw:flex tw:flex-row tw:flex-wrap tw:gap-1 tw:items-center">
               <KeyVal k="x" val={rounder(path.topLeft.x)} />
               <KeyVal k="y" val={rounder(path.topLeft.y)} />
             </td>
           </tr>
           <tr>
-            <td className="tw-text-right tw-font-bold tw-w-16">BottomRight</td>
-            <td className="tw-flex tw-flex-row tw-flex-wrap tw-gap-1 tw-items-center">
+            <td className="tw:text-right tw:font-bold tw:w-16">BottomRight</td>
+            <td className="tw:flex tw:flex-row tw:flex-wrap tw:gap-1 tw:items-center">
               <KeyVal k="x" val={rounder(path.bottomRight.x)} />
               <KeyVal k="y" val={rounder(path.bottomRight.y)} />
             </td>
           </tr>
           <tr>
-            <td className="tw-text-right tw-font-bold tw-w-16">Width</td>
+            <td className="tw:text-right tw:font-bold tw:w-16">Width</td>
             <td>
               <KeyVal k="mm" val={rounder(path.width)} />
             </td>
           </tr>
           <tr>
-            <td className="tw-text-right tw-font-bold tw-w-16">Height</td>
+            <td className="tw:text-right tw:font-bold tw:w-16">Height</td>
             <td>
               <KeyVal k="mm" val={rounder(path.height)} />
             </td>
           </tr>
           <tr>
-            <td className="tw-text-right tw-font-bold tw-w-16">Path Length</td>
+            <td className="tw:text-right tw:font-bold tw:w-16">Path Length</td>
             <td>
               <KeyVal k="mm" val={rounder(pathLength(path))} />
             </td>
@@ -169,14 +173,14 @@ const PathXrayInfo = ({ path, pathName, stackName, part }) => {
         </tbody>
       </table>
       <H6>Drawing operations</H6>
-      <table className="tw-table tw-table-auto tw-font-fixed tw-w-full">
+      <table className="tw:table tw:table-auto tw:font-fixed tw:w-full">
         <thead>
           <tr>
             <th>Type</th>
-            <th className="tw-flex tw-flex-row tw-flex-wrap tw-items-center tw-justify-between">
+            <th className="tw:flex tw:flex-row tw:flex-wrap tw:items-center tw:justify-between">
               <span>Coordinates</span>
               <button
-                className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-sm tw-daisy-btn-outline"
+                className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-sm tw:daisy-btn-outline"
                 onClick={() => setRounded(!rounded)}
               >
                 {rounded ? 'Show raw' : 'Show rounded'}
@@ -187,29 +191,29 @@ const PathXrayInfo = ({ path, pathName, stackName, part }) => {
         <tbody>
           {path.ops.map((op, i) => (
             <tr key={i}>
-              <td className="tw-text-right tw-font-bold tw-w-16">{op.type}</td>
+              <td className="tw:text-right tw:font-bold tw:w-16">{op.type}</td>
               {['move', 'line'].includes(op.type) ? (
-                <td className="tw-flex tw-flex-row tw-flex-wrap tw-gap-1 tw-items-center">
-                  <b className="tw-text-xs tw-opacity-80 tw-block tw-w-8">To:</b>
+                <td className="tw:flex tw:flex-row tw:flex-wrap tw:gap-1 tw:items-center">
+                  <b className="tw:text-xs tw:opacity-80 tw:block tw:w-8">To:</b>
                   <KeyVal k="x" val={rounder(op.to.x)} />
                   <KeyVal k="y" val={rounder(op.to.y)} />
                 </td>
               ) : null}
               {op.type === 'close' ? <td></td> : null}
               {op.type === 'curve' ? (
-                <td className="tw-flex tw-flex-col tw-gap-1">
-                  <div className="tw-flex tw-flex-row tw-flex-wrap tw-gap-1 tw-items-center">
-                    <b className="tw-text-xs tw-opacity-80 tw-block tw-w-8">Cp1:</b>
+                <td className="tw:flex tw:flex-col tw:gap-1">
+                  <div className="tw:flex tw:flex-row tw:flex-wrap tw:gap-1 tw:items-center">
+                    <b className="tw:text-xs tw:opacity-80 tw:block tw:w-8">Cp1:</b>
                     <KeyVal k="x" val={rounder(op.cp1.x)} />
                     <KeyVal k="y" val={rounder(op.cp1.y)} />
                   </div>
-                  <div className="tw-flex tw-flex-row tw-flex-wrap tw-gap-1 tw-items-center">
-                    <b className="tw-text-xs tw-opacity-80 tw-block tw-w-8">Cp2:</b>
+                  <div className="tw:flex tw:flex-row tw:flex-wrap tw:gap-1 tw:items-center">
+                    <b className="tw:text-xs tw:opacity-80 tw:block tw:w-8">Cp2:</b>
                     <KeyVal k="x" val={rounder(op.cp2.x)} />
                     <KeyVal k="y" val={rounder(op.cp2.y)} />
                   </div>
-                  <div className="tw-flex tw-flex-row tw-flex-wrap tw-gap-1 tw-items-center">
-                    <b className="tw-text-xs tw-opacity-80 tw-block tw-w-8">To:</b>
+                  <div className="tw:flex tw:flex-row tw:flex-wrap tw:gap-1 tw:items-center">
+                    <b className="tw:text-xs tw:opacity-80 tw:block tw:w-8">To:</b>
                     <KeyVal k="x" val={rounder(op.to.x)} />
                     <KeyVal k="y" val={rounder(op.to.y)} />
                   </div>
@@ -220,7 +224,7 @@ const PathXrayInfo = ({ path, pathName, stackName, part }) => {
         </tbody>
       </table>
       <H6>Pathstring</H6>
-      <Highlight>{path.d}</Highlight>
+      <Highlight language="SVG">{path.d}</Highlight>
     </div>
   )
 }

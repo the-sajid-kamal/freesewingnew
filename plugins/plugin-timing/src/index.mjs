@@ -17,7 +17,8 @@ const delta = (start) => {
 /* eslint-enable no-undef */
 
 export const plugin = {
-  ...about,
+  name: about.id,
+  version: about.version,
   hooks: {
     preSetDraft: function (pattern) {
       const time = now()

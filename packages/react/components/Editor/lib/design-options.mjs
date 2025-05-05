@@ -7,7 +7,7 @@ import { linkClasses } from '@freesewing/utils'
 const DesignDocsLink = ({ design, item }) => (
   <a
     href={`/docs/designs/${design}/options/#${item.toLowerCase()}`}
-    className={`${linkClasses} tw-px-2`}
+    className={`${linkClasses} tw:px-2`}
     target="_BLANK"
   >
     Learn more
@@ -111,7 +111,8 @@ export function menuDesignOptionsStructure(design, options, settings, asFullList
  * Since these structures can be nested with option groups, this needs some extra logic
  */
 export function getOptionStructure(option, Design, state) {
-  const structure = menuDesignOptionsStructure(Design.patternConfig.options, state.settings)
+  const { settings = {} } = state // Guard against undefined settings
+  const structure = menuDesignOptionsStructure(Design.patternConfig.options, settings)
 
   return findOption(structure, option)
 }

@@ -1,7 +1,7 @@
 {
   "name": "@freesewing/collection",
   "version": "4.0.0",
-  "description": "All FreeSewing designs bundles into one pacakge, our collection",
+  "description": "All FreeSewing designs bundled into one package, our collection",
   "author": "Joost De Cock <joost@joost.at> (https://github.com/joostdecock)",
   "homepage": "https://freesewing.org/",
   "repository": "github:freesewing/freesewing",
@@ -15,7 +15,12 @@
   },
   "keywords": [
     "freesewing",
-    "freesewing"
+    "design",
+    "diy",
+    "fashion",
+    "made to measure",
+    "parametric design",
+    "sewing"
   ],
   "type": "module",
   "module": "src/index.mjs",

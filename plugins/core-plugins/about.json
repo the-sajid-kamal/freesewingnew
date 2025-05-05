@@ -1,4 +1,5 @@
 {
-  "version": "4.0.0-rc.8",
-  "name": "core-plugins"
+  "id": "core-plugins",
+  "description": "An umbrella package of essential plugins that are bundled with the FreeSewing core library",
+  "version": "4.0.0"
 }

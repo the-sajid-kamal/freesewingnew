@@ -1,6 +1,0 @@
----
-title: "Estiramiento horizontal del tejido"
----
-
-Ajusta esta opción para tejidos más o menos elásticos, concretamente para el estiramiento horizontal.
-

@@ -25,6 +25,7 @@ export const panel = {
       .join(paths.panelHem.reverse())
       .reverse()
       .close()
+      .addClass('fabric')
 
     if (sa) paths.sa = paths.seam.offset(sa).attr('class', 'fabric sa')
 

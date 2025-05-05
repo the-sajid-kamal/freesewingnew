@@ -1,4 +1,5 @@
 {
-  "version": "4.0.0-rc.8",
-  "name": "plugin-round"
+  "id": "plugin-round",
+  "description": "A FreeSewing plugin to round corners",
+  "version": "4.0.0"
 }

@@ -32,7 +32,7 @@
 
 # @freesewing/models
 
-Body measurements data for a range of default sizes
+Body measurements data used to test FreeSewing designs
 
 
 ## Usage

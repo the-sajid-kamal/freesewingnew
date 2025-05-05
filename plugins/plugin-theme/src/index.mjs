@@ -1,5 +1,5 @@
 import about from '../about.json' with { type: 'json' }
-import { sampleStyle, paperlessStyle, buildStylesheet } from './css.mjs'
+import { colors, darkColors, sampleStyle, paperlessStyle, buildStylesheet } from './css.mjs'
 
 const grid = {
   metric: `
@@ -21,7 +21,8 @@ const grid = {
 }
 
 export const plugin = {
-  ...about,
+  name: about.id,
+  version: about.version,
   hooks: {
     preRender: function (svg, data = {}) {
       const current = svg.attributes.get('class')
@@ -70,3 +71,6 @@ export const plugin = {
 // More specifically named exports
 export const themePlugin = plugin
 export const pluginTheme = plugin
+
+// Re-export default and dark mode colors
+export { colors, darkColors }

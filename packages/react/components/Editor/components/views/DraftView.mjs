@@ -1,10 +1,18 @@
 // Dependencies
 import React from 'react'
-import { draft, missingMeasurements, bundlePatternTranslations } from '../../lib/index.mjs'
+import { bundlePatternTranslations, draft, missingMeasurements } from '../../lib/index.mjs'
+import { colors, darkColors } from '@freesewing/plugin-theme'
+// Hooks
+import { useColorMode } from '@docusaurus/theme-common'
 // Components
 import { Null } from '@freesewing/react/components/Null'
 import { ZoomablePattern } from '../ZoomablePattern.mjs'
 import { PatternLayout } from '../PatternLayout.mjs'
+import { DraftErrorHandler } from './DraftErrorHandler.mjs'
+import { i18nPlugin } from '@freesewing/plugin-i18n'
+import { themePlugin } from '@freesewing/plugin-theme'
+import { svgAttrPlugin } from '@freesewing/plugin-svgattr'
+import { translateStrings } from '../../../Pattern/index.mjs'
 
 /**
  * The draft view allows users to tweak their pattern
@@ -22,6 +30,10 @@ import { PatternLayout } from '../PatternLayout.mjs'
  */
 export const DraftView = ({ Design, state, update, config, plugins = [], PluginOutput = Null }) => {
   /*
+   * We need to manipulate the theme for SVG in the browser
+   */
+  const { colorMode } = useColorMode()
+  /*
    * Don't trust that we have all measurements
    *
    * We do not need to change the view here. That is done in the central
@@ -38,7 +50,16 @@ export const DraftView = ({ Design, state, update, config, plugins = [], PluginO
   /*
    * First, attempt to draft
    */
-  const { pattern } = draft(Design, state.settings, plugins)
+  const { pattern, failure, errors } = draft(Design, state.settings, plugins, (pattern) => {
+    if (state.ui?.renderer === 'svg') {
+      const strings = bundlePatternTranslations(pattern.designConfig.data.id)
+      pattern.use(i18nPlugin, (t) => translateStrings([t], strings))
+      pattern.use(themePlugin)
+      pattern.use(svgAttrPlugin, {
+        class: `freesewing pattern tw:w-full ${state.ui.rotate ? 'tw:-rotate-90' : ''}`,
+      })
+    }
+  })
 
   /*
    * Create object holding strings for translation
@@ -49,12 +70,20 @@ export const DraftView = ({ Design, state, update, config, plugins = [], PluginO
   let renderProps = false
   if (state.ui?.renderer === 'svg') {
     try {
-      const __html = pattern.render()
+      let __html = pattern.render()
+      if (colorMode === 'dark') {
+        for (const color of Object.keys(colors))
+          __html = __html.replaceAll(`: ${colors[color]};`, `: ${darkColors[color]};`)
+      }
       output = (
         <>
+          <DraftErrorHandler {...{ failure, errors }} />
           <PluginOutput {...{ pattern, Design, state, update, config }} />
           <ZoomablePattern update={update}>
-            <div className="tw-w-full tw-h-full" dangerouslySetInnerHTML={{ __html }} />
+            <div
+              className="tw:w-full tw:h-full tw:text-base-content"
+              dangerouslySetInnerHTML={{ __html }}
+            />
           </ZoomablePattern>
         </>
       )
@@ -65,6 +94,7 @@ export const DraftView = ({ Design, state, update, config, plugins = [], PluginO
     renderProps = pattern.getRenderProps()
     output = (
       <>
+        <DraftErrorHandler {...{ failure, errors }} />
         <PluginOutput {...{ pattern, Design, state, update, config, strings }} />
         <ZoomablePattern
           renderProps={renderProps}

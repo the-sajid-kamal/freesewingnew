@@ -6,7 +6,7 @@ import {
   urls,
 } from '@freesewing/config'
 import { measurements as measurementTranslations } from '@freesewing/i18n'
-import { i18n, measurements as designMeasurements } from '@freesewing/collection'
+import { measurements as designMeasurements } from '@freesewing/collection'
 import {
   cloudflareImageUrl,
   formatMm,
@@ -31,8 +31,6 @@ import {
   CompareIcon,
   CuratedMeasurementsSetIcon,
   EditIcon,
-  FlagIcon,
-  MeasurementsSetIcon,
   NoIcon,
   OkIcon,
   ResetIcon,
@@ -58,10 +56,6 @@ import { Yaml } from '@freesewing/react/components/Yaml'
 import { Popout } from '@freesewing/react/components/Popout'
 import { bundlePatternTranslations, draft, flattenFlags } from '../Editor/lib/index.mjs'
 import { Bonny } from '@freesewing/bonny'
-import { ZoomablePattern } from '../Editor/components/ZoomablePattern.mjs'
-import { HeaderMenuDraftViewFlags } from '../Editor/components/HeaderMenu.mjs'
-import { Flag, FlagsAccordionEntries } from '../Editor/components/Flag.mjs'
-import { i18n as pluginI18n } from '@freesewing/core-plugins'
 import { MiniNote, MiniTip } from '../Mini/index.mjs'
 
 const t = (input) => {
@@ -74,10 +68,11 @@ const t = (input) => {
  *
  * @param {object} props - All React props
  * @param {number} id - The ID of the measurements set to load
- * @param {bool} publicOnly - FIXME
+ * @param {bool} publicOnly - If the set should be used with the backend.getPublicSet method
  * @param {function} Link - An optional framework-specific Link component to use for client-side routing
+ * @param {object} measurementHelpProvider - A function that returns a url or action to show help for a specific measurement
  */
-export const Set = ({ id, publicOnly = false, Link = false }) => {
+export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvider = false }) => {
   if (!Link) Link = WebLink
 
   // Hooks
@@ -115,6 +110,7 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
         setImperial(body.set.imperial ? true : false)
         setNotes(body.set.notes)
         setMeasies(body.set.measies)
+        setDisplayAsMetric(body.set.imperial ? false : true)
         setLoadingStatus([true, 'Measurements set loaded', true, true])
       } else setLoadingStatus([true, 'An error occured while contacting the backend', true, false])
     }
@@ -122,17 +118,20 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
       setLoadingStatus([true, 'Contacting the backend'])
       const [status, body] = await backend.getPublicSet(id)
       if (status === 200 && body.result === 'success') {
+        const isImperial = body.units === 'imperial'
         setMset({
-          ...body.data,
+          ...body,
           public: true,
-          measies: body.data.measurements,
+          measies: body.measurements,
+          imperial: isImperial,
         })
-        setName(body.data.name)
-        setImage(body.data.image)
-        setIsPublic(body.data.public ? true : false)
-        setImperial(body.data.imperial ? true : false)
-        setNotes(body.data.notes)
-        setMeasies(body.data.measurements)
+        setName(body.name)
+        setImage(body.image)
+        setIsPublic(body.public ? true : false)
+        setImperial(isImperial)
+        setNotes(body.notes)
+        setMeasies(body.measurements)
+        setDisplayAsMetric(!isImperial)
         setLoadingStatus([true, 'Measurements set loaded', true, true])
       } else
         setLoadingStatus([
@@ -209,21 +208,21 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
 
   const heading = (
     <>
-      <div className="tw-flex tw-flex-wrap md:tw-flex-nowrap tw-flex-row tw-gap-2 tw-w-full">
-        <div className="tw-w-full md:tw-w-96 tw-shrink-0">
+      <div className="tw:flex tw:flex-wrap tw:md:flex-nowrap tw:flex-row tw:gap-2 tw:w-full">
+        <div className="tw:w-full tw:md:w-96 tw:shrink-0">
           <MsetCard set={mset} control={control} Link={Link} />
         </div>
-        <div className="tw-flex tw-flex-col tw-justify-end tw-gap-2 tw-mb-2 tw-grow">
+        <div className="tw:flex tw:flex-col tw:justify-end tw:gap-2 tw:mb-2 tw:grow">
           {account.control > 2 && mset.public && mset.userId !== account.id ? (
-            <div className="tw-flex tw-flex-row tw-gap-2 tw-items-center">
+            <div className="tw:flex tw:flex-row tw:gap-2 tw:items-center">
               <a
-                className="tw-daisy-badge tw-daisy-badge-secondary tw-font-bold tw-daisy-badge-lg"
+                className="tw:daisy-badge tw:daisy-badge-secondary tw:font-bold tw:daisy-badge-lg"
                 href={`${urls.backend}/sets/${mset.id}.json`}
               >
                 JSON
               </a>
               <a
-                className="tw-daisy-badge tw-daisy-badge-success tw-font-bold tw-daisy-badge-lg"
+                className="tw:daisy-badge tw:daisy-badge-success tw:font-bold tw:daisy-badge-lg"
                 href={`${urls.backend}/sets/${mset.id}.yaml`}
               >
                 YAML
@@ -233,9 +232,9 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
             <span></span>
           )}
           {account.control > 3 && mset.userId === account.id ? (
-            <div className="tw-flex tw-flex-row tw-gap-2 tw-items-center">
+            <div className="tw:flex tw:flex-row tw:gap-2 tw:items-center">
               <button
-                className="tw-daisy-badge tw-daisy-badge-secondary tw-font-bold tw-daisy-badge-lg"
+                className="tw:daisy-badge tw:daisy-badge-secondary tw:font-bold tw:daisy-badge-lg"
                 onClick={() =>
                   setModal(
                     <ModalWrapper keepOpenOnClick>
@@ -247,7 +246,7 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
                 JSON
               </button>
               <button
-                className="tw-daisy-badge tw-daisy-badge-success tw-font-bold tw-daisy-badge-lg tw-text-neutral-content"
+                className="tw:daisy-badge tw:daisy-badge-success tw:font-bold tw:daisy-badge-lg tw:text-neutral-content"
                 onClick={() =>
                   setModal(
                     <ModalWrapper keepOpenOnClick>
@@ -264,18 +263,18 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
           )}
           {account.id && account.control > 2 && mset.public && mset.userId !== account.id ? (
             <button
-              className="tw-daisy-btn tw-daisy-btn-primary"
+              className="tw:daisy-btn tw:daisy-btn-primary"
               title="Import measurements set"
               onClick={importSet}
             >
-              <div className="tw-flex tw-flex-row tw-gap-4 tw-justify-between tw-items-center tw-w-full">
+              <div className="tw:flex tw:flex-row tw:gap-4 tw:justify-between tw:items-center tw:w-full">
                 <UploadIcon />
                 Import measurements set
               </div>
             </button>
           ) : null}
           {account.control > 2 ? (
-            <BookmarkButton slug={`sets/${mset.id}`} title={mset.name} type="set" thing="set" />
+            <BookmarkButton slug={`set?id=${mset.id}`} title={mset.name} type="set" thing="set" />
           ) : null}
           <button
             onClick={() =>
@@ -285,7 +284,7 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
                 </ModalWrapper>
               )
             }
-            className={`tw-daisy-btn tw-daisy-btn-secondary tw-btn-outline ${horFlexClasses}`}
+            className={`tw:daisy-btn tw:daisy-btn-secondary tw:btn-outline ${horFlexClasses}`}
           >
             <ShowcaseIcon />
             Show Image
@@ -298,9 +297,9 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
                     setSuggest(!suggest)
                     setEdit(false)
                   }}
-                  className={`tw-daisy-btn ${
-                    suggest ? 'tw-daisy-btn-neutral' : 'tw-daisy-btn-primary'
-                  } tw-daisy-btn-outline ${horFlexClasses}`}
+                  className={`tw:daisy-btn ${
+                    suggest ? 'tw:daisy-btn-neutral' : 'tw:daisy-btn-primary'
+                  } tw:daisy-btn-outline ${horFlexClasses}`}
                 >
                   {suggest ? <ResetIcon /> : <CuratedMeasurementsSetIcon />}
                   {suggest ? 'Cancel' : 'Suggest for curation'}
@@ -313,14 +312,14 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
                       setEdit(false)
                       setSuggest(false)
                     }}
-                    className={`tw-daisy-btn tw-daisy-btn-neutral tw-daisy-btn-outline ${horFlexClasses}`}
+                    className={`tw:daisy-btn tw:daisy-btn-neutral tw:daisy-btn-outline ${horFlexClasses}`}
                   >
                     <ResetIcon />
                     Cancel
                   </button>
                   <button
                     onClick={save}
-                    className={`tw-daisy-btn tw-daisy-btn-primary ${horFlexClasses}`}
+                    className={`tw:daisy-btn tw:daisy-btn-primary ${horFlexClasses}`}
                   >
                     <UploadIcon />
                     Save measurements set
@@ -332,7 +331,7 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
                     setEdit(true)
                     setSuggest(false)
                   }}
-                  className={`tw-daisy-btn tw-daisy-btn-primary ${horFlexClasses}`}
+                  className={`tw:daisy-btn tw:daisy-btn-primary ${horFlexClasses}`}
                 >
                   <EditIcon /> Edit measurements set
                 </button>
@@ -341,14 +340,14 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
           )}
           {account.control > 1 && account?.compare ? (
             <button
-              className="tw-daisy-btn tw-daisy-btn-secondary tw-btn-outline"
+              className="tw:daisy-btn tw:daisy-btn-secondary tw:btn-outline"
               title="Validate measurements"
               onClick={() => {
                 setRender(!render)
                 setEdit(false)
               }}
             >
-              <div className="tw-flex tw-flex-row tw-gap-4 tw-justify-between tw-items-center tw-w-full">
+              <div className="tw:flex tw:flex-row tw:gap-4 tw:justify-between tw:items-center tw:w-full">
                 <CompareIcon />
                 Validate measurements
               </div>
@@ -356,11 +355,11 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
           ) : null}
           {account.control > 2 && mset.userId === account.id ? (
             <button
-              className="tw-daisy-btn tw-daisy-btn-neutral"
+              className="tw:daisy-btn tw:daisy-btn-neutral"
               title="Clone measurements set"
               onClick={importSet}
             >
-              <div className="tw-flex tw-flex-row tw-gap-4 tw-justify-between tw-items-center tw-w-full">
+              <div className="tw:flex tw:flex-row tw:gap-4 tw:justify-between tw:items-center tw:w-full">
                 <CloneIcon />
                 Clone measurements set
               </div>
@@ -368,13 +367,13 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
           ) : null}
         </div>
       </div>
-      <div className="tw-flex tw-flex-row tw-flex-wrap tw-gap-4 tw-text-sm tw-items-center tw-justify-between tw-mb-2"></div>
+      <div className="tw:flex tw:flex-row tw:flex-wrap tw:gap-4 tw:text-sm tw:items-center tw:justify-between tw:mb-2"></div>
     </>
   )
 
   if (suggest)
     return (
-      <div className="tw-w-full">
+      <div className="tw:w-full">
         {heading}
         <SuggestCset {...{ mset, setLoadingStatus, backend, Link }} />
       </div>
@@ -383,14 +382,14 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
   if (!edit) {
     if (render)
       return (
-        <div className="tw-w-full">
+        <div className="tw:w-full">
           {heading}
           <RenderedCSet {...{ mset, setLoadingStatus, backend, imperial }} />
         </div>
       )
 
     return (
-      <div className="tw-w-full">
+      <div className="tw:w-full">
         {heading}
 
         <h2>Data</h2>
@@ -405,14 +404,14 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
           <>
             {mset.userId === account.id && (
               <DisplayRow title="Public">
-                <div className="tw-flex tw-flex-row tw-gap-2 tw-items-center tw-justify-between">
+                <div className="tw:flex tw:flex-row tw:gap-2 tw:items-center tw:justify-between">
                   {mset.public ? (
-                    <OkIcon className="tw-w-6 tw-h-6 tw-text-success" stroke={4} />
+                    <OkIcon className="tw:w-6 tw:h-6 tw:text-success" stroke={4} />
                   ) : (
-                    <NoIcon className="tw-w-6 tw-h-6 tw-text-error" stroke={3} />
+                    <NoIcon className="tw:w-6 tw:h-6 tw:text-error" stroke={3} />
                   )}
                   <button
-                    className="tw-daisy-btn tw-daisy-btn-secondary tw-daisy-btn-sm"
+                    className="tw:daisy-btn tw:daisy-btn-secondary tw:daisy-btn-sm"
                     onClick={togglePublic}
                   >
                     Make {mset.public ? 'Private' : 'Public'}
@@ -433,13 +432,13 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
         {control >= controlConfig.account.sets.createdAt && (
           <DisplayRow title="Created">
             {timeAgo(mset.createdAt, false)}
-            <span className="tw-text-sm tw-pl-2">({shortDate(mset.createdAt, false)})</span>
+            <span className="tw:text-sm tw:pl-2">({shortDate(mset.createdAt, false)})</span>
           </DisplayRow>
         )}
         {control >= controlConfig.account.sets.updatedAt && (
           <DisplayRow title="Updated">
             {timeAgo(mset.updatedAt, false)}
-            <span className="tw-text-sm tw-pl-2">({shortDate(mset.updatedAt, false)})</span>
+            <span className="tw:text-sm tw:pl-2">({shortDate(mset.updatedAt, false)})</span>
           </DisplayRow>
         )}
         {control >= controlConfig.account.sets.id && <DisplayRow title="ID">{mset.id}</DisplayRow>}
@@ -459,7 +458,7 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
                   title={<MeasurementValue {...{ m, val, imperial: !displayAsMetric }} />}
                   key={m}
                 >
-                  <span className="tw-font-medium">{m}</span>
+                  <span className="tw:font-medium">{measurementTranslations[m]}</span>
                 </DisplayRow>
               ) : null
             )}
@@ -470,10 +469,10 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
   }
 
   return (
-    <div className="tw-w-full">
+    <div className="tw:w-full">
       {heading}
       <h2 id="measies">Measurements</h2>
-      <div className="tw-bg-secondary tw-px-4 tw-pt-1 tw-pb-4 tw-rounded-lg tw-shadow tw-bg-opacity-10">
+      <div className="tw:bg-secondary/10 tw:px-4 tw:pt-1 tw:pb-4 tw:rounded-lg tw:shadow">
         <DesignInput
           update={setFilter}
           label="Filter by design"
@@ -491,6 +490,7 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
           current={mset.measies[m]}
           original={mset.measies[m]}
           update={updateMeasies}
+          helpProvider={measurementHelpProvider}
         />
       ))}
 
@@ -531,10 +531,10 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
             {
               val: true,
               label: (
-                <div className="tw-flex tw-flex-row tw-items-center tw-flex-wrap tw-justify-between tw-w-full">
+                <div className="tw:flex tw:flex-row tw:items-center tw:flex-wrap tw:justify-between tw:w-full">
                   <span>Public measurements set</span>
                   <OkIcon
-                    className="tw-w-8 tw-h-8 tw-text-success tw-bg-base-100 tw-rounded-full tw-p-1"
+                    className="tw:w-8 tw:h-8 tw:text-success tw:bg-base-100 tw:rounded-full tw:p-1"
                     stroke={4}
                   />
                 </div>
@@ -544,10 +544,10 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
             {
               val: false,
               label: (
-                <div className="tw-flex tw-flex-row tw-items-center tw-flex-wrap tw-justify-between tw-w-full">
+                <div className="tw:flex tw:flex-row tw:items-center tw:flex-wrap tw:justify-between tw:w-full">
                   <span>Private measurements set</span>
                   <NoIcon
-                    className="tw-w-8 tw-h-8 tw-text-error tw-bg-base-100 tw-rounded-full tw-p-1"
+                    className="tw:w-8 tw:h-8 tw:text-error tw:bg-base-100 tw:rounded-full tw:p-1"
                     stroke={3}
                   />
                 </div>
@@ -571,9 +571,9 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
               {
                 val: false,
                 label: (
-                  <div className="tw-flex tw-flex-row tw-items-center tw-flex-wrap tw-justify-between tw-w-full">
+                  <div className="tw:flex tw:flex-row tw:items-center tw:flex-wrap tw:justify-between tw:w-full">
                     <span>Metric units (cm)</span>
-                    <span className="tw-text-inherit tw-text-2xl tw-pr-2">cm</span>
+                    <span className="tw:text-inherit tw:text-2xl tw:pr-2">cm</span>
                   </div>
                 ),
                 desc: 'Pick this if you prefer cm over inches',
@@ -581,9 +581,9 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
               {
                 val: true,
                 label: (
-                  <div className="tw-flex tw-flex-row tw-items-center tw-flex-wrap tw-justify-between tw-w-full">
+                  <div className="tw:flex tw:flex-row tw:items-center tw:flex-wrap tw:justify-between tw:w-full">
                     <span>Imperial units (inch)</span>
-                    <span className="tw-text-inherit tw-text-4xl tw-pr-2">″</span>
+                    <span className="tw:text-inherit tw:text-4xl tw:pr-2">″</span>
                   </div>
                 ),
                 desc: 'Pick this if you prefer inches over cm',
@@ -591,7 +591,7 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
             ]}
             current={imperial}
           />
-          <span className="tw-text-large tw-text-warning">
+          <span className="tw:text-large tw:text-warning">
             Note: You must save after changing Units to have the change take effect on this page.
           </span>
         </>
@@ -610,7 +610,7 @@ export const Set = ({ id, publicOnly = false, Link = false }) => {
       ) : null}
       <button
         onClick={save}
-        className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-lg tw-flex tw-flex-row tw-items-center tw-gap-4 tw-mx-auto tw-mt-8"
+        className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-lg tw:flex tw:flex-row tw:items-center tw:gap-4 tw:mx-auto tw:mt-8"
       >
         <UploadIcon />
         Save Measurements Set
@@ -685,7 +685,7 @@ export const SuggestCset = ({ mset, Link }) => {
   return (
     <>
       <h2>Suggest a measurements set for curation</h2>
-      <h4 className="tw-flex tw-flex-row tw-items-center tw-gap-2">
+      <h4 className="tw:flex tw:flex-row tw:items-center tw:gap-2">
         {missing.length > 0 ? <BoolNoIcon /> : <BoolYesIcon />}
         Measurements
       </h4>
@@ -696,7 +696,7 @@ export const SuggestCset = ({ mset, Link }) => {
             of measurements.
           </p>
           <p>Your measurements set is missing the following measurements:</p>
-          <ul className="tw-list tw-list-inside tw-list-disc tw-ml-4">
+          <ul className="tw:list tw:list-inside tw:list-disc tw:ml-4">
             {missing.map((m) => (
               <li key={m}>{m}</li>
             ))}
@@ -705,13 +705,13 @@ export const SuggestCset = ({ mset, Link }) => {
       ) : (
         <p>All measurements are available.</p>
       )}
-      <h4 className="tw-flex tw-flex-row tw-items-center tw-gap-2">
+      <h4 className="tw:flex tw:flex-row tw:items-center tw:gap-2">
         {name.length > 1 ? <BoolYesIcon /> : <BoolNoIcon />}
         Name
       </h4>
       <p>Each curated set has a name. You can suggest your own name or a pseudonym.</p>
       <StringInput label="Name" current={name} update={setName} valid={(val) => val.length > 1} />
-      <h4 className="tw-flex tw-flex-row tw-items-center tw-gap-2">
+      <h4 className="tw:flex tw:flex-row tw:items-center tw:gap-2">
         {height.length > 1 ? <BoolYesIcon /> : <BoolNoIcon />}
         Height
       </h4>
@@ -725,7 +725,7 @@ export const SuggestCset = ({ mset, Link }) => {
         update={setHeight}
         valid={(val) => val.length > 1}
       />
-      <h4 className="tw-flex tw-flex-row tw-items-center tw-gap-2 tw-mt-4">
+      <h4 className="tw:flex tw:flex-row tw:items-center tw:gap-2 tw:mt-4">
         {img.length > 0 ? <BoolYesIcon /> : <BoolNoIcon />}
         Image
       </h4>
@@ -740,7 +740,7 @@ export const SuggestCset = ({ mset, Link }) => {
         update={setImg}
         valid={(val) => val.length > 1}
       />
-      <h4 className="tw-flex tw-flex-row tw-items-center tw-gap-2 tw-mt-4">
+      <h4 className="tw:flex tw:flex-row tw:items-center tw:gap-2 tw:mt-4">
         <BoolYesIcon />
         Notes
       </h4>
@@ -750,7 +750,7 @@ export const SuggestCset = ({ mset, Link }) => {
       </Popout>
       <MarkdownInput label="Notes" current={notes} update={setNotes} valid={() => true} />
       <button
-        className="tw-daisy-btn tw-daisy-btn-primary tw-w-full tw-mt-4"
+        className="tw:daisy-btn tw:daisy-btn-primary tw:w-full tw:mt-4"
         disabled={!(missing.length === 0 && height.length > 1 && img.length > 0)}
         onClick={suggestSet}
       >
@@ -776,10 +776,10 @@ export const RenderedCSet = ({ mset, imperial }) => {
   if (missing.length > 0)
     return (
       <>
-        <h4 className="tw-flex tw-flex-row tw-items-center tw-gap-2">Validation messages</h4>
+        <h4 className="tw:flex tw:flex-row tw:items-center tw:gap-2">Validation messages</h4>
         <p>To validate and preview a measurement set, all measurements need to be entered.</p>
         <p>Your measurements set is missing the following measurements:</p>
-        <ul className="tw-list tw-list-inside tw-list-disc tw-ml-4">
+        <ul className="tw:list tw:list-inside tw:list-disc tw:ml-4">
           {missing.map((m) => (
             <li key={m}>{m}</li>
           ))}
@@ -793,7 +793,7 @@ export const RenderedCSet = ({ mset, imperial }) => {
   console.log('flags', pattern, flags, strings)
   return (
     <>
-      <h4 className="tw-flex tw-flex-row tw-items-center tw-gap-2">Measurement analysis</h4>
+      <h4 className="tw:flex tw:flex-row tw:items-center tw:gap-2">Measurement analysis</h4>
       <p>
         Based on your measurements, we estimate your body to be about{' '}
         <strong>{formatMm(pattern.parts[0].front.points.head.y * -1, imperial)}</strong> high.
@@ -803,7 +803,7 @@ export const RenderedCSet = ({ mset, imperial }) => {
         const desc = strings[flag.desc] || flag.desc
 
         return (
-          <div key={key} className="tw-flex tw-flex-row tw-mt-4">
+          <div key={key} className="tw:flex tw:flex-row tw:mt-4">
             {flag.type === 'warn' ? (
               <MiniNote>
                 <Markdown>{desc}</Markdown>
@@ -817,7 +817,7 @@ export const RenderedCSet = ({ mset, imperial }) => {
         )
       })}
 
-      <h4 className="tw-flex tw-flex-row tw-items-center tw-gap-2 tw-mt-12">Preview</h4>
+      <h4 className="tw:flex tw:flex-row tw:items-center tw:gap-2 tw:mt-12">Preview</h4>
       {previewVisible ? (
         <Pattern
           renderProps={pattern.getRenderProps()}
@@ -856,7 +856,7 @@ export const RenderedCSet = ({ mset, imperial }) => {
             </li>
           </ul>
           <button
-            className={`tw-daisy-btn tw-daisy-btn-primary tw-mt-4`}
+            className={`tw:daisy-btn tw:daisy-btn-primary tw:mt-4`}
             onClick={() => setPreviewVisible(true)}
           >
             <CompareIcon />I understand, render body preview
@@ -896,7 +896,7 @@ export const NewSet = () => {
   }
 
   return (
-    <div className="tw-max-w-xl">
+    <div className="tw:max-w-xl">
       <h5>Name</h5>
       <p>Give this set of measurements a name. That will help tell them apart.</p>
       <StringInput
@@ -907,9 +907,9 @@ export const NewSet = () => {
         valid={(val) => val && val.length > 0}
         placeholder={'Georg Cantor'}
       />
-      <div className="tw-flex tw-flex-row tw-gap-2 tw-items-center tw-w-full tw-mt-8 tw-mb-2">
+      <div className="tw:flex tw:flex-row tw:gap-2 tw:items-center tw:w-full tw:mt-8 tw:mb-2">
         <button
-          className="tw-daisy-btn tw-daisy-btn-primary tw-grow tw-capitalize"
+          className="tw:daisy-btn tw:daisy-btn-primary tw:grow tw:capitalize"
           disabled={name.length < 1}
           onClick={createSet}
         >

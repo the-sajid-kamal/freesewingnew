@@ -1,4 +1,5 @@
 {
-  "version": "4.0.0-rc.8",
-  "name": "plugin-annotations"
+  "id": "plugin-annotations",
+  "description": "A FreeSewing plugin that provides pattern annotations",
+  "version": "4.0.0"
 }

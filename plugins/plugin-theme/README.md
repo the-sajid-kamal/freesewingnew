@@ -32,7 +32,7 @@
 
 # @freesewing/plugin-theme
 
-A FreeSewing plugin that provides a default theme
+
 
 
 

@@ -25,8 +25,15 @@ export const AnchorLink = ({ children, id = '', title = false }) => (
  * @param {string} props.className - Any non-default CSS classes to apply
  * @param {string} props.style - Any non-default styles to apply
  */
-export const Link = ({ href, title = false, children, className = linkClasses, style = {} }) => (
-  <a href={href} className={className} title={title ? title : ''} style={style}>
+export const Link = ({
+  href,
+  title = false,
+  children,
+  className = linkClasses,
+  target,
+  style = {},
+}) => (
+  <a href={href} target={target} className={className} title={title ? title : ''} style={style}>
     {children}
   </a>
 )
@@ -47,7 +54,7 @@ export const SuccessLink = ({
   href,
   title = false,
   children,
-  className = `${linkClasses} tw-text-success-content hover:tw-text-success-content`,
+  className = `${linkClasses} tw:text-success-content tw:hover:text-success-content`,
   style = {},
 }) => (
   <a href={href} className={className} title={title ? title : ''} style={style}>
@@ -61,22 +68,22 @@ export const CardLink = ({
   icon,
   children,
   Link,
-  className = 'tw-bg-base-200 tw-text-base-content',
+  className = 'tw:bg-base-200 tw:text-base-content',
 }) => {
   if (!Link) Link = BaseLink
 
   return (
     <Link
       href={href}
-      className={`tw-px-8 tw-py-10 tw-rounded-lg tw-block ${className}
-      hover:tw-bg-secondary hover:tw-bg-opacity-10 tw-shadow-lg
-      tw-transition-color tw-duration-300 grow hover:tw-no-underline hover:tw-text-base-content`}
+      className={`tw:px-8 tw:py-10 tw:rounded-lg tw:block ${className}
+      tw:hover:bg-secondary/5 tw:shadow-lg tw:bg-base-200
+      tw:transition-color tw:duration-300 grow tw:hover:no-underline no-hover-decoration`}
     >
-      <h2 className="tw-mb-4 tw-text-inherit tw-flex tw-flex-row tw-gap-4 tw-justify-between tw-items-center">
-        {title}
-        <span className="tw-shrink-0">{icon}</span>
+      <h2 className="tw:mb-4 tw:text-base-content tw:flex tw:flex-row tw:gap-4 tw:justify-between tw:items-center">
+        <span className="tw:text-base-content">{title}</span>
+        <span className="tw:shrink-0 tw:text-base-content">{icon}</span>
       </h2>
-      {children}
+      <div className="tw:text-base-content">{children}</div>
     </Link>
   )
 }

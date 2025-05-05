@@ -31,7 +31,7 @@ export function defaultSamm(units, inMm = true) {
 export function menuCoreSettingsOnlyHandler({ updateHandler, current }) {
   return function (path, part) {
     // Is this a reset?
-    if (part === undefined || part === '__UNSET__') return updateHandler(path, part)
+    if (part === undefined || part === '__UNSET__') return updateHandler(path, '__UNSET__')
 
     // add or remove the part from the set
     let newParts = new Set(current || [])
@@ -39,7 +39,7 @@ export function menuCoreSettingsOnlyHandler({ updateHandler, current }) {
     else newParts.add(part)
 
     // if the set is now empty, reset
-    if (newParts.size < 1) newParts = undefined
+    if (newParts.size < 1) return updateHandler(path, '__UNSET__')
     // otherwise use the new set
     else newParts = [...newParts]
 
@@ -62,12 +62,17 @@ export function menuCoreSettingsSaboolHandler({ toggleSa }) {
 }
 
 const CoreDocsLink = ({ item }) => (
-  <a href={`/docs/about/site/draft/#${item.toLowerCase()}`} className={`${linkClasses} tw-px-2`}>
+  <a href={`/docs/about/site/draft/#${item.toLowerCase()}`} className={`${linkClasses} tw:px-2`}>
     Learn more
   </a>
 )
 
-export function menuCoreSettingsStructure({ units = 'metric', sabool = false, parts = [] }) {
+export function menuCoreSettingsStructure({
+  units = 'metric',
+  sabool = false,
+  parts = [],
+  accountUnits = 'metric',
+}) {
   return {
     sabool: {
       dense: true,
@@ -102,7 +107,7 @@ export function menuCoreSettingsStructure({ units = 'metric', sabool = false, pa
           ),
           ux: config.uxLevels.core.sa,
           min: 0,
-          max: units === 'imperial' ? 2 : 2.5,
+          max: units === 'imperial' ? 25.4 : 25, // values are in mm
           dflt: defaultSamm(units),
           icon: SaIcon,
         }
@@ -118,7 +123,7 @@ export function menuCoreSettingsStructure({ units = 'metric', sabool = false, pa
       ),
       ux: config.uxLevels.core.units,
       list: ['metric', 'imperial'],
-      dflt: 'metric',
+      dflt: accountUnits,
       choiceTitles: {
         metric: 'Metric Units (cm)',
         imperial: 'Imperial Units (inch)',
@@ -240,7 +245,7 @@ export function menuCoreSettingsStructure({ units = 'metric', sabool = false, pa
       ),
       ux: config.uxLevels.core.margin,
       min: 0,
-      max: 2.5,
+      max: measurementAsMm(units === 'imperial' ? 1.25 : 3, units),
       dflt: measurementAsMm(units === 'imperial' ? 0.125 : 0.2, units),
       icon: MarginIcon,
     },

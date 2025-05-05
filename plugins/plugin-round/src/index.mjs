@@ -7,7 +7,8 @@ const pointKeys = ['start', 'cp1', 'cp2', 'end']
 const pathKeys = ['path']
 
 export const plugin = {
-  ...about,
+  name: about.id,
+  version: about.version,
   macros: {
     round: function (mc, { points, paths, Point, Path, store }) {
       const C = 0.55191502449

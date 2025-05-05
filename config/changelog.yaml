@@ -13,9 +13,24 @@ Unreleased:
     bee:
       - Neck ties no longer shown to be cut on fold
       - Band tie locks in duo colours when `options.crossBackTies` is true (fixes incorrect notch placements)
+    dev:
+      - Ensure `path._curve` is included in docs
+    plugin-annotations:
+      - Fixed incorrect anchor point of the logo due to share pathstring (#202)
+    react:
+      - Fixed issues with the pattern export feature in the Editor (#218)
+      - Added Jane to the Linedrawing component (#211)
     org:
       - Update pattern button leads to 404
       - New measurement set leads to 404 when users have no sets yet
+      - Removed the link to the Simon sew along which is no longer online
+      - Added various showcase authors
+      - Fixed broken link to new measurements set for users who no sets (yet)
+      - Added the curated sets pages to the site
+      - Fixed various links
+      - Fixed the _update pattern_ links
+      - Fixed the newsletter unsubscribe handling
+
 
   Changed:
     bee:

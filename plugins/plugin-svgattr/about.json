@@ -1,4 +1,5 @@
 {
-  "version": "4.0.0-rc.8",
-  "name": "plugin-svgattr"
+  "id": "plugin-svgattr",
+  "description": "A FreeSewing plugin to set SVG attributes",
+  "version": "4.0.0"
 }

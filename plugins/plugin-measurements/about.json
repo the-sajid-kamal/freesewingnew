@@ -1,4 +1,5 @@
 {
-  "version": "4.0.0-rc.8",
-  "name": "plugin-measurements"
+  "id": "plugin-measurements",
+  "description": "A FreeSewing plugin that adds additional measurements that can be calculated from existing ones",
+  "version": "4.0.0"
 }

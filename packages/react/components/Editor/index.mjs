@@ -13,6 +13,7 @@ import { AsideViewMenu } from './components/AsideViewMenu.mjs'
 import { LoadingStatus } from './components/LoadingStatus.mjs'
 import { ModalContextProvider } from '@freesewing/react/context/Modal'
 import { LoadingStatusContextProvider } from '@freesewing/react/context/LoadingStatus'
+import { useAccount } from '../../hooks/useAccount/index.mjs'
 
 /**
  * FreeSewing's pattern editor
@@ -35,6 +36,7 @@ export const Editor = ({
   preload = {},
   setTitle = false,
   localDesigns = {},
+  measurementHelpProvider = false,
 }) => {
   /*
    * Bundle all designs
@@ -109,19 +111,29 @@ export const Editor = ({
    * We also ensure that settings is always set to an empty object in case there
    * are no settings yet, as this avoids having to null-check them everywhere.
    */
-  const passDownState =
-    state.ui?.ux === undefined
-      ? {
-          settings: {}, // Ensure settings is always set
-          ...state,
-          ui: { ...(state.ui || {}), ux: editorConfig.defaultUx },
-          _: { ...ephemeralState, missingMeasurements },
-        }
-      : {
-          settings: {}, // Ensure settings is always set
-          ...state,
-          _: { ...ephemeralState, missingMeasurements },
-        }
+  const passDownState = {
+    ...state,
+    _: { ...ephemeralState, missingMeasurements },
+  }
+
+  const { account } = useAccount()
+
+  // this should be just account.control, but there was a bug where a non-logged-in user had an
+  // object stored in account.control in localStorage instead of an integer
+  const ux = Number.isInteger(account.control) ? account.control : 3
+
+  /*
+   * Ensure we respect the units in the user's account
+   * But only if not units are set
+   */
+  if (!state.settings?.units && account.imperial) {
+    if (passDownState.settings) passDownState.settings.units = 'imperial'
+    else passDownState.settings = { units: 'imperial' }
+  }
+
+  if (state.ui?.ux === undefined) {
+    passDownState.ui = { ...(state.ui || {}), ux: ux }
+  }
 
   return (
     <div className="flex flex-row items-top">
@@ -140,6 +152,7 @@ export const Editor = ({
               {...extraProps}
               {...{ view, update, designs, config: editorConfig }}
               state={passDownState}
+              measurementHelpProvider={measurementHelpProvider}
             />
           </LoadingStatusContextProvider>
         </ModalContextProvider>
@@ -160,6 +173,7 @@ export const Editor = ({
  * @param (object) props.config - The editor config
  */
 const viewfinder = ({ design, designs, state, config }) => {
+  const { settings = {} } = state // Guard against undefined settings
   /*
    * Grab Design from props or state and make them extra props
    */
@@ -177,7 +191,7 @@ const viewfinder = ({ design, designs, state, config }) => {
    */
   const [measurementsOk, missingMeasurements] = hasRequiredMeasurements(
     designs[design],
-    state.settings?.measurements
+    settings.measurements
   )
   if (missingMeasurements) extraProps.missingMeasurements = missingMeasurements
 

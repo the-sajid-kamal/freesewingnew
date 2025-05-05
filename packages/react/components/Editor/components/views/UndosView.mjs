@@ -17,22 +17,23 @@ import { getUndoStepData } from '../../lib/index.mjs'
  * @param {object} update - ViewWrapper state update object
  */
 export const UndosView = ({ Design, update, state, config }) => {
+  const { settings = {} } = state // Guard against undefined settings
   const steps = orderBy(state._.undos, 'time', 'desc')
 
   return (
     <>
       <HeaderMenu {...{ update, Design, config, state }} />
-      <div className="tw-text-left tw-mt-8 tw-mb-24 tw-px-4 tw-max-w-xl tw-mx-auto">
+      <div className="tw:text-left tw:mt-8 tw:mb-24 tw:px-4 tw:max-w-xl tw:mx-auto">
         <H1>Undo History</H1>
-        <p className="tw-mb-4">Time-travel through your recent pattern changes.</p>
+        <p className="tw:mb-4">Time-travel through your recent pattern changes.</p>
         {steps.length < 1 ? (
           <Popout note>
             <h4>Your undo history is currently empty</h4>
             <p>When you make changes to your pattern, they will show up here.</p>
             <p>For example, you can click the button below to change the pattern rotation:</p>
             <button
-              className="tw-daisy-btn tw-daisy-btn-primary tw-capitalize"
-              onClick={() => update.settings('ui.rotate', state.settings?.ui?.rotate ? 0 : 1)}
+              className="tw:daisy-btn tw:daisy-btn-primary tw:capitalize"
+              onClick={() => update.settings('ui.rotate', settings.ui?.rotate ? 0 : 1)}
             >
               Example: Rotate pattern
             </button>
@@ -43,7 +44,7 @@ export const UndosView = ({ Design, update, state, config }) => {
             <MiniTip>
               Click on any change to undo all changes up to, and including, that change.
             </MiniTip>
-            <div className="tw-flex tw-flex-col tw-gap-2 tw-mt-4">
+            <div className="tw:flex tw:flex-col tw:gap-2 tw:mt-4">
               {steps.map((step, index) => (
                 <UndoStep key={step.time} {...{ step, update, state, Design, index }} />
               ))}
@@ -71,6 +72,7 @@ export const UndoStepTimeAgo = ({ step }) => {
 }
 
 export const UndoStep = ({ update, state, step, Design, compact = false, index = 0 }) => {
+  const { settings = {} } = state // Guard against undefined settings
   /*
    * Ensure path is always an array
    */
@@ -79,7 +81,7 @@ export const UndoStep = ({ update, state, step, Design, compact = false, index =
   /*
    * Figure this out once
    */
-  const imperial = state.settings?.units === 'imperial' ? true : false
+  const imperial = settings.units === 'imperial' ? true : false
 
   /*
    * Metadata can be ignored
@@ -97,8 +99,8 @@ export const UndoStep = ({ update, state, step, Design, compact = false, index =
   if (compact)
     return (
       <ButtonFrame dense onClick={() => update.restore(index, state._)}>
-        <div className="tw-flex tw-flex-row tw-items-center tw-align-start tw-gap-2 tw-w-full">
-          <UndoIcon text={index} className="tw-w-5 tw-h-5 tw-text-secondary" />
+        <div className="tw:flex tw:flex-row tw:items-center tw:align-start tw:gap-2 tw:w-full">
+          <UndoIcon text={index} className="tw:w-5 tw:h-5 tw:text-secondary" />
           {data.msg ? data.msg : data.title}
         </div>
       </ButtonFrame>
@@ -106,20 +108,20 @@ export const UndoStep = ({ update, state, step, Design, compact = false, index =
 
   return (
     <>
-      <p className="tw-text-sm tw-italic tw-font-medium tw-opacity-70 tw-text-right tw-p-0 tw-tw-m-0 tw--mb-2 tw-pr-2">
+      <p className="tw:text-sm tw:italic tw:font-medium tw:opacity-70 tw:text-right tw:p-0 tw:tw:m-0 tw:-mb-2 tw:pr-2">
         <UndoStepTimeAgo step={step} />
       </p>
       <ButtonFrame onClick={() => update.restore(index, state._)}>
-        <div className="tw-flex tw-flex-row tw-items-center tw-justify-between tw-gap-2 tw-w-full tw-m-0 tw-p-0 tw--mt-2 tw-text-lg">
-          <span className="tw-flex tw-flex-row tw-gap-2 tw-items-center">
+        <div className="tw:flex tw:flex-row tw:items-center tw:justify-between tw:gap-2 tw:w-full tw:m-0 tw:p-0 tw:-mt-2 tw:text-lg">
+          <span className="tw:flex tw:flex-row tw:gap-2 tw:items-center">
             {data.fieldIcon || null}
             {data.title}
           </span>
-          <span className="tw-opacity-70 tw-flex tw-flex-row tw-gap-1 tw-items-center tw-text-base">
+          <span className="tw:opacity-70 tw:flex tw:flex-row tw:gap-1 tw:items-center tw:text-base">
             {data.icon || null} {data.menu}
           </span>
         </div>
-        <div className="tw-flex tw-flex-row tw-gap-1 tw-items-center tw-align-start tw-w-full">
+        <div className="tw:flex tw:flex-row tw:gap-1 tw:items-center tw:align-start tw:w-full">
           {data.msg ? (
             data.msg
           ) : (
@@ -127,8 +129,8 @@ export const UndoStep = ({ update, state, step, Design, compact = false, index =
               <span className="">
                 {Array.isArray(data.newVal) ? data.newVal.join(', ') : data.newVal}
               </span>
-              <LeftIcon className="tw-w-4 tw-h-4 tw-text-secondary tw-shrink-0" stroke={4} />
-              <span className="tw-line-through tw-decoration-1 tw-opacity-70">
+              <LeftIcon className="tw:w-4 tw:h-4 tw:text-secondary tw:shrink-0" stroke={4} />
+              <span className="tw:line-through tw:decoration-1 tw:opacity-70">
                 {Array.isArray(data.oldVal) ? data.oldVal.join(', ') : data.oldVal}
               </span>
             </>

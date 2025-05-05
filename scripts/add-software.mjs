@@ -1,193 +1,179 @@
-import fs from 'fs'
-import path from 'path'
+import {
+  fs,
+  cp,
+  path,
+  globDir,
+  copyFolderRecursively,
+  mkdir,
+  rm,
+  root,
+  templateOut,
+  writeJsonFile,
+} from './fs.mjs'
 import prompts from 'prompts'
 import chalk from 'chalk'
 import { banner } from './banner.mjs'
-import mustache from 'mustache'
 import { execSync } from 'child_process'
 import languages from '../config/languages.json' assert { type: 'json' }
-// Software
-import designs from '../config/software/designs.json' assert { type: 'json' }
-import plugins from '../config/software/plugins.json' assert { type: 'json' }
+import { getDesigns, getPlugins } from './software.mjs'
+import conf from '../lerna.json' assert { type: 'json' }
+const { version } = conf
 
-const type = process.argv[2]
+const designs = await getDesigns()
+const plugins = await getPlugins()
 
-// Add new design
-if (type === 'design') {
-  console.clear()
-  console.log(banner)
-  addDesign()
+/*
+ * Ask input about what the user wants
+ */
+export const getInput = async () => {
+  let type = false
+  let template = false
+  let name = false
+  let finalName = false
+
+  // while we're not finalized on a name
+  while (finalName === false) {
+    // request type
+    type = (
+      await prompts({
+        type: 'select',
+        name: 'type',
+        message: ' Would you like to add a new design, or a new plugin?',
+        choices: [
+          {
+            title: 'Add a new FreeSewing Design',
+            value: 'design',
+            description: 'Add a new design',
+          },
+          {
+            title: 'Add a new FreeSewing Plugin',
+            value: 'plugin',
+            description: 'Add a new plugin',
+          },
+        ],
+      })
+    ).type
+
+    // If they Ctrl-C'd out of the prompt, exit here
+    if (!type) process.exit()
+
+    // request a name
+    name = (
+      await prompts({
+        type: 'text',
+        name: 'name',
+        message: ` Give a name for your new ${type}. Please stick to [a-z] only. 🏷️ `,
+        initial: type === 'plugin' ? 'coffee' : 'xiaomao',
+      })
+    ).name
+
+    // check whether a folder with that name already exists
+    const dest = path.join(root, type + 's', type === 'plugin' ? `plugin-${name}` : name)
+    try {
+      const dir = await opendir(dest)
+      dir.close()
+    } catch {
+      // the folder didn't exist, so we're good to go
+      finalName = true
+      break
+    }
+
+    // the folder did exist, bail out
+    const { nextStep } = await prompts({
+      type: 'select',
+      name: 'nextStep',
+      message: 'It looks like that folder already exists. What should we do?',
+      choices: [
+        { title: 'Go back', value: 'rename', description: 'Choose a different name' },
+        {
+          title: 'Exit',
+          value: 'exit',
+          description: 'Exit here so you can investigate',
+        },
+      ],
+    })
+
+    // if they said rename, we loop again. Otherwise, we exit
+    if (nextStep !== 'rename') process.exit()
+  }
+
+  // request a template
+  if (type === 'design')
+    template = (
+      await prompts({
+        type: 'select',
+        name: 'template',
+        message: ' What template would you like to start from?',
+        choices: [
+          { title: 'Create a design from scratch', value: 'base' },
+          { title: 'Extend the Brian block (flat-sleeve block for menswear)', value: 'brian' },
+          { title: 'Extend the Bent block (two-part-sleeve block for menswear)', value: 'bent' },
+          { title: 'Extend the Bella block (womenswear bodice block)', value: 'bella' },
+          { title: 'Extend the Breanna block (womenswear bodice block)', value: 'breanna' },
+          { title: 'Extend the Titan block (unisex trouser block)', value: 'titan' },
+        ],
+        initial: 0,
+      })
+    ).template
+  return { type, name: name.toLowerCase(), template }
 }
 
-// Add new plugin
-else if (type === 'plugin') {
-  console.clear()
-  console.log(banner)
-  addPlugin()
-} else
-  console.log(`
-  Usage:
-
-    ${chalk.bold.blue('npm run new design')} 👉 Adds a new design
-    ${chalk.bold.blue('npm run new plugin')} 👉 Adds a new plugin
-    ${chalk.bold.blue('npm run new')} ${chalk.yellow('[anything else]')} 👉 Shows this help
-`)
-
-async function addDesign() {
-  console.log(`
-
-  ${chalk.bold.yellow('👕 Add a new design')}
-  ${chalk.gray('≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡')}
-
-  We're going to add a new design to this repository. That's awesome 🎉
-  Let's start by picking a name. Naming things is hard 😬
-
-  We'd appreciate if you pick:
-
-   - a firstname like ${chalk.green('alex')}, ${chalk.green('jordan')}, ${chalk.green(
-     'ezra'
-   )}, or ${chalk.green('logan')}
-   - that is an aliteration with the kind of design, like ${chalk.green(
-     'wahid'
-   )} for a ${chalk.green('w')}aistcoat
-
-   Bonus points for picking a name that embraces diversity 🌈 ✊🏾
-    `)
-
-  const { name } = await prompts({
-    type: 'text',
-    name: 'name',
-    message: 'What name would you like the design to have? ([a-z0-9_] only)',
-    validate: validateDesignName,
-  })
-
-  if (name) {
-    console.log('\n' + `  Alright, let's add ${chalk.green(name)} 🪄`)
-    createDesign(name)
+async function addDesign({ name, template }) {
+  if (name && template) {
+    const valid = validateDesignName(name)
+    if (valid !== true) {
+      console.log(valid)
+      process.exit()
+    }
+    await createDesign(name, template)
     execSync('npm run reconfigure')
-    console.log(`  Installing & linking dependencies...`)
     execSync('npm install')
-    console.log(`  All done 🎉`)
-
-    try {
-      console.log(`
-
-  ${chalk.bold.yellow('✨ Summary')}
-  ${chalk.gray('≡≡≡≡≡≡≡≡≡≡')}
+    console.log(`
 
   👉  We've created your design skeleton at ${chalk.green('designs/' + name)}
-  👉  We've configured the packages via the ${chalk.green('package.json')} file
-  👉  We've added ${chalk.green('designs/' + name)} to the local repository
+  👉  We've added ${chalk.green(name)} to the FreeSewing collection
 
-
-  ${chalk.bold.yellow('✏️  Make it your own')}
-  ${chalk.gray('≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡')}
-
-  Hhere's a few other things you can configure:
-
-  👉 ${chalk.yellow('Author')}: Credit where credit is due; Add yourself as author in ${chalk.green(
-    'config/exceptions.yaml'
-  )}
-  👉 ${chalk.yellow('Description')}: We used placeholder metadata; Update it in ${chalk.green(
-    'config/software/designs.json'
-  )}
-  👉 ${chalk.yellow(
-    'Dependencies'
-  )}: If you need additional plugins or patterns to extend, update ${chalk.green(
+  🚧 We used placeholder metadata; Update it in ${chalk.green('designs/' + name + '/about.json')}
+  📦 If you need additional plugins or patterns to extend, update ${chalk.green(
     'config/dependencies.yaml'
   )}
 
-  If you change any of these, run ${chalk.blue('npm run reconfigure')} to update the package(s).
-
-
-  ${chalk.bold.yellow('👷 Get to work')}
-  ${chalk.gray('≡≡≡≡≡≡≡≡≡≡≡≡≡≡')}
-
-  🚀  You can now start the org development environment with ${chalk.blue('npm run org')}
+  🚀  You can now start the studio with ${chalk.blue('npm run studio')}
   📖  Documentation is available at ${chalk.green('https://freesewing.dev/')}
   🤓  Happy hacking
 
     `)
-    } catch (err) {
-      console.log(err)
-    }
   }
 }
 
-async function addPlugin() {
-  console.log(`
-
-  ${chalk.bold.yellow('👕 Add a new plugin')}
-  ${chalk.gray('≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡')}
-
-  We're going to add a new plugin to this repository. That's awesome 🎉
-  Let's start by picking the name for this plugin 🏷️
-  Try to keep it to one word that explains what the plugin does e.g. ${chalk.green(
-    'flip'
-  )}, ${chalk.green('mirror')},
-   ${chalk.green('round')}.
-
-`)
-
-  const { name } = await prompts({
-    type: 'text',
-    name: 'name',
-    message: 'What name would you like the plugin to have? ([a-z] only)',
-    validate: validatePluginName,
-  })
-
+async function addPlugin({ name }) {
   if (name) {
-    console.log('\n' + `  Alright, let's add ${chalk.green(name)} to plugins 🪄`)
+    const valid = validatePluginName(name)
+    if (valid !== true) {
+      console.log(valid)
+      process.exit()
+    }
     createPlugin(name)
     execSync('npm run reconfigure')
-    console.log(`  All done 🎉`)
-
-    try {
-      console.log(`
-
-  ${chalk.bold.yellow('✨ Summary')}
-  ${chalk.gray('≡≡≡≡≡≡≡≡≡≡')}
+    console.log(`
 
   👉  We've created your plugin skeleton at ${chalk.green('plugins/plugin-' + name)}
-  👉  We've configured the packages via the ${chalk.green('package.json')} file
 
-
-  ${chalk.bold.yellow('✏️  Make it your own')}
-  ${chalk.gray('≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡')}
-
-  Hhere's a few other things you can configure:
-
-  👉 ${chalk.yellow('Author')}: Credit where credit is due; Add yourself as author in ${chalk.green(
-    'config/exceptions.yaml'
+  🚧  We used a placeholder description; Update it in ${chalk.green(
+    'plugins/plugin-' + name + '/about.json'
   )}
-  👉 ${chalk.yellow('Description')}: We used a placeholder description; Update it in ${chalk.green(
-    'config/software/plugins.json'
-  )}
-  👉 ${chalk.yellow(
-    'Dependencies'
-  )}: If you need additional plugins or patterns to extend, update ${chalk.green(
-    'config/dependencies.yaml'
+  👷  To make your plugin do something awesome, edit ${chalk.green(
+    'plugins/plugin-' + name + '/src/index.mjs'
   )}
 
-  If you change any of these, run ${chalk.blue('npm run reconfigure')} to update the package(s).
-
-
-  ${chalk.bold.yellow('👷 Get to work')}
-  ${chalk.gray('≡≡≡≡≡≡≡≡≡≡≡≡≡≡')}
-
-  🛠️   You can now start the org development environment with ${chalk.blue('npm run org')}
   📖  Documentation is available at ${chalk.green('https://freesewing.dev/')}
   🤓  Happy hacking
-
     `)
-    } catch (err) {
-      console.log(err)
-    }
   }
 }
 
 function validateDesignName(name) {
-  if (Object.keys(designs).indexOf(name) !== -1)
+  if (Object.keys(designs).includes(name.toLowerCase()))
     return `Sorry but ${name} is already taken so you'll need to pick something else`
 
   if (/^([a-z][a-z0-9_]*)$/.test(name)) return true
@@ -197,65 +183,46 @@ function validateDesignName(name) {
 
 function validatePluginName(name) {
   const pluginName = 'plugin-' + name
-  if ([...Object.keys(plugins)].indexOf(pluginName) !== -1)
+  if (Object.keys(plugins).includes(pluginName.toLowerCase()))
     return `Sorry but ${pluginName} is already taken so you'll need to pick something else`
 
-  if (/^([a-z]+)$/.test(name)) return true
-  else return ' 🙈 Please use only [a-z], no spaces, no capitals, no nothing 🤷'
+  if (/^([a-z-]+)$/.test(name)) return true
+  else return ' 🙈 Please use only [a-z] or dash, no spaces, no capitals, no nothing 🤷'
 }
 
-function createDesign(name) {
-  const template = ['config', 'templates', 'design']
-  const design = ['designs', name]
-  const description = 'A FreeSewing pattern that needs a description'
-  const capitalized_name = name.charAt(0).toUpperCase() + name.slice(1)
+async function createDesign(name, template) {
+  const src = ['packages', 'studio', 'template', 'designs', `.${template}`]
+  const target = ['designs', name]
+  const Name = name.charAt(0).toUpperCase() + name.slice(1)
 
-  // Add to designs config file
-  designs[name] = {
-    code: 'Coder name',
-    description: description,
-    design: 'Designer name',
-    difficulty: 1,
-    lab: true,
-    org: true,
-    tags: ['tagname'],
-    techniques: ['techname'],
+  // Copy template folder
+  await copyFolderRecursively(src, target)
+
+  // Template various mustache files
+  const files = (await globDir(target, '**/*.mustache'))
+    .map((file) => file.split(`designs${path.sep}${name}${path.sep}`).pop().split(path.sep))
+    .map((found) => ({
+      from: [...target, ...found],
+      to: [...target, ...found.slice(0, -1), found.slice(-1).pop().split('.mustache')[0]],
+    }))
+  for (const file of files) {
+    await templateOut(file.from, file.to, { name, Name })
+    await rm(file.from)
   }
-  write(['config', 'software', 'designs.json'], JSON.stringify(orderDesigns(designs), null, 2))
 
-  // Create folders
-  mkdir([...design, 'src'])
-  mkdir([...design, 'i18n'])
-  mkdir([...design, 'tests'])
-
-  // Create package.json
-  templateOut([...template, 'package.json.mustache'], [...design, 'package.json'], {
-    name,
-    description,
+  // Create about.json
+  await writeJsonFile([...target, 'about.json'], {
+    id: name,
+    code: 'Your name here',
+    design: 'Your name here',
+    description: 'A FreeSewing pattern that needs a description',
+    name: `${Name} Something`,
+    difficulty: 2,
+    tags: [],
+    techniques: [],
+    version,
+    pkg: `@freesewing/${name}`,
   })
-
-  // Create src/index.mjs
-  templateOut([...template, 'src', 'index.mjs.mustache'], [...design, 'src', 'index.mjs'], {
-    capitalized_name,
-  })
-
-  // Copy i18n/index.mjs
-  cp([...template, 'i18n', 'index.mjs'], [...design, 'i18n', 'index.mjs'])
-
-  // Create i18n translation files
-  for (const language of languages)
-    templateOut([...template, 'i18n', 'en.json'], [...design, 'i18n', `${language}.json`], {
-      title: capitalized_name,
-      description,
-    })
-
-  // Create tests file
-  cp([...template, 'tests', 'shared.test.mjs'], [...design, 'tests', 'shared.test.mjs'])
-
-  // Copy source
-  for (const file of ['box.mjs']) {
-    cp([...template, 'src', file], [...design, 'src', file])
-  }
 }
 
 function createPlugin(name) {
@@ -275,57 +242,14 @@ function createPlugin(name) {
     description,
   })
 
-  plugins[pluginName] = description
-  write(['config', 'software', 'plugins.json'], JSON.stringify(orderPlugins(plugins), null, 2))
+  //Create about.json
+  templateOut([...template, 'about.json.mustache'], [...plugin, 'about.json'], { name })
 
   // Create index.mjs
   templateOut([...template, 'src', 'index.mjs.mustache'], [...plugin, 'src', 'index.mjs'], {
     name,
     capitalized_name,
   })
-}
-
-function templateOut(from, to, data) {
-  try {
-    fs.writeFileSync(
-      path.join(process.cwd(), ...to),
-      mustache.render(fs.readFileSync(path.join(process.cwd(), ...from), 'utf-8'), data)
-    )
-  } catch (err) {
-    console.log(err)
-  }
-
-  return true
-}
-
-function write(to, data) {
-  try {
-    fs.writeFileSync(path.join(process.cwd(), ...to), data)
-  } catch (err) {
-    console.log(err)
-  }
-
-  return true
-}
-
-function mkdir(dir) {
-  try {
-    fs.mkdirSync(path.join(process.cwd(), ...dir), { recursive: true })
-  } catch (err) {
-    console.log(err)
-  }
-
-  return true
-}
-
-function cp(from, to) {
-  try {
-    fs.copyFileSync(path.join(process.cwd(), ...from), path.join(process.cwd(), ...to))
-  } catch (err) {
-    console.log(err)
-  }
-
-  return true
 }
 
 function orderDesigns(designs) {
@@ -349,3 +273,11 @@ function orderPlugins(plugins) {
 
   return newPlugins
 }
+
+// Say hi, then prompt for input
+console.log(banner, '\n\n')
+const input = await getInput()
+
+// Add new design
+if (input.type === 'design') addDesign(input)
+if (input.type === 'plugin') addPlugin(input)

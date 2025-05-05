@@ -1,8 +1,5 @@
-import path from 'node:path'
 import { themes as prismThemes } from 'prism-react-renderer'
-import designs from '../../config/software/designs.json'
-import tailwindcss from 'tailwindcss'
-import autoprefixer from 'autoprefixer'
+import { docusaurusPlugins } from './plugins/index.mjs'
 import smartypants from 'remark-smartypants'
 
 /*
@@ -36,7 +33,7 @@ const config = {
   tagline: 'FreeSewing documentation for makers',
   favicon: 'img/favicon.ico',
 
-  url: 'https://freesewing.org',
+  url: 'https://freesewing.eu',
   baseUrl: '/',
   // Not time to look into this now
   onBrokenLinks: 'warn',
@@ -46,98 +43,8 @@ const config = {
     experimental_faster: false, // Too many bugs for now
   },
 
-  /*
-   * We need to make sure we can import from .mjs files
-   */
   plugins: [
-    () => ({
-      name: 'mjs-loader',
-      configureWebpack() {
-        return {
-          module: {
-            rules: [
-              {
-                test: /\.mjs$/,
-                include: /node_modules/,
-                type: 'javascript/auto',
-              },
-              {
-                test: /\.mjs$/,
-                exclude: /node_modules/,
-                use: {
-                  loader: 'babel-loader',
-                  options: {
-                    presets: ['@babel/preset-react'],
-                  },
-                },
-              },
-            ],
-          },
-        }
-      },
-    }),
-    () => ({
-      name: 'fs-loader',
-      configureWebpack() {
-        const fsConfig = {
-          resolve: { alias: {} },
-        }
-        // Load plugins from source, rather than compiled package
-        for (const plugin of [
-          'core-plugins',
-          'plugin-annotations',
-          'plugin-bin-pack',
-          'plugin-bust',
-          'plugin-flip',
-          'plugin-gore',
-          'plugin-i18n',
-          'plugin-measurements',
-          'plugin-mirror',
-          'plugin-ringsector',
-          'plugin-round',
-          'plugin-sprinkle',
-          'plugin-svgattr',
-          'plugin-theme',
-          'plugin-timing',
-          'plugin-versionfree-svg',
-        ]) {
-          fsConfig.resolve.alias[`@freesewing/${plugin}`] = path.resolve(
-            __dirname,
-            `../../plugins/${plugin}/src/index.mjs`
-          )
-        }
-        // Load these from source, rather than compiled package
-        for (const pkg of ['core', 'i18n', 'models', 'snapseries']) {
-          fsConfig.resolve.alias[`@freesewing/${pkg}`] = path.resolve(
-            __dirname,
-            `../../packages/${pkg}/src/index.mjs`
-          )
-        }
-
-        // Load designs from source, rather than compiled package
-        for (const pkg of Object.keys(designs)) {
-          fsConfig.resolve.alias[`@freesewing/${pkg}`] = path.resolve(
-            __dirname,
-            `../../designs/${pkg}/src/index.mjs`
-          )
-        }
-
-        // i18n folder
-        fsConfig.resolve.alias[`@i18n`] = path.resolve(__dirname, `../../i18n`)
-
-        // Yaml loader
-        fsConfig.module = {
-          rules: [
-            {
-              test: /\.ya?ml$/,
-              use: 'yaml-loader',
-            },
-          ],
-        }
-
-        return fsConfig
-      },
-    }),
+    ...docusaurusPlugins,
     [
       '@docusaurus/plugin-content-blog',
       {
@@ -178,17 +85,6 @@ const config = {
         },
       },
     ],
-    async function myPlugin() {
-      return {
-        name: 'docusaurus-tailwindcss',
-        configurePostCss(postcssOptions) {
-          // Appends TailwindCSS and AutoPrefixer.
-          postcssOptions.plugins.push(tailwindcss)
-          postcssOptions.plugins.push(autoprefixer)
-          return postcssOptions
-        },
-      }
-    },
   ],
 
   i18n: { defaultLocale: 'en', locales: ['en'] },
@@ -198,9 +94,9 @@ const config = {
       'classic',
       {
         docs: {
-          routeBasePath: '/', //'/docs',
+          routeBasePath: '/',
           sidebarPath: './sidebars.js',
-          editUrl: 'https://github.com/freesewing/freesewing/tree/v4/sites/org/',
+          editUrl: 'https://codeberg.org/freesewing/freesewing/src/branch/develop/sites/org/',
           async sidebarItemsGenerator({ defaultSidebarItemsGenerator, ...args }) {
             const sidebarItems = await defaultSidebarItemsGenerator(args)
             return customizeSidebar(sidebarItems)
@@ -213,7 +109,7 @@ const config = {
         blog: {
           path: 'blog',
           // Simple use-case: string editUrl
-          editUrl: 'https://github.com/freesewing/freesewing/site/orgdocs/',
+          editUrl: 'https://codeberg.org/freesewing/freesewing/src/branch/develop/sites/org/',
           editLocalizedFiles: false,
           blogTitle: 'FreeSewing Blog',
           blogDescription: 'News and updates from the people behind FreeSewing',
@@ -256,9 +152,9 @@ const config = {
   ],
   themeConfig: {
     colorMode: {
-      defaultMode: 'light',
-      disableSwitch: false,
-      respectPrefersColorScheme: false,
+      // Do not be tempted to change these
+      disableSwitch: true,
+      respectPrefersColorScheme: true,
     },
     image: 'img/freesewing-social-card.png',
     navbar: {
@@ -310,7 +206,7 @@ const config = {
           ],
         },
       ],
-      copyright: `<a href="https://freesewing.org/">FreeSewing</a> is brought to you by <a href="https://github.com/joostdecock">Joost De Cock</a> and <a href="https://github.com/freesewing/freesewing/blob/develop/CONTRIBUTORS.md">contributors</a> with the financial support of <a href="/patrons/join">our patrons</a>`,
+      copyright: `<a href="https://freesewing.org/">FreeSewing</a> is brought to you by <a href="https://codeberg.org/joostdecock">Joost De Cock</a> and <a href="https://codeberg.org/freesewing/freesewing/src/branch/develop/CONTRIBUTORS.md">contributors</a> with the financial support of <a href="/patrons/join">our patrons</a>`,
     },
     prism: {
       theme: prismThemes.dracula,

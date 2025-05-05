@@ -9,9 +9,10 @@ import { MeasurementInput } from '@freesewing/react/components/Input'
  * @param {object} props.state - The ViewWrapper state object
  * @param {object} props.state.settings - The current settings
  * @param {object} props.update - Helper object for updating the ViewWrapper state
+ * @param {object} props.helpProvider - A function that takes a measurement and returns a url or action to show help for that measurement
  * @return {function} MeasurementsEditor - React component
  */
-export const MeasurementsEditor = ({ Design, update, state }) => {
+export const MeasurementsEditor = ({ Design, update, state, helpProvider = false }) => {
   /*
    * Helper method to handle state updates for measurements
    */
@@ -19,8 +20,13 @@ export const MeasurementsEditor = ({ Design, update, state }) => {
     update.settings(['measurements', m], newVal)
   }
 
+  /*
+   * Ensure settings is not undefined
+   */
+  const { settings = {} } = state
+
   return (
-    <div className="tw-max-w-2xl tw-mx-auto">
+    <div className="tw:max-w-2xl tw:mx-auto">
       <h4>Required Measurements</h4>
       {Object.keys(Design.patternConfig.measurements).length === 0 ? (
         <p>This design does not require any measurements.</p>
@@ -30,10 +36,11 @@ export const MeasurementsEditor = ({ Design, update, state }) => {
             <MeasurementInput
               key={m}
               m={m}
-              imperial={state.settings.units === 'imperial' ? true : false}
-              original={state.settings.measurements?.[m]}
+              imperial={settings.units === 'imperial' ? true : false}
+              original={settings.measurements?.[m]}
               update={(m, newVal) => onUpdate(m, newVal)}
               id={`edit-${m}`}
+              helpProvider={helpProvider}
             />
           ))}
           <br />
@@ -47,8 +54,8 @@ export const MeasurementsEditor = ({ Design, update, state }) => {
           <MeasurementInput
             key={m}
             m={m}
-            imperial={state.settings.units === 'umperial' ? true : false}
-            original={state.settings.measurements?.[m]}
+            imperial={settings.units === 'umperial' ? true : false}
+            original={settings.measurements?.[m]}
             update={(m, newVal) => onUpdate(m, newVal)}
             id={`edit-${m}`}
           />

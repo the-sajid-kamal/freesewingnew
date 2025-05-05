@@ -1,5 +1,5 @@
 _types:
-  design:
+  designs:
     peer:
       '@freesewing/core': &freesewing '{{version}}'
     dev:
@@ -7,7 +7,7 @@ _types:
       'chai': &chai '5.1.1'
       '@freesewing/models': *freesewing
       '@freesewing/plugin-timing': *freesewing
-  plugin:
+  plugins:
     peer:
       '@freesewing/core': *freesewing
     dev:
@@ -252,6 +252,7 @@ react:
   _:
     "@codemirror/lang-yaml": "^6.1.2"
     "@uiw/react-codemirror": "^4.23.8"
+    "@uiw/codemirror-themes-all": "^4.23.12"
     d3-drag: "3.0.0"
     d3-selection: "3.0.0"
     diff: "^7.0.0"

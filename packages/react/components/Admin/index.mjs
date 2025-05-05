@@ -53,37 +53,37 @@ export const SubscriberAdministration = ({ page }) => {
       {subscribers ? (
         <>
           <h5>Search subscribers</h5>
-          <div className="tw-flex tw-flex-row tw-gap-2 tw-items-center">
+          <div className="tw:flex tw:flex-row tw:gap-2 tw:items-center">
             <input
               autoFocus
               value={q}
               onChange={(evt) => setQ(evt.target.value)}
-              className="tw-daisy-input tw-w-full tw-daisy-input-bordered tw-flex tw-flex-row"
+              className="tw:daisy-input tw:w-full tw:daisy-input-bordered tw:flex tw:flex-row"
               type="text"
               placeholder="Username, ID, or E-mail address"
             />
-            <button onClick={search} className="tw-daisy-btn tw-daisy-btn-primary">
+            <button onClick={search} className="tw:daisy-btn tw:daisy-btn-primary">
               <SearchIcon />
             </button>
           </div>
-          <table className="tw-table tw-my-4">
+          <table className="tw:table tw:my-4">
             <thead>
               <tr>
-                <th className="tw-text-right">Email</th>
-                <th className="tw-w-12">Language</th>
+                <th className="tw:text-right">Email</th>
+                <th className="tw:w-12">Language</th>
                 <th>Unsubscribe</th>
               </tr>
             </thead>
             <tbody>
               {hits.map((hit, i) => (
                 <tr key={i}>
-                  <td className="tw-text-right">
+                  <td className="tw:text-right">
                     <b>{hit.email}</b>
                   </td>
-                  <td className="tw-w-12">{hit.lang.toUpperCase()}</td>
-                  <td className="tw-w-full">
+                  <td className="tw:w-12">{hit.lang.toUpperCase()}</td>
+                  <td className="tw:w-full">
                     <button
-                      className="tw-daisy-btn tw-daisy-btn-link"
+                      className="tw:daisy-btn tw:daisy-btn-link"
                       onClick={() => unsubscribe(hit.ehash)}
                     >
                       Unsubscribe
@@ -96,7 +96,7 @@ export const SubscriberAdministration = ({ page }) => {
         </>
       ) : (
         <button
-          className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-lg"
+          className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-lg"
           onClick={loadSubscribers}
         >
           Load Subscribers
@@ -127,21 +127,21 @@ export const UserAdministration = ({ Link = false }) => {
 
   return (
     <>
-      <div className="tw-flex tw-flex-row tw-gap-8 tw-items-start tw-w-full">
-        <div className="tw-grow">
+      <div className="tw:flex tw:flex-row tw:gap-8 tw:items-start tw:w-full">
+        <div className="tw:grow">
           <h5>Search users</h5>
-          <div className="tw-flex tw-flex-row tw-gap-2 tw-items-center">
+          <div className="tw:flex tw:flex-row tw:gap-2 tw:items-center">
             <input
               autoFocus
               value={q}
               onChange={(evt) => setQ(evt.target.value)}
-              className="tw-daisy-input tw-w-full tw-daisy-input-bordered tw-flex tw-flex-row"
+              className="tw:daisy-input tw:w-full tw:daisy-input-bordered tw:flex tw:flex-row"
               type="text"
               placeholder="Username, ID, or E-mail address"
             />
             <button
               onClick={search}
-              className="tw-daisy-btn tw-daisy-btn-primary"
+              className="tw:daisy-btn tw:daisy-btn-primary"
               disabled={q.length < 3}
             >
               <SearchIcon />
@@ -181,11 +181,40 @@ export const Hits = ({ results, Link = false }) => {
 
 export const User = ({ user, Link }) => {
   const { setModal } = useContext(ModalContext)
+  const { setLoadingStatus } = useContext(LoadingStatusContext)
+  const backend = useBackend()
+
+  /*
+   * We had a bug with the signUp flow where consent was
+   * not set. Users cannot get out of this, so this allows
+   * admins to grant consent on their behalf.
+   */
+  const setConsent = async () => {
+    setLoadingStatus([true, 'Contacting backend'])
+    const [status, body] = await backend.adminUpdateUser({ id: user.id, data: { consent: 2 } })
+    if (status === 200 && body.result === 'success') {
+      setLoadingStatus([true, 'Consent updated', true, true])
+    } else setLoadingStatus([true, 'An error occured', true, false])
+  }
+
+  /*
+   * Disable MFA for users who locked themselves out
+   */
+  const disableMfa = async () => {
+    setLoadingStatus([true, 'Contacting backend'])
+    const [status, body] = await backend.adminUpdateUser({
+      id: user.id,
+      data: { mfaEnabled: false },
+    })
+    if (status === 200 && body.result === 'success') {
+      setLoadingStatus([true, 'MFA disabled', true, true])
+    } else setLoadingStatus([true, 'An error occured', true, false])
+  }
 
   return (
-    <div className="tw-flex tw-flex-row tw-w-full tw-gap-4 tw-my-2">
+    <div className="tw:flex tw:flex-row tw:w-full tw:gap-4 tw:my-2">
       <button
-        className="tw-w-24 tw-h-24 tw-bg-base-100 tw-rounded-lg tw-shadow tw-shrink-0"
+        className="tw:w-24 tw:h-24 tw:bg-base-100 tw:rounded-lg tw:shadow tw:shrink-0"
         onClick={() =>
           setModal(
             <ModalWrapper>
@@ -199,18 +228,18 @@ export const User = ({ user, Link }) => {
           backgroundColor: '#ccc',
         }}
       ></button>
-      <div className="tw-w-full tw-flex tw-flex-col tw-gap-1">
-        <div className="tw-w-full tw-flex tw-flex-row tw-flex-wrap tw-gap-1">
-          <Link href={`/users/user?id=${user.id}`}>{user.username}</Link>
+      <div className="tw:w-full tw:flex tw:flex-col tw:gap-1">
+        <div className="tw:w-full tw:flex tw:flex-row tw:flex-wrap tw:gap-1">
+          <Link href={`/users/?id=${user.id}`}>{user.username}</Link>
           <KeyVal k="id" val={user.id} />
         </div>
-        <div className="tw-w-full tw-flex tw-flex-row tw-flex-wrap tw-gap-1">
+        <div className="tw:w-full tw:flex tw:flex-row tw:flex-wrap tw:gap-1">
           <UserRole role={user.role} />
           <AccountStatus status={user.status} />
         </div>
-        <div className="tw-w-full tw-flex tw-flex-row tw-flex-wrap tw-gap-1">
+        <div className="tw:w-full tw:flex tw:flex-row tw:flex-wrap tw:gap-1">
           <button
-            className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-sm tw-daisy-btn-outline"
+            className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-sm tw:daisy-btn-outline"
             onClick={() =>
               setModal(
                 <ModalWrapper>
@@ -222,6 +251,23 @@ export const User = ({ user, Link }) => {
             Details
           </button>
           <ImpersonateButton userId={user.id} />
+          {user.mfaEnabled ? (
+            <button
+              className="tw:daisy-btn tw:daisy-btn-warning tw:daisy-btn-sm"
+              onClick={disableMfa}
+            >
+              Disable MFA
+            </button>
+          ) : null}
+
+          {user.consent < 1 ? (
+            <button
+              className="tw:daisy-btn tw:daisy-btn-warning tw:daisy-btn-sm"
+              onClick={setConsent}
+            >
+              Grant Consent
+            </button>
+          ) : null}
         </div>
       </div>
     </div>
@@ -246,7 +292,7 @@ export const ImpersonateButton = ({ userId }) => {
 
   return (
     <button
-      className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-sm tw-daisy-btn-outline"
+      className="tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-sm tw:daisy-btn-outline"
       onClick={impersonateUser}
     >
       Impersonate

@@ -1,4 +1,5 @@
 {
-  "version": "4.0.0-rc.8",
-  "name": "plugin-sprinkle"
+  "id": "plugin-sprinkle",
+  "description": "A FreeSewing plugin to bulk-add snippets to your pattern",
+  "version": "4.0.0"
 }

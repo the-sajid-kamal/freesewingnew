@@ -1,5 +1,11 @@
 // Utils
-import { horFlexClasses, horFlexClassesNoSm, capitalize, getSearchParam } from '@freesewing/utils'
+import {
+  linkClasses,
+  horFlexClasses,
+  horFlexClassesNoSm,
+  capitalize,
+  getSearchParam,
+} from '@freesewing/utils'
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
 // Hooks
@@ -138,20 +144,20 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
 
   const initOauth = async (provider) => {
     setLoadingStatus([true, 'Contacting the FreeSewing backend'])
-    const result = await backend.oauthInit({ provider, language: 'en' })
-    if (result.success) {
+    const [status, body] = await backend.oauthInit(provider.toLowerCase())
+    if (status === 200 && body.result === 'success') {
       setLoadingStatus([true, `Contacting ${capitalize(provider)}`])
-      window.location.href = result.data.authUrl
+      window.location.href = body.authUrl
     }
   }
 
-  const btnClasses = `tw-daisy-btn tw-capitalize tw-w-full tw-mt-4 ${
-    signInFailed ? 'tw-daisy-btn-warning' : 'tw-daisy-btn-primary'
-  } tw-transition-colors tw-ease-in-out tw-duration-300 ${horFlexClassesNoSm}`
+  const btnClasses = `tw:daisy-btn tw:capitalize tw:w-full tw:mt-4 ${
+    signInFailed ? 'tw:daisy-btn-warning' : 'tw:daisy-btn-primary'
+  } tw:transition-colors tw:ease-in-out tw:duration-300 ${horFlexClassesNoSm}`
   const noBueno = (
     <>
       <WarningIcon />
-      <span className="tw-pl-2">{signInFailed}</span>
+      <span className="tw:pl-2">{signInFailed}</span>
       <WarningIcon />
     </>
   )
@@ -160,22 +166,22 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
     return (
       <WrapForm>
         <H1>Email Sent</H1>
-        <p className="tw-text-inherit tw-text-lg tw-text-center">
+        <p className="tw:text-inherit tw:text-lg tw:text-center">
           Go check your inbox for an email from <b>FreeSewing.org</b>
         </p>
-        <p className="tw-text-inherit tw-text-lg tw-text-center">
+        <p className="tw:text-inherit tw:text-lg tw:text-center">
           Click the sign-in link in that email to sign in to your FreeSewing account.
         </p>
-        <div className="tw-flex tw-flex-row tw-gap-4 tw-items-center tw-justify-center tw-p-8">
+        <div className="tw:flex tw:flex-row tw:gap-4 tw:items-center tw:justify-center tw:p-8">
           <button
-            className="tw-daisy-btn tw-daisy-btn-outline tw-daisy-btn-sm"
+            className="tw:daisy-btn tw:daisy-btn-outline tw:daisy-btn-sm"
             onClick={() => setMagicLinkSent(false)}
           >
             Back
           </button>
           <Link
             href="/support"
-            className="tw-daisy-btn tw-daisy-btn-outline tw-daisy-btn-sm hover:tw-no-underline"
+            className="tw:daisy-btn tw:daisy-btn-outline tw:daisy-btn-sm tw:hover:no-underline"
           >
             Contact support
           </Link>
@@ -189,11 +195,11 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
         {...{ mfaCode, setMfaCode }}
         onSubmit={signinHandler}
         post={
-          <div className="tw-flex tw-flex-row tw-gap-4 tw-items-center tw-justify-center tw-p-8">
-            <button className="tw-daisy-btn tw-daisy-btn-ghost" onClick={() => setMfa(false)}>
+          <div className="tw:flex tw:flex-row tw:gap-4 tw:items-center tw:justify-center tw:p-8">
+            <button className="tw:daisy-btn tw:daisy-btn-ghost" onClick={() => setMfa(false)}>
               Back
             </button>
-            <Link href="/support" className="tw-daisy-btn tw-daisy-btn-ghost">
+            <Link href="/support" className="tw:daisy-btn tw:daisy-btn-ghost">
               Contact support
             </Link>
           </div>
@@ -204,87 +210,76 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
   return (
     <WrapForm>
       <H1>{seenBefore ? `Welcome back ${seenUser}` : 'Welcome'}</H1>
-      <H4>Sign in to FreeSewing</H4>
-      {!seenBefore && (
-        <StringInput
-          label="Your Email address, Username, or User #"
-          update={setUsername}
-          placeholder="Your Email address, Username, or User #"
-          value={username}
-          valid={(val) => val.length > 1}
-        />
-      )}
-      {magicLink ? (
-        <button
-          className={`${btnClasses} tw-daisy-btn-lg`}
-          tabIndex="-1"
-          role="button"
-          onClick={signinHandler}
-        >
-          {signInFailed ? (
-            noBueno
-          ) : (
-            <>
-              <span className="tw-hidden lg:tw-block">
-                <EmailIcon />
-              </span>
-              <span className="tw-pl-2">Email me a sign-in link</span>
-              <span className="tw-hidden lg:tw-block">
-                <EmailIcon />
-              </span>
-            </>
-          )}
-        </button>
-      ) : (
-        <>
-          <PasswordInput
-            label="Your Password"
-            update={setPassword}
-            current={password}
-            valid={(val) => val.length > 0}
-            onKeyDown={triggerSubmit}
+      <fieldset className="tw:daisy-fieldset tw:border-base-300 tw:border tw:rounded-box tw:p-4 tw:mb-4">
+        <legend className="tw:daisy-fieldset-legend">Sign in to FreeSewing</legend>
+        {!seenBefore && (
+          <StringInput
+            label="Your Email address, Username, or User #"
+            update={setUsername}
+            placeholder="Your Email address, Username, or User #"
+            value={username}
+            valid={(val) => val.length > 1}
           />
-          <button className={btnClasses} tabIndex="-1" role="button" onClick={signinHandler}>
+        )}
+        {magicLink ? (
+          <button
+            className={`${btnClasses} tw:daisy-btn-lg`}
+            tabIndex="-1"
+            role="button"
+            onClick={signinHandler}
+          >
             {signInFailed ? (
               noBueno
             ) : (
               <>
-                <span className="tw-hidden lg:tw-block">
-                  <KeyIcon />
+                <span className="tw:hidden tw:lg:block">
+                  <EmailIcon />
                 </span>
-                <span className="tw-pl-2">Sign in</span>
-                <span className="tw-hidden lg:tw-block">
-                  <LockIcon />
+                <span className="tw:pl-2">Email me a sign-in link</span>
+                <span className="tw:hidden tw:lg:block">
+                  <EmailIcon />
                 </span>
               </>
             )}
           </button>
-        </>
-      )}
-      <button
-        className={`tw-block md:tw-flex md:tw-flex-row md:tw-justify-between md:tw-items-center tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-outline tw-w-full tw-mt-8`}
-        onClick={() => setMagicLink(!magicLink)}
-      >
-        <span className="tw-hidden lg:tw-block">{magicLink ? <LockIcon /> : <EmailIcon />}</span>
-        {magicLink ? 'Use your password' : 'Email me a sign-in link'}
-        <span className="tw-hidden lg:tw-block">{magicLink ? <KeyIcon /> : <EmailIcon />}</span>
-      </button>
-      <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-2 tw-items-center tw-mt-2">
-        {['Google', 'Github'].map((provider) => (
-          <button
-            key={provider}
-            id={provider}
-            className={`${horFlexClasses} tw-daisy-btn tw-daisy-btn-secondary`}
-            onClick={() => initOauth(provider)}
-          >
-            {provider === 'Google' ? <GoogleIcon stroke={0} /> : <GitHubIcon />}
-            <span>Sign in with {provider}</span>
-          </button>
-        ))}
-      </div>
+        ) : (
+          <>
+            <PasswordInput
+              label="Your Password"
+              update={setPassword}
+              current={password}
+              valid={(val) => val.length > 0}
+              onKeyDown={triggerSubmit}
+            />
+            <button className={btnClasses} tabIndex="-1" role="button" onClick={signinHandler}>
+              {signInFailed ? (
+                noBueno
+              ) : (
+                <>
+                  <span className="tw:hidden tw:lg:block">
+                    <KeyIcon />
+                  </span>
+                  <span className="tw:pl-2">Sign in</span>
+                  <span className="tw:hidden tw:lg:block">
+                    <LockIcon />
+                  </span>
+                </>
+              )}
+            </button>
+          </>
+        )}
+        <button
+          className={`tw:block tw:md:flex tw:md:flex-row tw:md:justify-between tw:md:items-center tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline tw:w-full tw:mt-1`}
+          onClick={() => setMagicLink(!magicLink)}
+        >
+          <span className="tw:hidden tw:lg:block">{magicLink ? <LockIcon /> : <EmailIcon />}</span>
+          {magicLink ? 'Use your password' : 'Email me a sign-in link'}
+          <span className="tw:hidden tw:lg:block">{magicLink ? <KeyIcon /> : <EmailIcon />}</span>
+        </button>
+      </fieldset>
       {seenBefore ? (
         <button
-          className={`${horFlexClasses} tw-daisy-btn tw-daisy-btn-neutral tw-daisy-btn-outline tw-mt-2 tw-w-full`}
+          className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-neutral tw:daisy-btn-outline tw:mt-2 tw:w-full`}
           onClick={() => setSeenUser(false)}
         >
           <UserIcon />
@@ -292,23 +287,25 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
         </button>
       ) : (
         <Link
-          className={`${horFlexClasses} tw-daisy-btn tw-daisy-btn-lg tw-daisy-btn-neutral tw-mt-2 hover:tw-text-neutral-content hover:tw-no-underline`}
+          className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-lg tw:daisy-btn-neutral tw:mt-2 tw:hover:text-neutral-content tw:hover:no-underline`}
           href="/signup"
         >
-          <FreeSewingIcon className="tw-h-10 tw-w-10" />
-          Sign up here
+          <span className="tw:text-neutral-content">
+            <FreeSewingIcon className="tw:h-8 tw:w-8" />
+          </span>
+          <span className="tw:text-neutral-content">Sign up here</span>
         </Link>
       )}
     </WrapForm>
   )
 }
 
-const WrapForm = ({ children }) => <div className="tw-text-center tw-py-12">{children}</div>
+const WrapForm = ({ children }) => <div className="tw:text-center tw:py-12">{children}</div>
 
 const MfaForm = ({ mfaCode, setMfaCode, onSubmit, post = [] }) => (
   <WrapForm>
     <H1>MFA Code</H1>
-    <p className="tw-text-inherit tw-text-lg tw-text-center">
+    <p className="tw:text-inherit tw:text-lg tw:text-center">
       Please provide a one-time MFA code, or a backup scratch code
     </p>
     <MfaInput
@@ -317,16 +314,16 @@ const MfaForm = ({ mfaCode, setMfaCode, onSubmit, post = [] }) => (
       value={mfaCode}
     />
     <button
-      className={`tw-daisy-btn tw-capitalize tw-w-full tw-mt-4 tw-daisy-btn-primary ${horFlexClassesNoSm}`}
+      className={`tw:daisy-btn tw:capitalize tw:w-full tw:mt-4 tw:daisy-btn-primary ${horFlexClassesNoSm}`}
       tabIndex="-1"
       role="button"
       onClick={onSubmit}
     >
-      <span className="tw-hidden lg:tw-block">
+      <span className="tw:hidden tw:lg:block">
         <KeyIcon />
       </span>
-      <span className="tw-pl-2">Sign In</span>
-      <span className="tw-hidden lg:tw-block">
+      <span className="tw:pl-2">Sign In</span>
+      <span className="tw:hidden tw:lg:block">
         <LockIcon />
       </span>
     </button>
@@ -421,10 +418,54 @@ export const SignInConfirmation = ({ onSuccess = false }) => {
   if (!id || !check)
     return (
       <>
-        <h1>One moment pleae</h1>
-        <Spinner className="tw-w-8 tw-h-8 tw-m-auto tw-animate-spin" />
+        <h1>One moment please</h1>
+        <Spinner className="tw:w-8 tw:h-8 tw:m-auto tw:animate-spin" />
       </>
     )
 
   return <p>fixme</p>
+}
+
+/*
+ * This is the generic component that will handle the Oauth callback
+ */
+export const OauthCallback = ({ provider = false }) => {
+  const [error, setError] = useState(false)
+  const backend = useBackend()
+  const { setAccount, setToken, setSeenUser } = useAccount()
+
+  // Handle callback
+  useEffect(() => {
+    const oauthFlow = async () => {
+      const state = getSearchParam('state')
+      const code = getSearchParam('state')
+      const [status, body] = await backend.oauthSignIn({ state, code, provider })
+      if (status === 200 && body.account && body.token) {
+        setAccount(body.account)
+        setToken(body.token)
+        setSeenUser(body.data.account.username)
+        navigate('/welcome', true)
+      } else setError(true)
+    }
+    oauthFlow()
+  }, [])
+
+  if (!provider) return <p>You must provide a provider prop to this component</p>
+
+  return error ? (
+    <>
+      <h2>Oh no, something went wrong</h2>
+      <p>
+        Please{' '}
+        <Link className={linkClasses} href="/support">
+          escalate this to support
+        </Link>
+      </p>
+    </>
+  ) : (
+    <>
+      <h2>One moment please</h2>
+      <Spinner className="tw:w-8 tw:h-8 tw:m-auto tw:animate-spin" />
+    </>
+  )
 }

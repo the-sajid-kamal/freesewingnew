@@ -7,7 +7,6 @@ import { i18n as benjamin } from '@freesewing/benjamin'
 import { i18n as bent } from '@freesewing/bent'
 import { i18n as bibi } from '@freesewing/bibi'
 import { i18n as bob } from '@freesewing/bob'
-import { i18n as bonny } from '@freesewing/bonny'
 import { i18n as breanna } from '@freesewing/breanna'
 import { i18n as brian } from '@freesewing/brian'
 import { i18n as bruce } from '@freesewing/bruce'
@@ -27,6 +26,7 @@ import { i18n as huey } from '@freesewing/huey'
 import { i18n as hugo } from '@freesewing/hugo'
 import { i18n as jaeger } from '@freesewing/jaeger'
 import { i18n as jane } from '@freesewing/jane'
+import { i18n as lily } from '@freesewing/lily'
 import { i18n as lucy } from '@freesewing/lucy'
 import { i18n as lumina } from '@freesewing/lumina'
 import { i18n as lumira } from '@freesewing/lumira'
@@ -57,7 +57,6 @@ import { i18n as wahid } from '@freesewing/wahid'
 import { i18n as walburga } from '@freesewing/walburga'
 import { i18n as waralee } from '@freesewing/waralee'
 import { i18n as yuri } from '@freesewing/yuri'
-import { i18n as lily } from '@freesewing/lily'
 
 /*
  * Export the translations
@@ -71,7 +70,6 @@ export const i18n = {
   bent,
   bibi,
   bob,
-  bonny,
   breanna,
   brian,
   bruce,
@@ -91,6 +89,7 @@ export const i18n = {
   hugo,
   jaeger,
   jane,
+  lily,
   lucy,
   lumina,
   lumira,
@@ -121,5 +120,4 @@ export const i18n = {
   walburga,
   waralee,
   yuri,
-  lily,
 }

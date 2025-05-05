@@ -69,14 +69,14 @@ export const UserProfile = ({
 
   return (
     <>
-      <div className="tw-w-full tw-flex tw-flex-row tw-flex-wrap tw-items-center tw-gap-4">
+      <div className="tw:w-full tw:flex tw:flex-row tw:flex-wrap tw:items-center tw:gap-4">
         <Avatar ihash={data.ihash} />
-        <div className="tw-flex tw-flex-col tw-items-start tw-gap-1">
+        <div className="tw:flex tw:flex-col tw:items-start tw:gap-1">
           <h2>{data.username}</h2>
           <KeyVal k="role" val={data.role} />
         </div>
       </div>
-      <div className="tw-my-4 tw-border-l-4 tw-pl-2">
+      <div className="tw:my-4 tw:border-l-4 tw:pl-2">
         <b>Permalink: </b>
         <Link href={`/users?id=${ruid}`}>{`freesewing.eu/users?id=${ruid}`}</Link>
       </div>
@@ -100,7 +100,7 @@ export const Avatar = ({ ihash }) => {
           <ModalWrapper>
             <img
               src={cloudflareImageUrl({ id: `uid-${ihash}`, variant: 'public' })}
-              className="tw-max-w-full tw-max-h-screen"
+              className="tw:max-w-full tw:max-h-screen"
             />
           </ModalWrapper>
         )
@@ -108,7 +108,7 @@ export const Avatar = ({ ihash }) => {
     >
       <img
         src={cloudflareImageUrl({ id: `uid-${ihash}`, variant: 'sq500' })}
-        className="tw-w-32 tw-h-32 tw-rounded-full tw-shadow tw-border-current tw-border-4"
+        className="tw:w-32 tw:h-32 tw:rounded-full tw:shadow tw:border-current tw:border-4"
       />
     </button>
   )

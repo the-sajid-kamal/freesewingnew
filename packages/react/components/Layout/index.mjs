@@ -17,10 +17,10 @@ export const Layout = ({ children = [], crumbs = [], description, Link = false, 
 
   return (
     <BaseLayout>
-      <div className="tw-max-w-xl tw-w-full tw-mx-auto">
+      <div className="tw:max-w-xl tw:w-full tw:mx-auto">
         <Breadcrumbs {...{ crumbs, title, Link }} />
-        <h1 className="tw-break-words">{title}</h1>
-        <div className="xl:tw-pl-4">{children}</div>
+        <h1 className="tw:break-words">{title}</h1>
+        <div className="tw:xl:pl-4">{children}</div>
       </div>
     </BaseLayout>
   )
@@ -33,7 +33,7 @@ export const Layout = ({ children = [], crumbs = [], description, Link = false, 
  * @param {array} props.children - The content to go in the layout
  */
 export const BaseLayout = ({ children }) => (
-  <div className="tw-flex tw-flex-row tw-items-start tw-w-full tw-justify-between 2xl:tw-px-36 xl:tw-px-12 tw-px-4 tw-gap-0 lg:tw-gap-4 xl:tw-gap-8 3xl:tw-gap-12">
+  <div className="tw:flex tw:flex-row tw:items-start tw:w-full tw:justify-between tw:2xl:px-36 tw:xl:px-12 tw:px-4 tw:gap-0 tw:lg:gap-4 tw:xl:gap-8 3xl:tw:gap-12">
     {children}
   </div>
 )
@@ -45,7 +45,7 @@ export const BaseLayout = ({ children }) => (
  * @param {array} props.children - The content to go in the layout
  */
 export const BaseLayoutLeft = ({ children = [] }) => (
-  <div className="tw-max-w-96 tw-w-1/4 tw-hidden lg:tw-block tw-shrink-0 tw-my-8 tw-sticky tw-top-4 tw-max-h-screen tw-overflow-scroll">
+  <div className="tw:max-w-96 tw:w-1/4 tw:hidden tw:lg:block tw:shrink-0 tw:my-8 tw:sticky tw:top-4 tw:max-h-screen tw:overflow-scroll">
     {children}
   </div>
 )
@@ -57,7 +57,7 @@ export const BaseLayoutLeft = ({ children = [] }) => (
  * @param {array} props.children - The content to go in the layout
  */
 export const BaseLayoutRight = ({ children = [] }) => (
-  <div className="tw-max-w-96 tw-w-1/4 tw-hidden xl:tw-block tw-my-8 tw-sticky tw-top-2">
+  <div className="tw:max-w-96 tw:w-1/4 tw:hidden tw:xl:block tw:my-8 tw:sticky tw:top-2">
     {children}
   </div>
 )
@@ -70,7 +70,7 @@ export const BaseLayoutRight = ({ children = [] }) => (
  * @param {array} props.wide - Whether or not to use the wide view
  */
 export const BaseLayoutProse = ({ children = [], wide = false }) => (
-  <div className={`tw-grow tw-w-full tw-m-auto tw-max-w-${wide ? 'full' : 'prose'} tw-my-8`}>
+  <div className={`tw:grow tw:w-full tw:m-auto tw:max-w-${wide ? 'full' : 'prose'} tw:my-8`}>
     {children}
   </div>
 )
@@ -82,7 +82,7 @@ export const BaseLayoutProse = ({ children = [], wide = false }) => (
  * @param {array} props.children - The content to go in the layout
  */
 export const BaseLayoutWide = ({ children = [] }) => (
-  <div className="tw-grow tw-w-full tw-m-auto tw-my-8 tw-grow">{children}</div>
+  <div className="tw:grow tw:w-full tw:m-auto tw:my-8 tw:grow">{children}</div>
 )
 
 /*
@@ -94,7 +94,7 @@ export const BaseLayoutWide = ({ children = [] }) => (
 export const NoTitleLayout = ({ children }) => {
   return (
     <BaseLayout>
-      <div className="tw-max-w-xl tw-w-full tw-mx-auto">
+      <div className="tw:max-w-xl tw:w-full tw:mx-auto">
         <div>{children}</div>
       </div>
     </BaseLayout>

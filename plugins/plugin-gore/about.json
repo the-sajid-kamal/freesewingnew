@@ -1,4 +1,5 @@
 {
-  "version": "4.0.0-rc.8",
-  "name": "plugin-gore"
+  "id": "plugin-gore",
+  "description": "A FreeSewing plugin to generate gores for a semi-sphere or dome",
+  "version": "4.0.0"
 }

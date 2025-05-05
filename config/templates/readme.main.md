@@ -1,39 +1,53 @@
 <p align='center'><a
-  href="https://www.npmjs.com/package/@freesewing/core"
-  title="@freesewing/core on NPM"
-  ><img src="https://img.shields.io/npm/v/@freesewing/core.svg"
-  alt="@freesewing/core on NPM"/>
-  </a><a
-  href="https://opensource.org/licenses/MIT"
-  title="License: MIT"
-  ><img src="https://img.shields.io/npm/l/@freesewing/core.svg?label=License"
-  alt="License: MIT"/>
-  </a><a 
-  href="https://deepscan.io/dashboard#view=project&tid=2114&pid=2993&bid=23256"
-  title="Code quality on DeepScan"
-  ><img src="https://deepscan.io/api/teams/2114/projects/2993/branches/23256/badge/grade.svg" 
-  alt="DeepScan grade"
-  ></a> <a
-  href="https://github.com/freesewing/freesewing/issues?q=is%3Aissue+is%3Aopen"
-  title="Open issues tagged pkg:aaron"
-  ><img src="https://img.shields.io/github/issues/freesewing/freesewing.svg?label=Issues"
-  alt="Open issues"/>
-  </a><a 
-  href="#contributors-"
-  title="All Contributors"
-  ><img src="https://img.shields.io/badge/all_contributors-{{ allcontributors }}-pink.svg"
-  alt="All Contributors"/>
-  </a></p><p align='center'><a
-  href="https://discord.freesewing.org"
-  title="Chat with us on Discord"
-  ><img src="https://img.shields.io/discord/698854858052075530?label=Chat%20on%20Discord"
-  alt="Chat with us on Discord"/>
-  </a><a
-  href="https://freesewing.org/patrons/join"
-  title="Become a FreeSewing Patron"
-  ><img src="https://img.shields.io/badge/%F3%A0%80%A0-Support%20us-blueviolet.svg?logo=cash-app&logoColor=white&logoWidth=15"
-  alt="Become a FreeSewing Patron"/>
-  </a></p>
+href="https://www.npmjs.com/package/@freesewing/core"
+title="@freesewing/core on NPM"
+><img 
+src="https://img.shields.io/npm/v/@freesewing/core.svg"
+alt="@freesewing/core on NPM"/>
+</a> <a
+href="https://opensource.org/licenses/MIT"
+title="License: MIT"
+><img 
+src="https://img.shields.io/npm/l/@freesewing/core.svg?label=License"
+alt="License: MIT"/>
+</a> <a 
+href="https://deepscan.io/dashboard#view=project&tid=2114&pid=2993&bid=23256"
+title="Code quality on DeepScan"
+><img 
+src="https://deepscan.io/api/teams/2114/projects/2993/branches/23256/badge/grade.svg" 
+alt="DeepScan grade"
+></a> <a
+href="https://codeberg.org/freesewing/freesewing/issues?q=is%3Aissue+is%3Aopen"
+title="Open issues"
+><img 
+src="https://img.shields.io/github/issues/freesewing/freesewing.svg?label=Issues"
+alt="Open issues"/>
+</a> <a 
+href="#contributors-"
+title="All Contributors"
+><img 
+src="https://img.shields.io/badge/all_contributors-{{ allcontributors }}-pink.svg"
+alt="All Contributors"/>
+</a></p>
+<p align='center'><a
+href="https://forum.freesewing.eu"
+title="Join the FreeSewing Forum"
+><img 
+src="https://img.shields.io/discourse/users?server=https%3A%2F%2Fforum.freesewing.eu&label=Forum&color=%2385d996"
+alt="Join the FreeSewing Forum"
+/></a> <a
+href="https://discord.freesewing.org"
+title="Chat with us on Discord"
+><img 
+src="https://img.shields.io/discord/698854858052075530?label=Chat%20on%20Discord"
+alt="Chat with us on Discord"
+/></a> <a
+href="https://freesewing.org/patrons/join"
+title="Become a FreeSewing Patron"
+><img 
+src="https://img.shields.io/badge/%F3%A0%80%A0-Support%20us-blueviolet.svg?logo=cash-app&logoColor=white&logoWidth=15"
+alt="Become a FreeSewing Patron"
+/></a></p>
 
 # FreeSewing
 

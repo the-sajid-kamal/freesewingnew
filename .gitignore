@@ -35,6 +35,17 @@ sites/*/yarn.lock
 # Docusaurus cache
 .docusaurus
 
+# Sites get some files from org via the reconfigure script
+sites/studio/postcss.config.js
+sites/studio/babel.config.mjs
+sites/studio/plugins
+sites/studio/src/css
+sites/studio/designs
+sites/studio/docs
+sites/studio/src
+sites/studio/scripts
+sites/studio/static
+
 # Sites prebuild artifacts
 sites/*/public/locales/*/*.json
 !sites/sde/public/locales/*/*.json
@@ -44,6 +55,9 @@ packages/new-design/shared/public/locales/*/*.json
 packages/new-design/shared/.gitignore
 packages/new-design/lib/banner.mjs
 sites/*/public/img/og/*
+sites/org/src/lib/i18n.mjs
+sites/org/authors.json
+sites/org/src/lib/designinfo.mjs
 
 # Org prebuild artifacts
 sites/org/src/lib/designs.mjs
@@ -79,6 +93,10 @@ sites/dev/public/favicon.ico
 sites/dev/public/mstile-150x150.png
 sites/dev/public/safari-pinned-tab.svg
 sites/dev/public/site.webmanifest
+
+# react docs
+packages/react/docs
+
 
 # Node dependencies
 node_modules

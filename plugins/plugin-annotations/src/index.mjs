@@ -23,7 +23,8 @@ import { sewtogetherMacros, sewtogetherDefs } from './sewtogether.mjs'
 import { flagStores } from './flag.mjs'
 
 export const plugin = {
-  ...about,
+  name: about.id,
+  version: about.version,
   hooks: {
     preRender: [
       function (svg) {

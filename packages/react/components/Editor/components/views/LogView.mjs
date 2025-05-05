@@ -3,10 +3,10 @@ import { draft } from '../../lib/index.mjs'
 // Hooks
 import React from 'react'
 // Components
-import Markdown from 'react-markdown'
 import { H1, H3 } from '@freesewing/react/components/Heading'
 import { HeaderMenu } from '../HeaderMenu.mjs'
 import { Tabs, Tab } from '@freesewing/react/components/Tab'
+import { LogEntry } from './LogEntry.mjs'
 
 // The log levels
 const levels = ['error', 'warn', 'info', 'debug']
@@ -21,12 +21,13 @@ const levels = ['error', 'warn', 'info', 'debug']
  */
 export const LogView = (props) => {
   const { state, config, update } = props
-  const { pattern } = draft(props.Design, state.settings)
+  const { settings = {} } = state // Guard against undefined settings
+  const { pattern } = draft(props.Design, settings)
 
   return (
     <>
       <HeaderMenu state={state} {...{ config, update }} />
-      <div className="tw-m-auto tw-mt-8 tw-max-w-2xl tw-px-4 tw-mb-8">
+      <div className="tw:m-auto tw:mt-8 tw:max-w-2xl tw:px-4 tw:mb-8">
         <H1>Pattern Logs</H1>
         <Tabs tabs="Set 0 Logs, Pattern Logs">
           <Tab tabId="Set 0 Logs">
@@ -36,7 +37,7 @@ export const LogView = (props) => {
                   <>
                     <H3>{level}</H3>
                     {pattern.setStores[0].logs[level].map((line, i) => (
-                      <Markdown key={i}>{line}</Markdown>
+                      <LogEntry key={i} logEntry={line} />
                     ))}
                   </>
                 ) : null}
@@ -50,7 +51,7 @@ export const LogView = (props) => {
                   <>
                     <H3>{level}</H3>
                     {pattern.store.logs[level].map((line, i) => (
-                      <Markdown key={i}>{line}</Markdown>
+                      <LogEntry key={i} logEntry={line} />
                     ))}
                   </>
                 ) : null}

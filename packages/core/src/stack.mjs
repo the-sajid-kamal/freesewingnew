@@ -58,8 +58,19 @@ Stack.prototype.home = function () {
   for (const part of this.getPartList()) {
     part.__boundary()
 
+    let partAnchor = part.points.anchor
+
+    let bounds = part
+
+    if (partAnchor) {
+      bounds = {
+        topLeft: part.topLeft.translate(-partAnchor.x, -partAnchor.y),
+        bottomRight: part.bottomRight.translate(-partAnchor.x, -partAnchor.y),
+      }
+    }
+
     const { topLeft, bottomRight } = utils.getTransformedBounds(
-      part,
+      bounds,
       part.attributes.getAsArray('transform')
     )
 

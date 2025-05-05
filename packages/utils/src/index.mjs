@@ -23,18 +23,18 @@ export const orderBy = _orderBy
  * CSS classes to  spread icon + text horizontally on a button
  */
 export const horFlexClasses =
-  'tw-flex tw-flex-row tw-items-center tw-justify-between tw-gap-4 tw-w-full'
+  'tw:flex tw:flex-row tw:items-center tw:justify-between tw:gap-4 tw:w-full'
 
 /*
  * CSS classes to  spread icon + text horizontally on a button, only from md upwards
  */
 export const horFlexClassesNoSm =
-  'md:tw-flex md:tw-flex-row md:tw-items-center md:tw-justify-between md:tw-gap-4 tw-w-full'
+  'tw:md:flex tw:md:flex-row tw:md:items-center tw:md:justify-between tw:md:gap-4 tw:w-full'
 
 /*
  * These classes are what makes a link a link
  */
-export const linkClasses = 'tw-text-secondary hover:tw-underline hover:tw-cursor-pointer'
+export const linkClasses = 'tw:text-secondary tw:hover:underline tw:hover:cursor-pointer'
 
 /*
  * FUNCTIONS
@@ -60,6 +60,23 @@ export function capitalize(string) {
  */
 export function clone(obj) {
   return JSON.parse(JSON.stringify(obj))
+}
+
+/**
+ * A method to escapte test that needs to be included in the SVG
+ *
+ * This is for user-provided text, such as the measrements set name
+ *
+ * @param {string} text - Text to escape
+ * @return {string} escaped - The escapted text
+ */
+export function escapeSvgText(text) {
+  return String(text)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
 }
 
 /*
@@ -366,7 +383,7 @@ export function measurementAsMm(value, units = 'metric') {
   } else {
     const decimal = fractionToDecimal(value)
     if (isNaN(decimal)) return false
-    return decimal * 24.5
+    return decimal * 25.4
   }
 }
 

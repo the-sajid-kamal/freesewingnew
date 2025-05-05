@@ -38,7 +38,10 @@ export const MeasurementImage = (props) => {
         .split('/')
         .filter((dir) => dir)
         .pop()
-  if (!m || !measurements[caseMap[m]])
+        .toLowerCase()
+  // look up the internal measurement key case-insensitively
+  const mappedMeasurement = measurements[caseMap[m]]
+  if (!m || !mappedMeasurement)
     return <p>Unable to match the input {m} to MeasurementImage to a measurement name</p>
 
   const pose = seated.includes(m) ? 'seated' : 'standing'
@@ -50,7 +53,7 @@ export const MeasurementImage = (props) => {
           height={sarahImages[m].height}
           width={sarahImages[m].width}
           src={sarahImages[m]}
-          alt={measurements[caseMap[m]]}
+          alt={mappedMeasurement}
           style={{ ...style, backgroundImage: `url(/img/sarah-${pose}.jpg)` }}
         />
       </TabItem>
@@ -59,7 +62,7 @@ export const MeasurementImage = (props) => {
           height={timImages[m].height}
           width={timImages[m].width}
           src={timImages[m]}
-          alt={measurements[caseMap[m]]}
+          alt={mappedMeasurement}
           style={{ ...style, backgroundImage: `url(/img/tim-${pose}.jpg)` }}
         />
       </TabItem>

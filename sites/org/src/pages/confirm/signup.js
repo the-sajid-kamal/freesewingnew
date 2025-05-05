@@ -16,8 +16,8 @@ export default function SignUpConfirmationPage() {
       title="Sign Up"
       description="Activate your FreeSewing account"
     >
-      <div className="tw-flex tw-flex-col tw-items-center tw-text-base-content tw-px-4">
-        <div className="tw-max-w-lg tw-w-full">
+      <div className="tw:flex tw:flex-col tw:items-center tw:text-base-content tw:px-4">
+        <div className="tw:max-w-lg tw:w-full">
           <SignUpConfirmation onSuccess={() => (window.location.href = '/welcome')} silent />
         </div>
       </div>

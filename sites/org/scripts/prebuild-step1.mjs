@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import yaml from 'yaml'
-import designInfo from '../../../config/software/designs.json' with { type: 'json' }
+import { about as designInfo } from '../../../packages/collection/src/index.mjs'
 import { designs as designTranslations } from '../../../i18n/designs.mjs'
 import { measurements as measurementsTranslations } from '@freesewing/i18n'
 

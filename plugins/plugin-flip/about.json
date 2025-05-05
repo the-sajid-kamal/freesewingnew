@@ -1,4 +1,5 @@
 {
-  "version": "4.0.0-rc.8",
-  "name": "plugin-flip"
+  "id": "plugin-flip",
+  "description": "A FreeSewing plugin to flip parts horizontally",
+  "version": "4.0.0"
 }

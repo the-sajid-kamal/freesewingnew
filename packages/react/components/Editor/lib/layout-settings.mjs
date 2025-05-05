@@ -10,7 +10,7 @@ import {
 } from '@freesewing/react/components/Icon'
 
 const UiDocsLink = ({ item }) => (
-  <a href={`/docs/about/site/draft/#${item.toLowerCase()}`} className={`${linkClasses} tw-px-2`}>
+  <a href={`/docs/about/site/draft/#${item.toLowerCase()}`} className={`${linkClasses} tw:px-2`}>
     Learn more
   </a>
 )
@@ -63,15 +63,15 @@ export function menuLayoutSettingsStructure(units) {
       list: ['portrait', 'landscape'],
       choiceTitles: {
         portrait: (
-          <div className="tw-flex tw-flex-row tw-items-center tw-gap-4">
-            <PatternIcon className="tw-h-5 tw-w-5" />
-            <span className="tw-grow">Portrait (tall)</span>
+          <div className="tw:flex tw:flex-row tw:items-center tw:gap-4">
+            <PatternIcon className="tw:h-5 tw:w-5" />
+            <span className="tw:grow">Portrait (tall)</span>
           </div>
         ),
         landscape: (
-          <div className="tw-flex tw-flex-row tw-items-center tw-gap-4">
-            <PatternIcon className="tw-h-5 tw-w-5 tw--rotate-90" />
-            <span className="tw-grow">Landscape (wide)</span>
+          <div className="tw:flex tw:flex-row tw:items-center tw:gap-4">
+            <PatternIcon className="tw:h-5 tw:w-5 tw:-rotate-90" />
+            <span className="tw:grow">Landscape (wide)</span>
           </div>
         ),
       },

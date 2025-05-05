@@ -32,7 +32,7 @@
 
 # @freesewing/prettier-config
 
-FreeSewing&#39;s shared configuration for prettier
+FreeSewing shared configuration for prettier
 
 
 

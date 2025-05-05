@@ -32,7 +32,7 @@
 
 # @freesewing/i18n
 
-Translation for the FreeSewing project
+English translation for the FreeSewing project
 
 
 

@@ -9,7 +9,7 @@ import React from 'react'
  * @return LineDrawing as JSX
  */
 export const LineDrawingWrapper = ({
-  className = 'tw-w-full', // CSS classes to apply
+  className = 'tw:w-full', // CSS classes to apply
   viewBox = '0 0 100 100', // SVG viewBox
   stroke = 1, // Stroke to use
   children = [], // The actual linedrawing

@@ -1,4 +1,4 @@
-import { Bezier } from 'bezier-js'
+import { Bezier } from './bezier.mjs'
 import { Path } from './path.mjs'
 import { Point } from './point.mjs'
 

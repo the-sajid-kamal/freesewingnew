@@ -13,7 +13,7 @@ export const MovablePattern = ({
   update,
   fitImmovable = false,
   immovable = [],
-  t,
+  strings,
 }) => {
   const svgRef = useRef(null)
   if (!renderProps) return null
@@ -91,7 +91,7 @@ export const MovablePattern = ({
         stackName,
         stack,
         components,
-        t,
+        strings,
         movable: !immovable.includes(stackName),
         layout: layout.stacks[stackName],
         updateLayout,
@@ -161,7 +161,7 @@ export const MovableStack = ({
   stackName,
   stack,
   components,
-  t,
+  strings,
   movable = true,
   layout,
   updateLayout,
@@ -345,7 +345,7 @@ export const MovableStack = ({
     <Group id={`stack-${stackName}`} {...getProps(stack)} ref={stackRef}>
       <Group id={`stack-inner-${stackName}`} ref={innerRef}>
         {[...stack.parts].map((part, key) => (
-          <Part {...{ components, t, part, stackName, settings }} key={key} />
+          <Part {...{ components, strings, part, stackName, settings }} key={key} />
         ))}
       </Group>
       {movable && (
@@ -407,8 +407,8 @@ const Button = ({ onClickCb, transform, Icon, children, title = '' }) => {
     <g transform={transform} className="svg-layout-button group">
       <title>{title}</title>
       <rect width={rectSize} height={rectSize} className="button" rx="2" ry="2" />
-      <Icon className="group-hover:tw-text-primary-content" />
-      <rect width={rectSize} height={rectSize} onClick={_onClick} className="tw-fill-transparent" />
+      <Icon className="tw:group-hover:text-primary-content" />
+      <rect width={rectSize} height={rectSize} onClick={_onClick} className="tw:fill-transparent" />
     </g>
   )
 }

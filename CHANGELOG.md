@@ -31,6 +31,19 @@
  - Neck ties no longer shown to be cut on fold
  - Band tie locks in duo colours when `options.crossBackTies` is true (fixes incorrect notch placements)
 
+### plugin-annotations
+
+#### Fixed
+
+ - Fixed incorrect anchor point of the logo due to share pathstring (#202)
+
+### react
+
+#### Fixed
+
+ - Fixed issues with the pattern export feature in the Editor (#218)
+ - Added Jane to the Linedrawing component (#211)
+
 
 ## 4.0.0 (2024-04-01)
 
@@ -198,17 +211,17 @@
 
  - The `@freesewing/i18n` package holds translations in English for where they are needed
 
-### studio
-
-#### Added
-
- - Added `@freesewing/studio`, our new development environment
-
 ### react
 
 #### Added
 
  - The `@freesewing/react` package holds shared components, hooks, and context for our React-based frontends
+
+### studio
+
+#### Added
+
+ - Added `@freesewing/studio`, our new development environment
 
 ### utils
 

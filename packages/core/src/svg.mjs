@@ -301,9 +301,15 @@ Svg.prototype.__renderPathText = function (path) {
  * @return {string} svg - The SVG markup for the Part object
  */
 Svg.prototype.__renderPart = function (part) {
+  const attributes = part.attributes.clone()
+  attributes.add(
+    'transform',
+    `translate(${-part.asRenderProps().anchor.x}, ${-part.asRenderProps().anchor.y})`
+  )
+
   let svg = this.__openGroup(
     `${this.idPrefix}stack-${this.activeStack}-part-${part.name}`,
-    part.attributes
+    attributes
   )
   for (let key in part.paths) {
     let path = part.paths[key]

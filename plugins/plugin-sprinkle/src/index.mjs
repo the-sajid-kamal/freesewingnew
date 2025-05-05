@@ -1,7 +1,8 @@
 import about from '../about.json' with { type: 'json' }
 
 export const plugin = {
-  ...about,
+  name: about.id,
+  version: about.version,
   macros: {
     sprinkle: function (so, { snippets, Snippet, points }) {
       for (let pid of so.on) {

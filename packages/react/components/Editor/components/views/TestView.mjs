@@ -92,22 +92,22 @@ export const TestView = ({ Design, state, update, config }) => {
   return (
     <>
       <HeaderMenu state={state} {...{ config, update, Design }} />
-      <div className="tw-m-auto tw-mt-8 tw-max-w-4xl tw-px-4 tw-mb-8">
+      <div className="tw:m-auto tw:mt-8 tw:max-w-4xl tw:px-4 tw:mb-8">
         <H1>Test Pattern</H1>
-        <div className="tw-grid tw-grid-cols-1 lg:tw-grid-cols-2 lg:tw-gap-4">
-          <div className="tw-flex tw-flex-col tw-gap-4">
+        <div className="tw:grid tw:grid-cols-1 tw:lg:grid-cols-2 tw:lg:gap-4">
+          <div className="tw:flex tw:flex-col tw:gap-4">
             <H3>Test Design Options</H3>
             <SampleOptionsMenu {...{ Design, state, update }} />
           </div>
           {trm.length > 0 ? (
-            <div className="tw-flex tw-flex-col tw-gap-4">
+            <div className="tw:flex tw:flex-col tw:gap-4">
               <H3>Test Measurements</H3>
               <H4>Required Measurements</H4>
               <div className="">
                 {trm.map(({ t, m }) => (
                   <button
                     key={m}
-                    className="tw-my-0.5 tw-block tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-outline tw-daisy-btn-xs"
+                    className="tw:my-0.5 tw:block tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline tw:daisy-btn-xs"
                     onClick={() =>
                       update.settings(['sample'], { type: 'measurement', measurement: m })
                     }
@@ -117,13 +117,13 @@ export const TestView = ({ Design, state, update, config }) => {
                 ))}
               </div>
               {tom.length > 0 ? (
-                <div className="tw-flex tw-flex-col tw-gap-4">
+                <div className="tw:flex tw:flex-col tw:gap-4">
                   <H4>Optional Measurements</H4>
                   <div className="">
                     {tom.map(({ t, m }) => (
                       <button
                         key={m}
-                        className="tw-my-0.5 tw-block tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-outline tw-daisy-btn-xs"
+                        className="tw:my-0.5 tw:block tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline tw:daisy-btn-xs"
                         onClick={() =>
                           update.settings(['sample'], { type: 'measurement', measurement: m })
                         }
@@ -143,14 +143,15 @@ export const TestView = ({ Design, state, update, config }) => {
 }
 
 const SampleOptionsMenu = ({ Design, state, update }) => {
+  const { settings = {} } = state // Guard against undefined settings
   const structure = useMemo(
     () =>
       menuDesignOptionsStructure(
         Design.designConfig.data.id,
         Design.patternConfig.options,
-        state.settings
+        settings
       ),
-    [Design.designConfig.data.id, Design.patternConfig, state.settings]
+    [Design.designConfig.data.id, Design.patternConfig, settings]
   )
 
   return <SampleOptionsSubMenu structure={structure} update={update} />
@@ -175,7 +176,7 @@ const SampleOptionsSubMenu = ({ structure, update, level = 1 }) => {
       output.push(
         <button
           key={name}
-          className="tw-my-0.5 tw-block tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-outline tw-daisy-btn-xs"
+          className="tw:my-0.5 tw:block tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline tw:daisy-btn-xs"
           onClick={() => update.settings(['sample'], { type: 'option', option: name })}
         >
           {struct.title}
@@ -188,7 +189,7 @@ const SampleOptionsSubMenu = ({ structure, update, level = 1 }) => {
     if (struct.isGroup) {
       output.push(
         <H5 key={name}>
-          <span className="tw-capitalize">{name}</span>
+          <span className="tw:capitalize">{name}</span>
         </H5>
       )
       output.push(
@@ -202,5 +203,5 @@ const SampleOptionsSubMenu = ({ structure, update, level = 1 }) => {
     }
   }
 
-  return <div className="tw-pl-2 tw-border-l-2">{output}</div>
+  return <div className="tw:pl-2 tw:border-l-2">{output}</div>
 }

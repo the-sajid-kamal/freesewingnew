@@ -10,7 +10,7 @@ import { FormControl } from '@freesewing/react/components/Input'
 import { MiniTip } from '@freesewing/react/components/Mini'
 
 /** @type {String} class to apply to buttons on open menu items */
-const iconButtonClass = 'tw-daisy-btn tw-daisy-btn-xs tw-daisy-btn-ghost tw-px-0 tw-text-accent'
+const iconButtonClass = 'tw:daisy-btn tw:daisy-btn-xs tw:daisy-btn-ghost tw:px-0 tw:text-accent'
 
 /**
  * A generic component for handling a menu item.
@@ -36,6 +36,7 @@ export const MenuItem = ({
   Input = () => {},
   allowOverride = false,
   ux = 5,
+  state,
   docs,
   config,
   Design,
@@ -50,6 +51,7 @@ export const MenuItem = ({
       name,
       config,
       ux,
+      state,
       current,
       updateHandler,
       changed,
@@ -81,15 +83,15 @@ export const MenuItem = ({
         }}
       >
         <EditIcon
-          className={`tw-w-6 tw-h-6 ${
-            override ? 'tw-bg-secondary tw-text-secondary-content tw-rounded' : 'tw-text-secondary'
+          className={`tw:w-6 tw:h-6 ${
+            override ? 'tw:bg-secondary tw:text-secondary-content tw:rounded' : 'tw:text-secondary'
           }`}
         />
       </button>
     )
   const ResetButton = ({ disabled = false }) => (
     <button
-      className={`${iconButtonClass} disabled:tw-bg-opacity-0`}
+      className={iconButtonClass}
       disabled={disabled}
       onClick={(evt) => {
         evt.stopPropagation()
@@ -107,10 +109,10 @@ export const MenuItem = ({
       <FormControl
         label={false}
         id={config.name}
-        labelBR={<div className="tw-flex tw-flex-row tw-items-center tw-gap-2">{buttons}</div>}
+        labelBR={<div className="tw:flex tw:flex-row tw:items-center tw:gap-2">{buttons}</div>}
         labelBL={
           <span
-            className={`tw-text-base tw-font-medium tw--mt-2 tw-block ${changed ? 'tw-text-accent' : 'tw-opacity-50'}`}
+            className={`tw:text-sm tw:-mt-2 tw:block ${changed ? 'tw:text-accent' : 'tw:text-base-100-content'}`}
           >
             {changed ? 'This is a custom value' : 'This is the default value'}
           </span>
@@ -190,9 +192,9 @@ export const MenuItemGroup = ({
           : () => <span role="img">fixme-icon</span>
     const Value = item.isGroup
       ? () => (
-          <div className="tw-flex tw-flex-row tw-gap-2 tw-items-center tw-font-medium">
+          <div className="tw:flex tw:flex-row tw:gap-2 tw:items-center tw:font-medium">
             {Object.keys(item).filter((i) => i !== 'isGroup').length}
-            <OptionsIcon className="tw-w-5 tw-h-5" />
+            <OptionsIcon className="tw:w-5 tw:h-5" />
           </div>
         )
       : isDesignOptionsGroup
@@ -202,14 +204,14 @@ export const MenuItemGroup = ({
           : () => <span>¯\_(ツ)_/¯</span>
 
     return [
-      <div className="tw-flex tw-flex-row tw-items-center tw-justify-between tw-w-full" key="a">
-        <div className="tw-flex tw-flex-row tw-items-center tw-gap-4 tw-w-full">
+      <div className="tw:flex tw:flex-row tw:items-center tw:justify-between tw:w-full" key="a">
+        <div className="tw:flex tw:flex-row tw:items-center tw:gap-4 tw:w-full">
           <ItemIcon />
-          <span className="tw-font-medium tw-capitalize">
+          <span className="tw:font-medium tw:capitalize">
             {item.title ? item.title : getItemLabel(i18n, itemName)}
           </span>
         </div>
-        <div className="tw-font-bold">
+        <div className="tw:font-bold">
           <Value
             current={currentValues[itemName]}
             config={item}
@@ -275,13 +277,13 @@ export const MenuItemGroup = ({
  */
 export const MenuItemTitle = ({ name, current = null, open = false, emoji = '', Icon = false }) => (
   <div
-    className={`tw-flex tw-flex-row tw-gap-1 tw-items-center tw-w-full ${open ? '' : 'tw-justify-between'}`}
+    className={`tw:flex tw:flex-row tw:gap-1 tw:items-center tw:w-full ${open ? '' : 'tw:justify-between'}`}
   >
-    <span className="tw-font-medium tw-capitalize tw-flex tw-flex-row tw-gap-2">
+    <span className="tw:font-medium tw:capitalize tw:flex tw:flex-row tw:gap-2">
       {Icon ? <Icon /> : <span role="img">{emoji}</span>}
       fixme: {name}
     </span>
-    <span className="tw-font-bold">{current}</span>
+    <span className="tw:font-bold">{current}</span>
   </div>
 )
 
@@ -318,25 +320,25 @@ export const MenuButtonGroup = ({ structure, Button = false, Design, Icon, i18n 
             : () => <span role="img">fixme-icon</span>
       const Value = item.isGroup
         ? () => (
-            <div className="tw-flex tw-flex-row tw-gap-2 tw-items-center tw-font-medium">
+            <div className="tw:flex tw:flex-row tw:gap-2 tw:items-center tw:font-medium">
               {Object.keys(item).filter((i) => i !== 'isGroup').length}
-              <OptionsIcon className="tw-w-5 tw-h-5" />
+              <OptionsIcon className="tw:w-5 tw:h-5" />
             </div>
           )
         : null
 
       content.push([
         <div
-          className="tw-flex tw-flex-row tw-items-center tw-justify-between tw-w-full tw-pl-0 tw-pr-4 tw-py-2"
+          className="tw:flex tw:flex-row tw:items-center tw:justify-between tw:w-full tw:pl-0 tw:pr-4 tw:py-2"
           key="a"
         >
-          <div className="tw-flex tw-flex-row tw-items-center tw-gap-4 tw-w-full">
+          <div className="tw:flex tw:flex-row tw:items-center tw:gap-4 tw:w-full">
             <ItemIcon />
-            <span className="tw-font-medium tw-capitalize">
+            <span className="tw:font-medium tw:capitalize">
               {item.title ? item.title : getItemLabel(i18n, itemName)}
             </span>
           </div>
-          <div className="tw-font-bold">
+          <div className="tw:font-bold">
             <Value config={item} Design={Design} />
           </div>
         </div>,
@@ -355,7 +357,7 @@ export const MenuButtonGroup = ({ structure, Button = false, Design, Icon, i18n 
   }
 
   return (
-    <div className="tw-flex tw-flex-col tw-gap-0.5 tw-ml-4">
+    <div className="tw:flex tw:flex-col tw:gap-0.5 tw:ml-4">
       {content.filter((item) => item !== null)}
     </div>
   )

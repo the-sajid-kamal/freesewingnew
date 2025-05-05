@@ -9,6 +9,7 @@ import { Null } from '@freesewing/react/components/Null'
 import { ZoomablePattern } from '../ZoomablePattern.mjs'
 import { PatternLayout } from '../PatternLayout.mjs'
 import { Xray } from '@freesewing/react/components/Xray'
+import { DraftErrorHandler } from './DraftErrorHandler.mjs'
 
 /**
  * The inspect view allows users to inspect their pattern
@@ -23,6 +24,7 @@ import { Xray } from '@freesewing/react/components/Xray'
  * @return {function} DraftView - React component
  */
 export const InspectView = ({ Design, state, update, config }) => {
+  const { settings = {} } = state // Guard against undefined settings
   const { setModal, clearModal, modalContent } = useContext(ModalContext)
 
   const info = {
@@ -47,7 +49,7 @@ export const InspectView = ({ Design, state, update, config }) => {
   /*
    * First, attempt to draft
    */
-  const { pattern } = draft(Design, state.settings)
+  const { pattern, failure, errors } = draft(Design, settings)
 
   /*
    * Create object holding strings for translation
@@ -57,6 +59,7 @@ export const InspectView = ({ Design, state, update, config }) => {
   const renderProps = pattern.getRenderProps()
   const output = (
     <>
+      <DraftErrorHandler {...{ failure, errors }} />
       <ZoomablePattern
         renderProps={renderProps}
         patternLocale={state.locale || 'en'}
@@ -66,7 +69,7 @@ export const InspectView = ({ Design, state, update, config }) => {
         <Xray
           renderProps={renderProps}
           drillProps={{ info }}
-          className={`freesewing pattern tw-w-full ${state.ui?.rotate ? 'tw--rotate-90' : ''}`}
+          className={`freesewing pattern tw:w-full ${state.ui?.rotate ? 'tw:-rotate-90' : ''}`}
           strings={strings}
         />
       </ZoomablePattern>

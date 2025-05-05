@@ -261,12 +261,11 @@ const basePlugin = ({
             })
           }
 
-          if (col === cols - 1 && row === rows - 1) {
-            const br = points[`${pageName}-br`]
-            part.width = br.x
-            part.height = br.y
-            part.bottomRight = new Point(br.x, br.y)
-          }
+          // Ensure bounding box. See https://codeberg.org/freesewing/freesewing/issues/273
+          const br = points[`${pageName}-br`]
+          part.width = br.x
+          part.height = br.y
+          part.bottomRight = new Point(br.x, br.y)
 
           if (!printStyle) {
             paths[pageName]

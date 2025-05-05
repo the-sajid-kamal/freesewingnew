@@ -1,9 +1,9 @@
-import { base } from '@freesewing/brian'
+import { front as brianFront } from '@freesewing/brian'
 
 export const front = {
-  from: base,
+  from: brianFront,
   name: '{{ name }}.front',
-  hide: { inherited: true },
+  hide: { from: true },
   measurements: [],
   options: {},
   draft: ({ part }) => {

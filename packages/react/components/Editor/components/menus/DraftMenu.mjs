@@ -13,19 +13,19 @@ export const DraftMenu = ({ Design, pattern, state, update, i18n }) => {
     {
       t: 'Design Options',
       d: 'These options are specific to this design. You can use them to customize your pattern in a variety of ways.',
-      icon: <OptionsIcon className="tw-w-8 tw-h-8" />,
+      icon: <OptionsIcon className="tw:w-8 tw:h-8" />,
       menu: <DesignOptionsMenu {...menuProps} />,
     },
     {
       t: 'Core Settings',
       d: 'These settings are not specific to the design, but instead allow you to customize various parameters of the FreeSewing core library, which generates the design for you.',
-      icon: <SettingsIcon className="tw-w-8 tw-h-8" />,
+      icon: <SettingsIcon className="tw:w-8 tw:h-8" />,
       menu: <CoreSettingsMenu {...menuProps} />,
     },
     {
       t: 'UI Preferences',
       d: 'These preferences control the UI (User Interface) of the pattern editor',
-      icon: <UiIcon className="tw-w-8 tw-h-8" />,
+      icon: <UiIcon className="tw:w-8 tw:h-8" />,
       menu: <UiPreferencesMenu {...menuProps} />,
     },
   ]
@@ -34,11 +34,11 @@ export const DraftMenu = ({ Design, pattern, state, update, i18n }) => {
   items.push(
     ...sections.map((section) => [
       <>
-        <h5 className="tw-flex tw-flex-row tw-gap-2 tw-items-center tw-justify-between tw-w-full tw-font-bold tw-text-lg">
+        <h5 className="tw:flex tw:flex-row tw:gap-2 tw:items-center tw:justify-between tw:w-full tw:font-bold tw:text-lg">
           <span>{section.t}</span>
           {section.icon}
         </h5>
-        <p className="tw-text-left">{section.d}</p>
+        <p className="tw:text-left">{section.d}</p>
       </>,
       section.menu,
       section.name,

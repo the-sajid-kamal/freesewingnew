@@ -17,7 +17,7 @@ import { SESv2Client, SendEmailCommand } from '@aws-sdk/client-sesv2'
 // Current working directory
 const cwd = path.dirname(fileURLToPath(import.meta.url))
 
-const backend = 'https://backend3.freesewing.org/'
+const backend = 'https://backend.freesewing.eu/'
 
 const i18n = {
   en: {
@@ -68,7 +68,7 @@ const send = async (test = true) => {
     let edition
     try {
       edition = await axios.get(
-        `https://raw.githubusercontent.com/freesewing/freesewing/refs/heads/v4/sites/org/newsletter/${process.env.NL_EDITION}/index.mdx`,
+        `https://raw.githubusercontent.com/freesewing/freesewing/refs/heads/develop/sites/org/newsletter/${process.env.NL_EDITION}/index.mdx`,
         'utf8'
       )
     } catch (err) {
@@ -83,8 +83,8 @@ const send = async (test = true) => {
 
     for (let sub of subscribers[lang]) {
       if (l > 0) {
-        const unsubGet = `https://freesewing.org/newsletter/unsubscribe?x=${sub.ehash}`
-        const unsubPost = `https://backend3.freesewing.org/ocunsub/${sub.ehash}`
+        const unsubGet = `https://freesewing.eu/newsletter/unsubscribe?x=${sub.ehash}`
+        const unsubPost = `https://backend.freesewing.eu/ocunsub/${sub.ehash}`
         const body = mustache.render(template, {
           ...i18n.en,
           unsubscribe: unsubGet,
