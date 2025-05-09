@@ -16,12 +16,14 @@ import { MarkdownInput } from '@freesewing/react/components/Input'
 import { IconButton } from '@freesewing/react/components/Button'
 import { WelcomeIcons } from './shared.mjs'
 
-/*
- * Component for the account/bio page
+/**
+ * Component to manage the user's Bio
  *
- * @params {object} props - All React props
- * @params {bool} props.welcome - Set to true to use this component on the welcome page
- * @params {function} props.Link - A framework specific Link component for client-side routing
+ * @component
+ * @param {object} props - All component props
+ * @param {boolean} [props.welcome = false] - Set to true to render the welcome/onboarding flow
+ * @param {React.Component} props.Link - A framework specific Link component for client-side routing
+ * @returns {JSX.Element}
  */
 export const Bio = ({ welcome = false, Link = false }) => {
   if (!Link) Link = WebLink

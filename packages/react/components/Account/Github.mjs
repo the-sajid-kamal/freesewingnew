@@ -10,8 +10,11 @@ import { useBackend } from '@freesewing/react/hooks/useBackend'
 import { SaveIcon } from '@freesewing/react/components/Icon'
 import { StringInput } from '@freesewing/react/components/Input'
 
-/*
- * Component for the account/social/github page
+/**
+ * A component to manage the user's Github handle in their account data
+ *
+ * @component
+ * @returns {JSX.Element}
  */
 export const Github = () => {
   // Hooks

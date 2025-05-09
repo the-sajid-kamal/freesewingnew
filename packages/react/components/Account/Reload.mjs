@@ -12,8 +12,11 @@ import { ReloadIcon } from '@freesewing/react/components/Icon'
 import { Popout } from '@freesewing/react/components/Popout'
 import { IconButton } from '@freesewing/react/components/Button'
 
-/*
- * Component for the account/actions/export page
+/**
+ * A component handle a reload of the account data
+ *
+ * @component
+ * @returns {JSX.Element}
  */
 export const Reload = () => {
   // Hooks

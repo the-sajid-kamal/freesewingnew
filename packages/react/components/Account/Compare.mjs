@@ -31,11 +31,12 @@ const strings = {
   },
 }
 
-/*
- * Component for the account/preferences/compare page
+/**
+ * A component to manage the user's compare setting
  *
- * @params {object} props - All React props
- * @params {bool} props.welcome - Set to true to use this component on the welcome page
+ * @component
+ * @params {bool} [props.welcome = false] - Set to true to render the welcome/onboarding view
+ * @returns {JSX.Element}
  */
 export const Compare = ({ welcome = false }) => {
   // Hooks

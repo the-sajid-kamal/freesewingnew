@@ -1,5 +1,4 @@
 // Dependencies
-import { welcomeSteps } from './shared.mjs'
 import { horFlexClasses } from '@freesewing/utils'
 
 // Context
@@ -18,13 +17,15 @@ import { Popout } from '@freesewing/react/components/Popout'
 import { NumberCircle } from '@freesewing/react/components/Number'
 import { CopyToClipboardButton } from '@freesewing/react/components/CopyToClipboardButton'
 
-/*
- * Component for the account/security/password page
+/**
+ * A component to manage the user's MFA settings
  *
- * @params {object} props - All React props
- * @params {bool} props.welcome - Set to true to use this component on the welcome page
+ * @component
+ * @param {object} props - All component props
+ * @param {string} [props.title = false] - Whether or not to display a title
+ * @returns {JSX.Element}
  */
-export const Mfa = ({ welcome = false, title = true }) => {
+export const Mfa = ({ title = true }) => {
   // Hooks
   const backend = useBackend()
   const { account, setAccount } = useAccount()

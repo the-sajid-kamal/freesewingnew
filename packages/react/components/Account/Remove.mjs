@@ -16,8 +16,11 @@ import { Popout } from '@freesewing/react/components/Popout'
 import { IconButton } from '@freesewing/react/components/Button'
 import { ModalWrapper } from '@freesewing/react/components/Modal'
 
-/*
- * Component for the account/actions/remove page
+/**
+ * A component to handle the removal of a user's account
+ *
+ * @component
+ * @returns {JSX.Element}
  */
 export const Remove = () => {
   // Hooks

@@ -17,11 +17,12 @@ import { NumberCircle } from '@freesewing/react/components/Number'
 import { IconButton } from '@freesewing/react/components/Button'
 import { WelcomeIcons } from './shared.mjs'
 
-/*
- * Component for the account/preferences/units page
+/**
+ * A component to manage the user's units
  *
- * @params {object} props - All React props
- * @params {bool} props.welcome - Set to true to use this component on the welcome page
+ * @component
+ * @param {bool} [props.welcome = false] - Set to true to render the welcome/onboarding view
+ * @returns {JSX.Element}
  */
 export const Units = ({ welcome = false }) => {
   // Hooks

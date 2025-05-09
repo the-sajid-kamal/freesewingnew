@@ -28,11 +28,13 @@ const t = (input) => {
   return input
 }
 
-/*
- * Component for the account/patterns page
+/**
+ * A component to display and manage the list of patterns in the user's account
  *
- * @params {object} props - All React props
- * @params {function} Link - A framework specific Link component for client-side routing
+ * @component
+ * @param {object} props - All component props
+ * @param {React.Component} props.Link - A framework specific Link component for client-side routing
+ * @returns {JSX.Element}
  */
 export const Patterns = ({ Link = false }) => {
   if (!Link) Link = WebLink
@@ -101,8 +103,8 @@ export const Patterns = ({ Link = false }) => {
           className="tw:daisy-btn tw:daisy-btn-primary tw:capitalize tw:w-full tw:md:w-auto tw:hover:text-primary-content"
           href="/editor/"
         >
-          <PlusIcon />
-          Create a new pattern
+          <span className="tw:text-primary-content"><PlusIcon /></span>
+          <span className="tw:text-primary-content">Create a new pattern</span>
         </Link>
       </div>
       <TableWrapper>

@@ -16,11 +16,13 @@ import { NoIcon, OkIcon, PlusIcon, TrashIcon, UploadIcon } from '@freesewing/rea
 import { ModalWrapper } from '@freesewing/react/components/Modal'
 import { NewSet } from './Set.mjs'
 
-/*
- * The component for the an account/sets page
+/**
+ * The component for the measurements sets in the user's account.
  *
- * @param {object} props - All React props
- * @param {function} Link - An optional framework-specific Link component
+ * @component
+ * @param {object} props - All component props
+ * @param {React.Component} props.Link - A framework specific Link component for client-side routing
+ * @returns {JSX.Element}
  */
 export const Sets = ({ Link = false }) => {
   if (!Link) Link = WebLink
@@ -160,16 +162,20 @@ export const Sets = ({ Link = false }) => {
 }
 
 /**
- * React component to display a (card of a) single measurements set
+ * A component to render a card of a single measurements set.
  *
- * @param {object} props - All React props
- * @param {function} Link - An optional framework-specific Link component
- * @param {string} design - The designs for which to check required measurements
- * @param {test} href - Where the set should link to
- * @param {function} onClick - What to do when clicking on a set
- * @param {object} set - The (data of the) measurements set
- * @param {string} size - Size of the card
- * @param {bool} useA - Whether to use an A tag or not
+ * This is a pure render component, you need to pass in the data.
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {React.Component} [props.Link = false] - An optional framework-specific Link component
+ * @param {string} [props.design = false] - An optional design name to check for required measurements in this set
+ * @param {string} [props.href = false] - On optional href for the card to link to
+ * @param {function} [props.onClick = false] - On optional onClick handler method
+ * @param {object} props.set - The data of the measurements set
+ * @param {string} [props.size = 'lg'] - Size of the card, one of lg, md, or sm
+ * @param {bool} [props.useA = false] - Whether to use an A tag or a Link component for href
+ * @returns {JSX.Element}
  */
 export const MsetCard = ({
   Link = false,
@@ -183,7 +189,7 @@ export const MsetCard = ({
   if (!Link) Link = WebLink
   const sizes = {
     lg: 96,
-    md: 52,
+    md: 48,
     sm: 36,
   }
   const s = sizes[size]

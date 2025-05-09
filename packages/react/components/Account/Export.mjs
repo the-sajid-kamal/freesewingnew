@@ -12,8 +12,11 @@ import { DownloadIcon } from '@freesewing/react/components/Icon'
 import { Popout } from '@freesewing/react/components/Popout'
 import { IconButton } from '@freesewing/react/components/Button'
 
-/*
- * Component for the account/actions/export page
+/**
+ * A component to manage the user's export account data action
+ *
+ * @component
+ * @returns {JSX.Element}
  */
 export const Export = () => {
   // Hooks

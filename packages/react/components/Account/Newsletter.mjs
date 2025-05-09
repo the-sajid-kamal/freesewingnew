@@ -18,12 +18,14 @@ import { Popout } from '@freesewing/react/components/Popout'
 import { IconButton } from '@freesewing/react/components/Button'
 import { WelcomeIcons } from './shared.mjs'
 
-/*
- * Component for the account/preferences/newsletter page
+/**
+ * A component to manage the user's newsletter subscription in their account data
  *
- * @params {object} props - All React props
- * @params {bool} props.welcome - Set to true to use this component on the welcome page
- * @param {function} props.Link - An optional framework-specific Link component
+ * @component
+ * @params {object} props - All Component props
+ * @param {bool} props.welcome - Set to true to use this component on the welcome page
+ * @param {React.Component} props.Link - An optional framework-specific Link component
+ * @returns {JSX.Element}
  */
 export const Newsletter = ({ welcome = false, Link = false }) => {
   if (!Link) Link = WebLink

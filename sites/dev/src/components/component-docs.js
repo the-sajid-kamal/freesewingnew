@@ -5,7 +5,8 @@ import { FingerprintIcon, WarningIcon } from '@freesewing/react/components/Icon'
 import { IconButton } from '@freesewing/react/components/Button'
 import { MiniNote } from '@freesewing/react/components/Mini'
 
-export const ComponentDocs = ({ docs }) => {
+export const ComponentDocs = ({ docs, example }) => {
+  const Example = example ||  null
   return (
     <>
       <p>{docs.desc}</p>
@@ -18,40 +19,14 @@ export const ComponentDocs = ({ docs }) => {
           <Highlight language="js">{docs.importAs}</Highlight>
         </Tab>
         <Tab>
-          <p>
-            The <code>{docs.name}</code> component takes the following props:
-          </p>
-          <PropsTable docs={docs} />
+          {docs.params
+            ? <p> The <code>{docs.name}</code> component takes the following props:</p>
+            : <MiniNote>This component does not take any props</MiniNote>
+          }
+          {docs.params ? <PropsTable docs={docs} /> : null}
         </Tab>
         <Tab>
-          <MiniNote>
-            Note that this component will take up the full width made available to it.
-          </MiniNote>
-          <Highlight language="js">
-            {[
-              `import { FingerprintIcon, WarningIcon } from '@freesewing/react/components/Icon'`,
-              `import { IconButton } from '@freesewing/react/components/Button'`,
-              ``,
-              `<IconButton>`,
-              `  <FingerprintIcon />`,
-              `  Primary (default)`,
-              `</IconButton>`,
-              `<br />`,
-              `<IconButton color="warning">`,
-              `  <WarningIcon />`,
-              `  Warning`,
-              `</IconButton>`,
-            ].join('\n')}
-          </Highlight>
-          <IconButton>
-            <FingerprintIcon />
-            Primary (default)
-          </IconButton>
-          <br />
-          <IconButton color="warning">
-            <WarningIcon />
-            Warning
-          </IconButton>
+          <Example />
         </Tab>
         <Tab>
           <p>
@@ -86,17 +61,26 @@ const PropsTable = ({ docs }) => (
       </tr>
     </thead>
     <tbody>
-      {docs.params.map((prop, i) => (
+      {(docs.params || []).map((prop, i) => (
         <tr key={i}>
           <td>{prop.name}</td>
           <td>{prop.type.names}</td>
           <td>{prop.description}</td>
           <td>{prop.optional ? 'yes' : 'no'}</td>
           <td>
-            <code>{prop.defaultvalue}</code>
+            <code><DefaultPropValue value={prop.defaultvalue} /></code>
           </td>
         </tr>
       ))}
     </tbody>
   </table>
 )
+
+const DefaultPropValue = ({ value }) => {
+  if (value === true) return 'true'
+  if (value === false) return 'false'
+  if (value === null) return 'null'
+  if (typeof value === 'undefined') return 'undefined'
+
+  return value
+}

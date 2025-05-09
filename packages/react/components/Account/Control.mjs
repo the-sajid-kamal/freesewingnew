@@ -34,11 +34,13 @@ const strings = {
   },
 }
 
-/*
- * Component for the account/preferences/control page
+/**
+ * A component to manage the user's control/UX setting
  *
- * @params {object} props - All React props
- * @params {bool} props.welcome - Set to true to use this component on the welcome page
+ * @component
+ * @param {object} props - All component props
+ * @param {bool} [props.welcome = false] - Set to true to render the welcome/onboarding view
+ * @returns {JSX.Element}
  */
 export const Control = ({ welcome = false }) => {
   // Hooks

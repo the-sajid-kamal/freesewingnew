@@ -16,11 +16,14 @@ import { RightIcon, SaveIcon } from '@freesewing/react/components/Icon'
 import { PasswordInput } from '@freesewing/react/components/Input'
 import { Popout } from '@freesewing/react/components/Popout'
 
-/*
- * Component for the account/security/password page
+/**
+ * A component to manage the user's password
  *
- * @params {object} props - All React props
- * @params {bool} props.welcome - Set to true to use this component on the welcome page
+ * @component
+ * @param {object} props - All component props
+ * @param {bool} [props.welcome = false] - Set to true to render the welcome/onboarding view
+ * @param {React.Component} props.Link - A framework specific Link component for client-side routing
+ * @returns {JSX.Element}
  */
 export const Password = ({ welcome = false, Link = false }) => {
   if (!Link) Link = WebLink

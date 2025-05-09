@@ -48,6 +48,15 @@ import { Popout } from '@freesewing/react/components/Popout'
 import { ModalWrapper } from '@freesewing/react/components/Modal'
 import { KeyVal } from '@freesewing/react/components/KeyVal'
 
+/**
+ * A component to manage a pattern in the user's account data
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {number} props.id - The pattern ID to load
+ * @param {React.Component} props.Link - A framework specific Link component for client-side routing
+ * @returns {JSX.Element}
+ */
 export const Pattern = ({ id, Link }) => {
   if (!Link) Link = WebLink
   // Hooks
@@ -254,6 +263,21 @@ export const Pattern = ({ id, Link }) => {
   )
 }
 
+/**
+ * A component to display a card representing a pattern in the user's account data.
+ *
+ * This is a pure render component, you have to pass in the data.
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {React.Component} props.Link - A framework specific Link component for client-side routing
+ * @param {string} [props.href = false] - An optional URL the pattern card should link to
+ * @param {function} [props.onClick = false] - An optional onClick handler
+ * @param {object} props.pattern - An object holding the pattern data
+ * @param {string} [props.size = 'md'] - The size, one of lg, md, sm, or xs
+ * @param {boolean} [props.useA = false] - Whether to use an a tag of Link component when passing in a href prop
+ * @returns {JSX.Element}
+ */
 export const PatternCard = ({
   pattern,
   href = false,
@@ -265,7 +289,7 @@ export const PatternCard = ({
   if (!Link) Link = WebLink
   const sizes = {
     lg: 96,
-    md: 52,
+    md: 48,
     sm: 36,
     xs: 20,
   }
@@ -315,9 +339,9 @@ export const PatternCard = ({
 const BadgeLink = ({ label, href }) => (
   <a
     href={href}
-    className="tw:daisy-badge tw:daisy-badge-secondary tw:font-bold tw:daisy-badge-lg tw:hover:text-secondary-content tw:hover:no-underline"
+    className="tw:daisy-badge tw:daisy-badge-secondary tw:font-bold tw:daisy-badge-lg tw:hover:text-secondary-content tw:hover:cursor-pointer"
   >
-    {label}
+    <span className="tw:text-secondary-content hover:tw:decoration-0">{label}</span>
   </a>
 )
 

@@ -31,12 +31,14 @@ const strings = {
   },
 }
 
-/*
- * Component for the account/preferences/consent page
+/**
+ * A component to manage the user's consent setting
  *
- * @params {object} props - All React props
- * @params {bool} props.signUp - Set to true to use this component on the initial signUp
- * @param {function} props.Link - An optional framework-specific Link component
+ * @component
+ * @param {object} props - All component props
+ * @param {bool} [props.signUp = false] - Set to true to use this component on the initial signUp
+ * @param {function} [props.Link = false] - An optional framework-specific Link component
+ * @returns {JSX.Element}
  */
 export const Consent = ({ signUp = false, Link = false, title = false }) => {
   if (!Link) Link = WebLink

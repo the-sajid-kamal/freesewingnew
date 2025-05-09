@@ -19,7 +19,7 @@ export const Uuid = ({ uuid, href = false, label = false }) => {
     return (
       <span className="flex flex-row items-center">
         <span className="daisy-badge daisy-badge-secondary font-mono">{shortUuid(uuid)}</span>
-        <CopyToClipboard content={uuid} label="UUID" sup />
+        <CopyToClipboardButton content={uuid} label="UUID" sup />
       </span>
     )
 
@@ -28,7 +28,7 @@ export const Uuid = ({ uuid, href = false, label = false }) => {
       <Link href={href} title={uuid}>
         <span className="daisy-badge daisy-badge-secondary font-mono">{shortUuid(uuid)}</span>
       </Link>
-      <CopyToClipboard content={uuid} label="UUID" sup label />
+      <CopyToClipboardButton content={uuid} label="UUID" sup label />
     </span>
   )
 }

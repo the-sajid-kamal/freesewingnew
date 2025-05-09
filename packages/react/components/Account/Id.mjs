@@ -5,11 +5,13 @@ import { useAccount } from '@freesewing/react/hooks/useAccount'
 // Components
 import { Link as WebLink } from '@freesewing/react/components/Link'
 
-/*
- * Component to display a user ID
+/**
+ * A component to display the user's ID
  *
- * @params {object} props - All React props
- * @params {function} props.Link - A framework specific Link component for client-side routing
+ * @component
+ * @param {object} props - All component props
+ * @param {React.Component} props.Link - A framework specific Link component for client-side routing
+ * @returns {JSX.Element}
  */
 export const UserId = ({ Link = false }) => {
   if (!Link) Link = WebLink

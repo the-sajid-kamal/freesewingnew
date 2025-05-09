@@ -66,11 +66,11 @@ const t = (input) => {
 /*
  * Component to show an individual measurements set
  *
- * @param {object} props - All React props
- * @param {number} id - The ID of the measurements set to load
- * @param {bool} publicOnly - If the set should be used with the backend.getPublicSet method
- * @param {function} Link - An optional framework-specific Link component to use for client-side routing
- * @param {object} measurementHelpProvider - A function that returns a url or action to show help for a specific measurement
+ * @param {object} props - All Component props
+ * @param {number} props.id - The ID of the measurements set to load
+ * @param {bool} [props.publicOnly = false] - If the set should be used with the backend.getPublicSet method
+ * @param {function} [props.Link = false] - An optional framework-specific Link component to use for client-side routing
+ * @param {function} [measurementHelpProvider = false] - A function that returns a url or action to show help for a specific measurement
  */
 export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvider = false }) => {
   if (!Link) Link = WebLink
@@ -867,6 +867,12 @@ export const RenderedCSet = ({ mset, imperial }) => {
   )
 }
 
+/**
+ * A component to create a new measurements set.
+ *
+ * @component
+ * @returns {JSX.Element}
+ */
 export const NewSet = () => {
   // Hooks
   const backend = useBackend()

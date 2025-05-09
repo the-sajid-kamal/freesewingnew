@@ -13,12 +13,11 @@ import { FileInput } from '@freesewing/react/components/Input'
 import { Popout } from '@freesewing/react/components/Popout'
 import { Yaml } from '@freesewing/react/components/Yaml'
 
-/*
- * Component for the account/bio page
+/**
+ * A component to manage the importing of a measurements set into a user's account data
  *
- * @params {object} props - All React props
- * @params {bool} props.welcome - Set to true to use this component on the welcome page
- * @params {function} props.Link - A framework specific Link component for client-side routing
+ * @component
+ * @returns {JSX.Element}
  */
 export const ImportSet = () => {
   // Hooks

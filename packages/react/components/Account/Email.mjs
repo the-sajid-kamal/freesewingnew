@@ -17,12 +17,14 @@ import { EmailInput } from '@freesewing/react/components/Input'
 import { Popout } from '@freesewing/react/components/Popout'
 import { Spinner } from '@freesewing/react/components/Spinner'
 
-/*
- * Component for the account/bio page
+/**
+ * A component to manage the user's email address
  *
- * @params {object} props - All React props
- * @params {bool} props.welcome - Set to true to use this component on the welcome page
- * @params {function} props.Link - A framework specific Link component for client-side routing
+ * @component
+ * @param {object} props - All component props
+ * @param {bool} [props.welcome = false] - Set to true to render the welcome/onboarding view
+ * @param {React.Component} props.Link - A framework specific Link component for client-side routing
+ * @returns {JSX.Element}
  */
 export const Email = ({ welcome = false, Link = false }) => {
   if (!Link) Link = WebLink
@@ -87,6 +89,14 @@ export const Email = ({ welcome = false, Link = false }) => {
   )
 }
 
+/**
+ * A component to render the confirmation after changing the user's email
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {function} [props.onSuccess = false] - A method to call after the email is changed
+ * @returns {JSX.Element}
+ */
 export const EmailChangeConfirmation = ({ onSuccess = false }) => {
   // State
   const [error, setError] = useState(false)
@@ -150,7 +160,7 @@ export const EmailChangeConfirmation = ({ onSuccess = false }) => {
   if (!id || !check)
     return (
       <>
-        <h1>One moment pleae</h1>
+        <h1>One moment please</h1>
         <Spinner className="tw:w-8 tw:h-8 tw:m-auto tw:animate-spin" />
       </>
     )

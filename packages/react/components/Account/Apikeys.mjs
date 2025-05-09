@@ -48,11 +48,13 @@ const fields = {
   expiresAt: 'Expires',
 }
 
-/*
- * Component for the account/apikeys page
+/**
+ * A component to mange the user's API keys
  *
- * @params {object} props - All React props
- * @params {function} Link - A framework specific Link component for client-side routing
+ * @component
+ * @param {object} props - All component props
+ * @param {JSX.Element} [props.Link] - An optional framework-specific Link component
+ * @returns {JSX.Element}
  */
 export const Apikeys = ({ Link = false }) => {
   if (!Link) Link = WebLink

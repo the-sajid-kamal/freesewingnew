@@ -19,11 +19,52 @@ const labels = {
   website: 'Website',
 }
 
+/**
+ * A component to manage the user's Instagram handle in their account data
+ *
+ * @component
+ * @returns {JSX.Element}
+ */
 export const Instagram = () => <Platform platform="instagram" />
+
+/**
+ * A component to manage the user's Mastodon handle in their account data
+ *
+ * @component
+ * @returns {JSX.Element}
+ */
 export const Mastodon = () => <Platform platform="mastodon" />
+
+/**
+ * A component to manage the user's Reddit handle in their account data
+ *
+ * @component
+ * @returns {JSX.Element}
+ */
 export const Reddit = () => <Platform platform="reddit" />
+
+/**
+ * A component to manage the user's Twitch handle in their account data
+ *
+ * @component
+ * @returns {JSX.Element}
+ */
 export const Twitch = () => <Platform platform="twitch" />
+
+/**
+ * A component to manage the user's Tiktok handle in their account data
+ *
+ * @component
+ * @returns {JSX.Element}
+ */
 export const Tiktok = () => <Platform platform="tiktok" />
+
+/**
+ * A component to manage the user's website URL in their account data
+ *
+ * @component
+ * @returns {JSX.Element}
+ */
 export const Website = () => <Platform platform="website" />
 
 /*

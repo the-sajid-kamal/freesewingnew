@@ -17,8 +17,13 @@ import { Popout } from '@freesewing/react/components/Popout'
 import { IconButton } from '@freesewing/react/components/Button'
 import { ModalWrapper } from '@freesewing/react/components/Modal'
 
-/*
- * Component for the account/actions/restrict page
+/**
+ * A component to manage the user's options to restrict processing of their data
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {React.Component} props.Link - A framework specific Link component for client-side routing
+ * @returns {JSX.Element}
  */
 export const Restrict = ({ Link = false }) => {
   if (!Link) Link = WebLink
@@ -46,7 +51,7 @@ export const Restrict = ({ Link = false }) => {
       <>
         <p>This button is red for a reason.</p>
         <IconButton onClick={restrictAccount} color="error">
-          <Nocon />
+          <NoIcon />
           Remove your FreeSewing account
         </IconButton>
       </>
