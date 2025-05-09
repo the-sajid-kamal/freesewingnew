@@ -6,9 +6,7 @@ import { MiniNote } from '@freesewing/react/components/Mini'
 
 export const IconButtonExample = () => (
   <>
-    <MiniNote>
-      Note that this component will take up the full width made available to it.
-    </MiniNote>
+    <MiniNote>Note that this component will take up the full width made available to it.</MiniNote>
     <Highlight language="js">
       {[
         `import { FingerprintIcon, WarningIcon } from '@freesewing/react/components/Icon'`,
@@ -36,4 +34,3 @@ export const IconButtonExample = () => (
     </IconButton>
   </>
 )
-

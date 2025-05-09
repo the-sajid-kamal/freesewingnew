@@ -18,7 +18,13 @@ import { Markdown } from '@freesewing/react/components/Markdown'
 import { ModalWrapper } from '@freesewing/react/components/Modal'
 import { AccountStatus, UserRole } from '@freesewing/react/components/Account'
 
-export const SubscriberAdministration = ({ page }) => {
+/**
+ * A component to manage FreeSewing newsletter subscribers (requires admin role)
+ *
+ * @component
+ * @returns {JSX.Element}
+ */
+export const SubscriberAdministration = () => {
   const [subscribers, setSubscribers] = useState()
   const [q, setQ] = useState()
   const [hits, setHits] = useState([])
@@ -106,6 +112,14 @@ export const SubscriberAdministration = ({ page }) => {
   )
 }
 
+/**
+ * A component to manage FreeSewing users (requires the admin role)
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {React.Component} props.Link - A framework specific Link component for client-side routing
+ * @returns {JSX.Element}
+ */
 export const UserAdministration = ({ Link = false }) => {
   const backend = useBackend()
 
@@ -154,7 +168,7 @@ export const UserAdministration = ({ Link = false }) => {
   )
 }
 
-export const Hits = ({ results, Link = false }) => {
+const Hits = ({ results, Link = false }) => {
   if (!Link) Link = WebLink
 
   return (
@@ -179,7 +193,7 @@ export const Hits = ({ results, Link = false }) => {
   )
 }
 
-export const User = ({ user, Link }) => {
+const User = ({ user, Link }) => {
   const { setModal } = useContext(ModalContext)
   const { setLoadingStatus } = useContext(LoadingStatusContext)
   const backend = useBackend()
@@ -274,7 +288,7 @@ export const User = ({ user, Link }) => {
   )
 }
 
-export const ImpersonateButton = ({ userId }) => {
+const ImpersonateButton = ({ userId }) => {
   const backend = useBackend()
   const { setLoadingStatus } = useContext(LoadingStatusContext)
   const { impersonate } = useAccount()
@@ -300,14 +314,14 @@ export const ImpersonateButton = ({ userId }) => {
   )
 }
 
-export const Row = ({ title, val }) => (
+const Row = ({ title, val }) => (
   <tr className="py-1">
     <td className="text-sm px-2 text-right font-bold">{title}</td>
     <td className="text-sm">{val}</td>
   </tr>
 )
 
-export const ManageUser = ({ userId }) => {
+const ManageUser = ({ userId }) => {
   // Hooks
   const backend = useBackend()
   const { setLoadingStatus } = useContext(LoadingStatusContext)

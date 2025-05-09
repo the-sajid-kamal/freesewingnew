@@ -6,7 +6,8 @@ import { IconButton } from '@freesewing/react/components/Button'
 import { MiniNote } from '@freesewing/react/components/Mini'
 
 export const ComponentDocs = ({ docs, example }) => {
-  const Example = example ||  null
+  if (!docs) return <MiniNote>No docs passed in</MiniNote>
+  const Example = example || null
   return (
     <>
       <p>{docs.desc}</p>
@@ -19,10 +20,14 @@ export const ComponentDocs = ({ docs, example }) => {
           <Highlight language="js">{docs.importAs}</Highlight>
         </Tab>
         <Tab>
-          {docs.params
-            ? <p> The <code>{docs.name}</code> component takes the following props:</p>
-            : <MiniNote>This component does not take any props</MiniNote>
-          }
+          {docs.params ? (
+            <p>
+              {' '}
+              The <code>{docs.name}</code> component takes the following props:
+            </p>
+          ) : (
+            <MiniNote>This component does not take any props</MiniNote>
+          )}
           {docs.params ? <PropsTable docs={docs} /> : null}
         </Tab>
         <Tab>
@@ -68,7 +73,9 @@ const PropsTable = ({ docs }) => (
           <td>{prop.description}</td>
           <td>{prop.optional ? 'yes' : 'no'}</td>
           <td>
-            <code><DefaultPropValue value={prop.defaultvalue} /></code>
+            <code>
+              <DefaultPropValue value={prop.defaultvalue} />
+            </code>
           </td>
         </tr>
       ))}
