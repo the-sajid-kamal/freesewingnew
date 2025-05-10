@@ -7,3 +7,4 @@ jsdoc -c jsdoc.json components/Breadcrumbs/* > ../../sites/dev/prebuild/jsdoc/re
 jsdoc -c jsdoc.json components/Button/* > ../../sites/dev/prebuild/jsdoc/react/components/button.json
 jsdoc -c jsdoc.json components/Collection/* > ../../sites/dev/prebuild/jsdoc/react/components/collection.json
 jsdoc -c jsdoc.json components/Control/* > ../../sites/dev/prebuild/jsdoc/react/components/control.json
+jsdoc -c jsdoc.json components/CopyToClipboardButton/* > ../../sites/dev/prebuild/jsdoc/react/components/copytoclipboardbutton.json
