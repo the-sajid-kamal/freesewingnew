@@ -19,16 +19,18 @@ import { useAccount } from '../../hooks/useAccount/index.mjs'
  * FreeSewing's pattern editor
  *
  * Editor is the high-level FreeSewing component
- * that provides the entire pattern editing environment
+ * that provides the entire pattern editing environment.
  * This is a high-level wrapper that figures out what view to load initially,
- * and handles state for the pattern, including the view
+ * and handles state for the pattern, including the view.
  *
+ * @component
  * @param {object} props - All React props
- * @param {object} props.config - A configuration object for the editor
- * @param {object} props.design - A design name to force the editor to use this design
- * @param {object} props.preload - Any state to preload
- * @param {function} props.setTitle - A way to set the page title (optional)
- * @param {object} props.localDesigns - A way to add local designs to the editor (optional)
+ * @param {object} [props.config = {}] - A configuration object for the editor
+ * @param {object} [props.design = false] - A design name to preset the editor to use this design
+ * @param {object} [props.preload = {}] - Any state to preload
+ * @param {function} [props.setTitle = false] - A way to set the page title
+ * @param {object} [props.localDesigns = {}] - A way to add local designs to the editor
+ * @param {function} [props.measurementsHelpProvider = false] - A function that should return to a URL for measurements help
  */
 export const Editor = ({
   config = {},
@@ -161,7 +163,7 @@ export const Editor = ({
   )
 }
 
-/**
+/*
  * Helper method to figure out what view to load
  * based on the props passed in, and destructure
  * the props we need for it.

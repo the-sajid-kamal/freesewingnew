@@ -9,7 +9,6 @@ import { EditIcon, GroupIcon, OptionsIcon, ResetIcon } from '@freesewing/react/c
 import { FormControl } from '@freesewing/react/components/Input'
 import { MiniTip } from '@freesewing/react/components/Mini'
 
-/** @type {String} class to apply to buttons on open menu items */
 const iconButtonClass = 'tw:daisy-btn tw:daisy-btn-xs tw:daisy-btn-ghost tw:px-0 tw:text-accent'
 
 /**
