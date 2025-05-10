@@ -9,3 +9,4 @@ jsdoc -c jsdoc.json components/Collection/* > ../../sites/dev/prebuild/jsdoc/rea
 jsdoc -c jsdoc.json components/Control/* > ../../sites/dev/prebuild/jsdoc/react/components/control.json
 jsdoc -c jsdoc.json components/CuratedSet/* > ../../sites/dev/prebuild/jsdoc/react/components/curatedset.json
 jsdoc -c jsdoc.json components/Docusaurus/* > ../../sites/dev/prebuild/jsdoc/react/components/docusaurus.json
+jsdoc -c jsdoc.json components/Echart/* > ../../sites/dev/prebuild/jsdoc/react/components/echart.json
