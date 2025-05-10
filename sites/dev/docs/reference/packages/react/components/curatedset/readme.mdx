@@ -2,6 +2,23 @@
 title: CuratedSet
 ---
 
-:::note
-This page is yet to be created
-:::
+import { DocusaurusDoc } from '@freesewing/react/components/Docusaurus'
+import { ComponentDocs } from '@site/src/components/component-docs.js'
+import { jsdocCuratedSet, jsdocCuratedSetLineup } from '@site/prebuild/jsdoc/components.curatedset.mjs'
+import { CuratedSetLineupExample, CuratedSetExample } from './_examples.js'
+
+<DocusaurusDoc>
+
+The **CuratedSet** component family provides the following components:
+
+- [CuratedSet](#curatedset)
+- [CuratedSetLineup](#curatedsetlineup)
+
+## CuratedSet
+<ComponentDocs docs={jsdocCuratedSet} example={CuratedSetExample} />
+
+## CuratedSetLineup
+<ComponentDocs docs={jsdocCuratedSetLineup} example={CuratedSetLineupExample} />
+
+
+</DocusaurusDoc>
