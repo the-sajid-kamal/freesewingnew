@@ -505,7 +505,7 @@ export const DesignInfo = ({ Link = false, design = false, noDocsLink = false })
                 className="tw:daisy-badge tw:daisy-badge-primary tw:font-medium tw:hover:shadow tw:hover:cursor-pointer"
                 href={`/designs/#filter={"example"%3Atrue%2C"tag"%3A["${tag}"]}`}
               >
-                {tag}
+                <span className="tw:text-primary-content">{tag}</span>
               </Link>
             ))}
           </div>
@@ -517,7 +517,7 @@ export const DesignInfo = ({ Link = false, design = false, noDocsLink = false })
                 className="tw:daisy-badge tw:daisy-badge-accent tw:font-medium tw:hover:shadow tw:hover:cursor-pointer"
                 href={`/designs/#filter={"example"%3Atrue%2C"tag"%3A["${tech}"]}`}
               >
-                {tech}
+                <span className="tw:text-accent-content">{tech}</span>
               </Link>
             ))}
           </div>

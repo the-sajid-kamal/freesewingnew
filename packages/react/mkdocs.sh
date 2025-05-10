@@ -6,3 +6,4 @@ jsdoc -c jsdoc.json components/Admin/* > ../../sites/dev/prebuild/jsdoc/react/co
 jsdoc -c jsdoc.json components/Breadcrumbs/* > ../../sites/dev/prebuild/jsdoc/react/components/breadcrumbs.json
 jsdoc -c jsdoc.json components/Button/* > ../../sites/dev/prebuild/jsdoc/react/components/button.json
 jsdoc -c jsdoc.json components/Collection/* > ../../sites/dev/prebuild/jsdoc/react/components/collection.json
+jsdoc -c jsdoc.json components/Control/* > ../../sites/dev/prebuild/jsdoc/react/components/control.json
