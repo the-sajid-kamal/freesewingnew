@@ -11,3 +11,4 @@ jsdoc -c jsdoc.json components/CuratedSet/* > ../../sites/dev/prebuild/jsdoc/rea
 jsdoc -c jsdoc.json components/Docusaurus/* > ../../sites/dev/prebuild/jsdoc/react/components/docusaurus.json
 jsdoc -c jsdoc.json components/Echart/* > ../../sites/dev/prebuild/jsdoc/react/components/echart.json
 jsdoc -c jsdoc.json components/Editor/* > ../../sites/dev/prebuild/jsdoc/react/components/editor.json
+jsdoc -c jsdoc.json components/Heading/* > ../../sites/dev/prebuild/jsdoc/react/components/heading.json
