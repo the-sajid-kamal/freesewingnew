@@ -12,6 +12,18 @@ import { Spinner } from '@freesewing/react/components/Spinner'
 import { Markdown } from '@freesewing/react/components/Markdown'
 import { KeyVal } from '@freesewing/react/components/KeyVal'
 
+/**
+ * A component to render a lineup of curated measurements sets.
+ *
+ * You need to provide either a clickHandler or a method to resolve the URL to link to as the href prop.
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {React.Component} props.Link - A framework specific Link component for client-side routing
+ * @param {function} [props.clickHandler = false] - An optional function to call when a set is clicked
+ * @param {function} [props.href = false] - An optional function that should return the URL to be used for a given set
+ * @returns {JSX.Element}
+ */
 export const CuratedSetLineup = ({ href = false, clickHandler = false, Link = false }) => {
   if (!Link) Link = WebLink
   // Hooks
@@ -86,6 +98,15 @@ export const CuratedSetLineup = ({ href = false, clickHandler = false, Link = fa
   )
 }
 
+/**
+ * A component to render a curated measurements set
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {React.Component} props.Link - A framework specific Link component for client-side routing
+ * @param {number} props.id - The ID of the curated set
+ * @returns {JSX.Element}
+ */
 export const CuratedSet = ({ Link = false, id = false }) => {
   if (!Link) Link = WebLink
   // Hooks

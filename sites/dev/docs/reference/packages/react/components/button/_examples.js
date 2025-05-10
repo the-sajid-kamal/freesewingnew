@@ -1,36 +1,25 @@
 import React from 'react'
 import { Highlight } from '@freesewing/react/components/Highlight'
 import { FingerprintIcon, WarningIcon } from '@freesewing/react/components/Icon'
-import { IconButton } from '@freesewing/react/components/Button'
+import { CopyToClipboardButton, IconButton } from '@freesewing/react/components/Button'
 import { MiniNote } from '@freesewing/react/components/Mini'
 
-export const IconButtonExample = () => (
+export const CopyToClipboardButtonExample = () => (
   <>
-    <MiniNote>Note that this component will take up the full width made available to it.</MiniNote>
-    <Highlight language="js">
-      {[
-        `import { FingerprintIcon, WarningIcon } from '@freesewing/react/components/Icon'`,
-        `import { IconButton } from '@freesewing/react/components/Button'`,
-        ``,
-        `<IconButton>`,
-        `  <FingerprintIcon />`,
-        `  Primary (default)`,
-        `</IconButton>`,
-        `<br />`,
-        `<IconButton color="warning">`,
-        `  <WarningIcon />`,
-        `  Warning`,
-        `</IconButton>`,
-      ].join('\n')}
-    </Highlight>
+    <CopyToClipboardButton content="I am the regular example" label="Regular Example">Regular Example</CopyToClipboardButton>
+    <CopyToClipboardButton content="I am the sup example" label="Sup Example" sup>Sup Example</CopyToClipboardButton>
+  </>
+)
+
+export const IconButtonExample = () => (
+  <div className="tw:grid tw:gap-2 tw:grid-cols-2">
     <IconButton>
       <FingerprintIcon />
       Primary (default)
     </IconButton>
-    <br />
     <IconButton color="warning">
       <WarningIcon />
       Warning
     </IconButton>
-  </>
+  </div>
 )

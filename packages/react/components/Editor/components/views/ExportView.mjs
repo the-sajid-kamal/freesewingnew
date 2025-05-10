@@ -8,7 +8,7 @@ import React, { useState } from 'react'
 // Components
 import { H1, H2, H3, H5 } from '@freesewing/react/components/Heading'
 import { HeaderMenu } from '../HeaderMenu.mjs'
-import { CopyToClipboardButton } from '@freesewing/react/components/CopyToClipboardButton'
+import { CopyToClipboardButton } from '@freesewing/react/components/Button'
 import { Highlight } from '@freesewing/react/components/Highlight'
 import { EditIcon, CodeIcon, TipIcon, PrintIcon } from '@freesewing/react/components/Icon'
 

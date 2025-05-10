@@ -1,5 +1,5 @@
 import React from 'react'
-import { CopyToClipboardButton } from '@freesewing/react/components/CopyToClipboardButton'
+import { CopyToClipboardButton } from '@freesewing/react/components/Button'
 
 const defaultTitles = {
   js: 'Javascript',

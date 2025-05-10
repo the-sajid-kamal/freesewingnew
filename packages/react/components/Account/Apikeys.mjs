@@ -29,7 +29,7 @@ import { ModalWrapper } from '@freesewing/react/components/Modal'
 import { NumberCircle } from '@freesewing/react/components/Number'
 import { StringInput, FormControl, ListInput } from '@freesewing/react/components/Input'
 import { DisplayRow } from './shared.mjs'
-import { CopyToClipboardButton } from '@freesewing/react/components/CopyToClipboardButton'
+import { CopyToClipboardButton } from '@freesewing/react/components/Button'
 import { TimeAgo, TimeToGo } from '@freesewing/react/components/Time'
 import { KeyVal } from '@freesewing/react/components/KeyVal'
 

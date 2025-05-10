@@ -15,7 +15,7 @@ import { NoIcon, LockIcon } from '@freesewing/react/components/Icon'
 import { PasswordInput } from '@freesewing/react/components/Input'
 import { Popout } from '@freesewing/react/components/Popout'
 import { NumberCircle } from '@freesewing/react/components/Number'
-import { CopyToClipboardButton } from '@freesewing/react/components/CopyToClipboardButton'
+import { CopyToClipboardButton } from '@freesewing/react/components/Button'
 
 /**
  * A component to manage the user's MFA settings
