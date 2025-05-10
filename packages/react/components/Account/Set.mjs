@@ -63,9 +63,10 @@ const t = (input) => {
   return input
 }
 
-/*
+/**
  * Component to show an individual measurements set
  *
+ * @component
  * @param {object} props - All Component props
  * @param {number} props.id - The ID of the measurements set to load
  * @param {bool} [props.publicOnly = false] - If the set should be used with the backend.getPublicSet method
@@ -384,7 +385,7 @@ export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvi
       return (
         <div className="tw:w-full">
           {heading}
-          <RenderedCSet {...{ mset, setLoadingStatus, backend, imperial }} />
+          <RenderedCset {...{ mset, setLoadingStatus, backend, imperial }} />
         </div>
       )
 
@@ -619,28 +620,30 @@ export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvi
   )
 }
 
-/**
+/*
  * A (helper) component to display a measurements value
  *
+ * @component
  * @param {object} props - All React props
  * @param {string} val - The value
  * @param {string} m - The measurement name
  * @param {bool} imperial - True for imperial measurements, or metric by default
  */
-export const MeasurementValue = ({ val, m, imperial = false }) =>
+const MeasurementValue = ({ val, m, imperial = false }) =>
   isDegreeMeasurement(m) ? (
     <span>{val}°</span>
   ) : (
     <span dangerouslySetInnerHTML={{ __html: formatMm(val, imperial) }}></span>
   )
 
-/**
+/*
  * React component to suggest a measurements set for curation
  *
+ * @component
  * @param {object} props - All React props
  * @param {string} mset - The measurements set
  */
-export const SuggestCset = ({ mset, Link }) => {
+const SuggestCset = ({ mset, Link }) => {
   // State
   const [height, setHeight] = useState('')
   const [img, setImg] = useState('')
@@ -760,13 +763,14 @@ export const SuggestCset = ({ mset, Link }) => {
   )
 }
 
-/**
+/*
  * React component to render a preview of a measurement set using the bonny pattern
  *
+ * @component
  * @param {object} props - All React props
  * @param {string} mset - The measurements set
  */
-export const RenderedCSet = ({ mset, imperial }) => {
+const RenderedCset = ({ mset, imperial }) => {
   const [previewVisible, setPreviewVisible] = useState(false)
 
   const missing = []

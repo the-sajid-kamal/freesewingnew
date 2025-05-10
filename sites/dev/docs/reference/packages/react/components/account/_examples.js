@@ -29,7 +29,7 @@ import {
   Reload as ReloadExample,
   Remove as RemoveExample,
   Restrict as RestrictExample,
-  Set as SetExample,
+  Set,
   Sets as SetsExample,
   Tiktok as TiktokExample,
   Twitch as TwitchExample,
@@ -89,6 +89,7 @@ const MsetCardExample = () => <MsetCard set={{ name: 'Example Set' }} />
 
 const PatternExample = () => <Pattern id={1} />
 const PatternCardExample = () => <PatternCard pattern={{ name: 'Example pattern' }} size="sm" />
+const SetExample = () => <Set id={1} />
 
 export {
   AccountStatusExample,
