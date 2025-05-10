@@ -85,6 +85,7 @@
     "./hooks/useControl": "./hooks/useControl/index.mjs",
     "./hooks/useDesign": "./hooks/useDesign/index.mjs",
     "./hooks/useDesignTranslation": "./hooks/useDesignTranslation/index.mjs",
+    "./hooks/useFilter": "./hooks/useFilter/index.mjs",
     "./hooks/useSelection": "./hooks/useSelection/index.mjs",
     "./hooks/useStateObject": "./hooks/useStateObject/index.mjs",
     "./lib/RestClient": "./lib/RestClient/index.mjs",

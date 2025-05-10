@@ -1,5 +1,4 @@
 // Dependencies
-import { atomWithHash } from 'jotai-location'
 import {
   about,
   collection,
@@ -21,7 +20,7 @@ import { ModalContext } from '@freesewing/react/context/Modal'
 
 // Hooks
 import React, { useState, useContext, Fragment } from 'react'
-import { useAtom } from 'jotai'
+import { useFilter } from '@freesewing/react/hooks/useFilter'
 
 // Components
 import { Link as WebLink, AnchorLink } from '@freesewing/react/components/Link'
@@ -44,19 +43,16 @@ import { ModalWrapper } from '@freesewing/react/components/Modal'
 import { KeyVal } from '@freesewing/react/components/KeyVal'
 import { MissingLinedrawing } from '../LineDrawing/missing.mjs'
 
-const filterAtom = atomWithHash('filter', { example: true })
-
-export const useFilter = () => {
-  return useAtom(filterAtom)
-}
-
 /**
- * React component to show the FreeSewing collection and pick a design
+ * A component to show the FreeSewing collection and pick a design.
  *
- * @param {object} props - All React props
- * @param {function} Link - An optional framework specific Link component for client-side routing
- * @param {bool} editor - Set this to when loaded in the editor (this will make the display more dense)
- * @param {bool} onClick - Set this to trigger an onClick event, rather than using links
+ * @component
+ * @param {object} props - All component props
+ * @param {React.Component} [props.Link = false] - A framework specific Link component for client-side routing
+ * @param {boolean} [props.editor = false] - Set this to true when rendering inside the FreeSewing editor
+ * @param {string} [props.linkTo = 'about'] - This controls where to link the design to. One of 'new', 'docs', or 'about'.
+ * @param {functino} [props.onClick = false] - You can pass in an onClick handler rather than using links
+ * @returns {JSX.Element}
  */
 export const Collection = ({ Link = false, linkTo = 'about', editor = false, onClick = false }) => {
   if (!Link) Link = WebLink
@@ -184,14 +180,14 @@ export const Collection = ({ Link = false, linkTo = 'about', editor = false, onC
             <div className="tw:flex tw:flex-row tw:gap-4 tw:items-center tw:justify-center tw:flex-wrap tw:my-2">
               <button
                 className="tw:daisy-btn tw:daisy-btn-secondary tw:daisy-btn-outline"
-                onClick={() => updateFilter('example', !filter.example)}
+                onClick={() => updateFilter('ld', !filter.ld)}
               >
-                {filter.example ? <CisFemaleIcon /> : <ShowcaseIcon />}
-                {filter.example ? 'Show Line Drawings' : 'Show Examples'}
+                {filter.ld ? <CisFemaleIcon /> : <ShowcaseIcon />}
+                {filter.ld ? 'Show Examples' : 'Show Line Drawings'}
               </button>
               <button
                 className="tw:daisy-btn tw:daisy-btn-secondary tw:daisy-btn-outline"
-                onClick={() => setFilter({ example: 1 })}
+                onClick={() => setFilter({ ld: 1 })}
               >
                 <ResetIcon />
                 Clear Filter
@@ -209,10 +205,10 @@ export const Collection = ({ Link = false, linkTo = 'about', editor = false, onC
           <div className="tw:flex tw:flex-row tw:gap-4 tw:items-center tw:justify-center tw:flex-wrap tw:my-2">
             <button
               className="tw:daisy-btn tw:daisy-btn-secondary tw:daisy-btn-outline"
-              onClick={() => updateFilter('example', !filter.example)}
+              onClick={() => updateFilter('ld', !filter.ld)}
             >
-              {filter.example ? <CisFemaleIcon /> : <ShowcaseIcon />}
-              {filter.example ? 'Show Line Drawings' : 'Show Examples'}
+              {filter.ld ? <ShowcaseIcon /> : <CisFemaleIcon />}
+              {filter.ld ? 'Show Examples' : 'Show Line Drawings'}
             </button>
             <button
               className="tw:daisy-btn tw:daisy-btn-secondary tw:daisy-btn-outline"
@@ -235,7 +231,7 @@ export const Collection = ({ Link = false, linkTo = 'about', editor = false, onC
               key={d}
               linkTo={linkTo}
               onClick={onClick}
-              lineDrawing={filter.example ? false : true}
+              lineDrawing={filter.ld ? true : false}
             />
           ))}
       </div>
@@ -363,11 +359,14 @@ const noExample =
   'https://images.pexels.com/photos/5626595/pexels-photo-5626595.jpeg?cs=srgb&fm=jpg&w=640&h=427'
 
 /**
- * React component to show info about a FreeSewing design
+ * A component to show info about a FreeSewing design
  *
- * @param {object} props - All React props
- * @param {string} design - The name/id of the design
- * @param {function} Link - An optional framework specific Link component for client-side routing
+ * @component
+ * @param {object} props - All component props
+ * @param {React.Component} props.Link - A framework specific Link component for client-side routing
+ * @param {string} props.design - The name/id of the design
+ * @param {boolean} props.noDocsLink - Set this to true to not render a link to the documentation
+ * @returns {JSX.Element}
  */
 export const DesignInfo = ({ Link = false, design = false, noDocsLink = false }) => {
   if (!Link) Link = WebLink

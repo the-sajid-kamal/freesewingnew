@@ -5,3 +5,4 @@ jsdoc -c jsdoc.json components/Account/* > ../../sites/dev/prebuild/jsdoc/react/
 jsdoc -c jsdoc.json components/Admin/* > ../../sites/dev/prebuild/jsdoc/react/components/admin.json
 jsdoc -c jsdoc.json components/Breadcrumbs/* > ../../sites/dev/prebuild/jsdoc/react/components/breadcrumbs.json
 jsdoc -c jsdoc.json components/Button/* > ../../sites/dev/prebuild/jsdoc/react/components/button.json
+jsdoc -c jsdoc.json components/Collection/* > ../../sites/dev/prebuild/jsdoc/react/components/collection.json
