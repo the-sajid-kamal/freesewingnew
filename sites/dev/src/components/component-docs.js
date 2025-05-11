@@ -41,7 +41,7 @@ export const ComponentDocs = ({ docs, example }) => {
             >
               on{' '}
               <b>
-                line
+                line{' '}
                 {docs.line}
               </b>{' '}
               in <b>{docs.file}</b>
