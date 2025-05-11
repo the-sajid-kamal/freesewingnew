@@ -6,7 +6,7 @@ import React, { useState, useMemo } from 'react'
 // Components
 import { SubAccordion } from '../Accordion.mjs'
 import { EditIcon, GroupIcon, OptionsIcon, ResetIcon } from '@freesewing/react/components/Icon'
-import { FormControl } from '@freesewing/react/components/Input'
+import { Fieldset } from '@freesewing/react/components/Input'
 import { MiniTip } from '@freesewing/react/components/Mini'
 
 const iconButtonClass = 'tw:daisy-btn tw:daisy-btn-xs tw:daisy-btn-ghost tw:px-0 tw:text-accent'
@@ -105,7 +105,7 @@ export const MenuItem = ({
 
   return (
     <>
-      <FormControl
+      <Fieldset
         label={false}
         id={config.name}
         labelBR={<div className="tw:flex tw:flex-row tw:items-center tw:gap-2">{buttons}</div>}
@@ -118,7 +118,7 @@ export const MenuItem = ({
         }
       >
         <Input {...drillProps} />
-      </FormControl>
+      </Fieldset>
       {config.about ? <MiniTip>{config.about}</MiniTip> : null}
     </>
   )

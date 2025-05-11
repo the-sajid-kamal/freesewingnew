@@ -14,3 +14,4 @@ jsdoc -c jsdoc.json components/Editor/* > ../../sites/dev/prebuild/jsdoc/react/c
 jsdoc -c jsdoc.json components/Heading/* > ../../sites/dev/prebuild/jsdoc/react/components/heading.json
 jsdoc -c jsdoc.json components/Highlight/* > ../../sites/dev/prebuild/jsdoc/react/components/highlight.json
 jsdoc -c jsdoc.json components/Icon/* > ../../sites/dev/prebuild/jsdoc/react/components/icon.json
+jsdoc -c jsdoc.json components/Input/* > ../../sites/dev/prebuild/jsdoc/react/components/input.json

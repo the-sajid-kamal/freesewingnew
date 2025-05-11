@@ -27,7 +27,7 @@ import { Uuid } from '@freesewing/react/components/Uuid'
 import { Popout } from '@freesewing/react/components/Popout'
 import { ModalWrapper } from '@freesewing/react/components/Modal'
 import { NumberCircle } from '@freesewing/react/components/Number'
-import { StringInput, FormControl, ListInput } from '@freesewing/react/components/Input'
+import { StringInput, Fieldset, ListInput } from '@freesewing/react/components/Input'
 import { DisplayRow } from './shared.mjs'
 import { CopyToClipboardButton } from '@freesewing/react/components/Button'
 import { TimeAgo, TimeToGo } from '@freesewing/react/components/Time'
@@ -333,7 +333,7 @@ const ExpiryPicker = ({ expires, setExpires }) => {
 
   return (
     <div className="tw:flex tw:flex-row tw:gap-2 tw:items-center">
-      <FormControl
+      <Fieldset
         label="Key Expiry"
         labelBL={shortDate(expires)}
         labelBR={<TimeToGo iso={expires} />}
@@ -346,7 +346,7 @@ const ExpiryPicker = ({ expires, setExpires }) => {
           className="tw:daisy-range tw:daisy-range-secondary tw:w-full"
           onChange={update}
         />
-      </FormControl>
+      </Fieldset>
     </div>
   )
 }
