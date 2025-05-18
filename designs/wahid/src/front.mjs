@@ -343,6 +343,7 @@ function wahidFront({
    */
   // Cutlist
   store.cutlist.setCut({ cut: 2, from: 'fabric' })
+  store.cutlist.addCut({ cut: 2, from: 'interfacing' })
 
   // Buttons
   points.button1 = new Point(0, points.closureTop.y + 10)
