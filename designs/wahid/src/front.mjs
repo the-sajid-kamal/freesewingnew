@@ -30,6 +30,7 @@ import {
   s3Armhole,
   shoulderSlopeReduction,
   backNeckCutout,
+  legacyWaistHips,
 } from './options.mjs'
 
 function wahidFront({
@@ -51,6 +52,14 @@ function wahidFront({
   // Cleanup from Brian
   for (let i of Object.keys(paths)) delete paths[i]
   delete snippets.armholePitchNotch
+
+  if (!options.legacyWaistHips) {
+    // Use actual measurements to set waist and hips points
+    points.waist = new Point((measurements.waist * (1 + options.waistEase)) / 4, points.cfWaist.y)
+    points.hips = new Point((measurements.hips * (1 + options.hipsEase)) / 4, points.cfHips.y)
+    points.hem = new Point(points.hips.x, points.cfHem.y)
+  }
+
   // Neck cutout
   points.closureTop = new Point(
     measurements.chest * options.frontOverlap * -1,
@@ -176,15 +185,31 @@ function wahidFront({
     points.dartHipLeft,
     points.pocketTopMid.y + pwvh
   )
-  points.pocketTopLeft = points.pocketTopMidLeft.shift(180 + options.pocketAngle, pw / 2)
-  points.pocketBottomLeft = points.pocketTopLeft.shift(options.pocketAngle - 90, pwh)
+  // The pocket can start out offset from the horizontal/vertical.
+  const startingAngleOffset = points.pocketBottomMidLeft.angle(points.pocketTopMidLeft) - 90
+  points.pocketTopLeft = points.pocketTopMidLeft.shift(
+    180 + options.pocketAngle + startingAngleOffset,
+    pw / 2
+  )
+  points.pocketBottomLeft = points.pocketTopLeft.shift(
+    options.pocketAngle - 90 + startingAngleOffset,
+    pwh
+  )
   points.pocketTopMidRight = points.pocketTopMidLeft.flipX(points.pocketTopMid)
   points.pocketBottomMidRight = points.pocketBottomMidLeft.flipX(points.pocketTopMid)
-  points.pocketTopRight = points.pocketTopMidRight.shift(options.pocketAngle, pw / 2)
-  points.pocketBottomRight = points.pocketTopRight.shift(options.pocketAngle - 90, pwh)
+  points.pocketTopRight = points.pocketTopMidRight.shift(
+    options.pocketAngle - startingAngleOffset,
+    pw / 2
+  )
+  points.pocketBottomRight = points.pocketTopRight.shift(
+    options.pocketAngle - 90 - startingAngleOffset,
+    pwh
+  )
   // Store pocket bag length
   store.set('pocketBagLength', points.pocketTopMid.dy(points.cfHem) * 0.75)
   if (options.frontScyeDart) {
+    // Save original armhole width so we can restore it later
+    const original_chest_width = points.cfArmhole.dist(points.armhole)
     // Front scye dart
     points._dartWidth = points.dartTop.shiftFractionTowards(
       points.armholeHollow.rotate(options.frontScyeDart, points.dartTop),
@@ -229,6 +254,10 @@ function wahidFront({
     for (let p of toRotate) {
       if (typeof points[p] !== 'undefined')
         points[p] = points[p].rotate(options.frontScyeDart, points.dartTop)
+    }
+    if (!options.legacyWaistHips) {
+      // Set armhole back to original width
+      points.armhole = points.cfArmhole.shiftTowards(points.armhole, original_chest_width)
     }
     points.armholeHollowCp1 = points.armholeHollowCp2.rotate(180, points.armholeHollow)
   }
@@ -561,6 +590,7 @@ export const front = {
     s3Armhole,
     shoulderSlopeReduction,
     backNeckCutout,
+    legacyWaistHips,
   },
   draft: wahidFront,
 }
