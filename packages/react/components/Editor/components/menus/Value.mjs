@@ -79,7 +79,7 @@ export const MenuListValue = ({ current, config, changed }) => {
   else if (val) key = <BoolYesIcon />
   else key = <BoolNoIcon />
 
-  const translated = config.doNotTranslate || key
+  const translated = config.doNotTranslate ? val : key
 
   return <MenuHighlightValue changed={changed}>{translated}</MenuHighlightValue>
 }

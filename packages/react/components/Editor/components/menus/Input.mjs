@@ -149,7 +149,9 @@ export const MenuListInput = ({
               : 'tw:flex-col tw:items-start'
           }`}
         >
-          <div className="tw:font-semibold">{config.choiceTitles[entry]}</div>
+          <div className="tw:font-semibold">
+            {config.doNotTranslate ? entry : config.choiceTitles[entry]}
+          </div>
           {compact || !config.choiceDescriptions ? null : (
             <div
               className={`${config.dense ? 'tw:text-sm tw:leading-5 tw:py-1' : 'tw:text-base'} tw:font-normal`}
