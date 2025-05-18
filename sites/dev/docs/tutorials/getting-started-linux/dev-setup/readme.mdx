@@ -3,17 +3,16 @@ title: Setting up the FreeSewing development environment
 sidebar_position: 40
 ---
 
-FreeSewing provides a development environment to help you design and develop
-patterns.
+FreeSewing provides the studio, a development environment to help you design and develop patterns.
 
-There are two ways to run this development environment:
+There are two ways to run this studio:
 
-- [**Monorepo development**](#monorepo-development): Use this if you intend to
+- [**Repository studio**](#monorepo-studio): Use this if you intend to
   contribute your work to FreeSewing
-- [**Stand-alone development**](#stand-alone-development): Use this if you want
+- [**Stand-alone studio**](#stand-alone-studio): Use this if you want
   to do your own thing, and not contribute to FreeSewing
 
-## Monorepo development
+## Repository studio
 
 :::note
 This is the recommended way for (aspiring) FreeSewing contributors
@@ -24,7 +23,7 @@ This is the recommended way for (aspiring) FreeSewing contributors
 ```bash
 git clone https://codeberg.org/freesewing/freesewing.git
 cd freesewing
-yarn kickstart
+npm run kickstart
 ```
 
 :::tip
@@ -34,22 +33,16 @@ fork](https://codeberg.org/freesewing/freesewing/fork)
 ```bash
 git clone https://codeberg.org/your-username/freesewing.git
 cd freesewing
-yarn kickstart
+npm run kickstart
 ```
 
 :::
 
-This sets up the monorepo. If you would like to create a new design, run the
+This sets up the monorepo. If you would like to create a new design or plugin, run the
 following command:
 
 ```sh
-yarn new design
-```
-
-If you'd like to create a new plugin, run this variant instead:
-
-```sh
-yarn new plugin
+npm run add
 ```
 
 ### Step by step
@@ -58,16 +51,6 @@ yarn new plugin
 These docs assume you have git installed.
 But if you're running Linux, you have git, right?
 :::
-
-#### Install yarn
-
-Our repository uses yarn workspaces. So you'll need `yarn` to work with it.
-
-To install it run:
-
-```bash
-npm install yarn --global
-```
 
 #### Fork our repository
 
@@ -87,91 +70,71 @@ obviously with your real username rather than `your-username`.
 
 #### Install dependencies
 
-Enter the directory that was created, and run the `yarn kickstart` command:
+Enter the directory that was created, and run the `npm run kickstart` command:
 
 ```bash
 cd freesewing
-yarn kickstart
+npm run kickstart
 ```
 
 Now you're ready to [start the development environment](/tutorials/getting-started-linux/dev-start).
 
-:::note
+### Creating a new design or plugin
 
-There is another `yarn` command that comes with some Linux distributions,
-installed as part of the `cmdtest` package and used for command line
-scenario testing.
-If you get an `ERROR: There are no scenarios; must have at least one.`
-message when trying to run the `yarn` command, it may be because the wrong
-`yarn` is being used.
-
-Possible workarounds for this include uninstalling the `cmdtest` package
-or making sure that npm `yarn` is installed and comes first in your `PATH`
-environment variable.
-
-:::
-
-## Creating a new design
-
-If you would like to create a new design, run the following command:
+If you would like to create a new design or plugin, run the following command:
 
 ```sh
-yarn new design
+npm run add
 ```
 
-## Creating a new plugin
+After you've answered [some questions](#questions), it create a new
+sub-folder for your design in the `designs` folder.
 
-If you'd like to create a new plugin, run the following command:
-
-```sh
-yarn new plugin
-```
+Now you're ready to [start the development
+environment](/tutorials/getting-started-linux/dev-start).
 
 ## Stand-alone development
 
 With Node.js installed, all you need to do to setup the stand-alone development environment is run this command:
 
 ```bash
-npx @freesewing/new-design
+npx @freesewing/studio
 ```
 
-After you've answered [some questions](#questions), it will take a while to set
+After you enter the folder name to create, it will take a while to set
 everything up. When it's done, you will have a new folder with the development
 environment inside.
 
+### Creating a new design
+
+If you would like to create a new design, enter the folder that was just created and run the following command:
+
+```sh
+npm run add
+```
+
+After you've answered [some questions](#questions), it create a new
+sub-folder for your design in the `designs` folder.
+
 Now you're ready to [start the development
 environment](/tutorials/getting-started-linux/dev-start).
-
-:::tip
-The folder will have the name you chose above.
-:::
 
 :::note
 
 ### Questions
 
+#### What design name to use
+
+Please stick to a single word name using \[a-z] to avoid problems.
+
 #### What template to use
 
 Use `From scratch` unless you want to start from our of our blocks:
 
-- Use `Extend Brian` to start from [Brian](https://freesewing.org/designs/brian)
-- Use `Extend Bent` to start from [Bent](https://freesewing.org/designs/bent)
-- Use `Extend Bella` to start from [Bella](https://freesewing.org/designs/bella)
-- Use `Extend Breanna` to start from [Breanna](https://freesewing.org/designs/breanna)
-- Use `Extend Titan` to start from [Titan](https://freesewing.org/designs/titan)
-
-#### What name to use
-
-This will become the name of your design. Stick to \[a-z] here to avoid problems.
-
-If you're not certain what to pick, just mash some keys, it doesn't matter.
-
-#### What package manager to use
-
-You may wish to choose `yarn` since that is the package manager
-that we use when doing work in the monorepo,
-and many of our tutorials are written to use `yarn`.
-However, it doesn't really matter.
-You can choose either `yarn` or `npm` as you wish.
+- Use `Extend Brian` to start from [Brian](https://freesewing.eu/designs/brian)
+- Use `Extend Bent` to start from [Bent](https://freesewing.eu/designs/bent)
+- Use `Extend Bella` to start from [Bella](https://freesewing.eu/designs/bella)
+- Use `Extend Breanna` to start from [Breanna](https://freesewing.eu/designs/breanna)
+- Use `Extend Titan` to start from [Titan](https://freesewing.eu/designs/titan)
 
 :::
