@@ -302,7 +302,7 @@ export const HeaderMenuDraftViewIcons = (props) => {
           tooltip="Switches Units between metric and imperial (see Core Settings)"
         >
           <UnitsIcon
-            className={`${size} ${settings.units === accountUnits ? style.dflt : style.custom}`}
+            className={`${size} ${settings.units === accountUnits || typeof settings.units === 'undefined' ? style.dflt : style.custom}`}
           />
         </Button>
       ) : null}
