@@ -20,7 +20,8 @@ const defaultPrintSettings = (units) => ({
   size: units === 'imperial' ? 'letter' : 'a4',
   orientation: 'portrait',
   margin: units === 'imperial' ? 12.7 : 10,
-  coverPage: true,
+  coverPage: 1,
+  iconSize: 0.5,
 })
 
 export function menuLayoutSettingsStructure(units) {
@@ -76,6 +77,7 @@ export function menuLayoutSettingsStructure(units) {
         ),
       },
       icon: PageOrientationIcon,
+      dflt: defaults.orientation,
     },
     margin: {
       dense: true,
@@ -98,7 +100,7 @@ export function menuLayoutSettingsStructure(units) {
         0: 'Do not include a cover page',
         1: 'Include a cover page',
       },
-      dflt: 0,
+      dflt: defaults.coverPage,
     },
     iconSize: {
       dense: true,
@@ -108,7 +110,7 @@ export function menuLayoutSettingsStructure(units) {
       about:
         'Controls the size of the icons that allow you to rotate/flip individual pattern parts',
       min: 10,
-      dflt: 0.5,
+      dflt: defaults.iconSize,
       step: 1,
       max: 200,
     },

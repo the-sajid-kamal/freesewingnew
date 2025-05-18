@@ -119,7 +119,7 @@ export const MenuMmValue = ({ current, config, units, changed }) => (
  * Displays the current percentage value, and the absolute value if configured
  */
 export const MenuPctOptionValue = ({ config, current, settings, changed, patternConfig }) => {
-  const val = changed ? current : config.pct / 100
+  const val = changed ? current : config.dflt
 
   return (
     <MenuHighlightValue changed={changed}>
