@@ -259,7 +259,12 @@ export const BookmarkButton = ({ slug, type, title }) => {
       className={`tw:daisy-btn tw:daisy-btn-secondary tw:daisy-btn-outline ${horFlexClasses}`}
       onClick={() =>
         setModal(
-          <ModalWrapper flex="col" justify="top lg:justify-center" slideFrom="right">
+          <ModalWrapper
+            flex="col"
+            justify="top lg:justify-center"
+            slideFrom="right"
+            keepOpenOnClick="true"
+          >
             <CreateBookmark {...{ type, title, slug }} />
           </ModalWrapper>
         )
@@ -291,6 +296,7 @@ export const CreateBookmark = ({ type, title, slug }) => {
   const bookmark = async (evt) => {
     evt.stopPropagation()
     setLoadingStatus([true, 'Contacting backend'])
+    let title = name
     const [status] = await backend.createBookmark({ type, title, url })
     if (status === 201) {
       setLoadingStatus([true, 'Bookmark created', true, true])
