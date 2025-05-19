@@ -217,6 +217,7 @@ export const MenuItemGroup = ({
             config={item}
             changed={menuValueWasChanged(currentValues[itemName], item)}
             Design={Design}
+            units={state?.settings?.units}
           />
         </div>
       </div>,
