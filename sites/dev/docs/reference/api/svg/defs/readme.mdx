@@ -9,8 +9,21 @@ SVG document.
 
 ## Signature
 
-```svg
+```js
+Defs svg.defs = {
+  list = {
+    buttonhole: `<g id="buttonhole" transform="scale(1)">
+      <path class="mark" d="M -1,-5 L 1,-5 L 1,5 L -1,5 z"></path>
+    </g>`,
+  },
+}
+```
+
+Result:
+```
 <defs>
-  /* svg.defs will be inserted */
+  <g id="buttonhole" transform="scale(1)">
+    <path class="mark" d="M -1,-5 L 1,-5 L 1,5 L -1,5 z"></path>
+  </g>
 </defs>
 ```
