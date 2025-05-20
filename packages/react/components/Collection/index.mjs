@@ -282,7 +282,7 @@ const DesignCard = ({ name, lineDrawing = false, linkTo, Link, onClick }) => {
   const exampleImageUrl = examples.href[name] ? examples.href[name] : noExample
   const bg = { aspectRatio: '1/1.4' }
   if (!lineDrawing) {
-    bg.backgroundImage = `url(${exampleImageUrl}`
+    bg.backgroundImage = `url(${exampleImageUrl})`
     bg.backgroundSize = 'cover'
     bg.backgroundPosition = 'center center'
   }
