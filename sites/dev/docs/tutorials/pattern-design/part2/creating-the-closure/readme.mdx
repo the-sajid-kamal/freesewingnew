@@ -17,7 +17,9 @@ tedious. There are macros to add titles to our pattern, or grainline
 indicators, a scalebox, and there's a macro to round corners. The `round`
 macro.
 
-:::note You can find more information on the `round` macro in [the macros docs](/reference/macros/round/).:::
+:::note
+You can find more information on the `round` macro in [the macros docs](/reference/macros/round/).
+:::
 
 We need a half circle here, but the `round` macro works on 90° angles, so
 we'll use it twice.  As such, we'll add some points to guide the macro, and
@@ -49,28 +51,28 @@ function draftBib({
   let delta
   do {
     points.right = new Point(
-      tweak * measurements.head / 10, 
+      tweak * measurements.head / 10,
       0
     )
     points.bottom = new Point(
-      0, 
+      0,
       tweak * measurements.head / 12
     )
-  
+
     points.rightCp1 = points.right.shift(
-      90, 
+      90,
       points.bottom.dy(points.right) / 2
     )
     points.bottomCp2 = points.bottom.shift(
-      0, 
+      0,
       points.bottom.dx(points.right) / 2
     )
-  
+
     paths.quarterNeck = new Path()
       .move(points.right)
       .curve(
-        points.rightCp1, 
-        points.bottomCp2, 
+        points.rightCp1,
+        points.bottomCp2,
         points.bottom
       )
       .hide()

@@ -31,8 +31,14 @@ Point point.shiftTowards(Point target, float distance)
   macro("ld", {
     from: points.C,
     to: points.A,
-    d: -10
+    d: -10,
+    force: true,
   })
+
+  // Boundary box
+  paths.bbox = new Path()
+    .move(new Point(10,10))
+    .move(new Point(125,70))
 
   return part
 }

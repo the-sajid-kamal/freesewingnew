@@ -12,7 +12,7 @@ instead, thereby overwriting the value of the attribute.
 
 ```js
 
-Part Part.attr( 
+Part Part.attr(
   string name,
   mixed value,
   bool overwrite = false
@@ -46,7 +46,11 @@ paths.line = new Path()
   .close()
   .addText('I have been flipped!', 'left')
 
-part.attr('transform', 'scale(1,-1) translate(0,-40)') 
+paths.bbox = new Path()
+  .move(new Point(0,-40))
+  .move(new Point(120,60))
+
+part.attr('transform', 'scale(1,-1) translate(0,-40)')
 
 return part
 }
