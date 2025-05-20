@@ -66,6 +66,26 @@ Point point.flipY(Point mirror = false)
     .line(points.houseWallRight)
     .line(points.end)
 
+  paths.skylineBot = new Path()
+    .move(points._start)
+    .line(points._churchTowerWallLeft)
+    .line(points._churchTowerRoofLeft)
+    .line(points._churchTowerTop)
+    .line(points._churchTowerRoofRight)
+    .line(points._churchRoofRight)
+    .line(points._churchWallRight)
+    .line(points._houseWallLeft)
+    .line(points._houseRoofLeft)
+    .line(points._houseRoofTop)
+    .line(points._houseRoofRight)
+    .line(points._houseWallRight)
+    .line(points._end)
+
+  paths.mirror = new Path()
+    .move(points.mirror)
+    .line(points.mirrorLineEnd)
+    .setClass("note dashed")
+
   return part
 }
 ```
