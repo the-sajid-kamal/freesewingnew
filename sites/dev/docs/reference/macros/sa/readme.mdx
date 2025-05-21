@@ -4,24 +4,19 @@ title: sa
 
 The `sa` macro will create seam allowance paths.
 
-Unlike the core `path.join(...)` and `path.offset(...)` functions, the `sa` macro can extend line ends to meet in a sharp corner and will automatically
-trim useless path ends when adjacent paths in the array are intersecting.
+Unlike the core [`Path.join()`](/reference/api/path/join) and
+[`Path.offset()`](/reference/api/path/offset) functions, the
+`sa` macro can extend line ends to meet in a sharp corner and
+will automatically trim useless path ends when adjacent paths
+in the array are intersecting.
 
-The sa macro accepts an array of `Path` objects
-(either names in the `paths` array or direct references to `Path` objects).
-This array can contain `null` values to create gaps (e.g. for cuts on the fold or for other sections that don't need seam allowance).
+:::note
+##### Not a core-plugins macro
 
-By default, the `sa` macro will sa the paths in a circular fashion, joining the end
-of the last path in the array to the start of the first path, creating a full outline.
-If this is not desired, insert `null` elements where you want to create gaps.
-
-You can optionally override the offset and invisibility for individual paths.
-To do so, insert an object literal like `{p: 'somePath', offset: 30}` or `{p: ['path1', 'path2'], offset: sa * 3, hidden: true}` into the `paths` array.
-
-You can use `offset: 0` to include paths which have already build-in the seam allowance (e.g. the result of the `hem` macro).
-
-You can use `hidden: true` to hide path segments from the output, but still build corner joins as if they were there.
-This can be used for cut-on-fold lines, where no seam allowance is needed.
+The `sa` macro is not provided by the [core plugins](/reference/plugins/core),
+so you need to load the [path-utils plugin](/reference/plugins/path-utils)
+explicitly if you want to use it.
+:::
 
 ## Signature
 
@@ -76,7 +71,25 @@ macro('sa', {
 | Property | Default          | Type     | Description                                                                                                                                                                                                                                                 |
 | -------: | ---------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 |  `paths` |                  | `array`  | An array of paths. You can use path names in the `paths` array or reference `Path` objects directly, or insert `null` elements to create gaps. You can also override offset and visibility for individual paths in the same way as with the `offset` macro. |
-|   `mode` | `'corner'`       | `string` | Mode for joining paths. Either `'corner'` or `'cut'`. `'cut'` will join the paths directly (like `path.join(...)`) without extending the corners.                                                                                                           |
+|   `mode` | `'corner'`       | `string` | Mode for joining paths. Either `'corner'` or `'cut'`. `'cut'` will join the paths directly (like `Path.join()`) without extending the corners.                                                                                                           |
 |  `limit` | `null`           | `number` | Allows limiting the length of extended path corners in `'corner'` mode. Prevents overly long joins on very sharp angles. Ignored if `null` or `false`.                                                                                                      |
 |     `sa` | (seam allowance) | `number` | Allows you to override the seam allowance used for this macro. Defaults to the standard seam allowance (`sa` parameter in draft function).                                                                                                                  |
 |  `class` | `'sa'`           | `string` | CSS class that is automatically applied to the resulting path.                                                                                                                                                                                              |
+
+## Notes
+
+The `sa` macro accepts an array of `Path` objects
+(either names in the `paths` array or direct references to `Path` objects).
+This array can contain `null` values to create gaps (e.g. for cuts on the fold or for other sections that don't need seam allowance).
+
+By default, the `sa` macro will sa the paths in a circular fashion, joining the end
+of the last path in the array to the start of the first path, creating a full outline.
+If this is not desired, insert `null` elements where you want to create gaps.
+
+You can optionally override the offset and invisibility for individual paths.
+To do so, insert an object literal like `{p: 'somePath', offset: 30}` or `{p: ['path1', 'path2'], offset: sa * 3, hidden: true}` into the `paths` array.
+
+You can use `offset: 0` to include paths which have already build-in the seam allowance (e.g. the result of the `hem` macro).
+
+You can use `hidden: true` to hide path segments from the output, but still build corner joins as if they were there.
+This can be used for cut-on-fold lines, where no seam allowance is needed.
