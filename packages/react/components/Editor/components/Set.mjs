@@ -130,10 +130,15 @@ export const BookmarkedSetPicker = ({
       const [status, body] = await backend.getBookmarks()
       const loadedSets = {}
       if (status === 200 && body.result === 'success') {
+        const setsRE = /\/set(\?id=|s\/)(\d+)$/
+        const unique_ids = new Set()
         for (const bookmark of body.bookmarks.filter((bookmark) => bookmark.type === 'set')) {
-          let set
+          const match = bookmark.url.match(setsRE)
+          if (match) unique_ids.add(match[2])
+        }
+        for (const id of unique_ids) {
           try {
-            const [status, body] = await backend.getSet(bookmark.url.slice(6))
+            const [status, body] = await backend.getSet(id)
             if (status === 200 && body.result === 'success') {
               const [hasMeasies] = hasRequiredMeasurements(Design, body.set.measies)
               loadedSets[body.set.id] = { ...body.set, hasMeasies }
