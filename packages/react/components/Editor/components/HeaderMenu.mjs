@@ -11,6 +11,7 @@ import { ViewIcon, viewLabels } from './views/index.mjs'
 import { Tooltip } from './Tooltip.mjs'
 import {
   AsideIcon,
+  CompactIcon,
   DetailIcon,
   ExpandIcon,
   ExportIcon,
@@ -336,9 +337,11 @@ export const HeaderMenuDraftViewIcons = (props) => {
           }
           tooltip="Turns Expand on or off (see Core Settings)"
         >
-          <ExpandIcon
-            className={`${size} ${[false, 0, '0'].includes(settings.expand) ? style.custom : style.dflt}`}
-          />
+          {[false, 0, '0'].includes(settings.expand) ? (
+            <CompactIcon className={`${size} ${style.custom}`} />
+          ) : (
+            <ExpandIcon className={`${size} ${style.dflt}`} />
+          )}
         </Button>
       ) : null}
       <HeaderMenuIconSpacer />

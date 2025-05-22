@@ -143,6 +143,13 @@ export const CodeIcon = (props) => (
   </IconWrapper>
 )
 
+// Looks like arrows pointing inwards
+export const CompactIcon = (props) => (
+  <IconWrapper {...props}>
+    <path d="m15 15v4.5m0-4.5h4.5m-15.8-11.3 5.25 5.25m6 0v-4.5m0 4.5h4.5m-15.8 11.3 5.25-5.25h-4.5m4.5 0v4.5m11.3-15.8-5.25 5.25m-6 0h-4.5m4.5 0v-4.5m11.3 15.8-5.25-5.25" />
+  </IconWrapper>
+)
+
 // FIXME
 export const CompareIcon = (props) => (
   <IconWrapper {...props}>
