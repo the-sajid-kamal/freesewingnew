@@ -242,7 +242,8 @@ export const HeaderMenuDraftViewUiPreferences = (props) => {
 }
 
 export const HeaderMenuDraftViewFlags = (props) => {
-  const count = Object.keys(flattenFlags(props.flags)).length
+  const flatFlags = flattenFlags(props.flags)
+  const count = Object.keys(flatFlags).length
 
   return (
     <HeaderMenuDropdown
@@ -254,13 +255,29 @@ export const HeaderMenuDraftViewFlags = (props) => {
           <HeaderMenuIcon name="flag" extraClasses="tw:text-secondary" />
           <span className="tw:hidden tw:lg:inline">
             Flags
-            <span>({count})</span>
+            <NumberBadge
+              value={count}
+              color={
+                Object.values(flatFlags).some((it) => it.type === 'error') ? 'error' : 'secondary'
+              }
+            />
           </span>
         </>
       }
     >
       <FlagsAccordionEntries {...props} />
     </HeaderMenuDropdown>
+  )
+}
+
+const NumberBadge = ({ value, color = 'secondary', className = '' }) => {
+  return (
+    <div
+      className={`tw:ml-2 tw:inline-flex tw:items-center tw:justify-center tw:rounded-full tw:bg-${color} tw:text-${color}-content tw:text-xs tw:w-5 tw:h-5 tw:leading-none tw:font-semibold ${className}`}
+      style={{ lineHeight: '1rem' }}
+    >
+      {value}
+    </div>
   )
 }
 
