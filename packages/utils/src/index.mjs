@@ -389,7 +389,7 @@ export function measurementAsMm(value, units = 'metric') {
 
 /** convert a millimeter value to a Number value in the given units */
 export function measurementAsUnits(mmValue, units = 'metric') {
-  return round(mmValue / (units === 'imperial' ? 25.4 : 10), 3)
+  return round(mmValue / (units === 'imperial' ? 25.4 : 10), 4)
 }
 
 /*
