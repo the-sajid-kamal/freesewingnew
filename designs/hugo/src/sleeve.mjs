@@ -266,11 +266,13 @@ function hugoSleeve({
   )
 
   if (discrepancy > warning_limit) {
-    log.warn(
-      'Please check and adjust Collar Ease option setting ' +
-        'as needed to ensure neck opening is large enough to accommodate ' +
-        'head circumference.'
-    )
+    store.flag.warn({
+      msg: `hugo:neckCircumference`,
+      replace: {
+        opening: units(neck_opening),
+        head: units(measurements.head),
+      },
+    })
   }
 
   return part
