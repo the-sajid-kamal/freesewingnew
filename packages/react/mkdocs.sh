@@ -19,3 +19,4 @@ jsdoc -c jsdoc.json components/Json/* > ../../sites/dev/prebuild/jsdoc/react/com
 jsdoc -c jsdoc.json components/KeyVal/* > ../../sites/dev/prebuild/jsdoc/react/components/keyval.json
 jsdoc -c jsdoc.json components/Layout/* > ../../sites/dev/prebuild/jsdoc/react/components/layout.json
 jsdoc -c jsdoc.json components/LineDrawing/* > ../../sites/dev/prebuild/jsdoc/react/components/linedrawing.json
+jsdoc -c jsdoc.json components/Link/* > ../../sites/dev/prebuild/jsdoc/react/components/link.json
