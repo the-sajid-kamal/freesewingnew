@@ -22,3 +22,4 @@ jsdoc -c jsdoc.json components/LineDrawing/* > ../../sites/dev/prebuild/jsdoc/re
 jsdoc -c jsdoc.json components/Link/* > ../../sites/dev/prebuild/jsdoc/react/components/link.json
 jsdoc -c jsdoc.json components/Logo/* > ../../sites/dev/prebuild/jsdoc/react/components/logo.json
 jsdoc -c jsdoc.json components/Mini/* > ../../sites/dev/prebuild/jsdoc/react/components/mini.json
+jsdoc -c jsdoc.json components/Modal/* > ../../sites/dev/prebuild/jsdoc/react/components/modal.json
