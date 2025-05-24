@@ -133,7 +133,7 @@ For example, if you want to put "_Finish with bias tape_" on your pattern, don't
 tempted to do this:
 
 ```js
-path.seam.attr("data-text", "Finish with bias tape");
+path.seam.attr('data-text', 'Finish with bias tape')
 ```
 
 That (English) string is now hard-coded in your pattern. As FreeSewing supports
@@ -142,16 +142,16 @@ translation out of the box, it would be a real shame not to make use of it.
 Instead, insert a key to identify the string:
 
 ```js
-path.seam.attr("data-text", "finishWithBiasTape");
+path.seam.attr('data-text', 'finishWithBiasTape')
 ```
 
 This way, different strings for different languages can be associated with
 the key, allowing translated text to be used.
 
 You can find and browse the translations and available translation keys for each design in the design's
-[i18n folder on GitHub][1].
+[i18n folder on Codeberg][1].
 
-[1]: https://github.com/freesewing/freesewing/tree/develop/designs/aaron/i18n
+[1]: https://codeberg.org/freesewing/freesewing/src/branch/develop/designs/aaron/i18n
 
 ## Construct paths counter-clockwise
 
@@ -189,5 +189,3 @@ Constructing a path counter-clockwise will also ensure that the path offset goes
 rather than inwards.
 
 :::
-
-
