@@ -10,9 +10,6 @@
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
-    "prebuild": "./scripts/prebuild.sh",
-    "predev": "npm run prebuild",
-    "prestart": "npm run prebuild",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids"
   },
