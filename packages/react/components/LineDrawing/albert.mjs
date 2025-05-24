@@ -10,9 +10,11 @@ const strokeScale = 0.5
 /**
  * A linedrawing component for Albert
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Albert = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="-10 -2 146 146" {...{ className }}>
@@ -24,9 +26,11 @@ export const Albert = ({ className, stroke = 1 }) => (
 /**
  * A linedrawing component for the front of Albert
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const AlbertFront = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="-41 -2 145 145" {...{ className }}>
@@ -37,9 +41,11 @@ export const AlbertFront = ({ className, stroke = 1 }) => (
 /**
  * A linedrawing component for the front of Albert
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const AlbertBack = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="74 0 74 119" {...props}>
@@ -50,7 +56,7 @@ export const AlbertBack = ({ className, stroke = 1 }) => (
 /*
  * SVG elements for the front
  */
-export const Front = ({ stroke }) => (
+const Front = ({ stroke }) => (
   <>
     <path
       key="stitches"

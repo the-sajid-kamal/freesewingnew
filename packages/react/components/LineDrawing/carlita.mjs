@@ -10,9 +10,11 @@ const strokeScale = 0.5
 /**
  * A linedrawing component for Carlita
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Carlita = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 0 194 175" {...{ className }}>
@@ -24,9 +26,11 @@ export const Carlita = ({ className, stroke = 1 }) => (
 /**
  * A linedrawing component for the front of Carlita
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const CarlitaFront = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="-35 4 168 168" {...{ className }}>
@@ -34,8 +38,14 @@ export const CarlitaFront = ({ className, stroke = 1 }) => (
   </LineDrawingWrapper>
 )
 
-/*
- * React component for the back
+/**
+ * A linedrawing component for the back of Carlita
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.className - Any CSS classes to apply
+ * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const CarlitaBack = ({
   className = 'w-64', // CSS classes to apply
@@ -54,7 +64,7 @@ export const CarlitaBack = ({
 /*
  * SVG elements for the front
  */
-export const Front = ({ stroke }) => (
+const Front = ({ stroke }) => (
   <>
     <path
       key="stitches"

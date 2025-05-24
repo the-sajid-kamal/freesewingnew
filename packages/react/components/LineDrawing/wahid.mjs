@@ -10,9 +10,11 @@ const strokeScale = 0.5
 /**
  * A linedrawing component for Wahid
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Wahid = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 0 162 126" {...{ className }}>
@@ -24,9 +26,11 @@ export const Wahid = ({ className, stroke = 1 }) => (
 /**
  * A linedrawing component for the front of Wahid
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const WahidFront = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="-20 0 126 126" {...{ className }}>
@@ -34,6 +38,15 @@ export const WahidFront = ({ className, stroke = 1 }) => (
   </LineDrawingWrapper>
 )
 
+/**
+ * A linedrawing component for the back of Wahid
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.className - Any CSS classes to apply
+ * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
+ */
 export const WahidBack = ({
   className = 'w-64', // CSS classes to apply
   stroke = 1, // Stroke width to use
@@ -68,7 +81,7 @@ const defs = (
 /*
  * React component for the front
  */
-export const Front = ({ stroke }) => (
+const Front = ({ stroke }) => (
   <>
     {defs}
     <path

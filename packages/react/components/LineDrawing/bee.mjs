@@ -10,9 +10,11 @@ const strokeScale = 0.4
 /**
  * A linedrawing component for Bee
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Bee = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="-20 0 120 120" {...{ stroke, className }}>
@@ -21,14 +23,20 @@ export const Bee = ({ className, stroke = 1 }) => (
 )
 
 /**
- * Front is the same
+ * A linedrawing component for the front of Bee
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.className - Any CSS classes to apply
+ * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const BeeFront = Bee
 
 /*
  * SVG elements for the front
  */
-export const Front = ({ stroke }) => (
+const Front = ({ stroke }) => (
   <>
     <path
       key="stitches"

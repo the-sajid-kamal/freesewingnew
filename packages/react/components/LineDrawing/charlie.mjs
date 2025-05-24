@@ -10,9 +10,11 @@ const strokeScale = 1.8
 /**
  * A linedrawing component for Charlie
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Charlie = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 0 214 265" {...{ className }}>
@@ -24,9 +26,11 @@ export const Charlie = ({ className, stroke = 1 }) => (
 /**
  * A linedrawing component for the front of Charlie
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const CharlieFront = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="-70 0 265 265" {...{ className }}>
@@ -34,8 +38,14 @@ export const CharlieFront = ({ className, stroke = 1 }) => (
   </LineDrawingWrapper>
 )
 
-/*
- * React component for the back
+/**
+ * A linedrawing component for the back of Charlie
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.className - Any CSS classes to apply
+ * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const CharlieBack = ({
   className = 'w-64', // CSS classes to apply
@@ -54,7 +64,7 @@ export const CharlieBack = ({
 /*
  * SVG elements for the front
  */
-export const Front = ({ stroke }) => (
+const Front = ({ stroke }) => (
   <>
     <path
       key="stitches"

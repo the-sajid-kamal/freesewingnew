@@ -10,9 +10,11 @@ const strokeScale = 0.7
 /**
  * A linedrawing component for Huey
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Huey = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 0 334 218" {...{ className }}>
@@ -24,9 +26,11 @@ export const Huey = ({ className, stroke = 1 }) => (
 /**
  * A linedrawing component for front of Huey
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const HueyFront = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="-20 0 216 216" {...{ className }}>
@@ -54,7 +58,7 @@ export const HueyBack = ({
 /*
  * SVG elements for the front
  */
-export const Front = ({ stroke }) => (
+const Front = ({ stroke }) => (
   <>
     <path
       key="stitches"

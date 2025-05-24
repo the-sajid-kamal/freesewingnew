@@ -8,11 +8,13 @@ import { LineDrawingWrapper, regular } from './shared.mjs'
 const strokeScale = 0.9
 
 /**
- * A linedrawing component for Hugo
+ * A linedrawing component for Lucy
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Lucy = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 -30 202 202" {...{ className }}>
@@ -20,13 +22,21 @@ export const Lucy = ({ className, stroke = 1 }) => (
   </LineDrawingWrapper>
 )
 
-// Front is the same
+/**
+ * A linedrawing component for the front of Lucy
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.className - Any CSS classes to apply
+ * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
+ */
 export const LucyFront = Lucy
 
 /*
  * SVG elements for the front
  */
-export const Front = ({ stroke }) => (
+const Front = ({ stroke }) => (
   <>
     <path
       key="outline"

@@ -10,9 +10,11 @@ const strokeScale = 1.3
 /**
  * A linedrawing component for Cornelius
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Cornelius = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 0 320 218" {...{ className, stroke }}>
@@ -24,9 +26,11 @@ export const Cornelius = ({ className, stroke = 1 }) => (
 /**
  * A linedrawing component for the front of Cornelius
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const CorneliusFront = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="-30 0 215 215" {...{ className, stroke }}>
@@ -34,8 +38,14 @@ export const CorneliusFront = ({ className, stroke = 1 }) => (
   </LineDrawingWrapper>
 )
 
-/*
- * React component for the back
+/**
+ * A linedrawing component for the back of Cornelius
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.className - Any CSS classes to apply
+ * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const CorneliusBack = ({
   className = 'w-64', // CSS classes to apply
@@ -54,7 +64,7 @@ export const CorneliusBack = ({
 /*
  * SVG elements for the front
  */
-export const Front = ({ stroke }) => (
+const Front = ({ stroke }) => (
   <>
     <path
       key="stitches"

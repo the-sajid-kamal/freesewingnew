@@ -10,9 +10,11 @@ const strokeScale = 0.5
 /**
  * A linedrawing component for Bella
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Bella = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="2 -30 155 155" {...{ stroke, className }}>
@@ -24,9 +26,11 @@ export const Bella = ({ className, stroke = 1 }) => (
 /**
  * A linedrawing component for the front of Bella
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const BellaFront = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="-4 2 89 86" {...{ className, stroke }}>
@@ -34,8 +38,14 @@ export const BellaFront = ({ className, stroke = 1 }) => (
   </LineDrawingWrapper>
 )
 
-/*
- * React component for the back
+/**
+ * A linedrawing component for the back of Bella
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.className - Any CSS classes to apply
+ * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const BellaBack = ({
   className = 'tw:w-full', // CSS classes to apply
@@ -54,7 +64,7 @@ export const BellaBack = ({
 /*
  * SVG elements for the front
  */
-export const Front = ({ stroke }) => (
+const Front = ({ stroke }) => (
   <>
     <path
       key="stitches"

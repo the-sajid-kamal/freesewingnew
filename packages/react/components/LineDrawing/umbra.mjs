@@ -10,9 +10,11 @@ const strokeScale = 0.5
 /**
  * A linedrawing component for Umbra
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Umbra = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 0 221 75" {...{ className }}>
@@ -24,9 +26,11 @@ export const Umbra = ({ className, stroke = 1 }) => (
 /**
  * A linedrawing component for the front of Umbra
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const UmbraFront = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 -15 105 105" {...{ className }}>
@@ -34,8 +38,14 @@ export const UmbraFront = ({ className, stroke = 1 }) => (
   </LineDrawingWrapper>
 )
 
-/*
- * React component for the back
+/**
+ * A linedrawing component for the back of Umbra
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.className - Any CSS classes to apply
+ * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const UmbraBack = ({
   className = 'w-64', // CSS classes to apply
@@ -54,7 +64,7 @@ export const UmbraBack = ({
 /*
  * SVG elements for the front
  */
-export const Front = ({ stroke }) => (
+const Front = ({ stroke }) => (
   <>
     <path
       key="stitches"

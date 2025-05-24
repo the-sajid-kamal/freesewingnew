@@ -10,9 +10,11 @@ const strokeScale = 0.5
 /**
  * A linedrawing component for Aaron
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Aaron = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="-2 -15 152 152" {...{ stroke, className }}>
@@ -24,9 +26,11 @@ export const Aaron = ({ className, stroke = 1 }) => (
 /**
  * A linedrawing component for the front of Aaron
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const AaronFront = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="-23 0 119 119" {...{ className }}>
@@ -37,9 +41,11 @@ export const AaronFront = ({ className, stroke = 1 }) => (
 /**
  * A linedrawing component for the front of Aaron
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const AaronBack = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="51 0 119 119" {...{ className }}>
@@ -50,7 +56,7 @@ export const AaronBack = ({ className, stroke = 1 }) => (
 /*
  * SVG elements for the front
  */
-export const Front = ({ stroke }) => (
+const Front = ({ stroke }) => (
   <>
     <path
       key="stitches"

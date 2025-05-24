@@ -10,9 +10,11 @@ const strokeScale = 1.3
 /**
  * A linedrawing component for Hi
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Hi = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 -40 228 228" {...{ className }}>
@@ -20,13 +22,21 @@ export const Hi = ({ className, stroke = 1 }) => (
   </LineDrawingWrapper>
 )
 
-// Front is the same
+/**
+ * A linedrawing component for the front of Hi
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.className - Any CSS classes to apply
+ * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
+ */
 export const HiFront = Hi
 
 /*
  * SVG elements for the front
  */
-export const Front = ({ stroke }) => (
+const Front = ({ stroke }) => (
   <>
     <path
       key="folds"
