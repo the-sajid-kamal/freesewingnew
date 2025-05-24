@@ -21,3 +21,4 @@ jsdoc -c jsdoc.json components/Layout/* > ../../sites/dev/prebuild/jsdoc/react/c
 jsdoc -c jsdoc.json components/LineDrawing/* > ../../sites/dev/prebuild/jsdoc/react/components/linedrawing.json
 jsdoc -c jsdoc.json components/Link/* > ../../sites/dev/prebuild/jsdoc/react/components/link.json
 jsdoc -c jsdoc.json components/Logo/* > ../../sites/dev/prebuild/jsdoc/react/components/logo.json
+jsdoc -c jsdoc.json components/Mini/* > ../../sites/dev/prebuild/jsdoc/react/components/mini.json
