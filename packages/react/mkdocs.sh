@@ -16,3 +16,4 @@ jsdoc -c jsdoc.json components/Highlight/* > ../../sites/dev/prebuild/jsdoc/reac
 jsdoc -c jsdoc.json components/Icon/* > ../../sites/dev/prebuild/jsdoc/react/components/icon.json
 jsdoc -c jsdoc.json components/Input/* > ../../sites/dev/prebuild/jsdoc/react/components/input.json
 jsdoc -c jsdoc.json components/Json/* > ../../sites/dev/prebuild/jsdoc/react/components/json.json
+jsdoc -c jsdoc.json components/KeyVal/* > ../../sites/dev/prebuild/jsdoc/react/components/keyval.json

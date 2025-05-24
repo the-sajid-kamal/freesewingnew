@@ -2,6 +2,19 @@ import React, { useState, useContext } from 'react'
 import { copyToClipboard } from '@freesewing/utils'
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
 
+/**
+ * A component to display key/value pairs
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {boolean} [props.small = false] - Set this to render a small version
+ * @param {string} [props.color = primary] - The DaisyUI color to apply
+ * @param {boolean} [props.href = false] - Set this to make this a link
+ * @param {string} props.k - The key to display (key is a reserved react prop, so we use k)
+ * @param {boolean} [props.onClick = false] - Set this to make this a button
+ * @param {string} props.val - The value to display
+ * @returns {JSX.Element}
+ */
 export const KeyVal = ({
   k,
   val,
@@ -25,6 +38,7 @@ export const KeyVal = ({
   if (color === 'secondary') colorClasses2 = secondaryClasses2
   else if (color === 'neutral') colorClasses2 = neutralClasses2
   else if (color === 'accent') colorClasses2 = accentClasses2
+  else if (color === 'info') colorClasses2 = infoClasses2
   else if (color === 'warning') colorClasses2 = warningClasses2
   else if (color === 'success') colorClasses2 = successClasses2
   else if (color === 'error') colorClasses2 = errorClasses2
