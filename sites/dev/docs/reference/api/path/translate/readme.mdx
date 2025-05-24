@@ -36,12 +36,16 @@ Path path.translate(float deltaX, float deltaY)
   macro("ld", {
     from: points.B,
     to: points.step1,
-    noStartMarker: true
+    noStartMarker: true,
+    id: 'macro1',
+    force: true,
   })
   macro("ld", {
     from: points.step1,
     to: points.step2,
-    noStartMarker: true
+    noStartMarker: true,
+    id: 'macro2',
+    force: true,
   })
 
   return part

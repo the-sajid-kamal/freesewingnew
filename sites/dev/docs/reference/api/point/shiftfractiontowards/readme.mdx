@@ -38,13 +38,17 @@ Point point.shiftFractionTowards(Point target, float fraction)
   macro("ld", {
     from: points.C,
     to: points.A,
-    d: -10
+    d: -10,
+    id: 'macro1',
+    force: true,
   })
 
   macro("ld", {
     from: points.B,
     to: points.A,
-    d: 20
+    d: 20,
+    id: 'macro2',
+    force: true,
   })
 
   return part

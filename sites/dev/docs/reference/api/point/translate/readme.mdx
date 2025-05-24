@@ -24,7 +24,7 @@ Positive values for `deltaY` will move the point downwards.
 
 <Example caption="An example of the Point.translate() method">
 ```js
-({ Point, points, Snippet, snippets, macro, part }) => {
+({ Point, points, Path, paths, Snippet, snippets, macro, part }) => {
 
   points.A = new Point(10, 10).setText("Point A", "text-sm")
   points.B = points.A.translate(120, 60)
@@ -42,8 +42,14 @@ Positive values for `deltaY` will move the point downwards.
     from: points.A,
     to: points.B,
     text: "translate(120,60)",
-    noStartMarker: true
+    noStartMarker: true,
+    force: true,
   })
+
+  // Bounding box
+  paths.bbox = new Path()
+    .move(new Point(10, 10))
+    .move(new Point(130, 80))
 
   return part
 }

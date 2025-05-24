@@ -12,7 +12,7 @@ Number path.roughLength()
 
 ## Example
 
-<Example caption="Example of the Path.attr() method">
+<Example caption="Example of the Path.roughLength() method">
 ```js
 ({ Point, points, Path, paths, macro, units, part }) => {
 
@@ -27,12 +27,16 @@ Number path.roughLength()
 
   macro("pd", {
     path: paths.example,
+    id: 'macro1',
     d: -10,
+    force: true,
     text: `Path.roughLength() = ${units(paths.example.roughLength())}`
   })
   macro("pd", {
     path: paths.example,
+    id: 'macro2',
     d: 10,
+    force: true,
     text: `Path.length() = ${units(paths.example.length())}`
   })
 

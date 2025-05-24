@@ -2,7 +2,7 @@
 title: Point.slope()
 ---
 
-The `Point.slope()` method returns the slope (dy/dx) of a line between two Points. 
+The `Point.slope()` method returns the slope (dy/dx) of a line between two Points.
 
 ## Signature
 
@@ -29,11 +29,15 @@ point.slope(otherPoint)
       from: points.A,
       to: points.B,
       y: points.B.y,
+      id: 'macro1',
+      force: true,
     })
     macro('vd', {
       to: points.B,
       from: points.A,
       x: 0,
+      id: 'macro2',
+      force: true,
     })
 
 paths.line = new Path()
