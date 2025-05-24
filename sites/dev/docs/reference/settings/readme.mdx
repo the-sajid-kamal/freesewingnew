@@ -3,7 +3,7 @@ title: Settings
 ---
 
 FreeSewing is all about parametric design, and the settings are the parameters
-we pass to a pattern when drafting it.  Perhaps the most important of all
+we pass to a pattern when drafting it. Perhaps the most important of all
 settings are the measurements, but there are other settings too.
 
 ## Signature
@@ -13,6 +13,7 @@ Object settings = {
   Object absoluteOptions,
   Boolean complete=true,
   Boolean embed=false,
+  Boolean expand=true,
   String idPrefix='fs-',
   Object|Boolean layout=true,
   String locale='en',
@@ -43,12 +44,11 @@ objects in an array to the pattern constructor:
 
 ```js
 new pattern([
-  { 
+  {
     // settings
   },
-  { 
+  {
     // different settings
   },
 ])
 ```
-

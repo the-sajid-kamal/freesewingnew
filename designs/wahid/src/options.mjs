@@ -28,6 +28,7 @@ export const shoulderInset = { pct: 10, min: 0, max: 20, menu: 'advanced' }
 export const neckInset = { pct: 5, min: 0, max: 10, menu: 'advanced' }
 export const pocketAngle = { deg: 5, min: 0, max: 5, menu: 'advanced' }
 export const shoulderSlopeReduction = { pct: 0, min: 0, max: 80, menu: 'advanced' }
+export const legacyWaistHips = { bool: false, menu: 'advanced' }
 
 // Hide inherited options
 export const bicepsEase = 0.15

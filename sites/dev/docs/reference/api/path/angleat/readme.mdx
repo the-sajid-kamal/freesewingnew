@@ -40,15 +40,17 @@ snippets.point = new Snippet("notch", points.testPoint)
 let angle = paths.demo.angleAt(points.testPoint)
 //draw a tangent path
 paths.tangent = new Path()
-  .move(points.testPoint.shift(angle, -30))
-  .line(points.testPoint.shift(angle, 30))
-  .attr("class", "lining dashed")
+.move(points.testPoint.shift(angle, -30))
+.line(points.testPoint.shift(angle, 30))
+.attr("class", "lining dashed")
 
 return part
 }
+
 ```
 </Example>
-                               
+
 ## Notes
 
 Keep in mind that calculations with Bézier curves are often approximations.
+```

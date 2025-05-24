@@ -88,7 +88,7 @@ const SampleOptionButton = ({ name, i18n, update }) => (
     onClick={() => update.settings('sample', { type: 'option', option: name })}
   >
     <BeakerIcon className="tw:w-5 tw:h-5" />
-    <span>{i18n.en.o[name].t}</span>
+    <span>{i18n.en?.o[name]?.t ?? name}</span>
   </button>
 )
 

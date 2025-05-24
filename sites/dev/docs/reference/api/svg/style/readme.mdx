@@ -7,9 +7,17 @@ section of the SVG document.
 
 ## Signature
 
-```svg
+```js
+String svg.style += 'circle {stroke:black;}'
+```
+
+Result:
+
+```
 <style type="text/css">
-  /* svg.style will be inserted */
+  circle {
+    stroke: black;
+  }
 </style>
 ```
 

@@ -43,7 +43,7 @@ export const TestView = ({ Design, state, update, config }) => {
   if (missingMeasurements(state)) return <Null />
 
   const { settings } = state
-  if (settings.sample) {
+  if (settings?.sample) {
     /*
      * When testing/sampling one design, and then switching the editor to a different design,
      * we run the risk that settings.sample holds invalid configuration. Like testing an unused

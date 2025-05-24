@@ -118,7 +118,7 @@ export const Pattern = ({ id, Link }) => {
     delete data.data
     delete data.userId
     delete data.img
-    data.settings = JSON.parse(data.settings)
+    data.name += ' (clone)'
     const [status, body] = await backend.createPattern(data)
     if (status === 201 && body.result === 'created') {
       setLoadingStatus([true, 'Loading newly created pattern', true, true])

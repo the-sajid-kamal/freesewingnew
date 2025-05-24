@@ -3,6 +3,7 @@ import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 import { pluginFlip } from '@freesewing/plugin-flip'
 import { pluginGore } from '@freesewing/plugin-gore'
+import { pluginPathUtils } from '@freesewing/plugin-path-utils'
 import { pluginRingsector } from '@freesewing/plugin-ringsector'
 import { Design } from '@freesewing/core'
 import yaml from 'js-yaml'
@@ -49,7 +50,7 @@ const buildPattern = (children, settings = { margin: 5 }, tutorial = false, pape
           lengthRatio: { pct: 75, min: 55, max: 85, menu: 'style' },
         }
       : {},
-    plugins: [pluginFlip, pluginGore, pluginRingsector],
+    plugins: [pluginFlip, pluginGore, pluginPathUtils, pluginRingsector],
   }
   const design = new Design({
     parts: [part],

@@ -4,6 +4,15 @@ title: hem
 
 The `hem` macro drafts a hem allowance with fold lines.
 
+:::note
+
+##### Not a core-plugins macro
+
+The `hem` macro is not provided by the [core plugins](/reference/plugins/core),
+so you need to load the [path-utils plugin](/reference/plugins/path-utils)
+explicitly if you want to use it.
+:::
+
 ## Signature
 
 ```js
@@ -68,7 +77,7 @@ Path macro('hem', {
 |        `prefix` | `'hemMacro'`     | `number`           | The name prefix used for paths created by this macro.                                                                                                                                                                                    |
 |      `cssClass` | `'fabric'`       | `number`           | The CSS class added to the fold lines and the hem outline. Should usually match the CSS class for the part outline                                                                                                                       |
 
-## Detailed Description
+## Notes
 
 This macro will create the following paths (assuming the default `'hemMacro'` prefix is used):
 

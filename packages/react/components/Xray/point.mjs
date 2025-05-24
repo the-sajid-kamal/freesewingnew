@@ -60,7 +60,7 @@ export const PointXray = ({
               : null
           }
         ></circle>
-        <text x={point.x + 3} y={point.y} className="text-sm">
+        <text x={point.x + 3} y={point.y} className="text-sm tw:pointer-events-none">
           <tspan>{pointName}</tspan>
           <tspan x={point.x + 3} dy={5}>
             {round(point.x)},{round(point.y)}

@@ -16,6 +16,22 @@ export const constructMainDart = (part) => {
   store.set('wr12', wr12)
   store.set('hr12', hr12)
 
+  if (!options.legacyWaistHips) {
+    // Use largest chest-or-hips measurement to determine reduction
+    const largest_measurement = chest >= hips ? chest : hips
+    reduce.waist = largest_measurement - waist
+    reduce.hips = largest_measurement - hips
+    if (reduce.hips < 0) reduce.hips = 0
+    if (reduce.waist < 0) reduce.waist = 0
+    // Use a different reduction factor
+    const reduction_factor = 15
+    wr12 = reduce.waist / reduction_factor
+    hr12 = reduce.hips / reduction_factor
+    // Shift side seam to other direction by total amount added to dart
+    store.set('wr12', wr12 * -2)
+    store.set('hr12', hr12 * -2)
+  }
+
   points.dartWaistCenter = new Point(points.armhole.x / 2, points.waist.y)
   points.dartWaistRight = points.dartWaistCenter.shift(0, wr12)
   points.dartWaistLeft = points.dartWaistCenter.shift(180, wr12)

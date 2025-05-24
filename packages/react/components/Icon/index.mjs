@@ -334,6 +334,25 @@ export const CodeIcon = (props) => (
 )
 
 /**
+ * An SVG icon that looks like arrows pointing inwards
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {boolean} [props.className = 'tw:m-6 tw:h-6'] - The CSS classes to apply to the SVG element
+ * @param {number} [props.stroke = 2] - The stroke width
+ * @param {JSX.Element} props.children - The component childer, the inner content of the SVG tag
+ * @param {boolean} [props.fill = false] - Whether or not to fill the icon
+ * @param {number} [props.fillOpacity = 1] - The fillOpacity to apply
+ * @param {string} [props.dashArray = null] - An optional stroke dashArray to apply to the stroke
+ * @returns {JSX.Element}
+ */
+export const CompactIcon = (props) => (
+  <IconWrapper {...props}>
+    <path d="m15 15v4.5m0-4.5h4.5m-15.8-11.3 5.25 5.25m6 0v-4.5m0 4.5h4.5m-15.8 11.3 5.25-5.25h-4.5m4.5 0v4.5m11.3-15.8-5.25 5.25m-6 0h-4.5m4.5 0v-4.5m11.3 15.8-5.25-5.25" />
+  </IconWrapper>
+)
+
+/**
  * An SVG icon that looks like FIXME
  *
  * @component
@@ -2106,4 +2125,3 @@ export const ZoomOutIcon = (props) => (
     <path d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM13.5 10.5h-6" />
   </IconWrapper>
 )
-

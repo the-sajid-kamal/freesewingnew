@@ -17,6 +17,8 @@ function hugoSleeve({
   options,
   measurements,
   macro,
+  log,
+  units,
   part,
 }) {
   // Top of raglan sleeve
@@ -232,6 +234,46 @@ function hugoSleeve({
     to: points.wristRight,
     y: points.wristLeft.y + 15 + sa,
   })
+
+  /*
+   *  Check neck opening size and warn if necessary.
+   */
+  const sleeve_neck_len =
+    new Path()
+      .move(points.raglanTipBack)
+      .curve(points.raglanTipBackCp2, points.raglanTopCp1, points.raglanTop)
+      .curve(points.raglanTopCp2, points.raglanTipFrontCp1, points.raglanTipFront)
+      .length() * 2
+
+  const neck_opening = store.get('front_neck_len') + store.get('back_neck_len') + sleeve_neck_len
+  const diff = measurements.head - neck_opening
+  const discrepancy = diff / measurements.head
+  const warning_limit = 0.04
+  let label = ' bigger than '
+  if (diff > 0) label = ' smaller than '
+
+  log.info(
+    ': ' +
+      units(neck_opening) +
+      ' neck opening is ' +
+      units(Math.abs(diff)) +
+      label +
+      ' than ' +
+      units(measurements.head) +
+      ' head circumference, with Collar Ease set to ' +
+      (options.collarEase * 100).toFixed(0) +
+      '%.'
+  )
+
+  if (discrepancy > warning_limit) {
+    store.flag.warn({
+      msg: `hugo:neckCircumference`,
+      replace: {
+        opening: units(neck_opening),
+        head: units(measurements.head),
+      },
+    })
+  }
 
   return part
 }

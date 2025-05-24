@@ -149,7 +149,9 @@ export const MenuListInput = ({
               : 'tw:flex-col tw:items-start'
           }`}
         >
-          <div className="tw:font-semibold">{config.choiceTitles[entry]}</div>
+          <div className="tw:font-semibold">
+            {config.doNotTranslate ? entry : config.choiceTitles[entry]}
+          </div>
           {compact || !config.choiceDescriptions ? null : (
             <div
               className={`${config.dense ? 'tw:text-sm tw:leading-5 tw:py-1' : 'tw:text-base'} tw:font-normal`}
@@ -203,12 +205,18 @@ export const MenuMmInput = (props) => {
   /*
    * Set a default step that matches the unit.
    *
-   * Note that we could try to use something like 1.5875 for imperial to move in steps of 1/16 inches,
-   * but we round the mm values to two digits in the options, which would accumulate rounding errors.
-   *
-   * Because of this, we use 10ths of inches instead of 16ths of inches.
+   * Imperial:
+   *   mm, inch, decimal digits precision needed:
+   *   1.27 mm, 0.1 in, 2 digits
+   *   3.175 mm, 1/8 in, 3 digits
+   *   1.5875 mm, 1/16 in, 4 digits
+   *   0.79375 mm, 1/32 in, 5 digits
+   * We previously rounded mm values to 2 digits in the options and used
+   *   a 1.27 mm (1/10 in) step because precision didn't support 1/16 in
+   *   or 1/32 in steps.
+   * We now round mm values to 4 digits and use a 1.5875 mm (1/16 in.) step.
    */
-  const defaultStep = imperial ? 1.27 : 1 // mm
+  const defaultStep = imperial ? 1.5875 : 1 // mm
 
   return (
     <MenuSliderInput

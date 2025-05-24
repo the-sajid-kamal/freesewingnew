@@ -158,7 +158,9 @@ export const handleExport = async ({
       workerArgs.strings.setName = settings?.metadata?.setName
         ? settings.metadata.setName
         : 'ephemeral'
-      workerArgs.strings.yaml = yaml.dump(settings)
+      const settingsWithoutLayout = structuredClone(settings)
+      delete settingsWithoutLayout.layout
+      workerArgs.strings.yaml = yaml.dump(settingsWithoutLayout)
       workerArgs.strings.version = store?.data?.version ? store.data.version : ''
       const notes = store?.plugins?.['plugin-annotations']?.flags?.note
         ? store?.plugins?.['plugin-annotations']?.flags?.note
@@ -190,9 +192,9 @@ const flagsToString = (flags, mustache, t) => {
   let first = true
   let string = ''
   for (const flag of Object.values(flags)) {
-    let title = flag.replace ? mustache.render(flag.title, flag.replace) : flag.title
+    let title = flag.replace ? mustache.render(t(flag.title), flag.replace) : t(flag.title)
     title = he.decode(title)
-    let desc = flag.replace ? mustache.render(flag.desc, flag.replace) : flag.desc
+    let desc = flag.replace ? mustache.render(t(flag.desc), flag.replace) : t(flag.desc)
     desc = desc.replaceAll('\n\n', '\n')
     desc = desc.replaceAll('\n', ' ')
     desc = he.decode(desc)

@@ -11,6 +11,7 @@ import { ViewIcon, viewLabels } from './views/index.mjs'
 import { Tooltip } from './Tooltip.mjs'
 import {
   AsideIcon,
+  CompactIcon,
   DetailIcon,
   ExpandIcon,
   ExportIcon,
@@ -241,7 +242,8 @@ export const HeaderMenuDraftViewUiPreferences = (props) => {
 }
 
 export const HeaderMenuDraftViewFlags = (props) => {
-  const count = Object.keys(flattenFlags(props.flags)).length
+  const flatFlags = flattenFlags(props.flags)
+  const count = Object.keys(flatFlags).length
 
   return (
     <HeaderMenuDropdown
@@ -253,13 +255,29 @@ export const HeaderMenuDraftViewFlags = (props) => {
           <HeaderMenuIcon name="flag" extraClasses="tw:text-secondary" />
           <span className="tw:hidden tw:lg:inline">
             Flags
-            <span>({count})</span>
+            <NumberBadge
+              value={count}
+              color={
+                Object.values(flatFlags).some((it) => it.type === 'error') ? 'error' : 'secondary'
+              }
+            />
           </span>
         </>
       }
     >
       <FlagsAccordionEntries {...props} />
     </HeaderMenuDropdown>
+  )
+}
+
+const NumberBadge = ({ value, color = 'secondary', className = '' }) => {
+  return (
+    <div
+      className={`tw:ml-2 tw:inline-flex tw:items-center tw:justify-center tw:rounded-full tw:bg-${color} tw:text-${color}-content tw:text-xs tw:w-5 tw:h-5 tw:leading-none tw:font-semibold ${className}`}
+      style={{ lineHeight: '1rem' }}
+    >
+      {value}
+    </div>
   )
 }
 
@@ -302,7 +320,7 @@ export const HeaderMenuDraftViewIcons = (props) => {
           tooltip="Switches Units between metric and imperial (see Core Settings)"
         >
           <UnitsIcon
-            className={`${size} ${settings.units === accountUnits ? style.dflt : style.custom}`}
+            className={`${size} ${settings.units === accountUnits || typeof settings.units === 'undefined' ? style.dflt : style.custom}`}
           />
         </Button>
       ) : null}
@@ -336,9 +354,11 @@ export const HeaderMenuDraftViewIcons = (props) => {
           }
           tooltip="Turns Expand on or off (see Core Settings)"
         >
-          <ExpandIcon
-            className={`${size} ${[false, 0, '0'].includes(settings.expand) ? style.custom : style.dflt}`}
-          />
+          {[false, 0, '0'].includes(settings.expand) ? (
+            <CompactIcon className={`${size} ${style.custom}`} />
+          ) : (
+            <ExpandIcon className={`${size} ${style.dflt}`} />
+          )}
         </Button>
       ) : null}
       <HeaderMenuIconSpacer />

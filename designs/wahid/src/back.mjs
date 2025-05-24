@@ -1,6 +1,13 @@
 import { constructMainDart, shapeSideSeam, dartPath } from './shared.mjs'
 import { back as brianBack } from '@freesewing/brian'
-import { backInset, shoulderInset, neckInset, centerBackDart, backScyeDart } from './options.mjs'
+import {
+  backInset,
+  shoulderInset,
+  neckInset,
+  centerBackDart,
+  backScyeDart,
+  legacyWaistHips,
+} from './options.mjs'
 import { hidePresets } from '@freesewing/core'
 
 function wahidBack({
@@ -19,6 +26,13 @@ function wahidBack({
   // Cleanup from Brian
   for (let i of Object.keys(paths)) delete paths[i]
   delete snippets.armholePitchNotch
+
+  if (!options.legacyWaistHips) {
+    // Use actual measurements to set waist and hips points
+    points.waist = new Point((measurements.waist * (1 + options.waistEase)) / 4, points.cbWaist.y)
+    points.hips = new Point((measurements.hips * (1 + options.hipsEase)) / 4, points.cbHips.y)
+    points.hem = new Point(points.hips.x, points.cbHem.y)
+  }
 
   // Back inset
   let shoulderLen = points.shoulder.dist(points.neck)
@@ -279,6 +293,7 @@ export const back = {
     neckInset,
     centerBackDart,
     backScyeDart,
+    legacyWaistHips,
   },
   draft: wahidBack,
 }

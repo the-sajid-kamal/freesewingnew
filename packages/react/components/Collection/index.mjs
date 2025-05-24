@@ -278,19 +278,19 @@ const DesignCard = ({ name, lineDrawing = false, linkTo, Link, onClick }) => {
   const exampleImageUrl = examples.href[name] ? examples.href[name] : noExample
   const bg = { aspectRatio: '1/1.4' }
   if (!lineDrawing) {
-    bg.backgroundImage = `url(${exampleImageUrl}`
+    bg.backgroundImage = `url(${exampleImageUrl})`
     bg.backgroundSize = 'cover'
     bg.backgroundPosition = 'center center'
   }
 
   const inner = (
     <div
-      className={`tw:flex tw:flex-col tw:flex-nowrap tw:items-start tw:justify-between tw:gap-2 tw:border-neutral-500 tw:group-hover:border-secondary
-      tw:w-full tw:h-full tw:border tw:border-2 tw:border-solid tw:p-0 tw:relative tw:rounded-lg tw:rounded-lg`}
+      className={`tw:flex tw:flex-col tw:flex-nowrap tw:justify-between tw:gap-2 tw:border-neutral-500 tw:group-hover:border-secondary
+      tw:w-full tw:h-full tw:border tw:border-2 tw:border-solid tw:p-0 tw:relative tw:rounded-lg`}
       style={bg}
     >
       <h5
-        className={`tw:text-center tw:py-2 tw:px-4 tw:rounded-t tw:m-0 tw:w-full tw:group-hover:no-underline tw:group-hover:bg-secondary/80 tw:group-hover:text-secondary-content
+        className={`tw:text-center tw:py-2 tw:px-4 tw:rounded-t tw:m-0 tw:group-hover:no-underline tw:group-hover:bg-secondary/80 tw:group-hover:text-secondary-content
       ${lineDrawing ? '' : 'tw:bg-neutral/80'}`}
       >
         <span className={lineDrawing ? 'tw:text-base-100-content' : 'tw:text-neutral-content'}>
@@ -298,14 +298,14 @@ const DesignCard = ({ name, lineDrawing = false, linkTo, Link, onClick }) => {
         </span>
       </h5>
       {lineDrawing ? (
-        <div className="tw:grow tw:w-full tw:h-auto tw:square tw:text-center">
-          <LineDrawing className="tw:w-5/6 tw:m-auto tw:my-0 tw:text-base-content" />
+        <div className="tw:flex-auto tw:flex tw:justify-center">
+          <LineDrawing className="tw:w-5/6 tw:text-base-content" />
         </div>
       ) : (
         <span />
       )}
       <div
-        className={`tw:flex tw:flex-row tw:items-center tw:justify-center tw:py-1 tw:px-2 tw:rounded-b tw:m-0 tw:w-full
+        className={`tw:flex tw:flex-row tw:items-center tw:justify-center tw:py-1 tw:px-2 tw:rounded-b tw:m-0
       ${lineDrawing ? '' : `tw:text-neutral-content`}`}
       >
         <Difficulty score={about[name].difficulty} className="tw:group-hover:text-secondary" />

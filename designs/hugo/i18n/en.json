@@ -23,7 +23,9 @@
     "cutNeckBinding.t": "The neck binding is not shown",
     "cutNeckBinding.d": "The **Neck Binding** (10) is a rectangular piece of main fabric {{{ w }}} wide and {{{ l }}} long, with the grainline parallel to the length.",
     "cutWaistband.t": "The waistband is not shown",
-    "cutWaistband.d": "The **Waistband** (8) is a rectangular piece of ribbing fabric {{{ w }}} wide and {{{ l }}} long, with the grainline parallel to the width."
+    "cutWaistband.d": "The **Waistband** (8) is a rectangular piece of ribbing fabric {{{ w }}} wide and {{{ l }}} long, with the grainline parallel to the width.",
+    "neckCircumference.t": "The neck opening is too small",
+    "neckCircumference.d": "The neck opening of {{{ opening }}} is smaller than the head circumference of {{{ head }}}.\n\nPlease check and adjust Collar Ease option setting as needed to ensure the neck opening is large enough to accommodate head circumference."
   },
   "o": {
     "ribbingHeight": {

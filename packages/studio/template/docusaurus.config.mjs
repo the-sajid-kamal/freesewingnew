@@ -2,6 +2,25 @@ import { themes as prismThemes } from 'prism-react-renderer'
 import { docusaurusPlugins } from './plugins/index.mjs'
 import smartypants from 'remark-smartypants'
 
+function customizeSidebar(items) {
+  // Filter out submenus in Your Measurements Sets and Your Patterns
+  for (const item in items) {
+    if (items[item].label === 'Account') {
+      for (const design in items[item].items) {
+        for (const subpage in items[item].items[design].items) {
+          if (
+            items[item].items[design].items[subpage].label === 'Your Measurements Sets' ||
+            items[item].items[design].items[subpage].label === 'Your Patterns'
+          ) {
+            items[item].items[design].items[subpage].items = []
+          }
+        }
+      }
+    }
+  }
+  return items
+}
+
 const config = {
   title: 'FreeSewing Studio',
   tagline: 'FreeSewing for Designers',
@@ -28,6 +47,10 @@ const config = {
         docs: {
           routeBasePath: '/',
           sidebarPath: './sidebars.js',
+          async sidebarItemsGenerator({ defaultSidebarItemsGenerator, ...args }) {
+            const sidebarItems = await defaultSidebarItemsGenerator(args)
+            return customizeSidebar(sidebarItems)
+          },
           remarkPlugins: [[smartypants, { dashes: 'oldschool' }]],
         },
         theme: {

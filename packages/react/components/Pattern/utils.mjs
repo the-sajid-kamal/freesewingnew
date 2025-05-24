@@ -74,7 +74,7 @@ export const translateStrings = (list, translations = {}) => {
     else if (string) {
       if (translations[string]) {
         translated += `${translations[string]}`.replace(/&quot;/g, '"') + ' '
-      } else translated += `${string}`
+      } else translated += `${string}` + ' '
     }
   }
 

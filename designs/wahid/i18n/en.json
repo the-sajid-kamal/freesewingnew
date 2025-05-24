@@ -117,6 +117,18 @@
     "centerBackDart": {
       "t": "Center back dart",
       "d": "Whether or not to include a center back dart to fit a rounded back."
+    },
+    "legacyWaistHips": {
+      "t": "Legacy waist and hips widths",
+      "d": "Enable this option to use the legacy (v3) way to calculate the waist and hips widths (using chest circumference) rather than the new way (using the waist and hips measurements)."
+    },
+    "legacyWaistHipsNo": {
+      "t": "Calculate waist and hips widths the new way",
+      "d": "Uses the waist and hips measurements to calculate the waist and hips widths"
+    },
+    "legacyWaistHipsYes": {
+      "t": "Calculate waist and hips widths the legacy (v3) way",
+      "d": "Uses the chest measurement to approximate the waist and hips widths"
     }
   }
 }

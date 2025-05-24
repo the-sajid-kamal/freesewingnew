@@ -1,5 +1,5 @@
 // Dependencies
-import { linkClasses } from '@freesewing/utils'
+import { linkClasses, capitalize } from '@freesewing/utils'
 // Hooks
 import React from 'react'
 // Components
@@ -20,7 +20,22 @@ export const DocsView = ({ state, config, update }) => {
     <>
       <HeaderMenu state={state} {...{ config, update }} />
       <div className="tw:m-auto tw:mt-8 tw:max-w-2xl tw:px-4 tw:mb-8">
-        <H1>Documenation</H1>
+        <H1>Documentation</H1>
+        {state?.design ? (
+          <Popout link>
+            <H5>Design Documentation</H5>
+            <p className="tw:text-lg">
+              You can find documentation for the {capitalize(state.design)} design at:
+              <br />
+              <b>
+                <a
+                  className={linkClasses}
+                  href={`https://freesewing.eu/docs/designs/${state.design}`}
+                >{`FreeSewing.eu/docs/designs/${state.design}`}</a>
+              </b>
+            </p>
+          </Popout>
+        ) : null}
         <Popout link>
           <H5>Understanding the FreeSewing Pattern Editor</H5>
           <p className="tw:text-lg">
@@ -29,8 +44,8 @@ export const DocsView = ({ state, config, update }) => {
             <b>
               <a
                 className={linkClasses}
-                href="https://freesewing.org/docs/about/site/editor"
-              >{`FreeSewing.org/docs/about/editor`}</a>
+                href="https://freesewing.eu/docs/about/editor"
+              >{`FreeSewing.eu/docs/about/editor`}</a>
             </b>
           </p>
         </Popout>
