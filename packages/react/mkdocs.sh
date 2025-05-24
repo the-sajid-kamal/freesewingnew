@@ -15,3 +15,4 @@ jsdoc -c jsdoc.json components/Heading/* > ../../sites/dev/prebuild/jsdoc/react/
 jsdoc -c jsdoc.json components/Highlight/* > ../../sites/dev/prebuild/jsdoc/react/components/highlight.json
 jsdoc -c jsdoc.json components/Icon/* > ../../sites/dev/prebuild/jsdoc/react/components/icon.json
 jsdoc -c jsdoc.json components/Input/* > ../../sites/dev/prebuild/jsdoc/react/components/input.json
+jsdoc -c jsdoc.json components/Json/* > ../../sites/dev/prebuild/jsdoc/react/components/json.json
