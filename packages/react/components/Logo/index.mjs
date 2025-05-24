@@ -1,17 +1,18 @@
 import React from 'react'
 import { logoPath } from '@freesewing/config'
 
-/*
+/**
  * The FreeSewing logo, aka Skully, as a React component
  *
- * @params {object} props - All React props
- * @params {string} className - Custom CSS classes to apply
- * @params {string} theme - The theme, light or dark. Although by default this component will auto-adapt by using currentColor
- * @params {number} stroke - Set this to also stroke the logo
+ * @component
+ * @param {object} props - All component props
+ * @param {string} [props.className = "tw:w-20 tw:h-20"] - Custom CSS classes to apply
+ * @param {string} [props.stroke = undefined] - Set this explicitly to use a different stroke color
+ * @returns {JSX.Element}
  */
-export const FreeSewingLogo = ({ className = 'w-20 h-20', theme = 'light', stroke = false }) => {
+export const FreeSewingLogo = ({ className = 'tw:w-20 tw:h-20', stroke }) => {
   const svgProps = {}
-  const strokes = { light: '#000', darf: '#fff' }
+  const strokes = { dark: '#000', light: 'var(--p)' }
 
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="1 0 25 25" className={className}>
@@ -21,10 +22,12 @@ export const FreeSewingLogo = ({ className = 'w-20 h-20', theme = 'light', strok
       <use
         xlinkHref="#react-logo"
         fill="none"
-        stroke={stroke || strokes[theme]}
         strokeWidth="0.5"
+        style={{ stroke: stroke ? stroke : 'var(--color-base-100)'}}
       />
       <use xlinkHref="#react-logo" fill="currentColor" stroke="none" />
     </svg>
   )
 }
+
+
