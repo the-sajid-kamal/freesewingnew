@@ -26,3 +26,4 @@ jsdoc -c jsdoc.json components/Modal/* > ../../sites/dev/prebuild/jsdoc/react/co
 jsdoc -c jsdoc.json components/Newsletter/* > ../../sites/dev/prebuild/jsdoc/react/components/newsletter.json
 jsdoc -c jsdoc.json components/Null/* > ../../sites/dev/prebuild/jsdoc/react/components/null.json
 jsdoc -c jsdoc.json components/Number/* > ../../sites/dev/prebuild/jsdoc/react/components/number.json
+jsdoc -c jsdoc.json components/Patrons/* > ../../sites/dev/prebuild/jsdoc/react/components/patrons.json
