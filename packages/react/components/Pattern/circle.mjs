@@ -1,5 +1,13 @@
 import React from 'react'
 
+/**
+ * A component to render a circle inside a FreeSewing pattern
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {object} props.point - The point that holds the circle info
+ * @returns {JSX.Element}
+ */
 export const Circle = ({ point }) =>
   point.attributes.list['data-circle'].map((r, i) => {
     const circleProps = point.attributes.circleProps

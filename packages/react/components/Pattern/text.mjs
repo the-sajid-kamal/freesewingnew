@@ -2,6 +2,15 @@
 import React from 'react'
 import { translateStrings } from './utils.mjs'
 
+/**
+ * A component to render a tspan tag in a FreeSewing pattern
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {object} props.point - The point that the text is defined on
+ * @param {object} strings - The translation strings
+ * @returns {JSX.Element}
+ */
 export const TextSpans = ({ point, strings }) => {
   const translated = translateStrings(point.attributes.list['data-text'], strings)
   const text = []
@@ -27,12 +36,31 @@ export const TextSpans = ({ point, strings }) => {
   return text
 }
 
+/**
+ * A component to render a text tag in a FreeSewing pattern
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {object} props.point - The point that the text is defined on
+ * @param {object} strings - The translation strings
+ * @returns {JSX.Element}
+ */
 export const Text = ({ point, strings }) => (
   <text x={point.x} y={point.y} {...point.attributes.textProps}>
     <TextSpans point={point} strings={strings} />
   </text>
 )
 
+/**
+ * A component to render a text along a path in a FreeSewing pattern
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {object} props.path - The path that the text is to be rendered along
+ * @param {string} props.pathId - The ID of the path
+ * @param {object} strings - The translation strings
+ * @returns {JSX.Element}
+ */
 export const TextOnPath = ({ path, pathId, strings }) => {
   const textPathProps = {
     xlinkHref: '#' + pathId,

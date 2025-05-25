@@ -9,13 +9,13 @@ import {
   jsdocDocusaurusPage,
   jsdocNavbarItem,
 } from '@site/prebuild/jsdoc/components.docusaurus.mjs'
-import {
-  DocusaurusDocExample,
-  DocusaurusPageExample,
-  NavbarItemExample,
-} from './_examples.js'
+import { DocusaurusDocExample, DocusaurusPageExample, NavbarItemExample } from './_examples.js'
 
 <DocusaurusDoc>
+
+- [Components](#components)
+
+## Components
 
 The **Docusaurus** component family provides the following components:
 
@@ -23,13 +23,16 @@ The **Docusaurus** component family provides the following components:
 - [DocusaurusPage](#docusauruspage)
 - [NavbarItem](#navbaritem)
 
-## DocusaurusDoc
+### DocusaurusDoc
+
 <ComponentDocs docs={jsdocDocusaurusDoc} example={DocusaurusDocExample} />
 
-## DocusaurusPage
+### DocusaurusPage
+
 <ComponentDocs docs={jsdocDocusaurusPage} example={DocusaurusPageExample} />
 
-## NavbarItem
+### NavbarItem
+
 <ComponentDocs docs={jsdocNavbarItem} example={NavbarItemExample} />
 
 </DocusaurusDoc>

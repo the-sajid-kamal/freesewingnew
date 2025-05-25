@@ -6,29 +6,40 @@ import { DocusaurusDoc } from '@freesewing/react/components/Docusaurus'
 import { ComponentDocs } from '@site/src/components/component-docs.js'
 import { jsdocChartWrapper } from '@site/prebuild/jsdoc/components.echart.mjs'
 import { ChartWrapperExample } from './_examples.js'
+import { ConstantDocs } from '@site/src/components/constant-docs.js'
+import * as cdoc from '@site/prebuild/jsdoc/constants.echart.mjs'
 
 <DocusaurusDoc>
+
+- [Components](#components)
+- [Constants](#constants)
+
+## Components
 
 The **Echart** component family provides the following components:
 
 - [ChartWrapper](#chartwrapper)
 
-In addition, it also exports the following objects:
-
-- [echarts](#echarts)
-
 ## EchartWrapper
 
 <ComponentDocs docs={jsdocChartWrapper} example={ChartWrapperExample} />
 
-## echarts
+## Constants
 
-This is a re-export of [Apache Echarts](https://echarts.apache.org/).
+The **Echart** family provides the following constants:
+
+- [echarts](#echarts)
+
+### echarts
 
 :::tip
+
 #### Not FreeSewing code
+
 We re-export <code>echarts</code> for convenience.
 Please refer to the documentation for [Apache Echarts](https://echarts.apache.org/).
 :::
+
+<ConstantDocs docs={cdoc.jsdocecharts} />
 
 </DocusaurusDoc>

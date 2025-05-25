@@ -1,19 +1,23 @@
 ---
 title: Logo
 ---
+
 import { DocusaurusDoc } from '@freesewing/react/components/Docusaurus'
 import { ComponentDocs } from '@site/src/components/component-docs.js'
 import * as jsdoc from '@site/prebuild/jsdoc/components.logo.mjs'
 import { FreeSewingLogoExample } from './_examples.js'
 
-
 <DocusaurusDoc>
 
-The __Logo__ component family provides the following components:
+- [Components](#components)
+
+## Components
+
+The **Logo** component family provides the following components:
 
 - [FreeSewingLogo](#freesewinglogo)
 
-## FreeSewingLogo
+### FreeSewingLogo
 
 :::tip Understanding the colors of the logo
 The logo will always be filled with `currentColor` which is a specific keyword
@@ -30,7 +34,7 @@ color, so it will be invisible.
 You can also set an explicit stroke color with the `stroke` prop, or control
 `currentColor` by setting the `className` prop.
 :::
+
 <ComponentDocs docs={jsdoc.jsdocFreeSewingLogo} example={FreeSewingLogoExample} />
 
 </DocusaurusDoc>
-

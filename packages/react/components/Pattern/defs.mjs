@@ -86,12 +86,20 @@ const PaperlessDefs = ({ units = 'metric', stacks }) =>
     <MetricPaperlessDefs stacks={stacks} />
   )
 
-export const Defs = (props) =>
-  props.svg ? (
+/**
+ * A component to render the defs section of an SVG element inside a FreeSewing pattern
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {Svg} props.svg - The FreeSewing Svg object for the pattern
+ * @param {object} props.settings - The settings for the pattern
+ * @param {object} props.stacks - The pattern stacks
+ * @returns {JSX.Element}
+ */
+export const Defs = ({ svg, stacks, settings = {} }) =>
+  svg ? (
     <defs>
-      {props.svg.defs.list ? sanitize(Object.values(props.svg.defs.list).join('')) : null}
-      {props.settings[0].paperless ? (
-        <PaperlessDefs units={props.settings[0].units} stacks={props.stacks} />
-      ) : null}
+      {svg.defs.list ? sanitize(Object.values(svg.defs.list).join('')) : null}
+      {settings[0]?.paperless ? <PaperlessDefs units={settings[0].units} stacks={stacks} /> : null}
     </defs>
   ) : null

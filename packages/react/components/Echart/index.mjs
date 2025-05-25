@@ -3,6 +3,12 @@ import * as _echarts from 'echarts'
 import ReactECharts from 'echarts-for-react'
 import { Popout } from '@freesewing/react/components/Popout'
 
+/**
+ * Re-export of Apache Echarts
+ *
+ * @public
+ * @constant
+ */
 export const echarts = _echarts
 
 echarts.registerTheme('light', {

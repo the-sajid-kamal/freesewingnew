@@ -9,6 +9,7 @@ jsdoc -c jsdoc.json components/Collection/* > ../../sites/dev/prebuild/jsdoc/rea
 jsdoc -c jsdoc.json components/Control/* > ../../sites/dev/prebuild/jsdoc/react/components/control.json
 jsdoc -c jsdoc.json components/CuratedSet/* > ../../sites/dev/prebuild/jsdoc/react/components/curatedset.json
 jsdoc -c jsdoc.json components/Docusaurus/* > ../../sites/dev/prebuild/jsdoc/react/components/docusaurus.json
+jsdoc -c jsdoc.json components/DiffViewer/* > ../../sites/dev/prebuild/jsdoc/react/components/diffviewer.json
 jsdoc -c jsdoc.json components/Echart/* > ../../sites/dev/prebuild/jsdoc/react/components/echart.json
 jsdoc -c jsdoc.json components/Editor/* > ../../sites/dev/prebuild/jsdoc/react/components/editor.json
 jsdoc -c jsdoc.json components/Heading/* > ../../sites/dev/prebuild/jsdoc/react/components/heading.json
@@ -27,3 +28,4 @@ jsdoc -c jsdoc.json components/Newsletter/* > ../../sites/dev/prebuild/jsdoc/rea
 jsdoc -c jsdoc.json components/Null/* > ../../sites/dev/prebuild/jsdoc/react/components/null.json
 jsdoc -c jsdoc.json components/Number/* > ../../sites/dev/prebuild/jsdoc/react/components/number.json
 jsdoc -c jsdoc.json components/Patrons/* > ../../sites/dev/prebuild/jsdoc/react/components/patrons.json
+jsdoc -c jsdoc.json components/Pattern/* > ../../sites/dev/prebuild/jsdoc/react/components/pattern.json

@@ -5,16 +5,15 @@ title: Mini
 import { DocusaurusDoc } from '@freesewing/react/components/Docusaurus'
 import { ComponentDocs } from '@site/src/components/component-docs.js'
 import * as jsdoc from '@site/prebuild/jsdoc/components.mini.mjs'
-import {
-  MiniNoteExample,
-  MiniTipExample,
-  MiniWarningExample,
-} from './_examples.js'
-
+import { MiniNoteExample, MiniTipExample, MiniWarningExample } from './_examples.js'
 
 <DocusaurusDoc>
 
-The __Mini__ component family provides the following components:
+- [Components](#components)
+
+## Components
+
+The **Mini** component family provides the following components:
 
 - [MiniNote](#mininote)
 - [MiniTip](#minitip)
@@ -26,15 +25,16 @@ These components are typically used when a
 space.
 :::
 
+### MiniNote
 
-## MiniNote
 <ComponentDocs docs={jsdoc.jsdocMiniNote} example={MiniNoteExample} />
 
-## MiniTip
+### MiniTip
+
 <ComponentDocs docs={jsdoc.jsdocMiniTip} example={MiniTipExample} />
 
-## MiniWarning
+### MiniWarning
+
 <ComponentDocs docs={jsdoc.jsdocMiniWarning} example={MiniWarningExample} />
 
 </DocusaurusDoc>
-
