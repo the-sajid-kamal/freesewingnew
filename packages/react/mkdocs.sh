@@ -25,3 +25,4 @@ jsdoc -c jsdoc.json components/Mini/* > ../../sites/dev/prebuild/jsdoc/react/com
 jsdoc -c jsdoc.json components/Modal/* > ../../sites/dev/prebuild/jsdoc/react/components/modal.json
 jsdoc -c jsdoc.json components/Newsletter/* > ../../sites/dev/prebuild/jsdoc/react/components/newsletter.json
 jsdoc -c jsdoc.json components/Null/* > ../../sites/dev/prebuild/jsdoc/react/components/null.json
+jsdoc -c jsdoc.json components/Number/* > ../../sites/dev/prebuild/jsdoc/react/components/number.json

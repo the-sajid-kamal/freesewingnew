@@ -1,7 +1,19 @@
 ---
 title: Number
 ---
+import { DocusaurusDoc } from '@freesewing/react/components/Docusaurus'
+import { ComponentDocs } from '@site/src/components/component-docs.js'
+import * as jsdoc from '@site/prebuild/jsdoc/components.number.mjs'
+import { NumberCircleExample } from './_examples.js'
 
-:::note
-This page is yet to be created
-:::
+
+<DocusaurusDoc>
+
+The __Number__ component family provides the following components:
+
+- [NumberCircle](#numbercircle)
+
+## NumberCircle
+<ComponentDocs docs={jsdoc.jsdocNumberCircle} example={NumberCircleExample} />
+
+</DocusaurusDoc>
