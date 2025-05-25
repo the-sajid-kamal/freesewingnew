@@ -17,11 +17,16 @@ import { Popout } from '@freesewing/react/components/Popout'
 import { IconButton } from '@freesewing/react/components/Button'
 import { MiniTip } from '@freesewing/react/components/Mini'
 
-/*
- * Component for newsletter signup (by visitors)
+/**
+ * Component for newsletter signup by visitors (not logged-in users)
  *
- * @params {object} props - All React props
- * @param {function} props.Link - An optional framework-specific Link component
+ * @component
+ * @param {object} props - All component props
+ * @param {React.FC} [props.Link = false] - An optional framework-specific Link component
+ * @param {boolean} [props.noP = false] - Set this to true to not display the signup message paragraph
+ * @param {boolean} [props.noTitle = false] - Set this to true to not display the signup title
+ * @param {boolean} [props.noBox = false] - Set this to true to not apply the box style
+ * @returns {JSX.Element}
  */
 export const NewsletterSignup = ({ Link = false, noP = false, noTitle = false, noBox = false }) => {
   if (!Link) Link = WebLink
@@ -120,11 +125,13 @@ export const NewsletterSignup = ({ Link = false, noP = false, noTitle = false, n
   )
 }
 
-/*
- * Component to handle newsletter unsubscribe links
+/**
+ * Component for handling newsletter unsubscribe links
  *
- * @params {object} props - All React props
- * @param {function} props.Link - An optional framework-specific Link component
+ * @component
+ * @param {object} props - All component props
+ * @param {React.FC} [props.Link = false] - An optional framework-specific Link component
+ * @returns {JSX.Element}
  */
 export const NewsletterUnsubscribe = ({ Link = false }) => {
   if (!Link) Link = WebLink

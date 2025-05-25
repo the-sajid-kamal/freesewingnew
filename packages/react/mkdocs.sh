@@ -23,3 +23,4 @@ jsdoc -c jsdoc.json components/Link/* > ../../sites/dev/prebuild/jsdoc/react/com
 jsdoc -c jsdoc.json components/Logo/* > ../../sites/dev/prebuild/jsdoc/react/components/logo.json
 jsdoc -c jsdoc.json components/Mini/* > ../../sites/dev/prebuild/jsdoc/react/components/mini.json
 jsdoc -c jsdoc.json components/Modal/* > ../../sites/dev/prebuild/jsdoc/react/components/modal.json
+jsdoc -c jsdoc.json components/Newsletter/* > ../../sites/dev/prebuild/jsdoc/react/components/newsletter.json
