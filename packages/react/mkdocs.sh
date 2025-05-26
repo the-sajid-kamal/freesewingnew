@@ -29,3 +29,4 @@ jsdoc -c jsdoc.json components/Null/* > ../../sites/dev/prebuild/jsdoc/react/com
 jsdoc -c jsdoc.json components/Number/* > ../../sites/dev/prebuild/jsdoc/react/components/number.json
 jsdoc -c jsdoc.json components/Patrons/* > ../../sites/dev/prebuild/jsdoc/react/components/patrons.json
 jsdoc -c jsdoc.json components/Pattern/* > ../../sites/dev/prebuild/jsdoc/react/components/pattern.json
+jsdoc -c jsdoc.json components/Popout/* > ../../sites/dev/prebuild/jsdoc/react/components/popout.json
