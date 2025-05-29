@@ -39,3 +39,4 @@ jsdoc -c jsdoc.json components/Stats/* > ../../sites/dev/prebuild/jsdoc/react/co
 jsdoc -c jsdoc.json components/Tab/* > ../../sites/dev/prebuild/jsdoc/react/components/tab.json
 jsdoc -c jsdoc.json components/Table/* > ../../sites/dev/prebuild/jsdoc/react/components/table.json
 jsdoc -c jsdoc.json components/Time/* > ../../sites/dev/prebuild/jsdoc/react/components/time.json
+jsdoc -c jsdoc.json components/Uuid/* > ../../sites/dev/prebuild/jsdoc/react/components/uuid.json
