@@ -32,3 +32,4 @@ jsdoc -c jsdoc.json components/Pattern/* > ../../sites/dev/prebuild/jsdoc/react/
 jsdoc -c jsdoc.json components/Popout/* > ../../sites/dev/prebuild/jsdoc/react/components/popout.json
 jsdoc -c jsdoc.json components/Profile/* > ../../sites/dev/prebuild/jsdoc/react/components/profile.json
 jsdoc -c jsdoc.json components/Role/* > ../../sites/dev/prebuild/jsdoc/react/components/role.json
+jsdoc -c jsdoc.json components/SignIn/* > ../../sites/dev/prebuild/jsdoc/react/components/signin.json
