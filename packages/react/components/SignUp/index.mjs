@@ -27,7 +27,16 @@ import { EmailInput } from '@freesewing/react/components/Input'
 import { IconButton } from '@freesewing/react/components/Button'
 import { Spinner } from '@freesewing/react/components/Spinner'
 import { Consent } from '@freesewing/react/components/Account'
+import { Popout } from '@freesewing/react/components/Popout'
 
+/**
+ * The SignUp component holds the entire sign-up form
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {boolean} [props.embed = false] - Set this tot rue to use a H2 level heading instead of H1 so the form can be embedded in an existing page
+ * @returns {JSX.Element}
+ */
 export const SignUp = ({ embed = false }) => {
   // State
   const [email, setEmail] = useState('')
@@ -186,19 +195,31 @@ export const SignUp = ({ embed = false }) => {
   )
 }
 
+/**
+ * A component to handle the confirmation URL for a passwordless signup link (aka magic link).
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {function} [props.onSuccess = false] - A method to run when the sign in is successful
+ * @returns {JSX.Element}
+ */
 export const SignUpConfirmation = ({ onSuccess = false }) => {
   // State
   const [id, setId] = useState()
+  const [error, setError] = useState(false)
   const [check, setCheck] = useState()
 
   // Effects
   useEffect(() => {
     const newId = getSearchParam('id')
+    if (!newId) setError('noId')
     const newCheck = getSearchParam('check')
     if (newId !== id) setId(newId)
     if (newCheck !== check) setCheck(newCheck)
   }, [id, check])
 
+  // Short-circuit errors
+  if (error === 'noId') return <Popout type="error" title="Invalid Sign Up URL">You seem to have arrived on this page in a way that is not supported</Popout>
   // If we do not (yet) have the data, show a loader
   if (!id || !check)
     return (

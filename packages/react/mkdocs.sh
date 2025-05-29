@@ -33,3 +33,4 @@ jsdoc -c jsdoc.json components/Popout/* > ../../sites/dev/prebuild/jsdoc/react/c
 jsdoc -c jsdoc.json components/Profile/* > ../../sites/dev/prebuild/jsdoc/react/components/profile.json
 jsdoc -c jsdoc.json components/Role/* > ../../sites/dev/prebuild/jsdoc/react/components/role.json
 jsdoc -c jsdoc.json components/SignIn/* > ../../sites/dev/prebuild/jsdoc/react/components/signin.json
+jsdoc -c jsdoc.json components/SignUp/* > ../../sites/dev/prebuild/jsdoc/react/components/signup.json
