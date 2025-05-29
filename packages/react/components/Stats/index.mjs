@@ -45,6 +45,14 @@ const option = {
   },
 }
 
+/**
+ * A component to display generic stats from the FreeSewing backend
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {React.FC} [props.Link = false] - An optional framework-specific Link component
+ * @returns {JSX.Element}
+ */
 export const Stats = ({ Link = false }) => {
   if (!Link) Link = WebLink
   const [stats, setStats] = useState()
