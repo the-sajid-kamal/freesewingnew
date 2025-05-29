@@ -17,16 +17,25 @@ export const useControl = () => {
   const { setLoadingStatus } = useContext(LoadingStatusContext)
 
   // State
-  const [control, setControl] = useState(account.control)
+  const [control, __setControl] = useState(account.control)
 
-  // Method to update the control setting
+  /*
+   * Legacy method to update the control setting
+   * Deprecated because its naming is inconsistent with other hooks
+   */
   const updateControl = async (newControl) => {
+    console.warn('The updateControl method is deprecated. Use setControl instead.')
+    return setControl(newControl)
+  }
+
+  // Method to set the control setting
+  const setControl = async (newControl) => {
     if (newControl !== control) {
       if (token) {
         setLoadingStatus([true, 'Updating preferences'])
         const [status, body] = await backend.updateAccount({ control: newControl })
         if (status === 200) {
-          setControl(newControl)
+          __setControl(newControl)
           setAccount(body.account)
           setLoadingStatus([true, 'Preferences updated', true, true])
         } else
@@ -37,10 +46,10 @@ export const useControl = () => {
          * So this ensures control is always available, even if people are not authenticated
          */
         setAccount({ ...account, control: newControl })
-        setControl(newControl)
+        __setControl(newControl)
       }
     }
   }
 
-  return { control, updateControl }
+  return { control, setControl, updateControl }
 }

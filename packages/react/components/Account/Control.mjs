@@ -44,7 +44,7 @@ const strings = {
  */
 export const Control = ({ welcome = false }) => {
   // Hooks
-  const { control, updateControl } = useControl()
+  const { control, setControl } = useControl()
 
   // Helper to get the link to the next onboarding step
   const nextHref = welcome
@@ -69,7 +69,7 @@ export const Control = ({ welcome = false }) => {
           desc: controlDesc[val].desc,
         }))}
         current={control}
-        update={updateControl}
+        update={setControl}
       />
       {welcome ? (
         <>
