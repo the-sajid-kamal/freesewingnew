@@ -63,7 +63,7 @@ export const Password = ({ welcome = false, Link = false }) => {
         <SaveIcon /> Save
       </button>
       {!account.mfaEnabled && (
-        <Popout tip>
+        <Popout type="tip">
           <h5>Please consider enabling Two-Factor Authentication</h5>
           <p>
             We do not enforce a password policy, but we do recommend you enable Two-Factor

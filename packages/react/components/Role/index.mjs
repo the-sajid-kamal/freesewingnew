@@ -142,7 +142,7 @@ const ConsentLacking = ({ banner, refresh }) => {
     <Wrap>
       <div className="tw:text-left">
         {banner}
-        <Popout warning>
+        <Popout type="warning">
           <h2>Your account lacks consent</h2>
           <p>
             This should have been taken care of when onboarding your account, but due to a earlier

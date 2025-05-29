@@ -55,7 +55,7 @@ export const Email = ({ welcome = false, Link = false }) => {
   return (
     <div className="tw:w-full">
       {changed ? (
-        <Popout note>
+        <Popout type="note">
           <h3>Please confirm this change</h3>
           <p>
             We have sent an E-mail to your new address to confirm this change. Please click the link

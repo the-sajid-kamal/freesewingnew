@@ -111,7 +111,7 @@ export const Newsletter = ({ welcome = false, Link = false }) => {
         </>
       ) : null}
       {welcome ? null : (
-        <Popout tip>
+        <Popout type="tip">
           <h5>You can unsubscribe at any time with the link below</h5>
           <p>
             This unsubscribe link will also be included at the bottom of every newsletter we send

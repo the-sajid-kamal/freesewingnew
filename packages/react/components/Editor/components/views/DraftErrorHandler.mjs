@@ -14,7 +14,7 @@ export const DraftErrorHandler = ({ failure, errors }) => {
   }
 
   return (
-    <Popout error>
+    <Popout type="error">
       <p>
         Sorry, there were problems drafting your pattern with the given measurements and options.
       </p>

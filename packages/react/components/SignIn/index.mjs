@@ -400,7 +400,7 @@ export const SignInConfirmation = ({ onSuccess = false }) => {
     return error === 'signInFailed' ? (
       <>
         <MfaForm {...{ mfaCode, setMfaCode }} onSubmit={getConfirmation} />
-        <Popout warning title="Sign In Failed">
+        <Popout type="warning" title="Sign In Failed">
           <p>Your one-time token is either invalid of expired.</p>
         </Popout>
       </>

@@ -146,7 +146,7 @@ export const Pattern = ({ id, Link }) => {
     return (
       <div className="tw:w-full">
         {pattern.public ? (
-          <Popout note>
+          <Popout type="note">
             <h5>This is the private view of your pattern</h5>
             <p>
               Everyone can access the public view since this is a public pattern.

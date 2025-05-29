@@ -22,7 +22,7 @@ export const DocsView = ({ state, config, update }) => {
       <div className="tw:m-auto tw:mt-8 tw:max-w-2xl tw:px-4 tw:mb-8">
         <H1>Documentation</H1>
         {state?.design ? (
-          <Popout link>
+          <Popout type="link">
             <H5>Design Documentation</H5>
             <p className="tw:text-lg">
               You can find documentation for the {capitalize(state.design)} design at:
@@ -36,7 +36,7 @@ export const DocsView = ({ state, config, update }) => {
             </p>
           </Popout>
         ) : null}
-        <Popout link>
+        <Popout type="link">
           <H5>Understanding the FreeSewing Pattern Editor</H5>
           <p className="tw:text-lg">
             Please refer to the pattern editor documentation at:
@@ -49,7 +49,7 @@ export const DocsView = ({ state, config, update }) => {
             </b>
           </p>
         </Popout>
-        <Popout tip>
+        <Popout type="tip">
           <H5>
             Looking for info on how it <em>really</em> works?
           </H5>

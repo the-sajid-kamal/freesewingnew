@@ -748,7 +748,7 @@ const SuggestCset = ({ mset, Link }) => {
         Notes
       </h4>
       <p>If you would like to add any notes, you can do so here.</p>
-      <Popout tip compact>
+      <Popout type="tip" compact>
         This field supports markdown
       </Popout>
       <MarkdownInput label="Notes" current={notes} update={setNotes} valid={() => true} />

@@ -76,7 +76,7 @@ export const ImportSet = () => {
           multiple: false,
         }}
       />
-      <Popout tip>
+      <Popout type="tip">
         <p>
           To import a measurement set, you should have a JSON or YAML file that has the following
           structure:

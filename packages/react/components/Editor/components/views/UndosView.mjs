@@ -27,7 +27,7 @@ export const UndosView = ({ Design, update, state, config }) => {
         <H1>Undo History</H1>
         <p className="tw:mb-4">Time-travel through your recent pattern changes.</p>
         {steps.length < 1 ? (
-          <Popout note>
+          <Popout type="note">
             <h4>Your undo history is currently empty</h4>
             <p>When you make changes to your pattern, they will show up here.</p>
             <p>For example, you can click the button below to change the pattern rotation:</p>

@@ -313,7 +313,7 @@ const ShowNewApikey = ({ apikey }) => (
       <CopyToClipboardButton sup content={apikey.secret} label="API key secret" />
     </h6>
     <pre>{apikey.secret}</pre>
-    <Popout warning compact>
+    <Popout type="warning" compact>
       This is the only time you can see the key secret, make sure to copy it.
     </Popout>
   </div>

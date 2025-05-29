@@ -28,7 +28,7 @@ export const ViewPicker = ({ Design, update, state }) => {
             .map((view) => (
               <MainCard key={view} {...{ view, update, Design }} />
             ))}
-          <Popout note>
+          <Popout type="note">
             <div className="tw:text-left">
               <H5>pe:measurementsFreeViewsOnly.t:</H5>
               <p>pe:measurementsFreeViewsOnly.d</p>

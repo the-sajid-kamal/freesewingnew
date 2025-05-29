@@ -200,7 +200,7 @@ export const Mfa = ({ title = true }) => {
                 <LockIcon />
                 Set up Mult-Factor Authentication
               </button>
-              <Popout tip>
+              <Popout type="tip">
                 <h5>Please consider enabling Two-Factor Authentication</h5>
                 <p>
                   We do not enforce a password policy, but we do recommend you enable Multi-Factor

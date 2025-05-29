@@ -77,17 +77,9 @@ export const SaveView = ({ config, state, update }) => {
     }
     const result = await backend.updatePattern(saveAs.pattern, patternData)
     if (result.success) {
-      //setLoadingStatus([
-      //  true,
-      //  <>
-      //    {t('status:patternSaved')} <small>[#{saveAs.pattern}]</small>
-      //  </>,
-      //  true,
-      //  true,
-      //])
       setSavedId(saveAs.pattern)
       update.notify({ color: 'success', msg: 'boom' }, saveAs.pattern)
-    } //else setLoadingStatus([true, 'backendError', true, false])
+    }
   }
 
   return (
@@ -98,7 +90,7 @@ export const SaveView = ({ config, state, update }) => {
           <>
             <h2>Save Pattern</h2>
             {savedId && (
-              <Popout link>
+              <Popout type="link">
                 <h5>Pattern Saved</h5>
                 See: <Link href={`/account/patterns/${savedId}`}>/account/patterns/{savedId}</Link>
               </Popout>

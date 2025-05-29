@@ -183,7 +183,7 @@ export const MeasurementsView = ({
       <div className="tw:max-w-7xl tw:mt-8 tw:mx-auto tw:px-4 tw:mb-4">
         <H1>Measurements</H1>
         {missingMeasurements && missingMeasurements.length > 0 ? (
-          <Popout note dense noP>
+          <Popout type="note" dense>
             <h3>
               To generate this pattern, we need {missingMeasurements.length} additional measurement
               {missingMeasurements.length === 1 ? '' : 's'}:
@@ -198,7 +198,7 @@ export const MeasurementsView = ({
             </ol>
           </Popout>
         ) : (
-          <Popout tip dense noP>
+          <Popout type="tip" dense>
             <H5>We have all required measurements to draft this pattern</H5>
             <div className="tw:flex tw:flex-row tw:flex-wrap tw:gap-2 tw:mt-2">
               <button
