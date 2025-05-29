@@ -1,7 +1,12 @@
 import React from 'react'
 
-/*
- * A simple spinner
+/**
+ * A component to render a loading spinner
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {strign} [props.className = 'tw:h-6 tw:w-6'] - CSS classes to apply to the spinner
+ * @returns {JSX.Element}
  */
 export const Spinner = ({ className = 'tw:h-6 tw:w-6' }) => (
   <svg
