@@ -38,3 +38,4 @@ jsdoc -c jsdoc.json components/Spinner/* > ../../sites/dev/prebuild/jsdoc/react/
 jsdoc -c jsdoc.json components/Stats/* > ../../sites/dev/prebuild/jsdoc/react/components/stats.json
 jsdoc -c jsdoc.json components/Tab/* > ../../sites/dev/prebuild/jsdoc/react/components/tab.json
 jsdoc -c jsdoc.json components/Table/* > ../../sites/dev/prebuild/jsdoc/react/components/table.json
+jsdoc -c jsdoc.json components/Time/* > ../../sites/dev/prebuild/jsdoc/react/components/time.json

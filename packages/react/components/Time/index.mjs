@@ -6,12 +6,20 @@ const hour = 3600000
 const minute = 60000
 const second = 1000
 
+/**
+ * A component to render date + time
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.iso - Time in ISO format
+ * @returns {JSX.Element}
+ */
 export const DateAndTime = ({ iso }) => {
   const dt = DateTime.fromISO(iso)
   return dt.toLocaleString(DateTime.DATETIME_MED)
 }
 
-export const TimeForHumans = ({ iso, future = false }) => {
+const TimeForHumans = ({ iso, future = false }) => {
   const suffix = future ? 'from now' : 'ago'
   const dates = [DateTime.fromISO(iso), DateTime.now()]
   if (future) dates.reverse()
@@ -36,11 +44,36 @@ export const TimeForHumans = ({ iso, future = false }) => {
   return `${years} years ${suffix}`
 }
 
-export const TimeAgo = (props) => <TimeForHumans {...props} />
-export const TimeToGo = (props) => <TimeForHumans {...props} future />
+/**
+ * A component to render the time delta between now and a moment in the past.
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.iso - Time in ISO format
+ * @returns {JSX.Element}
+ */
+export const TimeAgo = (props) => <TimeForHumans {...props} future={false} />
 
+/**
+ * A component to render the time delta between now and a moment in the future.
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.iso - Time in ISO format
+ * @returns {JSX.Element}
+ */
+export const TimeToGo = (props) => <TimeForHumans {...props} future={true} />
+
+/**
+ * A component to render the time delta between now and a moment in the past.
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.time - Timestamp in milliseconds
+ * @returns {JSX.Element}
+ */
 export const TimeAgoBrief = ({ time }) => {
-  const d = Math.floor(Date.now() - time)
+  const d = Math.floor(Date.now() - Number(time))
   if (d > day) return `${Math.floor(d / day)}d ago`
   if (d > hour) return `${Math.floor(d / hour)}h ago`
   if (d > minute * 2) return `${Math.floor(d / minute)}m ago`
@@ -48,8 +81,16 @@ export const TimeAgoBrief = ({ time }) => {
   return `${d}ms ago`
 }
 
+/**
+ * A component to render the time delta between now and a moment in the future.
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.time - Timestamp in milliseconds
+ * @returns {JSX.Element}
+ */
 export const TimeToGoBrief = ({ time }) => {
-  const d = Math.floor(time * 1000 - Date.now())
+  const d = Math.floor(Number(time) - Date.now())
   if (d > day) return `${Math.floor(d / day)}d`
   if (d > hour) return `${Math.floor(d / hour)}h`
   if (d > minute * 2) return `${Math.floor(d / minute)}m`
