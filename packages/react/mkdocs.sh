@@ -37,3 +37,4 @@ jsdoc -c jsdoc.json components/SignUp/* > ../../sites/dev/prebuild/jsdoc/react/c
 jsdoc -c jsdoc.json components/Spinner/* > ../../sites/dev/prebuild/jsdoc/react/components/spinner.json
 jsdoc -c jsdoc.json components/Stats/* > ../../sites/dev/prebuild/jsdoc/react/components/stats.json
 jsdoc -c jsdoc.json components/Tab/* > ../../sites/dev/prebuild/jsdoc/react/components/tab.json
+jsdoc -c jsdoc.json components/Table/* > ../../sites/dev/prebuild/jsdoc/react/components/table.json
