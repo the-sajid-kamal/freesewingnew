@@ -4,12 +4,17 @@ import { ModalWrapper } from '@freesewing/react/components/Modal'
 import { KioskIcon } from '@freesewing/react/components/Icon'
 
 /**
- * FreeSewing Tabs component, typically used for dev examples
+ * A component to render Tabs, typically used for dev examples.
  *
- * @param {string} tabs - The list of tabs
- * @param {number} active - The nr of the active tab
- * @param {array} children - Content to render within the tabs
- * @param {bool} withModal - Set to true to load tab content in a modal window when kiosk icon is clicked
+ * Note that children MUST be at least two Tab components.
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.tabs - The list of tabs
+ * @param {number} [props.active = 0] - The index of the active tab
+ * @param {JSX.Element} props.children - The component children, will be rendered if props.js is not set
+ * @param {bool} [props.withModal = false] - Set to true to load tab content in a modal window when kiosk icon is clicked
+ * @returns {JSX.Element}
  */
 export const Tabs = ({ tabs = '', active = 0, children, withModal = false }) => {
   const { setModal } = useContext(ModalContext)
@@ -72,10 +77,16 @@ export const Tabs = ({ tabs = '', active = 0, children, withModal = false }) => 
 }
 
 /**
- * FreeSewing Tab component, use it together with Tabs
+ * A component to render an individual Tab inside Tabs.
  *
- * @param {number} tabId - The ID of this tab
- * @param {number} activeTab - The ID of the active tab
- * @param {array} children - Content to render within the tab
+ * You should not use this component directly, or pass any props to it apart from children.
+ * Instead, use them as direct children in the Tabs component.
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {number} props.activeTab - The id/index of the active tab (do not set this manually)
+ * @param {number} props.tabId - The id/index of this tab (do not set this manually)
+ * @param {JSX.Element} props.children - The component children, will be rendered if props.js is not set
+ * @returns {JSX.Element}
  */
 export const Tab = ({ children, tabId, activeTab }) => (activeTab === tabId ? children : null)
