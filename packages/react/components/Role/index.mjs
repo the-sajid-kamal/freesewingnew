@@ -161,10 +161,22 @@ const ConsentLacking = ({ banner, refresh }) => {
   )
 }
 
-export const RoleBlock = ({ children, user = false, Link = false }) => {
+/**
+ * A component to block access based on a FreeSewing role.
+ *
+ * Note that in an SPA, blocking access to the user is merely a matter of providing a
+ * more intuitive UI. That actual access control is implemented on the backend.
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {React.FC} [props.Link = false] - An optional framework-specific Link component
+ * @param {string} [props.role = admin] - The role required to access the content. Typically admin or user.
+ * @param {JSX.Element} props.children - The component children, will be rendered if props.js is not set
+ * @returns {JSX.Element}
+ */
+export const RoleBlock = ({ children, role = "admin", Link = false }) => {
   if (!Link) Link = DefaultLink
-  let requiredRole = 'admin'
-  if (user) requiredRole = user
+  const requiredRole = role
 
   const { account, setAccount, token, admin, stopImpersonating, signOut } = useAccount()
   const backend = useBackend()
@@ -198,7 +210,6 @@ export const RoleBlock = ({ children, user = false, Link = false }) => {
           })
         } else if (status === 451) setError('consentLacking')
         else {
-          console.log({ status, data })
           if (data?.error?.error) setError(data.error.error)
           else signOut()
         }
@@ -246,6 +257,18 @@ export const RoleBlock = ({ children, user = false, Link = false }) => {
   return children
 }
 
+/**
+ * A component to display different content to users or visitors.
+ *
+ * This is a convenience component to not have to check
+ * for a user account is many different places.
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {JSX.Element} userContent - The content to show to users
+ * @param {JSX.Element} visitorContent - The content to show to visitors (not-logged in)
+ * @returns {JSX.Element}
+ */
 export const UserVisitorContent = ({ userContent = null, visitorContent = null }) => {
   const { account, setAccount, token } = useAccount()
   const backend = useBackend()
