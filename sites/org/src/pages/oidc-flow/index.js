@@ -36,7 +36,7 @@ export default function SignInPage() {
     >
       <div className="tw:text-base-content tw:px-4 tw:max-w-2xl tw:mx-auto tw:py-12">
         <h1 className="tw:break-words tw:hidden">Sign in with FreeSewing</h1>
-        <RoleBlock user>
+        <RoleBlock role="user">
           <div className="tw:border tw:rounded-lg tw:max-w-lg">
             <h5
               className={`tw:flex tw:flex-row tw:items-center tw:gap-2 tw:px-4 tw:bg-primary

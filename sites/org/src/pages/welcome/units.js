@@ -14,7 +14,7 @@ export default function WelcomeNewsletterPage() {
           <small>The latter one slightly reluctant, but support it we do.</small>
         </p>
         <DocusaurusDoc>
-          <RoleBlock user>
+          <RoleBlock role="user">
             <Units welcome />
           </RoleBlock>
         </DocusaurusDoc>

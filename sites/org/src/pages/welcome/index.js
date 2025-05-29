@@ -10,7 +10,7 @@ export default function WelcomeStartPage() {
         <h1>Welcome</h1>
         <p>We will ask you a few questions to set up your account. This won&apos;t take long.</p>
         <DocusaurusDoc>
-          <RoleBlock user>
+          <RoleBlock role="user">
             <Control welcome />
           </RoleBlock>
         </DocusaurusDoc>

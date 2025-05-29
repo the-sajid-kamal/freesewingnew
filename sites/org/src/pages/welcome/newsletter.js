@@ -10,7 +10,7 @@ export default function WelcomeNewsletterPage() {
         <h1>Newsletter</h1>
         <p>You wil get email from us every three months. No more. No less.</p>
         <DocusaurusDoc>
-          <RoleBlock user>
+          <RoleBlock role="user">
             <Newsletter welcome />
           </RoleBlock>
         </DocusaurusDoc>

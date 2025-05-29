@@ -10,7 +10,7 @@ export default function WelcomeBioPage() {
         <h1>Bio</h1>
         <p>Feel free to shamelessly plug your YouTube channel or link to other places.</p>
         <DocusaurusDoc>
-          <RoleBlock user>
+          <RoleBlock role="user">
             <Bio welcome />
           </RoleBlock>
         </DocusaurusDoc>
