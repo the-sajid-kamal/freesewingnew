@@ -2,6 +2,33 @@
 title: Profile
 ---
 
-:::note
-This page is yet to be created
-:::
+import { DocusaurusDoc } from '@freesewing/react/components/Docusaurus'
+import { ComponentDocs } from '@site/src/components/component-docs.js'
+import * as jsdoc from '@site/prebuild/jsdoc/components.profile.mjs'
+import { AvatarExample, OwnProfileExample, UserProfileExample } from './_examples.js'
+
+<DocusaurusDoc>
+
+- [Components](#components)
+
+## Components
+
+The **Json** component family provides the following components:
+
+- [Avatar](#avatar)
+- [OwnProfile](#ownprofile)
+- [UserProfile](#userprofile)
+
+### Avatar
+
+<ComponentDocs docs={jsdoc.jsdocAvatar} example={AvatarExample} />
+
+### OwnProfile
+
+<ComponentDocs docs={jsdoc.jsdocOwnProfile} example={OwnProfileExample} />
+
+### UserProfile
+
+<ComponentDocs docs={jsdoc.jsdocUserProfile} example={UserProfileExample} />
+
+</DocusaurusDoc>
