@@ -42,3 +42,4 @@ jsdoc -c jsdoc.json components/Time/* > ../../sites/dev/prebuild/jsdoc/react/com
 jsdoc -c jsdoc.json components/Uuid/* > ../../sites/dev/prebuild/jsdoc/react/components/uuid.json
 jsdoc -c jsdoc.json components/Ux/* > ../../sites/dev/prebuild/jsdoc/react/components/ux.json
 jsdoc -c jsdoc.json components/Xray/* > ../../sites/dev/prebuild/jsdoc/react/components/xray.json
+jsdoc -c jsdoc.json components/Yaml/* > ../../sites/dev/prebuild/jsdoc/react/components/yaml.json
