@@ -33,8 +33,8 @@ const HelpLink = ({ help, Link = false }) => {
 
   if (typeof help === 'function')
     return (
-      <button onClick={() => help} title="Show help">
-        <HelpIcon className="tw:w-5 tw:h-5" />
+      <button onClick={help} title="Show help">
+        <HelpIcon className="tw:w-5 tw:h-5 tw:text-secondary tw:hover:cursor-pointer" />
       </button>
     )
 
@@ -774,7 +774,7 @@ export const MarkdownInput = ({
  * @component
  * @param {object} props - All component props
  * @param {boolean} [props.box = false] - Set this to true to render a boxed fieldset
- * @param {string|function} [props.props.help = false] - An optional URL/method to link/show help or docs
+ * @param {string|function} [props.help = false] - An optional URL/method to link/show help or docs
  * @param {string} [props.id = ''] - Id of the HTML element to link the fieldset labels
  * @param {boolean} [props.imperial = false] - Set this to true to render imperial units
  * @param {string} [props.labelBR = false] - The bottom-right) label
@@ -861,7 +861,7 @@ export const MeasurementInput = ({
     <Fieldset
       {...{ box, help, labelTR, labelBR, legend }}
       forId={id}
-      label={measurementsTranslations[m] + (isDegree ? ' (°)' : '')}
+      legend={measurementsTranslations[m] + (isDegree ? ' (°)' : '')}
       labelBL={bottomLeftLabel}
     >
       <label

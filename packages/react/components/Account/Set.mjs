@@ -57,6 +57,7 @@ import { Popout } from '@freesewing/react/components/Popout'
 import { bundlePatternTranslations, draft, flattenFlags } from '../Editor/lib/index.mjs'
 import { Bonny } from '@freesewing/bonny'
 import { MiniNote, MiniTip } from '../Mini/index.mjs'
+import { modalMeasurementHelp } from '@freesewing/react/components/Help'
 
 /**
  * Component to show an individual measurements set
@@ -66,9 +67,8 @@ import { MiniNote, MiniTip } from '../Mini/index.mjs'
  * @param {number} props.id - The ID of the measurements set to load
  * @param {bool} [props.publicOnly = false] - If the set should be used with the backend.getPublicSet method
  * @param {function} [props.Link = false] - An optional framework-specific Link component to use for client-side routing
- * @param {function} [measurementHelpProvider = false] - A function that returns a url or action to show help for a specific measurement
  */
-export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvider = false }) => {
+export const Set = ({ id, publicOnly = false, Link = false }) => {
   if (!Link) Link = WebLink
 
   // Hooks
@@ -486,7 +486,7 @@ export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvi
           current={mset.measies[m]}
           original={mset.measies[m]}
           update={updateMeasies}
-          helpProvider={measurementHelpProvider}
+          help={() => modalMeasurementHelp(m, setModal)}
         />
       ))}
 

@@ -1,5 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { measurements as measurementTranslations } from '@freesewing/i18n'
+// Context
+import { ModalContext } from '@freesewing/react/context/Modal'
+// Components
 import { MeasurementInput } from '@freesewing/react/components/Input'
+import { modalMeasurementHelp } from '@freesewing/react/components/Help'
 
 /**
  * This MeasurementsEditor component allows inline-editing of the measurements
@@ -9,10 +14,13 @@ import { MeasurementInput } from '@freesewing/react/components/Input'
  * @param {object} props.state - The ViewWrapper state object
  * @param {object} props.state.settings - The current settings
  * @param {object} props.update - Helper object for updating the ViewWrapper state
- * @param {object} props.helpProvider - A function that takes a measurement and returns a url or action to show help for that measurement
  * @return {function} MeasurementsEditor - React component
  */
-export const MeasurementsEditor = ({ Design, update, state, helpProvider = false }) => {
+export const MeasurementsEditor = ({ Design, update, state }) => {
+  // Context
+  const { setModal, modalContent } = useContext(ModalContext)
+  console.log({ modalContent })
+
   /*
    * Helper method to handle state updates for measurements
    */
@@ -26,7 +34,7 @@ export const MeasurementsEditor = ({ Design, update, state, helpProvider = false
   const { settings = {} } = state
 
   return (
-    <div className="tw:max-w-2xl tw:mx-auto">
+    <div className="tw:max-w-xl tw:w-full tw:mx-auto">
       <h4>Required Measurements</h4>
       {Object.keys(Design.patternConfig.measurements).length === 0 ? (
         <p>This design does not require any measurements.</p>
@@ -40,7 +48,8 @@ export const MeasurementsEditor = ({ Design, update, state, helpProvider = false
               original={settings.measurements?.[m]}
               update={(m, newVal) => onUpdate(m, newVal)}
               id={`edit-${m}`}
-              helpProvider={helpProvider}
+              label={measurementTranslations[m]}
+              help={() => modalMeasurementHelp(m, setModal)}
             />
           ))}
           <br />
@@ -58,6 +67,7 @@ export const MeasurementsEditor = ({ Design, update, state, helpProvider = false
             original={settings.measurements?.[m]}
             update={(m, newVal) => onUpdate(m, newVal)}
             id={`edit-${m}`}
+            help={() => modalMeasurementHelp(m, setModal)}
           />
         ))
       )}

@@ -83,6 +83,7 @@ packageJson:
       "./components/Echart": "./components/Echart/index.mjs"
       "./components/Editor": "./components/Editor/index.mjs"
       "./components/Heading": "./components/Heading/index.mjs"
+      "./components/Help": "./components/Help/index.mjs"
       "./components/Highlight": "./components/Highlight/index.mjs"
       "./components/Icon": "./components/Icon/index.mjs"
       "./components/Input": "./components/Input/index.mjs"
@@ -124,6 +125,7 @@ packageJson:
       "./hooks/useControl": "./hooks/useControl/index.mjs"
       "./hooks/useDesign": "./hooks/useDesign/index.mjs"
       "./hooks/useDesignTranslation": "./hooks/useDesignTranslation/index.mjs"
+      "./hooks/useFilter": "./hooks/useFilter/index.mjs"
       "./hooks/useSelection": "./hooks/useSelection/index.mjs"
       "./hooks/useStateObject": "./hooks/useStateObject/index.mjs"
       # Lib
