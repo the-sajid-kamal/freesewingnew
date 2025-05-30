@@ -1,13 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { copyToClipboard } from '@freesewing/utils'
-import ReactDOMServer from 'react-dom/server'
 import { CopyIcon, OkIcon } from '@freesewing/react/components/Icon'
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
-
-const strip = (html) =>
-  typeof DOMParser === 'undefined'
-    ? html
-    : new DOMParser().parseFromString(html, 'text/html').body.textContent || ''
 
 const handleCopied = (content, setCopied, setLoadingStatus, label) => {
   copyToClipboard(content)
@@ -55,7 +49,7 @@ export const CopyToClipboardButton = ({ children, content, label = false, sup = 
       ) : (
         <CopyIcon className={`${style} tw:text-inherit tw:group-hover:text-secondary`} />
       )}
-        {sup ? null : children}
+      {sup ? null : children}
     </button>
   )
 }

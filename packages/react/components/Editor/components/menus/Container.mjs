@@ -36,10 +36,8 @@ export const MenuItem = ({
   allowOverride = false,
   ux = 5,
   state,
-  docs,
   config,
   Design,
-  i18n,
 }) => {
   // Local state - whether the override input should be shown
   const [override, setOverride] = useState(false)

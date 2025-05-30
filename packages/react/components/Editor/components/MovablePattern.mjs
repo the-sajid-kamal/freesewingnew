@@ -85,7 +85,7 @@ export const MovablePattern = ({
 
   const sortedRenderProps = { ...renderProps, stacks: sortedStacks }
 
-  const Stack = ({ stackName, stack, settings, components, t }) => (
+  const Stack = ({ stackName, stack, settings, components }) => (
     <MovableStack
       {...{
         stackName,
@@ -397,7 +397,7 @@ function angle(pointA, pointB) {
 
 const rectSize = 24
 
-const Button = ({ onClickCb, transform, Icon, children, title = '' }) => {
+const Button = ({ onClickCb, transform, Icon, title = '' }) => {
   const _onClick = (event) => {
     event.stopPropagation()
     onClickCb(event)
@@ -410,23 +410,6 @@ const Button = ({ onClickCb, transform, Icon, children, title = '' }) => {
       <Icon className="tw:group-hover:text-primary-content" />
       <rect width={rectSize} height={rectSize} onClick={_onClick} className="tw:fill-transparent" />
     </g>
-  )
-}
-
-export const ShowButtonsToggle = ({ ui, update }) => {
-  const hideButtons = (evt) => {
-    update.ui('hideMovableButtons', !evt.target.checked)
-  }
-  return (
-    <label className="label cursor-pointer">
-      <span className="label-text text-lg mr-2">{t('showMovableButtons')}</span>
-      <input
-        type="checkbox"
-        className="toggle toggle-primary"
-        checked={!ui.hideMovableButtons}
-        onChange={hideButtons}
-      />
-    </label>
   )
 }
 

@@ -1,11 +1,5 @@
 // Utils
-import {
-  linkClasses,
-  horFlexClasses,
-  horFlexClassesNoSm,
-  capitalize,
-  getSearchParam,
-} from '@freesewing/utils'
+import { horFlexClasses, horFlexClassesNoSm, getSearchParam, navigate } from '@freesewing/utils'
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
 // Hooks
@@ -21,13 +15,11 @@ import {
   KeyIcon,
   LockIcon,
   WarningIcon,
-  GoogleIcon,
-  GitHubIcon,
   FreeSewingIcon,
   UserIcon,
 } from '@freesewing/react/components/Icon'
 import { MfaInput, StringInput, PasswordInput } from '@freesewing/react/components/Input'
-import { H1, H2, H3, H4 } from '@freesewing/react/components/Heading'
+import { H1 } from '@freesewing/react/components/Heading'
 
 /*
  *
@@ -44,7 +36,7 @@ import { H1, H2, H3, H4 } from '@freesewing/react/components/Heading'
  * @returns {JSX.Element}
  */
 export const SignIn = ({ onSuccess = false, silent = false }) => {
-  const { account, setAccount, setToken, seenUser, setSeenUser } = useAccount()
+  const { setAccount, setToken, seenUser, setSeenUser } = useAccount()
   const backend = useBackend()
   const { setLoadingStatus } = useContext(LoadingStatusContext)
 
@@ -146,15 +138,6 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
         true,
         true,
       ])
-    }
-  }
-
-  const initOauth = async (provider) => {
-    setLoadingStatus([true, 'Contacting the FreeSewing backend'])
-    const [status, body] = await backend.oauthInit(provider.toLowerCase())
-    if (status === 200 && body.result === 'success') {
-      setLoadingStatus([true, `Contacting ${capitalize(provider)}`])
-      window.location.href = body.authUrl
     }
   }
 
@@ -412,7 +395,12 @@ export const SignInConfirmation = ({ onSuccess = false }) => {
   }
 
   // Short-circuit errors
-  if (error === 'noId') return <Popout type="error" title="Invalid Sign In URL">You seem to have arrived on this page in a way that is not supported</Popout>
+  if (error === 'noId')
+    return (
+      <Popout type="error" title="Invalid Sign In URL">
+        You seem to have arrived on this page in a way that is not supported
+      </Popout>
+    )
   if (error && mfa)
     return error === 'signInFailed' ? (
       <>

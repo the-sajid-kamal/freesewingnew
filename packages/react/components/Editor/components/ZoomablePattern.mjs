@@ -7,7 +7,7 @@ import { ZoomInIcon, ZoomOutIcon, RotateIcon } from '@freesewing/react/component
  * A pattern you can pan and zoom
  */
 export const ZoomablePattern = forwardRef(function ZoomablePatternRef(props, ref) {
-  const { renderProps, rotate, update, components = {}, strings = {} } = props
+  const { renderProps, rotate, components = {}, strings = {} } = props
   const { onTransformed, zoomFunctions, setZoomFunctions } = useContext(ZoomContext)
 
   return (

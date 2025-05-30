@@ -1,6 +1,6 @@
 import React from 'react'
 import mustache from 'mustache'
-import { flattenFlags, stripNamespace, bundlePatternTranslations } from '../lib/index.mjs'
+import { flattenFlags } from '../lib/index.mjs'
 import {
   ChatIcon,
   ErrorIcon,
@@ -115,7 +115,7 @@ export const FlagsAccordionTitle = ({ flags }) => {
   )
 }
 
-export const FlagsAccordionEntries = ({ flags, update, pattern, strings }) => {
+export const FlagsAccordionEntries = ({ flags, update, strings }) => {
   const flagList = flattenFlags(flags)
 
   if (Object.keys(flagList).length < 1) return null

@@ -10,24 +10,17 @@ import { logoPath } from '@freesewing/config'
  * @param {string} [props.stroke = undefined] - Set this explicitly to use a different stroke color
  * @returns {JSX.Element}
  */
-export const FreeSewingLogo = ({ className = 'tw:w-20 tw:h-20', stroke }) => {
-  const svgProps = {}
-  const strokes = { dark: '#000', light: 'var(--p)' }
-
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="1 0 25 25" className={className}>
-      <defs>
-        <path id="react-logo" d={logoPath} />
-      </defs>
-      <use
-        xlinkHref="#react-logo"
-        fill="none"
-        strokeWidth="0.5"
-        style={{ stroke: stroke ? stroke : 'var(--color-base-100)'}}
-      />
-      <use xlinkHref="#react-logo" fill="currentColor" stroke="none" />
-    </svg>
-  )
-}
-
-
+export const FreeSewingLogo = ({ className = 'tw:w-20 tw:h-20', stroke }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="1 0 25 25" className={className}>
+    <defs>
+      <path id="react-logo" d={logoPath} />
+    </defs>
+    <use
+      xlinkHref="#react-logo"
+      fill="none"
+      strokeWidth="0.5"
+      style={{ stroke: stroke ? stroke : 'var(--color-base-100)' }}
+    />
+    <use xlinkHref="#react-logo" fill="currentColor" stroke="none" />
+  </svg>
+)

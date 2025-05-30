@@ -101,7 +101,7 @@ export function menuCoreSettingsStructure({
           title: 'Seam Allowance Size',
           about: (
             <>
-              Controls the size of the pattern's seam allowance.
+              Controls the size of the pattern&apos;s seam allowance.
               <CoreDocsLink item="sa" />
             </>
           ),

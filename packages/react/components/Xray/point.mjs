@@ -71,7 +71,7 @@ export const PointXray = ({
   )
 }
 
-const PointXrayInfo = ({ point, pointName, stackName, part }) => {
+const PointXrayInfo = ({ point, pointName, stackName }) => {
   const [rounded, setRounded] = useState(true)
   const rounder = rounded ? round : (val) => val
 

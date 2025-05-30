@@ -1,8 +1,7 @@
 // Dependencies
-import { measurements } from '@freesewing/config'
 import { measurements as measurementsTranslations } from '@freesewing/i18n'
 import { requiredMeasurements as designMeasurements } from '@freesewing/collection'
-import { cloudflareImageUrl, capitalize, hasRequiredMeasurements } from '@freesewing/utils'
+import { cloudflareImageUrl, hasRequiredMeasurements } from '@freesewing/utils'
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
 import { ModalContext } from '@freesewing/react/context/Modal'

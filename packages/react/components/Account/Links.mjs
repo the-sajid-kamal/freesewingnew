@@ -93,8 +93,6 @@ const titles = {
 
 const YesNo = ({ check }) => (check ? <BoolYesIcon /> : <BoolNoIcon />)
 
-const t = (input) => input
-
 /**
  * A component to manage the user's Instagram handle in their account data
  *

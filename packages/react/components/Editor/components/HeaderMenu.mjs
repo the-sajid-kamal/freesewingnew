@@ -24,7 +24,6 @@ import {
   ResetIcon,
   RightIcon,
   RocketIcon,
-  RotateIcon,
   SaIcon,
   SaveAsIcon,
   SaveIcon,
@@ -133,7 +132,7 @@ export const HeaderMenuTestViewDesignMeasurements = (props) => {
 }
 
 export const HeaderMenuDropdown = (props) => {
-  const { tooltip, toggle, open, setOpen, id, end = false } = props
+  const { toggle, open, setOpen, id } = props
   const [localOpen, setLocalOpen] = useState(false)
 
   useEffect(() => {
@@ -460,10 +459,8 @@ export const HeaderMenuUndoIcons = (props) => {
 }
 
 export const HeaderMenuTestIcons = (props) => {
-  const { update, state, Design } = props
+  const { update } = props
   const Button = HeaderMenuButton
-  const size = 'tw:w-5 tw:h-5'
-  const undos = state._?.undos && state._.undos.length > 0 ? state._.undos : false
 
   return (
     <div className="tw:flex tw:flex-row tw:flex-wrap tw:items-center tw:justify-center tw:px-0.5 tw:lg:px-1">
@@ -660,11 +657,6 @@ export const HeaderMenuLayoutViewIcons = (props) => {
   }
 
   const pages = pattern.setStores[0].get('pages', {})
-  const format = state.ui.print?.pages?.size
-    ? state.ui.print.pages.size
-    : settings.units === 'imperial'
-      ? 'letter'
-      : 'a4'
   const { cols, rows, count } = pages
   const blank = cols * rows - count
 

@@ -6,14 +6,13 @@ import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
 import { ModalContext } from '@freesewing/react/context/Modal'
 
 // Hooks
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
 
 // Components
 import { Link as WebLink } from '@freesewing/react/components/Link'
 import { BackIcon, NoIcon } from '@freesewing/react/components/Icon'
-import { Popout } from '@freesewing/react/components/Popout'
 import { IconButton } from '@freesewing/react/components/Button'
 import { ModalWrapper } from '@freesewing/react/components/Modal'
 
@@ -39,7 +38,7 @@ export const Restrict = ({ Link = false }) => {
   // Helper method to restrict the account
   const restrictAccount = async () => {
     setLoadingStatus([true, 'Talking to the backend'])
-    const [status, body] = await backend.restrictAccount()
+    const [status] = await backend.restrictAccount()
     if (status === 200) {
       setLoadingStatus([true, 'Done. Consider yourself restrcited.', true, true])
       signOut()

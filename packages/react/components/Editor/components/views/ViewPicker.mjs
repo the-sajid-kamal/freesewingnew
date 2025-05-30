@@ -70,7 +70,7 @@ export const ViewPicker = ({ Design, update, state }) => {
   )
 }
 
-const MainCard = ({ view, update, Design }) => {
+const MainCard = ({ view, update }) => {
   const Icon = viewIcons[view]
 
   return (

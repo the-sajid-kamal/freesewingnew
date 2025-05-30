@@ -48,7 +48,7 @@ export const AlbertFront = ({ className, stroke = 1 }) => (
  * @returns {JSX.Element}
  */
 export const AlbertBack = ({ className, stroke = 1 }) => (
-  <LineDrawingWrapper viewBox="74 0 74 119" {...props}>
+  <LineDrawingWrapper viewBox="74 0 74 119" {...{ className, stroke }}>
     <Back stroke={stroke * strokeScale} />
   </LineDrawingWrapper>
 )

@@ -1,8 +1,7 @@
 // Dependencies
 import { linkClasses } from '@freesewing/utils'
 // Hooks
-import React, { useEffect, useState } from 'react'
-import { useAccount } from '@freesewing/react/hooks/useAccount'
+import React, { useState } from 'react'
 
 /**
  * A component to ask people to support FreeSewing financially
@@ -211,7 +210,12 @@ export const Subscribe = ({
         </button>
         <p className="tw:text-center tw:text-sm tw:text-neutral-content tw:mt-2 tw:opacity-80">
           Don&apos;t have a PayPal account?
-          <a href="https://ko-fi.com/freesewing" target="_BLANK" className={linkClasses}>
+          <a
+            href="https://ko-fi.com/freesewing"
+            target="_BLANK"
+            rel="noreferrer"
+            className={linkClasses}
+          >
             <b className="tw:text-neutral-content tw:pl-2">Ko-fi.com/FreeSewing</b>
           </a>
         </p>

@@ -17,7 +17,7 @@ const strokeScale = 0.7
  * @returns {JSX.Element}
  */
 export const Bent = ({ className, stroke = 1 }) => (
-  <LineDrawingWrapper viewBox="0 -70 210 210" {...{ stroke }}>
+  <LineDrawingWrapper viewBox="0 -70 210 210" {...{ className, stroke }}>
     <Front stroke={strokeScale * stroke} />
     <Back stroke={strokeScale * stroke} />
   </LineDrawingWrapper>

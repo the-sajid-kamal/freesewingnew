@@ -81,3 +81,5 @@ export const Xray = forwardRef((props, ref) => {
     </Svg>
   )
 })
+
+Xray.displayName = 'Xray'

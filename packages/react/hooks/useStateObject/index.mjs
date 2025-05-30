@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import set from 'lodash/set.js'
 import unset from 'lodash/unset.js'
 

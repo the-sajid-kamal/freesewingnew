@@ -23,7 +23,6 @@ import { yaml as yamlLang } from '@codemirror/lang-yaml'
  * @param {Object} props.update - Helper object for updating the editor state
  */
 export const EditSettingsView = (props) => {
-  const [settings, setSettings] = useState(props.state?.settings || {})
   const { state, config, update } = props
 
   return (
@@ -96,7 +95,7 @@ export const PrimedSettingsEditor = (props) => {
         setSettings(newSettings)
       }
     } catch (err) {
-      // This is fine
+      console.log(err)
     }
   }
 

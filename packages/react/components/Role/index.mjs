@@ -9,7 +9,7 @@ import { Link as DefaultLink } from '@freesewing/react/components/Link'
 import { LockIcon, PlusIcon } from '@freesewing/react/components/Icon'
 import { Spinner } from '@freesewing/react/components/Spinner'
 import { Popout } from '@freesewing/react/components/Popout'
-import { H1, H2, H3 } from '@freesewing/react/components/Heading'
+import { H3 } from '@freesewing/react/components/Heading'
 import { Consent } from '@freesewing/react/components/Account'
 
 const Wrap = ({ children }) => (
@@ -104,7 +104,7 @@ const AccountStatusUnknown = ({ banner }) => (
   </Wrap>
 )
 
-const RoleLacking = ({ t, requiredRole, role, banner }) => (
+const RoleLacking = ({ requiredRole, role, banner }) => (
   <Wrap>
     {banner}
     <H3>You lack the required role to access this content</H3>
@@ -174,7 +174,7 @@ const ConsentLacking = ({ banner, refresh }) => {
  * @param {JSX.Element} props.children - The component children, will be rendered if props.js is not set
  * @returns {JSX.Element}
  */
-export const RoleBlock = ({ children, role = "admin", Link = false }) => {
+export const RoleBlock = ({ children, role = 'admin', Link = false }) => {
   if (!Link) Link = DefaultLink
   const requiredRole = role
 
@@ -275,7 +275,6 @@ export const UserVisitorContent = ({ userContent = null, visitorContent = null }
 
   const [ready, setReady] = useState(false)
   const [error, setError] = useState(false)
-  const [refreshCount, setRefreshCount] = useState(0)
 
   /*
    * Avoid hydration errors
@@ -300,14 +299,15 @@ export const UserVisitorContent = ({ userContent = null, visitorContent = null }
       if (!account.bestBefore || account.bestBefore < Date.now()) verifyUser()
     }
     setReady(true)
-  }, [refreshCount])
-
-  const refresh = () => {
-    setRefreshCount(refreshCount + 1)
-    setError(false)
-  }
+  }, [])
 
   if (!ready) return <Spinner />
+  if (error)
+    return (
+      <Popout type="error" title="Something went wrong" compact>
+        This is unexpected. You may want to report this.
+      </Popout>
+    )
 
   return token && account.username ? userContent : visitorContent
 }

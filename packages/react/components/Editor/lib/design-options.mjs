@@ -9,6 +9,7 @@ const DesignDocsLink = ({ design, item }) => (
     href={`/docs/designs/${design}/options/#${item.toLowerCase()}`}
     className={`${linkClasses} tw:px-2`}
     target="_BLANK"
+    rel="noreferrer"
   >
     Learn more
   </a>
@@ -62,14 +63,14 @@ export function menuDesignOptionsStructure(design, options, settings, asFullList
         option.valueTitles = {}
         option.choiceTitles = {}
         option.choiceDescriptions = {}
-        for (const entry of option.list) {
+        option.list.forEach(() => {
           option.choiceTitles.false = eno[`${option.name}No`]?.t || option.name
           option.choiceDescriptions.false = eno[`${option.name}No`]?.d || 'No'
           option.valueTitles.false = 'No'
           option.choiceTitles.true = eno[`${option.name}Yes`]?.t || 'Yes'
           option.choiceDescriptions.true = eno[`${option.name}Yes`]?.d || 'No'
           option.valueTitles.true = 'Yes'
-        }
+        })
       }
       if (typeof option.menu === 'function')
         option.menu = asFullList

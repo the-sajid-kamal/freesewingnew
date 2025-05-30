@@ -4,12 +4,12 @@ import React, { useState } from 'react'
  * DaisyUI's accordion seems rather unreliable.
  * So instead, we handle this in React state
  */
-const getProps = (isActive = false) => ({
+const getProps = () => ({
   className: `tw:p-0 tw:rounded-lg tw:bg-transparent tw:hover:cursor-pointer
     tw:w-full tw:h-auto tw:content-start tw:text-left tw:list-none`,
 })
 
-const getSubProps = (isActive) => ({
+const getSubProps = () => ({
   className: `tw:p-0 tw:rounded-none tw:bg-transparent tw:w-full tw:h-auto
   tw:content-start tw:text-left tw:list-none`,
 })

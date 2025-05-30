@@ -23,10 +23,10 @@ import { EditIcon, CodeIcon, TipIcon, PrintIcon } from '@freesewing/react/compon
 export const ExportView = (props) => {
   const { config, state, update } = props
   const { settings = {} } = state // Guard against undefined settings
-  const [link, setLink] = useState(false)
-  const [format, setFormat] = useState(false)
+  const setLink = useState(false)[1]
+  const setFormat = useState(false)[1]
 
-  const { protocol, hostname, port } = window.location
+  const { protocol, port } = window.location
   const site =
     (protocol === 'https:' && port === 443) || (protocol === 'http:' && port === 80)
       ? `${window.location.protocol}//${window.location.hostname}`
@@ -102,6 +102,7 @@ export const ExportView = (props) => {
             <H3>ISO paper sizes</H3>
             {['a4', 'a3', 'a2', 'a1', 'a0'].map((format) => (
               <button
+                key={format}
                 className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-primary tw:uppercase`}
                 onClick={() => exportPattern({ ...exportProps, format })}
               >
@@ -114,6 +115,7 @@ export const ExportView = (props) => {
             <H3>Other paper sizes</H3>
             {['letter', 'legal', 'tabloid'].map((format) => (
               <button
+                key={format}
                 className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-primary tw:uppercase`}
                 onClick={() => exportPattern({ ...exportProps, format })}
               >
@@ -130,6 +132,7 @@ export const ExportView = (props) => {
         <div className="tw:grid tw:grid-cols-1 tw:lg:grid-cols-2 tw:gap-2 tw:mt-2">
           {['svg', 'pdf'].map((format) => (
             <button
+              key={format}
               className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-primary tw:uppercase`}
               onClick={() => exportPattern({ ...exportProps, format })}
             >
@@ -143,6 +146,7 @@ export const ExportView = (props) => {
         <div className="tw:grid tw:grid-cols-1 tw:lg:grid-cols-2 tw:gap-2 tw:mt-2">
           {['json', 'yaml'].map((format) => (
             <button
+              key={format}
               className={`${horFlexClasses} tw:daisy-btn tw:daisy-btn-primary tw:uppercase`}
               onClick={() => exportPattern({ ...exportProps, format })}
             >

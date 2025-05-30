@@ -23,7 +23,7 @@ export const KeyVal = ({
   href = false,
   onClick = false,
 }) => {
-  const [copied, setCopied] = useState(false)
+  const setCopied = useState(false)[1]
   const { setLoadingStatus } = useContext(LoadingStatusContext)
 
   let colorClasses1 = primaryClasses1
@@ -83,7 +83,6 @@ export const KeyVal = ({
 const LinkKeyVal = ({
   k,
   val,
-  color = 'primary',
   small = false,
   href = false,
   colorClasses1,
@@ -133,21 +132,6 @@ const successClasses1 = `tw:text-warning-content tw:bg-success tw:border-success
 const successClasses2 = `tw:text-success tw:border-success`
 const errorClasses1 = `tw:text-error-content tw:bg-error tw:border-error`
 const errorClasses2 = `tw:text-error tw:border-error`
-
-const PrimarySpans = ({ small, k, val }) => (
-  <>
-    <span
-      className={`${sharedClasses} ${small ? 'tw:rounded-l' : 'tw:rounded-l-lg'} ${primaryClasses} ${small ? 'tw:text-xs' : ''}`}
-    >
-      {k}
-    </span>
-    <span
-      className={`${sharedClasses} ${small ? 'tw:rounded-r' : 'tw:rounded-r-lg'} ${primaryClasses} ${small ? 'tw:text-xs' : ''}`}
-    >
-      {val}
-    </span>
-  </>
-)
 
 const handleCopied = (setCopied, setLoadingStatus, label) => {
   setCopied(true)

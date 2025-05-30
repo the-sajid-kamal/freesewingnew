@@ -6,15 +6,12 @@ import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
 
 // Hooks
 import React, { useState, useContext } from 'react'
-import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
 
 // Components
 import { Link as WebLink } from '@freesewing/react/components/Link'
-import { NoIcon, OkIcon, SaveIcon, RightIcon, WarningIcon } from '@freesewing/react/components/Icon'
+import { OkIcon, WarningIcon } from '@freesewing/react/components/Icon'
 import { EmailInput } from '@freesewing/react/components/Input'
-import { Popout } from '@freesewing/react/components/Popout'
-import { IconButton } from '@freesewing/react/components/Button'
 import { MiniTip } from '@freesewing/react/components/Mini'
 
 /**
@@ -32,7 +29,6 @@ export const NewsletterSignup = ({ Link = false, noP = false, noTitle = false, n
   if (!Link) Link = WebLink
 
   // Hooks
-  const { account, setAccount } = useAccount()
   const backend = useBackend()
   const { setLoadingStatus } = useContext(LoadingStatusContext)
 
@@ -44,7 +40,7 @@ export const NewsletterSignup = ({ Link = false, noP = false, noTitle = false, n
   // Helper method to handle subscription
   const subscribe = async () => {
     setLoadingStatus([true, 'Contacting backend'])
-    const [status, body] = unsubscribe
+    const [status] = unsubscribe
       ? await backend.newsletterStartUnsubscribe(email)
       : await backend.newsletterSubscribe(email)
     if (status === 200) {
@@ -146,7 +142,7 @@ export const NewsletterUnsubscribe = ({ Link = false }) => {
 
   // Helper method to handle subscription
   const unsubscribe = async () => {
-    const [status, body] = await backend.newsletterUnsubscribe(ehash)
+    const [status] = await backend.newsletterUnsubscribe(ehash)
     if (status === 204 || status === 404) setGone(true)
     else setError(true)
   }
@@ -197,6 +193,4 @@ export const NewsletterUnsubscribe = ({ Link = false }) => {
       </MiniTip>
     </>
   )
-
-  return <p>Unsubscribe here {ehash}</p>
 }

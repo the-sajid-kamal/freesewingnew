@@ -3,7 +3,6 @@ import { validateEmail, validateTld, getSearchParam } from '@freesewing/utils'
 
 // Hooks
 import React, { useState, useContext, useEffect } from 'react'
-import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
 
 // Context
@@ -12,16 +11,7 @@ import { ModalContext } from '@freesewing/react/context/Modal'
 
 // Components
 import { Link } from '@freesewing/react/components/Link'
-import {
-  LeftIcon,
-  RightIcon,
-  HelpIcon,
-  GoogleIcon,
-  GitHubIcon,
-  KeyIcon,
-  EmailIcon,
-  DownIcon,
-} from '@freesewing/react/components/Icon'
+import { LeftIcon, HelpIcon, KeyIcon, EmailIcon } from '@freesewing/react/components/Icon'
 import { ModalWrapper } from '@freesewing/react/components/Modal'
 import { EmailInput } from '@freesewing/react/components/Input'
 import { IconButton } from '@freesewing/react/components/Button'
@@ -42,7 +32,6 @@ export const SignUp = ({ embed = false }) => {
   const [email, setEmail] = useState('')
   const [emailValid, setEmailValid] = useState(false)
   const [result, setResult] = useState(false)
-  const [showAll, setShowAll] = useState(false)
 
   // Hooks
   const backend = useBackend()
@@ -93,14 +82,6 @@ export const SignUp = ({ embed = false }) => {
     }
   }
 
-  const initOauth = async (provider) => {
-    setLoadingStatus([true, 'Contacting the backend'])
-    const [status, body] = await backend.oauthInit(provider.toLowerCase())
-    if (status === 200 && body.result === 'success') {
-      setLoadingStatus([true, `Contacting ${provider}`])
-      window.location.href = body.authUrl
-    }
-  }
   const Heading = embed
     ? ({ children }) => <h2 className="tw:text-inherit">{children}</h2>
     : ({ children }) => <h1 className="tw:text-inherit">{children}</h1>
@@ -200,10 +181,9 @@ export const SignUp = ({ embed = false }) => {
  *
  * @component
  * @param {object} props - All component props
- * @param {function} [props.onSuccess = false] - A method to run when the sign in is successful
  * @returns {JSX.Element}
  */
-export const SignUpConfirmation = ({ onSuccess = false }) => {
+export const SignUpConfirmation = () => {
   // State
   const [id, setId] = useState()
   const [error, setError] = useState(false)
@@ -219,7 +199,12 @@ export const SignUpConfirmation = ({ onSuccess = false }) => {
   }, [id, check])
 
   // Short-circuit errors
-  if (error === 'noId') return <Popout type="error" title="Invalid Sign Up URL">You seem to have arrived on this page in a way that is not supported</Popout>
+  if (error === 'noId')
+    return (
+      <Popout type="error" title="Invalid Sign Up URL">
+        You seem to have arrived on this page in a way that is not supported
+      </Popout>
+    )
   // If we do not (yet) have the data, show a loader
   if (!id || !check)
     return (

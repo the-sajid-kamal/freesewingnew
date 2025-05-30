@@ -92,7 +92,7 @@ const SampleOptionButton = ({ name, i18n, update }) => (
   </button>
 )
 
-const SampleMeasurementButton = ({ name, i18n, update }) => (
+const SampleMeasurementButton = ({ name, update }) => (
   <button
     className={
       'tw:daisy-btn tw:daisy-btn-outline tw:daisy-btn-sm tw:mx-2 ' +

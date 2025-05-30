@@ -4,32 +4,22 @@ import {
   collection,
   tags,
   techniques,
-  designers,
-  developers,
   examples,
-  measurements,
   requiredMeasurements,
   optionalMeasurements,
 } from '@freesewing/collection'
 import { capitalize, linkClasses, mutateObject } from '@freesewing/utils'
 import { measurements as measurementsTranslations } from '@freesewing/i18n'
-
-// Context
-import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
-import { ModalContext } from '@freesewing/react/context/Modal'
-
 // Hooks
-import React, { useState, useContext, Fragment } from 'react'
+import React, { useState, Fragment } from 'react'
 import { useFilter } from '@freesewing/react/hooks/useFilter'
-
 // Components
-import { Link as WebLink, AnchorLink } from '@freesewing/react/components/Link'
+import { Link as WebLink } from '@freesewing/react/components/Link'
 import {
   CircleIcon,
   CisFemaleIcon,
   DocsIcon,
   FilterIcon,
-  HeartIcon,
   NewPatternIcon,
   ResetIcon,
   ShowcaseIcon,
@@ -39,7 +29,6 @@ import {
   lineDrawingsBack,
 } from '@freesewing/react/components/LineDrawing'
 import { IconButton } from '@freesewing/react/components/Button'
-import { ModalWrapper } from '@freesewing/react/components/Modal'
 import { KeyVal } from '@freesewing/react/components/KeyVal'
 import { MissingLinedrawing } from '../LineDrawing/missing.mjs'
 
@@ -239,38 +228,6 @@ export const Collection = ({ Link = false, linkTo = 'about', editor = false, onC
   )
 }
 
-/*
- * A helper component to show a design technique
- *
- * @param {object} props - All React props
- * @param {function} props.Link - A Link component, typically specific to the framework for client-side routing
- * @param {string} props.technique - The technique name/id
- */
-const Technique = ({ Link = WebLink, technique }) => (
-  <Link
-    href={`/designs/techniques/${technique}`}
-    className="tw:daisy-badge tw:daisy-badge-accent hover:tw:daisy-badge-secondary tw:hover:shadow tw:font-medium"
-  >
-    {technique}
-  </Link>
-)
-
-/*
- * A helper component to show a design tag
- *
- * @param {object} props - All React props
- * @param {function} props.Link - A Link component, typically specific to the framework for client-side routing
- * @param {string} props.tag - The tag name/id
- */
-const Tag = ({ Link = WebLink, technique }) => (
-  <Link
-    href={`/designs/tags/${tag}`}
-    className="tw:daisy-badge tw:daisy-badge-primary hover:tw:daisy-badge-secondary tw:hover:shadow tw:font-medium"
-  >
-    {tag}
-  </Link>
-)
-
 const DesignCard = ({ name, lineDrawing = false, linkTo, Link, onClick }) => {
   if (!Link) Link = WebLink
 
@@ -374,10 +331,6 @@ export const DesignInfo = ({ Link = false, design = false, noDocsLink = false })
   // State
   const [back, setBack] = useState(false)
 
-  // Context
-  const { setModal, clearModal } = useContext(ModalContext)
-  const { setLoadingStatus } = useContext(LoadingStatusContext)
-
   if (!design) return null
 
   // Line drawings
@@ -391,13 +344,6 @@ export const DesignInfo = ({ Link = false, design = false, noDocsLink = false })
     : [about[design].design]
   const tags = about[design].tags || []
   const techniques = about[design].techniques || []
-  const colors = {
-    1: 'success',
-    2: 'success',
-    3: 'warning',
-    4: 'warning',
-    5: 'error',
-  }
 
   const makeButton = (
     <div className={`tw:grid tw:grid-cols-1 tw:gap-2 tw:mb-4`}>
@@ -554,21 +500,3 @@ export const DesignInfo = ({ Link = false, design = false, noDocsLink = false })
     </>
   )
 }
-
-const SharingIsCaring = ({ design }) => (
-  <>
-    <h2>
-      Use <b>#FreeSewing{capitalize(design)}</b> to facilitate discovery
-    </h2>
-    <p>
-      Please use the{' '}
-      <b>
-        <code>#FreeSewing{capitalize(design)}</code>
-      </b>{' '}
-      hashtag when discussing FreeSewing&apos;s <b>{capitalize(design)}</b> pattern online.
-      <br />
-      Doing so can help others discover your post, which really is a win-win.
-    </p>
-    <p>If you like, you can copy the hashtag below:</p>
-  </>
-)

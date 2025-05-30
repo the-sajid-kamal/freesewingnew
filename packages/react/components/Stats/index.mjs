@@ -7,11 +7,7 @@ import { useBackend } from '@freesewing/react/hooks/useBackend'
 import { Spinner } from '@freesewing/react/components/Spinner'
 import { Link as WebLink } from '@freesewing/react/components/Link'
 import { ChartWrapper } from '@freesewing/react/components/Echart'
-
-const meta = {
-  title: 'FreeSewing by numbers',
-  description: 'Some high-level numbers about Freesewing',
-}
+import { Popout } from '@freesewing/react/components/Popout'
 
 const option = {
   tooltip: {
@@ -103,6 +99,13 @@ export const Stats = ({ Link = false }) => {
       type: 'bar',
     },
   ]
+
+  if (error)
+    return (
+      <Popout type="error" title="Something went wrong" compact>
+        This is unexpected. You may want to report this.
+      </Popout>
+    )
 
   return (
     <>

@@ -1,11 +1,8 @@
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
-
 // Hooks
 import React, { useState, useContext } from 'react'
-import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
-
 // Components
 import { Link as WebLink } from '@freesewing/react/components/Link'
 import { DownloadIcon } from '@freesewing/react/components/Icon'

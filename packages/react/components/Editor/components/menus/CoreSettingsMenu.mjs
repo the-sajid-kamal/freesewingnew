@@ -21,7 +21,7 @@ import {
   MenuScaleSettingValue,
 } from './Value.mjs'
 import { MenuItemGroup, MenuItem } from './Container.mjs'
-import { SettingsIcon } from '@freesewing/react/components/Icon'
+import { SettingsIcon, TrashIcon } from '@freesewing/react/components/Icon'
 
 /**
  * The core settings menu

@@ -11,7 +11,7 @@ import { DraftErrorHandler } from './DraftErrorHandler.mjs'
 
 export const LayoutView = (props) => {
   const { config, state, update, Design } = props
-  const { ui, settings } = state
+  const { settings } = state
   const defaultSettings = defaultPrintSettings(settings?.units)
 
   // Settings for the tiler plugin

@@ -58,11 +58,6 @@ import { bundlePatternTranslations, draft, flattenFlags } from '../Editor/lib/in
 import { Bonny } from '@freesewing/bonny'
 import { MiniNote, MiniTip } from '../Mini/index.mjs'
 
-const t = (input) => {
-  console.log('t called', input)
-  return input
-}
-
 /**
  * Component to show an individual measurements set
  *
@@ -650,8 +645,8 @@ const SuggestCset = ({ mset, Link }) => {
   const [name, setName] = useState('')
   const [notes, setNotes] = useState('')
   const [submission, setSubmission] = useState(false)
-
-  console.log(mset)
+  // Context
+  const { setLoadingStatus } = useContext(LoadingStatusContext)
 
   // Hooks
   const backend = useBackend()
@@ -803,7 +798,7 @@ const RenderedCset = ({ mset, imperial }) => {
         <strong>{formatMm(pattern.parts[0].front.points.head.y * -1, imperial)}</strong> high.
       </p>
       <p>Here is what the automated analysis found:</p>
-      {Object.entries(flattenFlags(flags)).map(([key, flag], i) => {
+      {Object.entries(flattenFlags(flags)).map(([key, flag]) => {
         const desc = strings[flag.desc] || flag.desc
 
         return (
@@ -844,7 +839,7 @@ const RenderedCset = ({ mset, imperial }) => {
             </li>
             <li>
               This preview is an <strong>approximation</strong>, not an exact representation. Bodies
-              have many variations that can't be captured with just a few measurements. We are
+              have many variations that can&apos;t be captured with just a few measurements. We are
               missing some information, like how weight is distributed or your posture.
             </li>
             <li>
@@ -881,7 +876,7 @@ export const NewSet = () => {
   // Hooks
   const backend = useBackend()
   const { account } = useAccount()
-  const { setLoadingStatus, LoadingProgress } = useContext(LoadingStatusContext)
+  const { setLoadingStatus } = useContext(LoadingStatusContext)
 
   // State
   const [name, setName] = useState('')

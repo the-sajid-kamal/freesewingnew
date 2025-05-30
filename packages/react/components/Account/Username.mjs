@@ -57,10 +57,6 @@ export const Username = ({ welcome = false, Link = false }) => {
       ? '/welcome/' + welcomeSteps[account.control][5]
       : '/docs/about/guide'
 
-  let btnClasses = 'daisy-btn mt-4 capitalize '
-  if (welcome) btnClasses += 'w-64 daisy-btn-secondary'
-  else btnClasses += 'w-full daisy-btn-primary'
-
   return (
     <div className="tw:w-full">
       <StringInput

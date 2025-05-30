@@ -1,48 +1,33 @@
 // Dependencies
 import { DateTime } from 'luxon'
 import orderBy from 'lodash/orderBy.js'
-import { capitalize, shortDate } from '@freesewing/utils'
+import { shortDate } from '@freesewing/utils'
 import { apikeyLevels } from '@freesewing/config'
 // Context
 import { ModalContext } from '@freesewing/react/context/Modal'
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
-
 // Hooks
 import React, { useState, useEffect, useContext } from 'react'
 import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
 import { useSelection } from '@freesewing/react/hooks/useSelection'
-
 // Components
 import { TableWrapper } from '@freesewing/react/components/Table'
 import { Link as WebLink } from '@freesewing/react/components/Link'
-import {
-  BoolNoIcon,
-  BoolYesIcon,
-  PlusIcon,
-  RightIcon,
-  TrashIcon,
-} from '@freesewing/react/components/Icon'
+import { PlusIcon, RightIcon, TrashIcon } from '@freesewing/react/components/Icon'
 import { Uuid } from '@freesewing/react/components/Uuid'
 import { Popout } from '@freesewing/react/components/Popout'
 import { ModalWrapper } from '@freesewing/react/components/Modal'
 import { NumberCircle } from '@freesewing/react/components/Number'
 import { StringInput, Fieldset, ListInput } from '@freesewing/react/components/Input'
-import { DisplayRow } from './shared.mjs'
 import { CopyToClipboardButton } from '@freesewing/react/components/Button'
 import { TimeAgo, TimeToGo } from '@freesewing/react/components/Time'
 import { KeyVal } from '@freesewing/react/components/KeyVal'
-
-const t = (input) => {
-  console.log('t called', input)
-  return input
-}
 
 const fields = {
   id: 'Key',
   name: 'Name',
   calls: 'Calls',
-  level: 'Level',
   level: 'Level',
   createdAt: 'Created',
   expiresAt: 'Expires',
@@ -240,13 +225,6 @@ const NewApikey = ({ onCreate = false }) => {
       setApikey(body.apikey)
       if (typeof onCreate === 'function') onCreate(body.apikey)
     } else setLoadingStatus([true, 'An error occured. Please report this', true, false])
-  }
-
-  const clear = () => {
-    setApikey(false)
-    setGenerate(false)
-    setName('')
-    setLevel(1)
   }
 
   return (

@@ -10,7 +10,6 @@ import {
 import { collection } from '@freesewing/collection'
 import { measurements as measurementsTranslations } from '@freesewing/i18n'
 // Context
-import { ModalContext } from '@freesewing/react/context/Modal'
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
 // Hooks
 import React, { useState, useCallback, useContext } from 'react'
@@ -19,7 +18,6 @@ import { useBackend } from '@freesewing/react/hooks/useBackend'
 // Components
 import { Link as WebLink } from '@freesewing/react/components/Link'
 import { TrashIcon, ResetIcon, UploadIcon, HelpIcon } from '@freesewing/react/components/Icon'
-import { ModalWrapper } from '@freesewing/react/components/Modal'
 import { isDegreeMeasurement } from '@freesewing/config'
 import { Tabs, Tab } from '@freesewing/react/components/Tab'
 import Markdown from 'react-markdown'
@@ -68,31 +66,50 @@ const HelpLink = ({ help, Link = false }) => {
  * @returns {JSX.Element}
  */
 export const Fieldset = ({
-  Link=false,
-  box=false,
+  Link = false,
+  box = false,
   children,
-  label=false,
-  labelBL=false,
-  labelBR=false,
-  labelTR=false,
-  legend=false,
-  forId='',
-  help=false,
+  label = false,
+  labelBL = false,
+  labelBR = false,
+  labelTR = false,
+  legend = false,
+  forId = '',
+  help = false,
 }) => (
-  <fieldset className={`tw:daisy-fieldset tw:w-full tw:mt-2 ${box ? 'tw:bg-base-200 tw:border-base-300 tw:rounded-box tw:border tw:p-4' : ''}`}>
+  <fieldset
+    className={`tw:daisy-fieldset tw:w-full tw:mt-2 ${box ? 'tw:bg-base-200 tw:border-base-300 tw:rounded-box tw:border tw:p-4' : ''}`}
+  >
     {legend ? (
       <legend className="tw:daisy-fieldset-legend tw:px-2 tw:pb-1">
-        {legend}<HelpLink {...{ help, Link }} />
+        {legend}
+        <HelpLink {...{ help, Link }} />
       </legend>
     ) : null}
     <div className="tw:flex tw:flex-row tw:justify-between tw:px-2">
-      {label ? <label className="tw:daisy-label" htmlFor={forId}>{label}</label> : null }
-      {labelTR ? <label className="tw:daisy-label" htmlFor={forId}>{labelTR}</label> : null }
+      {label ? (
+        <label className="tw:daisy-label" htmlFor={forId}>
+          {label}
+        </label>
+      ) : null}
+      {labelTR ? (
+        <label className="tw:daisy-label" htmlFor={forId}>
+          {labelTR}
+        </label>
+      ) : null}
     </div>
     {children}
     <div className="tw:flex tw:flex-row tw:justify-between tw:px-2">
-      {labelBL ? <label className="tw:daisy-label" htmlFor={forId}>{labelBL}</label> : null }
-      {labelBR ? <label className="tw:daisy-label" htmlFor={forId}>{labelBR}</label> : null }
+      {labelBL ? (
+        <label className="tw:daisy-label" htmlFor={forId}>
+          {labelBL}
+        </label>
+      ) : null}
+      {labelBR ? (
+        <label className="tw:daisy-label" htmlFor={forId}>
+          {labelBR}
+        </label>
+      ) : null}
     </div>
   </fieldset>
 )
@@ -153,7 +170,7 @@ export const ButtonFrame = ({ active, children, dense, noBg, onClick }) => (
 export const NumberInput = ({
   box = false,
   current,
-  help=false,
+  help = false,
   inputMode = 'decimal',
   label = false,
   labelBL = false,
@@ -212,7 +229,7 @@ export const NumberInput = ({
 export const StringInput = ({
   box = false,
   current,
-  help=false,
+  help = false,
   label = false,
   labelBL = false,
   labelBR = false,
@@ -265,7 +282,7 @@ export const StringInput = ({
 export const MfaInput = ({
   box = false,
   current,
-  help=false,
+  help = false,
   label = false,
   labelBL = false,
   labelBR = false,
@@ -273,12 +290,26 @@ export const MfaInput = ({
   id = 'mfa',
   inputMode = 'numeric',
   legend = false,
-  placeholder="MFA Code",
+  placeholder = 'MFA Code',
   update,
   valid = (val) => val.length > 4,
 }) => (
   <NumberInput
-    {...{ box, current, help, label, labelBL, labelBR, labelTR, id, inputMode, legend, placeholder, update, valid }}
+    {...{
+      box,
+      current,
+      help,
+      label,
+      labelBL,
+      labelBR,
+      labelTR,
+      id,
+      inputMode,
+      legend,
+      placeholder,
+      update,
+      valid,
+    }}
   />
 )
 
@@ -304,7 +335,7 @@ export const MfaInput = ({
 export const PasswordInput = ({
   box = false,
   current,
-  help=false,
+  help = false,
   label = false,
   labelBL = false,
   labelTR = false,
@@ -712,7 +743,7 @@ export const MarkdownInput = ({
   labelTR = false,
   legend = false,
   update,
-  placeholder='',
+  placeholder = '',
 }) => (
   <Fieldset {...{ box, help, label, labelTR, labelBL, labelBR, legend }} forId={id}>
     <Tabs tabs={['edit', 'preview']}>
@@ -743,7 +774,6 @@ export const MarkdownInput = ({
  * @component
  * @param {object} props - All component props
  * @param {boolean} [props.box = false] - Set this to true to render a boxed fieldset
- * @param {number} props.current - The current value, to manage the state of this input
  * @param {string|function} [props.props.help = false] - An optional URL/method to link/show help or docs
  * @param {string} [props.id = ''] - Id of the HTML element to link the fieldset labels
  * @param {boolean} [props.imperial = false] - Set this to true to render imperial units
@@ -758,7 +788,6 @@ export const MarkdownInput = ({
  */
 export const MeasurementInput = ({
   box = false,
-  current,
   help = false,
   id = '',
   imperial = false,
@@ -768,7 +797,7 @@ export const MeasurementInput = ({
   m,
   update,
   original,
-  placeholder='',
+  placeholder = '',
 }) => {
   const isDegree = isDegreeMeasurement(m)
   const units = imperial ? 'imperial' : 'metric'
@@ -876,7 +905,6 @@ export const MeasurementInput = ({
  * @param {string} [props.legend = false] - The fieldset legend
  * @param {function} props.update - The onChange handler
  * @param {number} props.original - The original value, which allows a reset
- * @param {function} [props.valid = () => true] - A function that should return whether the value is valid or not
  * @returns {JSX.Element}
  */
 export const FileInput = ({
@@ -892,7 +920,6 @@ export const FileInput = ({
   legend = false,
   update,
   original,
-  valid = () => true,
 }) => {
   /*
    * Ondrop handler
@@ -974,8 +1001,6 @@ export const FileInput = ({
  * @param {array} [props.list = [true, false] - An array of values to choose between
  * @param {function} props.update - The onChange handler
  * @param {any} [props.on = true] - The value that should show the toggle in the 'on' state
- * @param {number} props.original - The original value, which allows a reset
- * @param {function} [props.valid = () => true] - A function that should return whether the value is valid or not
  * @returns {JSX.Element}
  */
 export const ToggleInput = ({
@@ -993,8 +1018,6 @@ export const ToggleInput = ({
   list = [true, false],
   update,
   on = true,
-  original,
-  valid = () => true,
 }) => (
   <Fieldset {...{ box, help, labelTR, labelBL, labelBR, legend }} forId={id}>
     <label className="tw:daisy-label">
@@ -1009,8 +1032,7 @@ export const ToggleInput = ({
       />
       {label
         ? `${label} (${current === on ? labels[0] : labels[1]})`
-        : `${current === on ? labels[0] : labels[1]}`
-      }
+        : `${current === on ? labels[0] : labels[1]}`}
     </label>
   </Fieldset>
 )

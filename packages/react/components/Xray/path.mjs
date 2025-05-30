@@ -96,9 +96,8 @@ export const PathXray = ({
   )
 }
 
-const PathXrayInfo = ({ path, pathName, stackName, part }) => {
+const PathXrayInfo = ({ path, pathName, stackName }) => {
   const [rounded, setRounded] = useState(true)
-  const log = (val) => console.log(val)
   const rounder = rounded ? round : (val) => val
 
   return (

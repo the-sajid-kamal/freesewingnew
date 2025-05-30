@@ -1,18 +1,15 @@
 // Dependencies
 import { welcomeSteps } from './shared.mjs'
 import { linkClasses } from '@freesewing/utils'
-
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
-
 // Hooks
 import React, { useState, useContext } from 'react'
 import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
-
 // Components
 import { Link as WebLink } from '@freesewing/react/components/Link'
-import { NoIcon, OkIcon, SaveIcon, RightIcon } from '@freesewing/react/components/Icon'
+import { NoIcon, OkIcon, RightIcon } from '@freesewing/react/components/Icon'
 import { ListInput } from '@freesewing/react/components/Input'
 import { Popout } from '@freesewing/react/components/Popout'
 import { IconButton } from '@freesewing/react/components/Button'

@@ -1,25 +1,13 @@
 // Dependencies
-import orderBy from 'lodash/orderBy.js'
-import {
-  cloudflareImageUrl,
-  capitalize,
-  shortDate,
-  horFlexClasses,
-  newPatternUrl,
-  patternUrlFromState,
-} from '@freesewing/utils'
+import { cloudflareImageUrl, horFlexClasses, patternUrlFromState } from '@freesewing/utils'
 import { urls, control as controlConfig } from '@freesewing/config'
-
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
 import { ModalContext } from '@freesewing/react/context/Modal'
-
 // Hooks
 import React, { useState, useEffect, useContext } from 'react'
 import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
-import { useSelection } from '@freesewing/react/hooks/useSelection'
-
 // Components
 import Markdown from 'react-markdown'
 import {
@@ -28,7 +16,7 @@ import {
   PassiveImageInput,
   ListInput,
 } from '@freesewing/react/components/Input'
-import { Link as WebLink, AnchorLink } from '@freesewing/react/components/Link'
+import { Link as WebLink } from '@freesewing/react/components/Link'
 import {
   BoolNoIcon,
   BoolYesIcon,
@@ -42,7 +30,6 @@ import {
   ResetIcon,
   UploadIcon,
 } from '@freesewing/react/components/Icon'
-import { DisplayRow } from './shared.mjs'
 import { TimeAgo } from '@freesewing/react/components/Time'
 import { Popout } from '@freesewing/react/components/Popout'
 import { ModalWrapper } from '@freesewing/react/components/Modal'
@@ -348,16 +335,7 @@ const BadgeLink = ({ label, href }) => (
 /**
  * Helper component to show the pattern title, image, and various buttons
  */
-const PatternHeader = ({
-  pattern,
-  Link,
-  account,
-  setModal,
-  setEdit,
-  togglePublic,
-  save,
-  clone,
-}) => (
+const PatternHeader = ({ pattern, Link, account, setModal, setEdit, togglePublic, clone }) => (
   <>
     <h2>{pattern.name}</h2>
     <div className="tw:flex tw:flex-row tw:flex-wrap tw:gap-2 tw:text-sm tw:items-center tw:mb-2">

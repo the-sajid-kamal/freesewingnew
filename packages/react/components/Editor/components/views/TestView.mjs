@@ -69,7 +69,6 @@ export const TestView = ({ Design, state, update, config }) => {
           patternLocale={state.locale || 'en'}
           rotate={state.ui.rotate}
           strings={strings}
-          rotate={state.ui.rotate}
         />
       )
 

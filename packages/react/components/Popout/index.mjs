@@ -7,44 +7,44 @@ import { CloseIcon } from '@freesewing/react/components/Icon'
  */
 const types = {
   comment: {
-    bg:         'tw:bg-success/5',
+    bg: 'tw:bg-success/5',
     border: 'tw:border-success',
-    text:     'tw:text-success',
+    text: 'tw:text-success',
   },
   error: {
-    bg:         'tw:bg-error/5',
+    bg: 'tw:bg-error/5',
     border: 'tw:border-error',
-    text:     'tw:text-error',
+    text: 'tw:text-error',
   },
   fixme: {
-    bg:         'tw:bg-neutral/5',
+    bg: 'tw:bg-neutral/5',
     border: 'tw:border-neutral',
-    text:     'tw:text-error',
+    text: 'tw:text-error',
   },
   link: {
-    bg:         'tw:bg-secondary/5',
+    bg: 'tw:bg-secondary/5',
     border: 'tw:border-secondary',
-    text:     'tw:text-secondary',
+    text: 'tw:text-secondary',
   },
   note: {
-    bg:         'tw:bg-primary/5',
+    bg: 'tw:bg-primary/5',
     border: 'tw:border-primary',
-    text:     'tw:text-primary',
+    text: 'tw:text-primary',
   },
   related: {
-    bg:         'tw:bg-info/5',
+    bg: 'tw:bg-info/5',
     border: 'tw:border-info',
-    text:     'tw:text-info',
+    text: 'tw:text-info',
   },
   tip: {
-    bg:         'tw:bg-accent/5',
+    bg: 'tw:bg-accent/5',
     border: 'tw:border-accent',
-    text:     'tw:text-accent',
+    text: 'tw:text-accent',
   },
   warning: {
-    bg:         'tw:bg-warning/5',
+    bg: 'tw:bg-warning/5',
     border: 'tw:border-warning',
-    text:     'tw:text-warning',
+    text: 'tw:text-warning',
   },
 }
 
@@ -68,7 +68,7 @@ export const Popout = ({
   compact = false,
   dense = false,
   hideable = false,
-  type = "note",
+  type = 'note',
   title = false,
 }) => {
   // Make this hideable/dismissable
@@ -76,15 +76,17 @@ export const Popout = ({
 
   if (hide) return null
 
-  return compact
-    ? <CompactPopout {...{ by, compact, dense, hideable, type, title, setHide }}>{children}</CompactPopout>
-    : <RegularPopout {...{ by, hideable, type, title, setHide }}>{children}</RegularPopout>
+  return compact ? (
+    <CompactPopout {...{ by, compact, dense, hideable, type, title, setHide }}>
+      {children}
+    </CompactPopout>
+  ) : (
+    <RegularPopout {...{ by, hideable, type, title, setHide }}>{children}</RegularPopout>
+  )
 }
 
-const RegularPopout = ({ by, children, compact, hideable, type, title, setHide }) => (
-  <div
-    className={`tw:relative tw:my-8 tw:-ml-4 tw:-mr-4 tw:sm:ml-0 tw:sm:mr-0 ${types[type].bg}`}
-  >
+const RegularPopout = ({ by, children, hideable, type, title, setHide }) => (
+  <div className={`tw:relative tw:my-8 tw:-ml-4 tw:-mr-4 tw:sm:ml-0 tw:sm:mr-0 ${types[type].bg}`}>
     <div
       className={`
         tw:border-y-4 tw:border-x-0 tw:sm:border-0 tw:sm:border-l-4 tw:px-6 tw:sm:px-8 tw:py-4 tw:sm:py-2
@@ -98,7 +100,6 @@ const RegularPopout = ({ by, children, compact, hideable, type, title, setHide }
       )}
     </div>
   </div>
-
 )
 
 const CompactPopout = ({ by, children, compact, dense, hideable, type, title, setHide }) => (
@@ -122,20 +123,27 @@ const CompactPopout = ({ by, children, compact, dense, hideable, type, title, se
 )
 
 const PopoutTitle = ({ by, compact, hideable, setHide, title, type }) => (
-  <div
-    className={`tw:font-bold tw:flex tw:flex-row tw:gap-1 tw:items-end tw:justify-between`}
-  >
+  <div className={`tw:font-bold tw:flex tw:flex-row tw:gap-1 tw:items-end tw:justify-between`}>
     <div>
       <span className={`tw:font-bold tw:uppercase ${types[type].text}`}>
         {title ? title : types[type].title ? types[type].title : type.toUpperCase()}
         {compact ? <span className="tw:px-2">|</span> : null}
       </span>
-      {(type === 'comment' && by) && <span className={`tw:font-normal tw:text-base tw:pr-2 ${types[type].text}`}> by <b>{by}</b></span>}
+      {type === 'comment' && by && (
+        <span className={`tw:font-normal tw:text-base tw:pr-2 ${types[type].text}`}>
+          {' '}
+          by <b>{by}</b>
+        </span>
+      )}
     </div>
     {hideable && (
-      <button onClick={() => setHide(true)} className={`${types[type].text} tw:hover:text-neutral tw:hover:cursor-pointer`} title="Close">
+      <button
+        onClick={() => setHide(true)}
+        className={`${types[type].text} tw:hover:text-neutral tw:hover:cursor-pointer`}
+        title="Close"
+      >
         <CloseIcon />
       </button>
     )}
- </div>
+  </div>
 )

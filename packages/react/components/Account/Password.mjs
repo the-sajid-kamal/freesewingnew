@@ -1,15 +1,9 @@
-// Dependencies
-import { welcomeSteps } from './shared.mjs'
-import { horFlexClasses } from '@freesewing/utils'
-
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
-
 // Hooks
 import React, { useState, useContext } from 'react'
 import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
-
 // Components
 import { Link as WebLink } from '@freesewing/react/components/Link'
 import { RightIcon, SaveIcon } from '@freesewing/react/components/Icon'
@@ -25,7 +19,7 @@ import { Popout } from '@freesewing/react/components/Popout'
  * @param {React.Component} props.Link - A framework specific Link component for client-side routing
  * @returns {JSX.Element}
  */
-export const Password = ({ welcome = false, Link = false }) => {
+export const Password = ({ Link = false }) => {
   if (!Link) Link = WebLink
   // Hooks
   const backend = useBackend()

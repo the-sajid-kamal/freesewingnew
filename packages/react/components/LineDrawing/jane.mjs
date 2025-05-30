@@ -1,5 +1,5 @@
 import React from 'react'
-import { LineDrawingWrapper, thin, dashed } from './shared.mjs'
+import { LineDrawingWrapper } from './shared.mjs'
 
 /*
  * This strokeScale factor is used to normalize the stroke across
@@ -56,7 +56,7 @@ export const JaneBack = ({ className, stroke = 1 }) => (
 /*
  * SVG elements for the front
  */
-const Front = ({ stroke }) => (
+const Front = () => (
   <>
     <path
       key="outline"
@@ -69,7 +69,7 @@ const Front = ({ stroke }) => (
 /*
  * SVG elements for the back
  */
-const Back = ({ stroke }) => (
+const Back = () => (
   <>
     <path
       key="outline"

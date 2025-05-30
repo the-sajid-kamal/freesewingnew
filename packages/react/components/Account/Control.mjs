@@ -1,38 +1,15 @@
 // Dependencies
 import { welcomeSteps } from './shared.mjs'
 import { controlDesc } from '@freesewing/config'
-
-// Context
-import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
-
 // Hooks
-import React, { useState, useContext } from 'react'
-import { useAccount } from '@freesewing/react/hooks/useAccount'
-import { useBackend } from '@freesewing/react/hooks/useBackend'
+import React from 'react'
 import { useControl } from '@freesewing/react/hooks/useControl'
-
 // Components
-import { Link as WebLink } from '@freesewing/react/components/Link'
-import { RightIcon, NoIcon, OkIcon, SaveIcon } from '@freesewing/react/components/Icon'
+import { RightIcon } from '@freesewing/react/components/Icon'
 import { ListInput } from '@freesewing/react/components/Input'
 import { ControlScore } from '@freesewing/react/components/Control'
 import { IconButton } from '@freesewing/react/components/Button'
 import { WelcomeIcons } from './shared.mjs'
-
-const strings = {
-  1: {
-    title: 'Keep it as simple as possible',
-    desc:
-      'Allowing us to compare your measurments to a baseline or others measurements sets ' +
-      'allows us to detect potential problems in your measurements or patterns.',
-  },
-  2: {
-    title: 'No, never compare',
-    desc:
-      'We get it, comparison is the thief of joy. Just be aware that this limits our ability ' +
-      'to warn you about potential problems in your measurements sets or patterns.',
-  },
-}
 
 /**
  * A component to manage the user's control/UX setting

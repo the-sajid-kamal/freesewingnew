@@ -1,15 +1,11 @@
 // Dependencies
-import { welcomeSteps } from './shared.mjs'
-import { validateEmail, validateTld, getSearchParam } from '@freesewing/utils'
-
+import { validateEmail, validateTld, getSearchParam, navigate } from '@freesewing/utils'
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
-
 // Hooks
 import React, { useState, useContext, useEffect } from 'react'
 import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
-
 // Components
 import { Link as WebLink } from '@freesewing/react/components/Link'
 import { SaveIcon } from '@freesewing/react/components/Icon'
@@ -22,11 +18,10 @@ import { Spinner } from '@freesewing/react/components/Spinner'
  *
  * @component
  * @param {object} props - All component props
- * @param {bool} [props.welcome = false] - Set to true to render the welcome/onboarding view
  * @param {React.Component} props.Link - A framework specific Link component for client-side routing
  * @returns {JSX.Element}
  */
-export const Email = ({ welcome = false, Link = false }) => {
+export const Email = ({ Link = false }) => {
   if (!Link) Link = WebLink
 
   // Hooks
@@ -104,7 +99,7 @@ export const EmailChangeConfirmation = ({ onSuccess = false }) => {
   const [check, setCheck] = useState()
 
   // Hooks
-  const { setAccount, setToken } = useAccount()
+  const { setAccount } = useAccount()
   const backend = useBackend()
 
   // Context
@@ -134,7 +129,7 @@ export const EmailChangeConfirmation = ({ onSuccess = false }) => {
     })
 
     // If it works, store account, which runs the onSuccess handler
-    if (body.result === 'success' && body.account) return storeAccount(body)
+    if (status === 200 && body.result === 'success' && body.account) return storeAccount(body)
     // If we get here, we're not sure what's wrong
     if (body.error) return setError(body.error)
     return setError(true)

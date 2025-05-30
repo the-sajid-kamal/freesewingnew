@@ -1,35 +1,14 @@
 // Dependencies
-import { welcomeSteps } from './shared.mjs'
-import { linkClasses, navigate } from '@freesewing/utils'
-
+import { navigate } from '@freesewing/utils'
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
-
 // Hooks
 import React, { useState, useContext } from 'react'
 import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
-
 // Components
 import { Link as WebLink } from '@freesewing/react/components/Link'
-import { NoIcon, OkIcon, SaveIcon } from '@freesewing/react/components/Icon'
-import { ListInput } from '@freesewing/react/components/Input'
 import { Popout } from '@freesewing/react/components/Popout'
-
-const strings = {
-  yes: {
-    title: 'Yes, in case it may help me',
-    desc:
-      'Allowing us to compare your measurments to a baseline or others measurements sets ' +
-      'allows us to detect potential problems in your measurements or patterns.',
-  },
-  no: {
-    title: 'No, never compare',
-    desc:
-      'We get it, comparison is the thief of joy. Just be aware that this limits our ability ' +
-      'to warn you about potential problems in your measurements sets or patterns.',
-  },
-}
 
 /**
  * A component to manage the user's consent setting
@@ -79,7 +58,7 @@ export const Consent = ({ signUp = false, Link = false, title = false }) => {
   // Helper method to remove the account
   const removeAccount = async () => {
     setLoadingStatus([true, 'One moment please'])
-    const [status, body] = await backend.removeAccount()
+    const [status] = await backend.removeAccount()
     if (status === 200) {
       setLoadingStatus([true, 'All done,  farewell', true, true])
       setToken(null)

@@ -3,16 +3,12 @@ import { navigate } from '@freesewing/utils'
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
 import { ModalContext } from '@freesewing/react/context/Modal'
-
 // Hooks
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
-
 // Components
-import { Link as WebLink } from '@freesewing/react/components/Link'
 import { BackIcon as ExitIcon, TrashIcon } from '@freesewing/react/components/Icon'
-import { Popout } from '@freesewing/react/components/Popout'
 import { IconButton } from '@freesewing/react/components/Button'
 import { ModalWrapper } from '@freesewing/react/components/Modal'
 

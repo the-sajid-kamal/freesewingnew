@@ -1,17 +1,9 @@
 import React from 'react'
-import { useDesignTranslation } from '@freesewing/react/hooks/useDesignTranslation'
 import { ZoomContextProvider } from './ZoomablePattern.mjs'
-import {
-  HeaderMenu,
-  HeaderMenuDraftViewDesignOptions,
-  HeaderMenuDraftViewCoreSettings,
-  HeaderMenuDraftViewUiPreferences,
-  HeaderMenuDraftViewFlags,
-} from './HeaderMenu.mjs'
+import { HeaderMenu } from './HeaderMenu.mjs'
 import { DesignOptionsMenu } from './menus/DesignOptionsMenu.mjs'
 import { CoreSettingsMenu } from './menus/CoreSettingsMenu.mjs'
 import { UiPreferencesMenu } from './menus/UiPreferencesMenu.mjs'
-import { Accordion } from './Accordion.mjs'
 
 /**
  * A layout for views that include a drafted pattern
@@ -24,9 +16,7 @@ import { Accordion } from './Accordion.mjs'
  * @param {object] pattern - The drafted pattern
  */
 export const PatternLayout = (props) => {
-  const { menu = null, Design, pattern, update, config, state } = props
-  const i18n = useDesignTranslation(Design.designConfig.data.id)
-  const flags = props.pattern?.setStores?.[0]?.plugins?.['plugin-annotations']?.flags
+  const { Design, pattern, update, config, state } = props
 
   return (
     <ZoomContextProvider>

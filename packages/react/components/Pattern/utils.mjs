@@ -1,5 +1,3 @@
-import React from 'react'
-
 /**
  * A method to generated an ID for an object part of a FreeSewing pattern
  *

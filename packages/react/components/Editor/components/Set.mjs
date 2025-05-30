@@ -58,7 +58,7 @@ export const UserSetPicker = ({
               href={config.hrefNewSet}
               className="tw:daisy-btn tw:daisy-btn-accent tw:capitalize"
               target="_BLANK"
-              rel="nofollow"
+              rel="noreferrer"
             >
               Create a new measurements set
             </a>

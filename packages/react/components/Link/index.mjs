@@ -52,22 +52,20 @@ const BaseLink = Link
  * @param {object} props - All component props
  * @param {JSX.Element} props.children - The component children, will be rendered inside the link
  * @param {string} props.href - The URL to link to
- * @param {string} [props.target = undefined] - An optional link title
  * @param {string} [props.title = false] - An optional link title
  * @param {React.FC} [Link = undefined] - An optional framework-specific Link component
  * @returns {JSX.Element}
  */
-export const SuccessLink = ({
-  children,
-  href,
-  target,
-  title = false,
-  Link,
-}) => (
-  <a href={href} className={linkClasses} title={title ? title : ''}>
-    <span className="tw:text-success-content tw:hover:text-success-content">{children}</span>
-  </a>
-)
+export const SuccessLink = ({ children, href, title = false, Link }) =>
+  Link ? (
+    <Link href={href} className={linkClasses} title={title ? title : ''}>
+      <span className="tw:text-success-content tw:hover:text-success-content">{children}</span>
+    </Link>
+  ) : (
+    <a href={href} className={linkClasses} title={title ? title : ''}>
+      <span className="tw:text-success-content tw:hover:text-success-content">{children}</span>
+    </a>
+  )
 
 /**
  * A link styled as a card

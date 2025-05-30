@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { shortUuid } from '@freesewing/utils'
 import { Link as WebLink } from '@freesewing/react/components/Link'
 import { CopyToClipboardButton } from '@freesewing/react/components/Button'
@@ -14,9 +14,7 @@ import { CopyToClipboardButton } from '@freesewing/react/components/Button'
  * @param {string} [props.label = false] - An optional label to pass to the CopyToClipboardButton
  * @returns {JSX.Element}
  */
-export const Uuid = ({ uuid, href = false, label = "UUID", Link = false }) => {
-  const [full, setFull] = useState()
-  const short = shortUuid(uuid)
+export const Uuid = ({ uuid, href = false, label = 'UUID', Link = false }) => {
   if (!Link) Link = WebLink
 
   if (href === false)

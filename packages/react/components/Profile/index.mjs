@@ -1,5 +1,5 @@
 // Dependencies
-import { linkClasses, cloudflareImageUrl, getSearchParam } from '@freesewing/utils'
+import { cloudflareImageUrl, getSearchParam } from '@freesewing/utils'
 // Context
 import { ModalContext } from '@freesewing/react/context/Modal'
 // Hooks
@@ -9,7 +9,6 @@ import { useBackend } from '@freesewing/react/hooks/useBackend'
 // Components
 import { ModalWrapper } from '@freesewing/react/components/Modal'
 import { Link as WebLink } from '@freesewing/react/components/Link'
-import { NoIcon, OkIcon, SaveIcon, RightIcon, WarningIcon } from '@freesewing/react/components/Icon'
 import { MiniWarning } from '@freesewing/react/components/Mini'
 import { KeyVal } from '@freesewing/react/components/KeyVal'
 import Markdown from 'react-markdown'
@@ -40,12 +39,7 @@ export const OwnProfile = (props) => {
  * @param {number} [props.uid = false] - The user ID for which to show the profile
  * @returns {JSX.Element}
  */
-export const UserProfile = ({
-  Link = false,
-  setTitle = false,
-  uid = false,
-  fromUrl = false,
-}) => {
+export const UserProfile = ({ Link = false, setTitle = false, uid = false, fromUrl = false }) => {
   if (!uid && !fromUrl)
     return (
       <MiniWarning>
@@ -69,7 +63,7 @@ export const UserProfile = ({
       const urlId = getSearchParam(fromUrl)
       if (urlId && urlId !== ruid) setRuid(urlId)
     }
-    if (ruid) loadProfileData(ruid, backend, setData)
+    if (ruid) loadProfileData(ruid, backend, setData, setTitle)
   }, [uid, fromUrl, ruid])
 
   return (
@@ -121,7 +115,10 @@ export const Avatar = ({ ihash }) => {
   )
 }
 
-async function loadProfileData(uid, backend, setData) {
+async function loadProfileData(uid, backend, setData, setTitle = false) {
   const [status, body] = await backend.getUserProfile(uid)
-  if (status === 200 && body.result === 'success' && body.profile) setData(body.profile)
+  if (status === 200 && body.result === 'success' && body.profile) {
+    setData(body.profile)
+    if (typeof setTitle === 'function' && body.profile.username) setTitle(body.profile.username)
+  }
 }

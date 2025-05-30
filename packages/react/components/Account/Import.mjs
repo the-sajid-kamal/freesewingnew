@@ -1,14 +1,12 @@
+// Dependencies
+import yaml from 'js-yaml'
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
-
 // Hooks
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
-
 // Components
-import { Link as WebLink } from '@freesewing/react/components/Link'
-import { SaveIcon } from '@freesewing/react/components/Icon'
 import { FileInput } from '@freesewing/react/components/Input'
 import { Popout } from '@freesewing/react/components/Popout'
 import { Yaml } from '@freesewing/react/components/Yaml'
@@ -41,7 +39,7 @@ export const ImportSet = () => {
         if (set.measurements || set.measies) {
           const name = set.name || 'J. Doe'
           setLoadingStatus([true, `Importing ${name}`])
-          const [status, body] = await backend.createSet({
+          const [status] = await backend.createSet({
             name: set.name || 'J. Doe',
             units: set.units || 'metric',
             notes: set.notes || '',

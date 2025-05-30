@@ -37,7 +37,7 @@ export const Tabs = ({ tabs = '', active = 0, children, withModal = false }) => 
 
   return (
     <div className="tw:border tw:border-base-300 tw:rounded-lg tw:pt-2">
-      <div role="tablist" className="tw:daisy-tabs tw:daisy-tabs-border" role="tablist">
+      <div className="tw:daisy-tabs tw:daisy-tabs-border" role="tablist">
         {tablist.map((title, tabId) => {
           const btnClasses = `tw:text-lg tw:font-bold tw:capitalize tw:daisy-tab tw:h-auto tw:grow tw:py-1 ${
             activeTab === tabId ? 'tw:daisy-tab-active' : ''

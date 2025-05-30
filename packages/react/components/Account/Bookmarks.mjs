@@ -7,7 +7,7 @@ import { useBackend } from '@freesewing/react/hooks/useBackend'
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
 import { ModalContext } from '@freesewing/react/context/Modal'
 // Components
-import { BookmarkIcon, LeftIcon, PlusIcon, TrashIcon } from '@freesewing/react/components/Icon'
+import { BookmarkIcon, PlusIcon, TrashIcon } from '@freesewing/react/components/Icon'
 import { Link as WebLink } from '@freesewing/react/components/Link'
 import { ModalWrapper } from '@freesewing/react/components/Modal'
 import { StringInput } from '@freesewing/react/components/Input'
@@ -33,7 +33,7 @@ const types = {
 export const Bookmarks = () => {
   // Hooks & Context
   const backend = useBackend()
-  const { setModal, clearModal } = useContext(ModalContext)
+  const { setModal } = useContext(ModalContext)
   const { setLoadingStatus, LoadingProgress } = useContext(LoadingStatusContext)
 
   // State
@@ -194,7 +194,7 @@ const NewBookmark = ({ onCreated = false }) => {
   // This method will create the bookmark
   const createBookmark = async () => {
     setLoadingStatus([true, 'Processing update'])
-    const [status, body] = await backend.createBookmark({
+    const [status] = await backend.createBookmark({
       title,
       url,
       type: 'custom',

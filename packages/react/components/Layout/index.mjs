@@ -10,11 +10,10 @@ import { Link as DefaultLink } from '@freesewing/react/components/Link'
  * @param {function} [props.Link = false] - An optional framework specific Link component
  * @param {JSX.Element} [props.children = []] - The component children to render inside the layout
  * @param {array} [props.crumbs = []] - Data for the breadcrumbs, see Breadcrumbs
- * @param {string} props.description - The page description
  * @param {string} props.title - The page title
  * @returns {JSX.Element}
  */
-export const Layout = ({ children = [], crumbs = [], description, Link = false, title }) => {
+export const Layout = ({ children = [], crumbs = [], Link = false, title }) => {
   if (!Link) Link = DefaultLink
 
   return (

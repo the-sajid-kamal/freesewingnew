@@ -19,7 +19,7 @@ export const UiPreferencesMenu = ({ update, state, Design }) => {
   }
   const values = {
     aside: MenuListValue,
-    ux: (props) => <span>{state.ui.ux}/5</span>,
+    ux: () => <span>{state.ui.ux}/5</span>,
     rotate: MenuListValue,
     renderer: MenuListValue,
   }
