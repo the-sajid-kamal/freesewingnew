@@ -175,6 +175,13 @@ a.tw\:daisy-btn-primary.tw\:daisy-btn-outline:hover {
 }
 
 /*
+ * Don't add whitespace after the last line of text.
+ */
+div.mini > p:last-child {
+  margin-bottom: 0;
+}
+
+/*
  * Make the 'edit this page' link look consistent
  */
 
