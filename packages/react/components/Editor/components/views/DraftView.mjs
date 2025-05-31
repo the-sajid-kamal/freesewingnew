@@ -1,7 +1,9 @@
 // Dependencies
-import React from 'react'
+import React, { useContext } from 'react'
 import { bundlePatternTranslations, draft, missingMeasurements } from '../../lib/index.mjs'
 import { colors, darkColors } from '@freesewing/plugin-theme'
+// Context
+import { ModalContext } from '@freesewing/react/context/Modal'
 // Hooks
 import { useColorMode } from '@docusaurus/theme-common'
 // Components
@@ -29,6 +31,7 @@ import { translateStrings } from '../../../Pattern/index.mjs'
  * @return {function} DraftView - React component
  */
 export const DraftView = ({ Design, state, update, config, plugins = [], PluginOutput = Null }) => {
+  const { modalContent } = useContext(ModalContext)
   /*
    * We need to manipulate the theme for SVG in the browser
    */
@@ -103,6 +106,7 @@ export const DraftView = ({ Design, state, update, config, plugins = [], PluginO
           rotate={state.ui.rotate}
           update={update}
         />
+        {modalContent}
       </>
     )
   }

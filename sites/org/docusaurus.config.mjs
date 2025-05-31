@@ -54,11 +54,9 @@ const config = {
   // Not time to look into this now
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
-
   future: {
     experimental_faster: false, // Too many bugs for now
   },
-
   plugins: [
     ...docusaurusPlugins,
     [
@@ -186,6 +184,7 @@ const config = {
         { type: 'custom-FreeSewingNavbarItem', position: 'left', id: 'blog' },
         { type: 'custom-FreeSewingNavbarItem', position: 'left', id: 'forum' },
         { type: 'custom-FreeSewingNavbarItem', position: 'right', id: 'account' },
+        { type: 'custom-FreeSewingNavbarItem', position: 'right', id: 'support' },
       ],
     },
     footer: {

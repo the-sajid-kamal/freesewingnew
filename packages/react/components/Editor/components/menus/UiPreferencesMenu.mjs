@@ -53,5 +53,11 @@ export const UiPreferencesMenu = ({ update, state, Design }) => {
 }
 
 export const UiPreference = ({ name, ux, ...rest }) => (
-  <MenuItem {...rest} name={name} allowToggle={!['ux', 'view'].includes(name) && ux > 3} ux={ux} />
+  <MenuItem
+    type="uiPreference"
+    {...rest}
+    name={name}
+    allowToggle={!['ux', 'view'].includes(name) && ux > 3}
+    ux={ux}
+  />
 )

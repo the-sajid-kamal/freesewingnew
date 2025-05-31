@@ -2,38 +2,80 @@ import React from 'react'
 // Components
 import { ModalWrapper } from '@freesewing/react/components/Modal'
 
-/**
- * A component to display inline help for a measurement.
+const Iframe = (props) => <iframe {...props} style={{ height: '90vh', width: '90vh' }} />
+
+/*
+ * A component to display inline help for a design option
  *
- * This is typically loaded as modal content as it returns an ifram
+ * This is typically loaded as modal content as it returns an iframe.
  *
  * @component
  * @param {object} props - All component props
- * @param {string} [props.m = undefined] - The measurment name (id)
+ * @param {string} props.design - The design name
+ * @param {string} props.o - The option ID
  * @returns {JSX.Element}
  */
-export const DesignOptionHelp = ({ design, o }) =>
+const DesignOptionHelp = ({ design, o }) =>
   design && o ? (
-    <iframe
+    <Iframe
       src={`https://freesewing.eu/docs/designs/${design.toLowerCase()}/options/${o.toLowerCase()}/index.html?docusaurus-data-fs-embed=true`}
       title="Design Option Help"
-      style={{ height: '90vh', width: '90vw' }}
     />
   ) : (
     <p>Invalid props provided to DesignOptionHelp.</p>
   )
 
-/**
+/*
+ * A component to display inline help for a core setting
+ *
+ * This is typically loaded as modal content as it returns an iframe.
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.name - The core setting name/id
+ * @returns {JSX.Element}
+ */
+const CoreSettingHelp = ({ name }) =>
+  name ? (
+    <Iframe
+      src={`https://freesewing.eu/docs/about/site/draft/${name.toLowerCase()}/index.html?docusaurus-data-fs-embed=true`}
+      title="Core Setting Help"
+    />
+  ) : (
+    <p>Invalid props provided to CoreSettingsHelp.</p>
+  )
+
+/*
+ * A component to display inline help for a UI preference
+ *
+ * This is typically loaded as modal content as it returns an iframe.
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.name - The core setting name/id
+ * @returns {JSX.Element}
+ */
+const UiPreferenceHelp = ({ name }) =>
+  name ? (
+    <Iframe
+      src={`https://freesewing.eu/docs/about/site/draft/${name.toLowerCase()}/index.html?docusaurus-data-fs-embed=true`}
+      title="UI Preference Help"
+    />
+  ) : (
+    <p>Invalid props provided to UiPreferenceHelp.</p>
+  )
+
+/*
  * A component to display inline help for a measurement.
  *
- * This is typically loaded as modal content as it returns an ifram
+ * This is typically loaded as modal content as it returns an iframe
  *
  * @component
  * @param {object} props - All component props
  * @param {string} [props.m = undefined] - The measurment name (id)
  * @returns {JSX.Element}
  */
-export const MeasurementHelp = ({ m }) =>
+const MeasurementHelp = ({ m }) =>
   m ? (
     <iframe
       src={`https://freesewing.eu/docs/measurements/${m.toLowerCase()}/index.html?docusaurus-data-fs-embed=true`}
@@ -41,12 +83,28 @@ export const MeasurementHelp = ({ m }) =>
       style={{ height: '90vh', width: '90vw' }}
     />
   ) : (
-    <p>No measurment name provided in the m prop.</p>
+    <p>No measurement name provided in the m prop.</p>
   )
+
+export function modalCoreSettingHelp(name, setModal) {
+  setModal(
+    <ModalWrapper fullWidth keepOpenOnClick>
+      <CoreSettingHelp name={name} />
+    </ModalWrapper>
+  )
+}
+
+export function modalUiPreferenceHelp(name, setModal) {
+  setModal(
+    <ModalWrapper fullWidth keepOpenOnClick>
+      <UiPreferenceHelp name={name} />
+    </ModalWrapper>
+  )
+}
 
 export function modalDesignOptionHelp(design, o, setModal) {
   setModal(
-    <ModalWrapper fullWidth>
+    <ModalWrapper fullWidth keepOpenOnClick>
       <DesignOptionHelp {...{ design, o }} />
     </ModalWrapper>
   )
@@ -55,7 +113,7 @@ export function modalDesignOptionHelp(design, o, setModal) {
 export function modalMeasurementHelp(m, setModal) {
   console.log('in modalMeasurmentHelp', { m, setModal })
   setModal(
-    <ModalWrapper fullWidth>
+    <ModalWrapper fullWidth keepOpenOnClick>
       <MeasurementHelp m={m} />
     </ModalWrapper>
   )

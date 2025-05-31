@@ -9,6 +9,7 @@ import {
   ChatIcon,
   DesignIcon,
   DocsIcon,
+  HelpIcon,
   ShowcaseIcon,
   RssIcon,
   LockIcon,
@@ -183,5 +184,8 @@ const navbarItems = {
       Icon={ChatIcon}
       Link={props.Link}
     />
+  ),
+  support: (props) => (
+    <SimpleNavbarItem label="Support" href="/support/" Icon={HelpIcon} Link={props.Link} />
   ),
 }

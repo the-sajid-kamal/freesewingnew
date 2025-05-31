@@ -124,6 +124,7 @@ export const CoreSetting = ({ name, config, ux, updateHandler, current, passProp
 
   return (
     <MenuItem
+      type="coreSetting"
       {...{
         name,
         config,

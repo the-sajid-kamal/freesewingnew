@@ -15,6 +15,7 @@ import {
   shortDate,
   timeAgo,
 } from '@freesewing/utils'
+import { modalMeasurementHelp } from '@freesewing/react/components/Help'
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
 import { ModalContext } from '@freesewing/react/context/Modal'
@@ -57,7 +58,6 @@ import { Popout } from '@freesewing/react/components/Popout'
 import { bundlePatternTranslations, draft, flattenFlags } from '../Editor/lib/index.mjs'
 import { Bonny } from '@freesewing/bonny'
 import { MiniNote, MiniTip } from '../Mini/index.mjs'
-import { modalMeasurementHelp } from '@freesewing/react/components/Help'
 
 /**
  * Component to show an individual measurements set

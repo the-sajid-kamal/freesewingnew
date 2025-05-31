@@ -61,12 +61,6 @@ export function menuCoreSettingsSaboolHandler({ toggleSa }) {
   return toggleSa
 }
 
-const CoreDocsLink = ({ item }) => (
-  <a href={`/docs/about/site/draft/#${item.toLowerCase()}`} className={`${linkClasses} tw:px-2`}>
-    Learn more
-  </a>
-)
-
 export function menuCoreSettingsStructure({
   units = 'metric',
   sabool = false,
@@ -77,12 +71,7 @@ export function menuCoreSettingsStructure({
     sabool: {
       dense: true,
       title: 'Include seam allowance',
-      about: (
-        <>
-          Controls whether or not you want to include seam allowance on your pattern.
-          <CoreDocsLink item="sabool" />
-        </>
-      ),
+      about: <>Controls whether or not you want to include seam allowance on your pattern.</>,
       ux: config.uxLevels.core.sa,
       list: [0, 1],
       choiceTitles: {
@@ -99,12 +88,7 @@ export function menuCoreSettingsStructure({
     samm: sabool
       ? {
           title: 'Seam Allowance Size',
-          about: (
-            <>
-              Controls the size of the pattern&apos;s seam allowance.
-              <CoreDocsLink item="sa" />
-            </>
-          ),
+          about: <>Controls the size of the pattern&apos;s seam allowance.</>,
           ux: config.uxLevels.core.sa,
           min: 0,
           max: units === 'imperial' ? 25.4 : 25, // values are in mm
@@ -115,12 +99,7 @@ export function menuCoreSettingsStructure({
     units: {
       dense: true,
       title: 'Pattern units',
-      about: (
-        <>
-          Allows you to switch between metric and imperial units on the pattern.
-          <CoreDocsLink item="units" />
-        </>
-      ),
+      about: <>Allows you to switch between metric and imperial units on the pattern.</>,
       ux: config.uxLevels.core.units,
       list: ['metric', 'imperial'],
       dflt: accountUnits,
@@ -141,7 +120,6 @@ export function menuCoreSettingsStructure({
         <>
           Trees are awesome, and taping together sewing patterns is not much fun. Try our paperless
           mode to avoid the need to print out your pattern altogether.
-          <CoreDocsLink item="paperless" />
         </>
       ),
       ux: config.uxLevels.core.paperless,
@@ -164,7 +142,6 @@ export function menuCoreSettingsStructure({
         <>
           Controls how detailed the pattern is; Either a complete pattern with all details, or a
           basic outline of the pattern parts.
-          <CoreDocsLink item="complete" />
         </>
       ),
       ux: config.uxLevels.core.complete,
@@ -187,7 +164,6 @@ export function menuCoreSettingsStructure({
         <>
           Controls efforts to save paper. Disable this to expand all pattern parts at the cost of
           using more space & paper.
-          <CoreDocsLink item="expand" />
         </>
       ),
       ux: config.uxLevels.core.expand,
@@ -206,12 +182,7 @@ export function menuCoreSettingsStructure({
     only: {
       dense: true,
       title: 'Only included selected pattern parts',
-      about: (
-        <>
-          Allows you to control what parts to include in your pattern.
-          <CoreDocsLink item="only" />
-        </>
-      ),
+      about: <>Allows you to control what parts to include in your pattern.</>,
       ux: config.uxLevels.core.only,
       dflt: false,
       list: parts,
@@ -224,7 +195,6 @@ export function menuCoreSettingsStructure({
         <>
           Allows you to control the scale of annotations on the pattern. This is most useful when
           generating very small patterns, like for doll outfits.
-          <CoreDocsLink item="scale" />
         </>
       ),
       ux: config.uxLevels.core.scale,
@@ -240,7 +210,6 @@ export function menuCoreSettingsStructure({
         <>
           Controls the gap between pattern parts, as well as the gap between the parts and the page
           edge.
-          <CoreDocsLink item="margin" />
         </>
       ),
       ux: config.uxLevels.core.margin,

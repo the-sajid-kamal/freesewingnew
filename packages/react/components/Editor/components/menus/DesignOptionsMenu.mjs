@@ -121,6 +121,7 @@ export const DesignOption = ({ config, settings, ux, inputs, values, ...rest }) 
 
   return (
     <MenuItem
+      type="designOption"
       {...{
         config,
         ux,

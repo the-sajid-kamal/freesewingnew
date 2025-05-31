@@ -1,11 +1,24 @@
 // Dependencies
 import { menuValueWasChanged } from '../../lib/index.mjs'
 import { designOptionType } from '@freesewing/utils'
+import {
+  modalDesignOptionHelp,
+  modalCoreSettingHelp,
+  modalUiPreferenceHelp,
+} from '@freesewing/react/components/Help'
+// Context
+import { ModalContext } from '@freesewing/react/context/Modal'
 // Hooks
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useContext } from 'react'
 // Components
 import { SubAccordion } from '../Accordion.mjs'
-import { EditIcon, GroupIcon, OptionsIcon, ResetIcon } from '@freesewing/react/components/Icon'
+import {
+  HelpIcon,
+  EditIcon,
+  GroupIcon,
+  OptionsIcon,
+  ResetIcon,
+} from '@freesewing/react/components/Icon'
 import { Fieldset } from '@freesewing/react/components/Input'
 import { MiniTip } from '@freesewing/react/components/Mini'
 
@@ -25,6 +38,7 @@ const iconButtonClass = 'tw:daisy-btn tw:daisy-btn-xs tw:daisy-btn-ghost tw:px-0
  * @param  {React.Component}  Value              a value display component this menu item will use
  * @param  {Boolean} allowOverride      all a text input to be used to override the given input component
  * @param  {Number}  ux            the user-defined ux level
+ * @param  {strign} type      one of designOption, coreSetting, or uiPreference
  */
 export const MenuItem = ({
   name,
@@ -38,7 +52,9 @@ export const MenuItem = ({
   state,
   config,
   Design,
+  type,
 }) => {
+  const { setModal } = useContext(ModalContext)
   // Local state - whether the override input should be shown
   const [override, setOverride] = useState(false)
 
@@ -69,6 +85,39 @@ export const MenuItem = ({
 
   // get buttons for open and closed states
   const buttons = []
+  if (type === 'designOption')
+    buttons.push(
+      <button
+        key="help"
+        className="tw:daisy-btn tw:daisy-btn-xs tw:daisy-btn-ghost tw:px-0 tw:text-success"
+        onClick={() => modalDesignOptionHelp(Design.designConfig.data.id, name, setModal)}
+        title="Show help for this design option"
+      >
+        <HelpIcon />
+      </button>
+    )
+  else if (type === 'coreSetting')
+    buttons.push(
+      <button
+        key="help"
+        className="tw:daisy-btn tw:daisy-btn-xs tw:daisy-btn-ghost tw:px-0 tw:text-success"
+        onClick={() => modalCoreSettingHelp(name, setModal)}
+        title="Show help for this core setting"
+      >
+        <HelpIcon />
+      </button>
+    )
+  else if (type === 'uiPreference')
+    buttons.push(
+      <button
+        key="help"
+        className="tw:daisy-btn tw:daisy-btn-xs tw:daisy-btn-ghost tw:px-0 tw:text-success"
+        onClick={() => modalUiPreferenceHelp(name, setModal)}
+        title="Show help for this UI preference"
+      >
+        <HelpIcon />
+      </button>
+    )
   if (allowOverride)
     buttons.push(
       <button

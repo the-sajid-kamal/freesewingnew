@@ -3,12 +3,6 @@ import { defaultConfig } from '../config/index.mjs'
 import { linkClasses } from '@freesewing/utils'
 import { AsideIcon, RotateIcon, RocketIcon, UxIcon } from '@freesewing/react/components/Icon'
 
-const UiDocsLink = ({ item }) => (
-  <a href={`/docs/about/site/draft/#${item.toLowerCase()}`} className={`${linkClasses} tw:px-2`}>
-    Learn more
-  </a>
-)
-
 export function menuUiPreferencesStructure() {
   const uiUx = defaultConfig.uxLevels.ui
   const uiPreferences = {
@@ -19,7 +13,6 @@ export function menuUiPreferencesStructure() {
         <span>
           Uses the right side of the screen for the Design Options, Core Settings, and UI
           Preferences menus.
-          <UiDocsLink item="aside" />
         </span>
       ),
       ux: uiUx.aside,
@@ -35,10 +28,7 @@ export function menuUiPreferencesStructure() {
       dense: true,
       title: 'User Experience',
       about: (
-        <span>
-          Controls the user experience, from keep it simple, to give me all the powers.
-          <UiDocsLink item="control" />
-        </span>
+        <span>Controls the user experience, from keep it simple, to give me all the powers.</span>
       ),
       ux: uiUx.ux,
       emoji: '🖥️',
@@ -63,12 +53,7 @@ export function menuUiPreferencesStructure() {
     rotate: {
       dense: true,
       title: 'Rotate Pattern',
-      about: (
-        <span>
-          Allows you to rotate your pattern 90 degrees, handy for tall patterns.
-          <UiDocsLink item="rotate" />
-        </span>
-      ),
+      about: <span>Allows you to rotate your pattern 90 degrees, handy for tall patterns.</span>,
       ux: uiUx.rotate,
       list: [0, 1],
       choiceTitles: {
@@ -81,12 +66,7 @@ export function menuUiPreferencesStructure() {
     renderer: {
       dense: true,
       title: 'Pattern render engine',
-      about: (
-        <span>
-          Change the underlying method for rendering the pattern on screen.
-          <UiDocsLink item="renderer" />
-        </span>
-      ),
+      about: <span>Change the underlying method for rendering the pattern on screen.</span>,
       ux: uiUx.renderer,
       list: ['react', 'svg'],
       choiceTitles: {
