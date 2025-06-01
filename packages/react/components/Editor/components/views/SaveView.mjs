@@ -162,7 +162,7 @@ export const SaveView = ({ config, state, update }) => {
             To access your saved patterns, go to:
             <b>
               {' '}
-              <Link href="/account/patterns">/account/patterns</Link>
+              <Link href="/account/data/patterns/">/account/data/patterns</Link>
             </b>
           </p>
         </div>

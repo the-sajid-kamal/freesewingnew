@@ -4,6 +4,9 @@ import { HeaderMenu } from './HeaderMenu.mjs'
 import { DesignOptionsMenu } from './menus/DesignOptionsMenu.mjs'
 import { CoreSettingsMenu } from './menus/CoreSettingsMenu.mjs'
 import { UiPreferencesMenu } from './menus/UiPreferencesMenu.mjs'
+import { LayoutSettingsMenu } from './menus/LayoutMenu.mjs'
+import { TestOptionsMenu, TestMeasurementsMenu } from './menus/TestMenu.mjs'
+import { useDesignTranslation } from '@freesewing/react/hooks/useDesignTranslation'
 
 /**
  * A layout for views that include a drafted pattern
@@ -17,6 +20,7 @@ import { UiPreferencesMenu } from './menus/UiPreferencesMenu.mjs'
  */
 export const PatternLayout = (props) => {
   const { Design, pattern, update, config, state } = props
+  const i18n = useDesignTranslation(Design.designConfig.data.id)
 
   return (
     <ZoomContextProvider>
@@ -29,29 +33,62 @@ export const PatternLayout = (props) => {
           <div className="tw:lg:w-2/3 tw:flex tw:flex-col tw:h-full tw:grow tw:p-2 tw:shadow tw:mx-2">
             {props.output}
           </div>
-          {state.ui?.aside ? (
-            <div
-              className={`tw:hidden tw:md:block tw:w-1/3 tw:shrink tw:grow-0 tw:lg:p-4 tw:max-w-2xl tw:h-full tw:overflow-scroll`}
-            >
-              <h5 className="tw:capitalize">{pattern.designConfig.data.id} Options</h5>
-              <SideMenuUl>
-                <DesignOptionsMenu {...props} />
-              </SideMenuUl>
-              <h5>Core Settings</h5>
-              <SideMenuUl>
-                <CoreSettingsMenu {...props} />
-              </SideMenuUl>
-              <h5>UI Preferences</h5>
-              <SideMenuUl>
-                <UiPreferencesMenu {...props} />
-              </SideMenuUl>
-            </div>
-          ) : null}
+          <PatternAsideMenu {...props} i18n={i18n} />
         </div>
       </div>
     </ZoomContextProvider>
   )
 }
+
+const PatternAsideMenu = (props) => {
+  if (!props.state.ui?.aside) return null
+  if (props.state.view === 'draft') return (
+    <PatternAsideWrapper>
+      <h5 className="tw:capitalize">{props.pattern.designConfig.data.id} Options</h5>
+      <SideMenuUl>
+        <DesignOptionsMenu {...props} />
+      </SideMenuUl>
+      <h5>Core Settings</h5>
+      <SideMenuUl>
+        <CoreSettingsMenu {...props} />
+      </SideMenuUl>
+      <h5>UI Preferences</h5>
+      <SideMenuUl>
+        <UiPreferencesMenu {...props} />
+      </SideMenuUl>
+    </PatternAsideWrapper>
+  )
+  if (props.state.view === 'layout') return (
+    <PatternAsideWrapper>
+      <h5>Layout Settings</h5>
+      <SideMenuUl>
+        <LayoutSettingsMenu {...props} />
+      </SideMenuUl>
+    </PatternAsideWrapper>
+  )
+  if (props.state.view === 'test') return (
+    <PatternAsideWrapper>
+      <h5>Test Design Options</h5>
+      <SideMenuUl>
+        <TestOptionsMenu {...props} />
+      </SideMenuUl>
+      <h5>Test Measurements</h5>
+      <SideMenuUl>
+        <TestMeasurementsMenu {...props} />
+      </SideMenuUl>
+    </PatternAsideWrapper>
+  )
+
+  return null
+}
+
+const PatternAsideWrapper = ({ children }) => (
+  <div
+    className={`tw:hidden tw:md:block tw:w-1/3 tw:shrink tw:grow-0 tw:lg:p-4 tw:max-w-2xl tw:h-full tw:overflow-scroll`}
+  >
+    {children}
+  </div>
+)
 
 export const SideMenuUl = ({ children }) => (
   <ul

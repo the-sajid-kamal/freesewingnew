@@ -14,6 +14,7 @@ import { ZoomablePattern } from '../ZoomablePattern.mjs'
 import { PatternLayout } from '../PatternLayout.mjs'
 import { HeaderMenu } from '../HeaderMenu.mjs'
 import { H1, H3, H4, H5 } from '@freesewing/react/components/Heading'
+import { OptionsIcon, MeasurementsIcon } from '@freesewing/react/components/Icon'
 
 /**
  * The test view allows users to test options and measurements
@@ -87,6 +88,7 @@ export const TestView = ({ Design, state, update, config }) => {
     't',
     'ASC'
   )
+  const btnClasses = "tw:my-0.5 tw:block tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline tw:daisy-btn-xs tw:flex tw:flex-row tw:items-center tw:justify-between tw:w-full tw:max-w-64"
 
   return (
     <>
@@ -106,12 +108,13 @@ export const TestView = ({ Design, state, update, config }) => {
                 {trm.map(({ t, m }) => (
                   <button
                     key={m}
-                    className="tw:my-0.5 tw:block tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline tw:daisy-btn-xs"
+                    className={btnClasses}
                     onClick={() =>
                       update.settings(['sample'], { type: 'measurement', measurement: m })
                     }
                   >
-                    {t}
+                    <MeasurementsIcon className="tw:w-4 tw:h-4" />
+                    <span>{t}</span>
                   </button>
                 ))}
               </div>
@@ -122,12 +125,13 @@ export const TestView = ({ Design, state, update, config }) => {
                     {tom.map(({ t, m }) => (
                       <button
                         key={m}
-                        className="tw:my-0.5 tw:block tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline tw:daisy-btn-xs"
+                        className={btnClasses}
                         onClick={() =>
                           update.settings(['sample'], { type: 'measurement', measurement: m })
                         }
                       >
-                        {t}
+                        <MeasurementsIcon className="tw:w-4 tw:h-4" />
+                        <span>{t}</span>
                       </button>
                     ))}
                   </div>
@@ -158,6 +162,7 @@ const SampleOptionsMenu = ({ Design, state, update }) => {
 
 const SampleOptionsSubMenu = ({ structure, update, level = 1 }) => {
   const output = []
+  const btnClasses = "tw:my-0.5 tw:block tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline tw:daisy-btn-xs tw:flex tw:flex-row tw:items-center tw:justify-between tw:w-full tw:max-w-64"
   /*
    * Show entries alphabetic, but force groups last, and advanced last among them
    */
@@ -175,10 +180,11 @@ const SampleOptionsSubMenu = ({ structure, update, level = 1 }) => {
       output.push(
         <button
           key={name}
-          className="tw:my-0.5 tw:block tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline tw:daisy-btn-xs"
+          className={btnClasses}
           onClick={() => update.settings(['sample'], { type: 'option', option: name })}
         >
-          {struct.title}
+          <OptionsIcon className="tw:w-4 tw:h-4" />
+          <span>{struct.title}</span>
         </button>
       )
   }

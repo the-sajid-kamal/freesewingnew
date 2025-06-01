@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect, useCallback } from 'react'
 import { ZoomablePattern } from './ZoomablePattern.mjs'
 import { generateStackTransform, getTransformedBounds } from '@freesewing/core'
 import { getProps } from '@freesewing/react/components/Pattern'
-import { FlipIcon, RotateIcon, ResetIcon } from '@freesewing/react/components/Icon'
 import { drag } from 'd3-drag'
 import { select } from 'd3-selection'
 //import { Buttons } from './transform-buttons.mjs'
@@ -413,6 +412,26 @@ const Button = ({ onClickCb, transform, Icon, title = '' }) => {
   )
 }
 
+const InnerFlipIcon = () => (
+  <path
+    strokeLinkecap="round"
+    strokeLinejoin="round"
+    d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"
+  />
+)
+const InnerRotateIcon = ({ props }) => (
+  <path
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    d="M 19.5,12 C 19.5,10.768 19.454,9.547 19.362,8.338 19.21576,6.3582806 17.641719,4.7842398 15.662,4.638 14.504476,4.5506731 13.344609,4.5048098 12.184624,4.5004103 M 19.5,12 l 3,-3 m -3,3 -3,-3 m -12,3 c 0,1.232 0.046,2.453 0.138,3.662 0.1462398,1.979719 1.7202806,3.55376 3.7,3.7 1.295324,0.09777 2.593584,0.143587 3.891661,0.13746 M 4.5,12 l 3,3 m -3,-3 -3,3"
+    {...props}
+  />
+)
+const InnerResetIcon = () => (
+  <path d="M12 9.75 14.25 12m0 0 2.25 2.25M14.25 12l2.25-2.25M14.25 12 12 14.25m-2.58 4.92-6.374-6.375a1.125 1.125 0 0 1 0-1.59L9.42 4.83c.21-.211.497-.33.795-.33H19.5a2.25 2.25 0 0 1 2.25 2.25v10.5a2.25 2.25 0 0 1-2.25 2.25h-9.284c-.298 0-.585-.119-.795-.33Z" />
+)
+
+
 /** buttons for manipulating the part */
 export const Buttons = ({ transform, flip, rotate, resetPart, rotate90, iconSize }) => {
   return (
@@ -438,31 +457,31 @@ export const Buttons = ({ transform, flip, rotate, resetPart, rotate90, iconSize
         <Button
           onClickCb={resetPart}
           transform={`translate(${rectSize / -2}, ${rectSize / -2})`}
-          Icon={() => <ResetIcon wrapped={0} />}
+          Icon={() => <InnerResetIcon />}
           title="Reset part orientation"
         />
         <Button
           onClickCb={() => rotate90()}
           transform={`translate(${rectSize * -2.7}, ${rectSize / -2})`}
-          Icon={() => <RotateIcon wrapped={0} style={{}} />}
+          Icon={() => <InnerRotateIcon />}
           title="Rotate part clockwise"
         />
         <Button
           onClickCb={() => flip('y')}
           transform={`rotate(90) translate(${rectSize / -2}, ${rectSize * -1.6})`}
-          Icon={() => <FlipIcon wrapped={0} />}
+          Icon={() => <InnerFlipIcon />}
           title="Flip part top/bottom"
         />
         <Button
           onClickCb={() => flip('x')}
           transform={`translate(${rectSize * -1.6}, ${rectSize / -2})`}
-          Icon={() => <FlipIcon style={{}} wrapped={0} />}
+          Icon={() => <InnerFlipIcon />}
           title="Flip part left/right"
         />
         <Button
           onClickCb={() => rotate90(-1)}
           transform={`translate(${rectSize * 1.7}, ${rectSize / -2})`}
-          Icon={() => <RotateIcon transform="scale(-1,1), translate(-24,0)" wrapped={0} />}
+          Icon={() => <InnerRotateIcon transform="scale(-1,1), translate(-24,0)" />}
           title="Rotate part counter-clockwise"
         />
       </g>

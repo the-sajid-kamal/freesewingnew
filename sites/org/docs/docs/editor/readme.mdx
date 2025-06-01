@@ -33,6 +33,14 @@ import TestView from '@site/docs/docs/editor/views/test/readme.mdx'
 import TimingView from '@site/docs/docs/editor/views/timing/readme.mdx'
 import PickerView from '@site/docs/docs/editor/views/picker/readme.mdx'
 
+import PreferencesMenu from '@site/docs/docs/editor/menus/preferences/readme.mdx'
+import OptionsMenu from '@site/docs/docs/editor/menus/options/readme.mdx'
+import SettingsMenu from '@site/docs/docs/editor/menus/settings/readme.mdx'
+import ViewMenu from '@site/docs/docs/editor/menus/view/readme.mdx'
+import FlagsMenu from '@site/docs/docs/editor/menus/flags/readme.mdx'
+import TestMenu from '@site/docs/docs/editor/menus/test/readme.mdx'
+import LayoutMenu from '@site/docs/docs/editor/menus/layout/readme.mdx'
+
 Generating custom sewing patterns based on your measurements is the flagship
 feature of our website. As a user, the way to tap into that feature is by
 using the **FreeSewing Editor**.
@@ -45,18 +53,14 @@ Before we dive in, you should know that:
 
 - The home of the FreeSewing Editor is
   [freesewing.eu/editor](https://freesewing.eu/editor/).
-- By default, some of the more advanced features of the Editor are hidden to not overwhelm new users.
-  <br />
-  <small className="tw:pl-4">
-    To gain access to all Editor features, set your [User Experience](/account/preferences/control/)
-    to level **4** which is what we used in our examples.
-  </small>
 - The editor stores your pattern settings in the URL, so you can bookmark or share the URL with others.
 - The editor has different areas, views, and menus which are all explained here.<br />
-  <small className="tw:pl-4">
-    Knowing where to find them and what they do is key to getting the most out of the FreeSewing
-    Editor.
-  </small>
+- By default, some of the more advanced features of the Editor are hidden to not overwhelm new users.
+
+:::tip
+To gain access to all Editor features, set your [User Experience](/account/preferences/control/)
+to level **4** which is what we used in our examples.
+:::
 
 ## Quick start guide
 
@@ -73,30 +77,6 @@ not picked a design yet, then opening the editor will automatically load [the
 designs view](#designs) which lets you select a design from [the FreeSewing
 collection](/designs/).
 
-<Tabs>
-  <TabItem value="desktop" label="On Desktop">
-    ![A screenshot of the FreeSewing Editor in designs view, on a
-    desktop](https://imagedelivery.net/ouSuR9yY1bHt-fuAokSA5Q/c3bddad4-a0bb-43e6-c8d0-ce33b80c6e00/public)
-    <div className="tw:text-center">
-      _A screenshot of the FreeSewing editor in draft view, on a desktop._
-    </div>
-  </TabItem>
-  <TabItem value="tablet" label="On Tablet">
-    ![A screenshot of the FreeSewing Editor in draft
-    view](https://imagedelivery.net/ouSuR9yY1bHt-fuAokSA5Q/b2ce3fba-c44d-4fef-f83e-70b177acff00/public)
-    <div className="tw:text-center">
-      _A screenshot of the FreeSewing editor in draft view, on a tablet._
-    </div>
-  </TabItem>
-  <TabItem value="mobile" label="On Mobile">
-    ![A screenshot of the FreeSewing Editor in designs view on
-    mobile](https://imagedelivery.net/ouSuR9yY1bHt-fuAokSA5Q/5a012f40-bed0-4de9-9d9f-52910839bc00/public)
-    <div className="tw:text-center">
-      _A screenshot of the FreeSewing editor in designs view, on mobile._
-    </div>
-  </TabItem>
-</Tabs>
-
 ### 2. Provide measurements
 
 Assuming the design you chose requires measurements -- almost all designs do,
@@ -108,58 +88,10 @@ choose a different design.
 
 Refer to [the measurements view](#measurements) for all details on how you can provide measurements, but there's one thing to note about this view: The drop-down at the top that says **Pattern Measurements**. This is [the view menu](#views) and it is present on every view except [the designs view](#designs) since all other views require a design to be chosen first.
 
-<Tabs>
-  <TabItem value="desktop" label="On Desktop">
-    ![A screenshot of the FreeSewing Editor in measurements view, on a
-    desktop](https://imagedelivery.net/ouSuR9yY1bHt-fuAokSA5Q/66da8db9-4ebd-42c2-2880-44c1153b5b00/public)
-    <div className="tw:text-center">
-      _A screenshot of the FreeSewing editor in measurements view, on a desktop._
-    </div>
-  </TabItem>
-  <TabItem value="tablet" label="On Tablet">
-    ![A screenshot of the FreeSewing Editor in measurements view, on a
-    table](https://imagedelivery.net/ouSuR9yY1bHt-fuAokSA5Q/be78a160-fbb4-47dc-8d19-01cca4ed1c00/public)
-    <div className="tw:text-center">
-      _A screenshot of the FreeSewing editor in measurements view, on a tablet._
-    </div>
-  </TabItem>
-  <TabItem value="mobile" label="On Mobile">
-    ![A screenshot of the FreeSewing Editor in measurements view on
-    mobile](https://imagedelivery.net/ouSuR9yY1bHt-fuAokSA5Q/edbc0e51-10bc-464d-9ac4-62dab940e100/public)
-    <div className="tw:text-center">
-      _A screenshot of the FreeSewing editor in measurements view, on mobile._
-    </div>
-  </TabItem>
-</Tabs>
-
 ### 3. Get to work
 
 Once you have provided all required measurments, you are ready to go to work,
 which typically starts with loading [the draft view](#draft).
-
-<Tabs>
-  <TabItem value="desktop" label="On Desktop">
-    ![A screenshot of the FreeSewing Editor in measurements view, on a
-    desktop](https://imagedelivery.net/ouSuR9yY1bHt-fuAokSA5Q/66da8db9-4ebd-42c2-2880-44c1153b5b00/public)
-    <div className="tw:text-center">
-      _A screenshot of the FreeSewing editor in measurements view, on a desktop._
-    </div>
-  </TabItem>
-  <TabItem value="tablet" label="On Tablet">
-    ![A screenshot of the FreeSewing Editor in measurements view, on a
-    table](https://imagedelivery.net/ouSuR9yY1bHt-fuAokSA5Q/be78a160-fbb4-47dc-8d19-01cca4ed1c00/public)
-    <div className="tw:text-center">
-      _A screenshot of the FreeSewing editor in measurements view, on a tablet._
-    </div>
-  </TabItem>
-  <TabItem value="mobile" label="On Mobile">
-    ![A screenshot of the FreeSewing Editor in measurements view on
-    mobile](https://imagedelivery.net/ouSuR9yY1bHt-fuAokSA5Q/edbc0e51-10bc-464d-9ac4-62dab940e100/public)
-    <div className="tw:text-center">
-      _A screenshot of the FreeSewing editor in measurements view, on mobile._
-    </div>
-  </TabItem>
-</Tabs>
 
 ## Editor Areas {#areas}
 
@@ -360,7 +292,7 @@ The following views are available:
 
 <TestView />
 
-### Time Design <span className="tw:pl-4 tw:text-sm tw:text-base-content">aka <b>timing</b> view</span>
+### Time Design <span className="tw:pl-4 tw:text-sm tw:text-base-content">aka <b>timing</b> view</span> {#timing)
 
 <TimingView />
 
@@ -373,242 +305,32 @@ The following views are available:
 Depending on the view you have selected, different menus will be available.
 The full list of menus is:
 
-- View Menu
-- Design Options Menu
-- Core Settings Menu
-- UI Preferences Menu
-- Flags Menu
-- Print Settings Menu
-- Test Options Menu
-- Test Measurements Menu
+- [View Menu](#view-menu)
+- [Design Options Menu](#options-menu)
+- [Core Settings Menu](#settings-menu)
+- [UI Preferences Menu](#preferences-menu)
+- [Flags Menu](#flags-menu)
+- [Test Menu](#test-menu)
+- [Layout Menu](#layout-menu)
 
-## The editor
+### View Menu {#view-menu}
+<ViewMenu />
 
-Below is a screenshot of FreeSewing's pattern editor in **kiosk mode** which
-hides the site header and footer and lets the editor take up the entire screen.
-It also has the **View menu** (on the left) expanded. By default you will only
-see the icons, and not the text of the menu on the left.
+### Design Options Menu {#options-menu}
+<OptionsMenu />
 
-Freesewing's pattern editor")
+### Core Settings Menu {#settings-menu}
+<SettingsMenu />
 
-### The view menu
+### UI Preferences Menu {#preferences-menu}
+<PreferencesMenu />
 
-The **View menu** on the left allows you to select the view. Each view serves a
-different purpose. The different views are:
+### Flags Menu {#flags-menu}
+<FlagsMenu />
 
-- **Pattern editor**: This is where you can tweak your pattern
-- **Pattern measurements**: This is where you can choose which measurements set
-  to use to generate the pattern, or tweak measurements manually
-- **Pattern tests**: Allows you to test the pattern. This is an advanced
-  feature.
-- **Print layout**: Allows you to manually arrange the pattern parts to
-  optimize the layout for printing
-- **Save pattern as...**: Allows you to save the pattern to your account
-- **Export pattern**: Allows you to export the pattern as PDF or SVG
-- **Edit settings by hand**: Allows you to -- you guessed it -- edit the
-  settings to generate the pattern by hand. This is an advanced feature.
-- **Pattern logs**: This shows the logs generated when drafting the pattern.
-  This is an advanced feature.
-- **Pattern inspector**: Allows pattern designer to inspect various aspects of
-  the pattern. This is an advanced feature.
-- **Documentation**: Provides links to the documentation.
+### Test Menu {#test-menu}
+<TestMenu />
 
-Feel free to check out the other views, but our focus here is on the **Pattern
-editor**.
+### Layout Menu {#layout-menu}
+<LayoutMenu />
 
-### The settings menu
-
-On the right side of the screen is the **Settings menu** which in turn is made
-up of four sections:
-
-- **Messages from the designer**: Holds information the designer of the pattern
-  flagged for your attention. Note that these are not generic remarks about the
-  design in general (those go in the documentation), but rather information
-  specific to this very pattern. Make sure to check them out. As such, these
-  messages will be different for every user, measurements set, or even
-  combination of design options.
-- **Design options**: Holds all the different options the designer has added
-  that allow you to tweak your pattern. These options will be different for
-  each design. Refer to the design documentation for a list of all available
-  options, or check the inline documentation.
-- **Core settings**: These are settings that are not provided by the design(er)
-  but rather by FreeSewing's core library. As such, the settings you'll find
-  here are the same accross all designs as they all use the same core library.
-  Refer to [Core Settings](#core-settings) for all
-  details, or check the inline documentation.
-- **UI preferences**: And finally, these settings do not control the pattern as
-  such, but rather the user interface. For example, here you can enable kiosk
-  mode or tweak the user experience setting to see more or less features. Like
-  the core settings, the UI preferences are the same for every design. Refer to
-  [UI preferences](/docs/about/site/draft/#ui-preferences) or check the inline
-  documentation.
-
-### The header menu
-
-At the top is a header with icons to give you quick access to both Core
-settings and UI preferences. There is also an icon to clear your settings, clear
-both settings and measurements, or to bookmark the current pattern.
-
-## Design Options Menu
-
-Each FreeSewing design can define a list of options that allow you to further
-customize your pattern. You can find them in the **Design Options** menu.
-
-Since each design has its own options, the contents of the menu will be
-different for each design, but you typically find options to adjust the fit --
-such as changing the amount of ease -- as well options to change the style of
-the pattern.
-
-## Core Settings Menu {#core-settings}
-
-The editor's **Core Settings** menu allows you to tweak various aspects of the
-FreeSewing Core library, which -- under the hood -- generates your pattern for
-you.
-
-In contrast to Design options which are
-specific for a given design, these Core Settings are the same for every design.
-So you will find this menu always provides the same settings, regardless of
-what design you are generating a pattern for.
-
-The following core settings are available:
-
-### Pattern Details {#complete}
-
-This setting -- which is enabled by default -- will give you a pattern with all
-details included.
-
-If you disable it, you will instead get a pattern that does not include any
-details such as text or annotations, and only include the seamlines.
-
-### Pattern expansion {#expand}
-
-This option suppresses all efforts to make the pattern consume less
-space/paper.
-
-Designers will often take steps to reduce the amount of paper consumed by a
-pattern. For example, a strip of fabric used for binding, or a simple
-rectangular part may not be included, or only partially.
-
-This option -- which is disabled by default -- allows you to suppress the space
-saving and indicate you rather want to get full-sized views on all pattern
-parts.
-
-### Margin {#margin}
-
-The margin setting controls how much space will be added around each pattern
-part when calculating the pattern layout.
-
-Each pattern part is laid out as a rectangle on the page. The spacing around
-(and between) these rectangles is controlled by this setting.
-
-### Included Parts {#include}
-
-This setting allows you to specify which patterns parts you want to generate.
-
-This can be useful if you want to only use a specific part. For example perhaps
-you have a shirt pattern and you only want to generate a different collar
-style.
-
-It can also be used to include pattern parts that -- for whatever reason -- are
-hidden by default.
-
-### Paperless Patterns {#paperless}
-
-The paperless setting lets you generate a sewing pattern that includes extra
-dimensions as well as a grid (in either metric or imperial, based on your
-choice of units).
-
-This allows you to skip printing the pattern altogether. Instead you can
-transfer it directly onto the fabric, or an intermediate medium such as pattern
-paper.
-
-### Render Engine {#renderer}
-
-This setting allows you to choose how your pattern will be rendered. In other
-words, how it will be drawn on the screen. There are two options:
-
-- `React` allows for more interactivity, and is optimized for displaying
-  patterns on-screen
-- `SVG` does not allow interactivity like the `React` option does. Instead it
-  is optimized for printing
-
-By default, this website only uses SVG when you are exporting your pattern.
-While you are generating and tweaking your pattern, we use React, unless you
-use this setting to change that to SVG.
-
-### Include Seam Allowance {#sabool}
-
-This [Core Setting][#core-settings] controls whether or not to include seam
-allowance on your pattern.
-
-By default, seam allowance is not included. To generate a pattern with seam
-allowance, you should enable it by changing this option to **Yes**.
-
-:::note
-FreeSewing's core library only takes a single setting to handle seam allowance:
-`sa`. However, for convenience, we've split this up into two different
-settings on the website:
-
-- **[Include Seam Allowance](/docs/about/site/draft#sabool)**: Controls whether
-  or not to include seam allowance
-- **[Seam Allowance Size](/docs/about/site/draft/#samm)**: Controls how big to
-  make the seam allowance, if it is included
-
-The latter will only be shown if you've enabled the former.
-:::
-
-### Seam Allowance Size {#samm}
-
-This Core Setting controls the base size of your seam
-allowance. In other words, the default seam allowance will be this size. Other
-allowance that is intended to be wider, like hem allowance, will be a multiple
-of this size.
-
-:::note
-FreeSewing's core library only takes a single setting to handle seam allowance:
-`sa`. However, for convenience, we've split this up into two different
-settings on the website:
-
-- **[Include Seam Allowance](#sabool)**:
-  Controls whether or not to include seam allowance
-- **[Seam Allowance Size](/docs/about/site/draft/#samm)**:
-  Controls how big to make the seam allowance, if it is included
-
-The latter will only be shown if you've enabled the former.
-:::
-
-### Scale {#scale}
-
-The scale settings allow you to scale those parts of a pattern that do not
-scale with measurements. Things like logos, line widths, font sizes, and so
-on.
-
-This setting was added at the requests of people who like to use our patterns
-to make doll clothes. When generating such a small pattern, the arrowheads,
-titles, and so on tend to obscure much of the pattern. This setting allows you
-to scale them down or -- if you so wish -- scale them up.
-
-### Units {#units}
-
-This controls the units used on your pattern. FreeSewing supports both metric
-and imperial units.
-
-Note that as a FreeSewing user, you can configure your units in your account,
-and those are the units that will be used by default. However, if you want to
-override those settings on an individual basis -- perhaps you are generating a
-pattern on behalf of someone else -- this setting allows you to do that.
-
-## UI Preferences
-
-The **UI Preferences** menu allows you to tweak certain aspects of the user
-interface (UI).
-
-### User Experience {#control}
-
-FIXME. See [/docs/about/site/account/#control](/docs/about/site/account/#control).
-
-### Rotate Pattern {#rotate}
-
-FIXME
-
-### Pattern Render Engine

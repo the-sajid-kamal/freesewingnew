@@ -5,7 +5,7 @@ import { measurements as measurementsTranslations } from '@freesewing/i18n'
 import React, { useMemo } from 'react'
 // Components
 import { MenuButtonGroup } from './Container.mjs'
-import { BeakerIcon, OptionsIcon } from '@freesewing/react/components/Icon'
+import { MeasurementsIcon, OptionsIcon } from '@freesewing/react/components/Icon'
 
 /**
  * The test design options menu
@@ -87,7 +87,7 @@ const SampleOptionButton = ({ name, i18n, update }) => (
     }
     onClick={() => update.settings('sample', { type: 'option', option: name })}
   >
-    <BeakerIcon className="tw:w-5 tw:h-5" />
+    <OptionsIcon className="tw:w-5 tw:h-5" />
     <span>{i18n.en?.o[name]?.t ?? name}</span>
   </button>
 )
@@ -100,7 +100,7 @@ const SampleMeasurementButton = ({ name, update }) => (
     }
     onClick={() => update.settings('sample', { type: 'measurement', measurement: name })}
   >
-    <BeakerIcon className="tw:w-5 tw:h-5" />
+    <MeasurementsIcon className="tw:w-5 tw:h-5" />
     <span>{measurementsTranslations[name]}</span>
   </button>
 )

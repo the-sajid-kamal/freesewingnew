@@ -58,10 +58,26 @@ export const ExportView = (props) => {
         <H2>Share your pattern</H2>
         <p>If you merely want to share your pattern with others, you can copy these URLs:</p>
         <div className="tw:grid tw:grid-cols-1 tw:lg:grid-cols-2 tw:gap-2 tw:mt-2 ">
-          <CopyToClipboardButton content={urls.a} update={update}>
+          <CopyToClipboardButton
+            content={urls.a}
+            btnClasses="tw:daisy-btn tw-daisy-btn-neutral tw:daisy-btn-outline"
+            label="Pattern and Measurements URL"
+            onCopy={() => {
+              console.log('handler called')
+              update.notifySuccess('Pattern and Measurements URL copied to clipboard')
+            }}
+          >
             Pattern and Measurements
           </CopyToClipboardButton>
-          <CopyToClipboardButton content={urls.b} update={update}>
+          <CopyToClipboardButton
+            content={urls.b}
+            btnClasses="tw:daisy-btn tw-daisy-btn-neutral tw:daisy-btn-outline"
+            label="Pattern URL"
+            onCopy={() => {
+              console.log('handler called')
+              update.notifySuccess('Pattern URL copied to clipboard')
+            }}
+          >
             Pattern only
           </CopyToClipboardButton>
         </div>

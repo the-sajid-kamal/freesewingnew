@@ -24,6 +24,7 @@ const slideClasses = {
  * @param {bool} [keepOpenOnClick = false] - Set to true to prevent a click in the modal content from closing the modal
  * @param {string} [slideFrom = left] - Direction to slide in from on mobile
  * @param {bool} [fullWidth = false] - Set to true to not constrain the width
+ * @param {bool} [wide = false] - Set to true to not set a wide max width
  * @returns {JSX.Element}
  */
 export const ModalWrapper = ({
@@ -37,6 +38,7 @@ export const ModalWrapper = ({
   keepOpenOnClick = false,
   slideFrom = 'left',
   fullWidth = false,
+  wide = false,
 }) => {
   const { clearModal } = useContext(ModalContext)
   const [animate, setAnimate] = useState('in')
@@ -82,7 +84,8 @@ export const ModalWrapper = ({
           onClick={keepOpenOnClick ? stopClick : null}
           className={`tw:z-30 tw:bg-base-100 tw:p-4 tw:lg:px-8 tw:lg:rounded-lg tw:lg:shadow-lg tw:max-h-full tw:overflow-auto tw:hover:cursor-default ${
             fullWidth ? 'tw:w-full' : ''
-          }`}
+
+          } ${wide ? 'tw:max-w-5xl tw:w-full' : ''} `}
         >
           {children}
           <button

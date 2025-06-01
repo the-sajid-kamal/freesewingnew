@@ -17,6 +17,7 @@ import {
   ExportIcon,
   FixmeIcon,
   FlagIcon,
+  MeasurementsIcon,
   OptionsIcon,
   PaperlessIcon,
   PrintIcon,
@@ -52,6 +53,7 @@ const headerMenuIcons = {
   settings: SettingsIcon,
   ui: UiIcon,
   layout: PrintIcon,
+  measurements: MeasurementsIcon,
 }
 
 export const HeaderMenuIcon = (props) => {
@@ -121,7 +123,7 @@ export const HeaderMenuTestViewDesignMeasurements = (props) => {
       tooltip="See how changes to a measurement influence the pattern being generated."
       toggle={
         <>
-          <HeaderMenuIcon name="options" extraClasses="tw:text-secondary" />
+          <HeaderMenuIcon name="measurements" extraClasses="tw:text-secondary" />
           <span className="tw:hidden tw:lg:inline">Test Measurements</span>
         </>
       }
@@ -463,12 +465,12 @@ export const HeaderMenuTestIcons = (props) => {
   const Button = HeaderMenuButton
 
   return (
-    <div className="tw:flex tw:flex-row tw:flex-wrap tw:items-center tw:justify-center tw:px-0.5 tw:lg:px-1">
+    <div className="tw:flex tw:flex-row tw:flex-wrap tw:items-center tw:justify-center tw:px-0.5 tw:lg:px-1 tw:items-center">
       <Button
         updateHandler={() => update.settings('sample', undefined)}
         tooltip="Clear the test so you can select another"
       >
-        Clear Test
+        <ResetIcon /> <span className="tw:hidden tw:lg:inline">Clear Test</span>
       </Button>
     </div>
   )
@@ -528,7 +530,7 @@ export const HeaderMenuButton = ({
 }) => (
   <Tooltip tip={tooltip}>
     <button
-      className={`${lgOnly ? 'tw:hidden tw:lg:inline' : ''} tw:daisy-btn tw:daisy-btn-ghost tw:daisy-btn-sm tw:px-1 tw:disabled:bg-transparent`}
+      className={`${lgOnly ? 'tw:hidden tw:lg:inline' : ''} tw:daisy-btn tw:daisy-btn-ghost tw:my-1 tw:px-1 tw:disabled:bg-transparent`}
       onClick={updateHandler}
       disabled={disabled}
     >
@@ -604,7 +606,7 @@ export const HeaderMenuViewMenu = (props) => {
 }
 
 export const HeaderMenuLayoutView = (props) => (
-  <>
+  <div className="tw:flex tw:flex-row tw:items-center">
     <HeaderMenuDropdown
       {...props}
       id="layoutOptions"
@@ -619,7 +621,7 @@ export const HeaderMenuLayoutView = (props) => (
       <LayoutSettingsMenu {...props} />
     </HeaderMenuDropdown>
     <HeaderMenuLayoutViewIcons {...props} />
-  </>
+  </div>
 )
 
 export const HeaderMenuLayoutViewIcons = (props) => {
