@@ -58,6 +58,9 @@ const config = {
   onBrokenMarkdownLinks: 'warn',
   future: {
     experimental_faster: false, // Too many bugs for now
+    v4: {
+      useCssCascadeLayers: true,
+    },
   },
   plugins: [
     ...docusaurusPlugins,
