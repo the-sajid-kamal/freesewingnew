@@ -110,15 +110,15 @@ export const UndoStep = ({ update, state, step, Design, compact = false, index =
     <>
       <ButtonFrame onClick={() => update.restore(index, state._)}>
         <div className="tw:flex tw:flex-col tw:font-medium tw:items-end tw:w-full tw:-mb-2">
-          <div className="tw:text-sm tw:-mt-2 tw:italic"><UndoStepTimeAgo step={step} /></div>
+          <div className="tw:text-sm tw:-mt-2 tw:italic">
+            <UndoStepTimeAgo step={step} />
+          </div>
           <div className="tw:flex tw:flex-row tw:items-center tw:justify-start tw:gap-2 tw:w-full tw:text-lg tw:-mt-2">
             <span className="tw:opacity-70 tw:flex tw:flex-row tw:gap-1 tw:items-center tw:text-base">
               {data.menu}
             </span>
             <span>&raquo;</span>
-            <span className="tw:flex tw:flex-row tw:gap-2 tw:items-center">
-              {data.title}
-            </span>
+            <span className="tw:flex tw:flex-row tw:gap-2 tw:items-center">{data.title}</span>
           </div>
           <div className="tw:flex tw:flex-row tw:gap-1 tw:items-center tw:align-start tw:w-full">
             {data.msg ? (

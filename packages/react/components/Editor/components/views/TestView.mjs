@@ -88,7 +88,8 @@ export const TestView = ({ Design, state, update, config }) => {
     't',
     'ASC'
   )
-  const btnClasses = "tw:my-0.5 tw:block tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline tw:daisy-btn-xs tw:flex tw:flex-row tw:items-center tw:justify-between tw:w-full tw:max-w-64"
+  const btnClasses =
+    'tw:my-0.5 tw:block tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline tw:daisy-btn-xs tw:flex tw:flex-row tw:items-center tw:justify-between tw:w-full tw:max-w-64'
 
   return (
     <>
@@ -162,7 +163,8 @@ const SampleOptionsMenu = ({ Design, state, update }) => {
 
 const SampleOptionsSubMenu = ({ structure, update, level = 1 }) => {
   const output = []
-  const btnClasses = "tw:my-0.5 tw:block tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline tw:daisy-btn-xs tw:flex tw:flex-row tw:items-center tw:justify-between tw:w-full tw:max-w-64"
+  const btnClasses =
+    'tw:my-0.5 tw:block tw:daisy-btn tw:daisy-btn-primary tw:daisy-btn-outline tw:daisy-btn-xs tw:flex tw:flex-row tw:items-center tw:justify-between tw:w-full tw:max-w-64'
   /*
    * Show entries alphabetic, but force groups last, and advanced last among them
    */

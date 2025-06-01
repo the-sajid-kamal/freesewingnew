@@ -84,7 +84,6 @@ export const ModalWrapper = ({
           onClick={keepOpenOnClick ? stopClick : null}
           className={`tw:z-30 tw:bg-base-100 tw:p-4 tw:lg:px-8 tw:lg:rounded-lg tw:lg:shadow-lg tw:max-h-full tw:overflow-auto tw:hover:cursor-default ${
             fullWidth ? 'tw:w-full' : ''
-
           } ${wide ? 'tw:max-w-5xl tw:w-full' : ''} `}
         >
           {children}

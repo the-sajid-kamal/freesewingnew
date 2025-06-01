@@ -22,7 +22,9 @@ export const Breadcrumbs = ({ crumbs = [], title, Link = false }) => {
         style={{ paddingLeft: 0 }}
       >
         <li className="tw:inline">
-          <Link href="/"><b>Home</b></Link>
+          <Link href="/">
+            <b>Home</b>
+          </Link>
         </li>
         <Spacer />
         {crumbs.map((crumb, i) => (
@@ -30,7 +32,9 @@ export const Breadcrumbs = ({ crumbs = [], title, Link = false }) => {
             <li key={i} className="tw:inline">
               <Link href={crumb.href}>{crumb.label}</Link>
             </li>
-            <li key={i} className="tw:inline"><Spacer /></li>
+            <li key={i} className="tw:inline">
+              <Spacer />
+            </li>
           </React.Fragment>
         ))}
         <li className="tw:inline">{title}</li>

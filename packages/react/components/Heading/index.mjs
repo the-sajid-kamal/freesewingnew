@@ -119,4 +119,3 @@ export const H6 = ({ children }) => (
     {children}
   </h6>
 )
-

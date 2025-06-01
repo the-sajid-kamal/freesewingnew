@@ -711,4 +711,3 @@ Backend.prototype.updateSet = async function (id, data) {
 Backend.prototype.uploadImage = async function (data) {
   return await this.post('/images/jwt', data)
 }
-

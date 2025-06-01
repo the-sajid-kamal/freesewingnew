@@ -3,7 +3,7 @@ import { copyToClipboard } from '@freesewing/utils'
 import { CopyIcon, OkIcon } from '@freesewing/react/components/Icon'
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
 
-const handleCopied = (content, setCopied, setLoadingStatus, label, handler=false) => {
+const handleCopied = (content, setCopied, setLoadingStatus, label, handler = false) => {
   copyToClipboard(content)
   setCopied(true)
   setLoadingStatus([
@@ -29,7 +29,14 @@ const handleCopied = (content, setCopied, setLoadingStatus, label, handler=false
  * @param {boolean} props.sup - Set this to true to render as superscript (above the line)
  * @returns {JSX.Element}
  */
-export const CopyToClipboardButton = ({ children, content, label = false, sup = false, btnClasses="tw:daisy-btn tw:daisy-btn-ghost tw:hover:border-transparent w:hover:border-transparent tw:hover:shadow-none", onCopy=false }) => {
+export const CopyToClipboardButton = ({
+  children,
+  content,
+  label = false,
+  sup = false,
+  btnClasses = 'tw:daisy-btn tw:daisy-btn-ghost tw:hover:border-transparent w:hover:border-transparent tw:hover:shadow-none',
+  onCopy = false,
+}) => {
   const [copied, setCopied] = useState(false)
   const { setLoadingStatus } = useContext(LoadingStatusContext)
 

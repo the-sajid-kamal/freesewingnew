@@ -11,7 +11,13 @@ import { ModalWrapper } from '@freesewing/react/components/Modal'
  * @param {object} props - All component props
  * @returns {JSX.Element}
  */
-const Iframe = (props) => <iframe {...props} style={{ height: '90vh', width: '90vw' }} className="tw:w-full tw:mx-auto tw:max-w-4xl" />
+const Iframe = (props) => (
+  <iframe
+    {...props}
+    style={{ height: '90vh', width: '90vw' }}
+    className="tw:w-full tw:mx-auto tw:max-w-4xl"
+  />
+)
 
 /*
  * A component to display an iframe with FreeSewing.eu docs content intended for a modal window.
@@ -21,7 +27,9 @@ const Iframe = (props) => <iframe {...props} style={{ height: '90vh', width: '90
  * @param {string} props.path - The (relative) URL path of the page to load
  * @returns {JSX.Element}
  */
-const DocsHelp = ({ path }) => <Iframe src={`https://freesewing.eu/${path}/?docusaurus-data-fs-embed=true`} />
+const DocsHelp = ({ path }) => (
+  <Iframe src={`https://freesewing.eu/${path}/?docusaurus-data-fs-embed=true`} />
+)
 
 /*
  * A component to display inline help for a design option
