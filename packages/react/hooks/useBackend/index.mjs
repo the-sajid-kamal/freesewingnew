@@ -24,79 +24,6 @@ export function useBackend() {
    */
   const backend = useMemo(() => new Backend(token), [token])
 
-  /*
-   * This backend object rovides the following methods:
-   *
-   *  - backend.adminSearchUsers
-   *  - backend.adminLoadUser
-   *  - backend.adminUpdateUser
-   *  - backend.adminImpersonateUser
-   *  - backend.adminLoadSubscribers
-   *  - backend.adminPing
-   *  - backend.acceptCset
-   *  - backend.confirmMfa
-   *  - backend.confirmSignup
-   *  - backend.createApikey
-   *  - backend.createBookmark
-   *  - backend.createSocialImage
-   *  - backend.createDiscussion
-   *  - backend.createIssue
-   *  - backend.createPattern
-   *  - backend.createPostPr
-   *  - backend.createSet
-   *  - backend.disableMfa
-   *  - backend.enableMfa
-   *  - backend.exportAccount
-   *  - backend.getApikey
-   *  - backend.getApikeys
-   *  - backend.getBookmark
-   *  - backend.getBookmarks
-   *  - backend.getConfirmation
-   *  - backend.getCuratedSet
-   *  - backend.getCuratedSets
-   *  - backend.getPattern
-   *  - backend.getPatterns
-   *  - backend.getPublicPattern
-   *  - backend.getPublicSet
-   *  - backend.getSet
-   *  - backend.getSets
-   *  - backend.getStats
-   *  - backend.getSuggestedPacks
-   *  - backend.getSuggestedSets
-   *  - backend.getUserCount
-   *  - backend.getUserData
-   *  - backend.getUserProfile
-   *  - backend.isPostSlugAvailable
-   *  - backend.isUsernameAvailable
-   *  - backend.newsletterConfirmSubscribe
-   *  - backend.newsletterSubscribe
-   *  - backend.newsletterUnsubscribe
-   *  - backend.oauthInit
-   *  - backend.oauthSignIn
-   *  - backend.ping
-   *  - backend.reloadAccount
-   *  - backend.removeAccount
-   *  - backend.removeApikey
-   *  - backend.removeBookmark
-   *  - backend.removeCuratedSet
-   *  - backend.removeImage
-   *  - backend.removePattern
-   *  - backend.removeSet
-   *  - backend.removeSuggestedSet
-   *  - backend.restrictAccount
-   *  - backend.signIn
-   *  - backend.signInFromLink
-   *  - backend.signUp
-   *  - backend.suggestCset
-   *  - backend.suggestOpack
-   *  - backend.updateAccount
-   *  - backend.updateCuratedSet
-   *  - backend.updateConsent
-   *  - backend.updatePattern
-   *  - backend.updateSet
-   *  - backend.uploadImage
-   *  - backend.uploadImageAnon
-   */
   return backend
 }
 
@@ -239,16 +166,6 @@ Backend.prototype.createBookmark = async function (data) {
  */
 Backend.prototype.createSocialImage = async function (data) {
   return await this.post('/img', data)
-}
-
-/**
- * Create GitHub discussion
- *
- * @param {object} data - Data for the API call
- * @return {array} result - The REST response, a [status, data] array
- */
-Backend.prototype.createDiscussion = async function (data) {
-  return await this.post(`/discussions`, data)
 }
 
 /**
@@ -575,30 +492,6 @@ Backend.prototype.newsletterStartUnsubscribe = async function (email) {
   return await this.post(`/subscriber/remove`, { email })
 }
 
-/*
- * Init Oauth flow for oauth provider
- *
- * @param {object} data
- * @param {string} data.provider - ID of the OAuth provider
- * @return {array} result - The REST response, a [status, data] array
- */
-Backend.prototype.oauthInit = async function (provider) {
-  return await this.post('/signin/oauth/init', { provider })
-}
-
-/*
- * User sign in via oauth provider
- *
- * @param {object} data
- * @param {string} data.state - The Oath state
- * @param {code} data.code - The OAuth code
- * @param {string} data.provider - ID of the OAuth provider
- * @return {array} result - The REST response, a [status, data] array
- */
-Backend.prototype.oauthSignIn = async function ({ state, code, provider }) {
-  return await this.post('/signin/oauth', { state, code, provider })
-}
-
 /**
  * Ping backend to see if current token is still valid
  *
@@ -817,14 +710,4 @@ Backend.prototype.updateSet = async function (id, data) {
  */
 Backend.prototype.uploadImage = async function (data) {
   return await this.post('/images/jwt', data)
-}
-
-/**
- * Upload an image anonymously
- *
- * @param {object} data - Data for the API call
- * @return {array} result - The REST response, a [status, data] array
- */
-Backend.prototype.uploadImageAnon = async function (data) {
-  return await this.post('/images', data)
 }

@@ -1,108 +1,149 @@
 import React, { useState } from 'react'
 import { CloseIcon } from '@freesewing/react/components/Icon'
 
-const colors = {
-  comment: 'secondary',
-  error: 'error',
-  fixme: 'warning',
-  link: 'secondary',
-  none: '',
-  note: 'primary',
-  related: 'info',
-  tip: 'accent',
-  tldr: 'info',
-  warning: 'error',
+/*
+ * Resist the urge to DRY this up by contructing classNames dynamically
+ * as doing so will cause them to be dropped from the production bundle
+ */
+const types = {
+  comment: {
+    bg: 'tw:bg-success/5',
+    border: 'tw:border-success',
+    text: 'tw:text-success',
+  },
+  error: {
+    bg: 'tw:bg-error/5',
+    border: 'tw:border-error',
+    text: 'tw:text-error',
+  },
+  fixme: {
+    bg: 'tw:bg-neutral/5',
+    border: 'tw:border-neutral',
+    text: 'tw:text-error',
+  },
+  link: {
+    bg: 'tw:bg-secondary/5',
+    border: 'tw:border-secondary',
+    text: 'tw:text-secondary',
+  },
+  note: {
+    bg: 'tw:bg-primary/5',
+    border: 'tw:border-primary',
+    text: 'tw:text-primary',
+  },
+  related: {
+    bg: 'tw:bg-info/5',
+    border: 'tw:border-info',
+    text: 'tw:text-info',
+  },
+  tip: {
+    bg: 'tw:bg-accent/5',
+    border: 'tw:border-accent',
+    text: 'tw:text-accent',
+  },
+  warning: {
+    bg: 'tw:bg-warning/5',
+    border: 'tw:border-warning',
+    text: 'tw:text-warning',
+  },
 }
 
 /**
  * This popout component is a way to make some content stand out
  *
+ * @component
  * @param {object} props - All React props
- * @param {object} props.comment - Set this to make it a comment popout
- * @param {object} props.error - Set this to make it a error popout
- * @param {object} props.fixme - Set this to make it a fixme popout
- * @param {object} props.link - Set this to make it a link popout
- * @param {object} props.note - Set this to make it a note popout
- * @param {object} props.related - Set this to make it a related popout
- * @param {object} props.tip - Set this to make it a tip popout
- * @param {object} props.tldr - Set this to make it a tldr popout
- * @param {object} props.warning - Set this to make it a warning popout
- * @param {string} props.title - The popout title
- * @param {string} noP - Do not wrap the content in a p tag
+ * @param {string} [props.by = false] - When type is comment, this will be used to show who made the comment
+ * @param {JSX.Element} props.children - The component children, will be rendered if props.js is not set
+ * @param {boolean} [props.compact = false] - Set this to render a compact style
+ * @param {boolean} [props.dense = false] - Set this to render a dense style (only for compact view)
+ * @param {boolean} [props.hideable = false] - Set this to make the popout hideable/dismissable
+ * @param {string} [props.type = note] - One of the available types: comment, error, fixme, link, note, related, tip, warning
+ * @param {string} [props.title = false] - Set this to use a custom title
+ * @returns {JSX.Element}
  */
-export const Popout = (props) => {
+export const Popout = ({
+  by = false,
+  children = null,
+  compact = false,
+  dense = false,
+  hideable = false,
+  type = 'note',
+  title = false,
+}) => {
   // Make this hideable/dismissable
   const [hide, setHide] = useState(false)
+
   if (hide) return null
 
-  let type = 'none'
-  for (const c in colors) {
-    if (props[c]) type = c
-  }
-  const color = colors[type]
-  const { className = '' } = props
-
-  return props.compact ? (
-    <div
-      className={`tw:relative ${
-        props.dense ? 'tw:my-1' : 'tw:my-8'
-      } tw:bg-${color}/5 tw:-ml-4 tw:-mr-4 tw:sm:ml-0 tw:sm:mr-0 ${className}`}
-    >
-      <div
-        className={`
-          tw:border-y-4 tw:sm:border-0 tw:sm:border-l-4 tw:px-4
-          tw:shadow tw:text-base border-${color}
-          tw:flex tw:flex-row tw:items-center
-        `}
-      >
-        <div className={`tw:font-bold tw:uppercase tw:text-${color}`}>
-          {props.title || (
-            <>
-              <span>{type.toUpperCase()}</span>
-              <span className="tw:px-3">|</span>
-            </>
-          )}
-        </div>
-        <div className="popout-content">{props.noP ? props.children : <p>{props.children}</p>}</div>
-      </div>
-    </div>
+  return compact ? (
+    <CompactPopout {...{ by, compact, dense, hideable, type, title, setHide }}>
+      {children}
+    </CompactPopout>
   ) : (
-    <div
-      className={`tw:relative tw:my-8 tw:bg-${color}/5 tw:-ml-4 tw:-mr-4 tw:sm:ml-0 tw:sm:mr-0 ${className}`}
-    >
-      <div
-        className={`
-          tw:border-y-4 tw:border-x-0 tw:sm:border-0 tw:sm:border-l-4 tw:px-6 tw:sm:px-8 tw:py-4 tw:sm:py-2
-          tw:shadow tw:text-base tw:border-${color} tw:border-solid
-        `}
-      >
-        <div
-          className={`tw:font-bold tw:flex tw:flex-row tw:gap-1 tw:items-end tw:justify-between`}
-        >
-          <div>
-            <span className={`tw:font-bold tw:uppercase tw:text-${color}`}>
-              {props.title ? props.title : type === 'tldr' ? 'TL;DR' : type.toUpperCase()}
-            </span>
-            <span className={`tw:font-normal tw:text-base text-${color}`}>
-              {type === 'tw:comment' && (
-                <>
-                  {' '}
-                  by <b>{props.by}</b>
-                </>
-              )}
-            </span>
-          </div>
-          {props.hideable && (
-            <button onClick={() => setHide(true)} className="tw:hover:text-secondary" title="Close">
-              <CloseIcon />
-            </button>
-          )}
-        </div>
-        <div className="tw:py-1 tw:first:mt-0 tw:popout-content">{props.children}</div>
-        {type === 'comment' && (
-          <div className={`tw:font-bold tw:italic text-${color}`}>{props.by}</div>
-        )}
-      </div>
-    </div>
+    <RegularPopout {...{ by, hideable, type, title, setHide }}>{children}</RegularPopout>
   )
 }
+
+const RegularPopout = ({ by, children, hideable, type, title, setHide }) => (
+  <div className={`tw:relative tw:my-8 tw:-ml-4 tw:-mr-4 tw:sm:ml-0 tw:sm:mr-0 ${types[type].bg}`}>
+    <div
+      className={`
+        tw:border-y-4 tw:border-x-0 tw:sm:border-0 tw:sm:border-l-4 tw:px-6 tw:sm:px-8 tw:py-4 tw:sm:py-2
+        tw:shadow tw:text-base ${types[type].border} tw:border-solid
+      `}
+    >
+      <PopoutTitle {...{ by, hideable, setHide, title, type }} />
+      <div className="tw:py-1 tw:first:mt-0 tw:popout-content">{children}</div>
+      {type === 'comment' && (
+        <div className={`tw:font-bold tw:italic ${types[type].text}`}>{by}</div>
+      )}
+    </div>
+  </div>
+)
+
+const CompactPopout = ({ by, children, compact, dense, hideable, type, title, setHide }) => (
+  <div
+    className={`tw:relative ${
+      dense ? 'tw:my-1' : 'tw:my-8'
+    } ${types[type].bg} tw:-ml-4 tw:-mr-4 tw:sm:ml-0 tw:sm:mr-0`}
+  >
+    <div
+      className={`
+        tw:border-y-4 tw:sm:border-0 tw:sm:border-l-4 tw:px-4
+        tw:shadow tw:text-base ${types[type].border}
+        tw:flex tw:flex-row tw:items-center
+        ${dense ? 'tw:py-1' : 'tw:py-2'}
+      `}
+    >
+      <PopoutTitle {...{ by, compact, hideable, setHide, title, type }} />
+      <div className="popout-content">{children}</div>
+    </div>
+  </div>
+)
+
+const PopoutTitle = ({ by, compact, hideable, setHide, title, type }) => (
+  <div className={`tw:font-bold tw:flex tw:flex-row tw:gap-1 tw:items-end tw:justify-between`}>
+    <div>
+      <span className={`tw:font-bold tw:uppercase ${types[type].text}`}>
+        {title ? title : types[type].title ? types[type].title : type.toUpperCase()}
+        {compact ? <span className="tw:px-2">|</span> : null}
+      </span>
+      {type === 'comment' && by && (
+        <span className={`tw:font-normal tw:text-base tw:pr-2 ${types[type].text}`}>
+          {' '}
+          by <b>{by}</b>
+        </span>
+      )}
+    </div>
+    {hideable && (
+      <button
+        onClick={() => setHide(true)}
+        className={`${types[type].text} tw:hover:text-neutral tw:hover:cursor-pointer`}
+        title="Close"
+      >
+        <CloseIcon />
+      </button>
+    )}
+  </div>
+)

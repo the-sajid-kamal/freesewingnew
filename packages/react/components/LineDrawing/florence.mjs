@@ -10,9 +10,11 @@ const strokeScale = 1.3
 /**
  * A linedrawing component for Florence
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Florence = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="-1 -10 245 245" {...{ className }}>
@@ -20,13 +22,21 @@ export const Florence = ({ className, stroke = 1 }) => (
   </LineDrawingWrapper>
 )
 
-// Front is the same
+/**
+ * A linedrawing component for the front of Florence
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.className - Any CSS classes to apply
+ * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
+ */
 export const FlorenceFront = Florence
 
 /*
  * SVG elements for the front
  */
-export const Front = ({ stroke }) => (
+const Front = ({ stroke }) => (
   <>
     <path
       key="stitches"

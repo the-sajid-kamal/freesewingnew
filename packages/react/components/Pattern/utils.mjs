@@ -1,5 +1,45 @@
-import React from 'react'
+/**
+ * A method to generated an ID for an object part of a FreeSewing pattern
+ *
+ * @public
+ * @param {object} parameters - All parameters passed as an object
+ * @param {object} [parameters.settings = {}] - The pattern settings
+ * @param {string} [parameters.stackName = false] - An optional stack name
+ * @param {string} [parameters.partName = false] - An optional part name
+ * @param {string} [parameters.pathName = false] - An optional path name
+ * @param {string} [parameters.pointName = false] - An optional point name
+ * @param {string} [parameters.snippetName = false] - An optional snippet name
+ * @param {string} [parameters.name = false] - An optional name
+ * @param {Part} parameters.part - The part to check the point against
+ * @returns {string}
+ */
+export const getId = ({
+  settings = {},
+  stackName = false,
+  partName = false,
+  pathName = false,
+  pointName = false,
+  snippetName = false,
+  name = false,
+}) => {
+  let id = settings.idPrefix || ''
+  if (stackName) id += `${stackName}-`
+  if (partName) id += `${partName}-`
+  if (pathName) id += `${pathName}-`
+  if (pointName) id += `${pointName}-`
+  if (snippetName) id += `${snippetName}-`
+  if (name) id += name
 
+  return id
+}
+
+/**
+ * A method to extract React props from an classic object
+ *
+ * @public
+ * @param {object} obj - The object to extract props from
+ * @returns {object}
+ */
 export const getProps = (obj) => {
   /** I can't believe it but there seems to be no method on NPM todo this */
   const cssKey = (key) => {
@@ -38,34 +78,15 @@ export const getProps = (obj) => {
   return props
 }
 
-export const withinPartBounds = (point, part) =>
-  point.x >= part.topLeft.x &&
-  point.x <= part.bottomRight.x &&
-  point.y >= part.topLeft.y &&
-  point.y <= part.bottomRight.y
-    ? true
-    : false
-
-export const getId = ({
-  settings = {},
-  stackName = false,
-  partName = false,
-  pathName = false,
-  pointName = false,
-  snippetName = false,
-  name = false,
-}) => {
-  let id = settings.idPrefix || ''
-  if (stackName) id += `${stackName}-`
-  if (partName) id += `${partName}-`
-  if (pathName) id += `${pathName}-`
-  if (pointName) id += `${pointName}-`
-  if (snippetName) id += `${snippetName}-`
-  if (name) id += name
-
-  return id
-}
-
+/**
+ * A method to translate strings for a FreeSewing pattern
+ *
+ * @public
+ * @param {object} [settings = {}] - The pattern settings
+ * @param {array} list - An array with strings (or arrays of strings) to translate
+ * @param {object} [translations = {}] - An object holding translations
+ * @returns {string}
+ */
 export const translateStrings = (list, translations = {}) => {
   let translated = ''
   if (!list) return translated
@@ -80,3 +101,19 @@ export const translateStrings = (list, translations = {}) => {
 
   return translated
 }
+
+/**
+ * A method to determine whether a FreeSewing point is within the bounding box of a FreeSewing part
+ *
+ * @public
+ * @param {Point} point - The point to check
+ * @param {Part} part - The part to check the point against
+ * @returns {boolean}
+ */
+export const withinPartBounds = (point, part) =>
+  point.x >= part.topLeft.x &&
+  point.x <= part.bottomRight.x &&
+  point.y >= part.topLeft.y &&
+  point.y <= part.bottomRight.y
+    ? true
+    : false

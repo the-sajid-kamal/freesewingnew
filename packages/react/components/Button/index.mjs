@@ -1,4 +1,69 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { copyToClipboard } from '@freesewing/utils'
+import { CopyIcon, OkIcon } from '@freesewing/react/components/Icon'
+import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
+
+const handleCopied = (content, setCopied, setLoadingStatus, label, handler = false) => {
+  copyToClipboard(content)
+  setCopied(true)
+  setLoadingStatus([
+    true,
+    label ? `${label} copied to clipboard` : 'Copied to clipboard',
+    true,
+    true,
+  ])
+  setTimeout(() => setCopied(false), 1000)
+  if (typeof handler === 'function') handler(content, label)
+}
+
+/**
+ * A component to copy something to the clipboard
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {JSX.element} props.children - The component children
+ * @param {string} [props.btnClasses = 'tw:daisy-btn tw:daisy-btn-ghost tw:hover:border-transparent w:hover:border-transparent tw:hover:shadow-none'] - The content that should be copied to the clipboard
+ * @param {string} props.content - The content that should be copied to the clipboard
+ * @param {string} props.label - The label to show when the content is copied
+ * @param {function} [props.onCopy=false] - An optional handler to call after copying to the clipboard, receives content, label as parameters
+ * @param {boolean} props.sup - Set this to true to render as superscript (above the line)
+ * @returns {JSX.Element}
+ */
+export const CopyToClipboardButton = ({
+  children,
+  content,
+  label = false,
+  sup = false,
+  btnClasses = 'tw:daisy-btn tw:daisy-btn-ghost tw:hover:border-transparent w:hover:border-transparent tw:hover:shadow-none',
+  onCopy = false,
+}) => {
+  const [copied, setCopied] = useState(false)
+  const { setLoadingStatus } = useContext(LoadingStatusContext)
+
+  const style = sup ? 'tw:w-4 tw:h-4 tw:-mt-4 tw:-ml-1' : 'tw:w-5 tw:h-5'
+
+  return (
+    <button
+      className={
+        (copied ? 'tw:text-success ' : '') +
+        btnClasses +
+        ' tw:w-full tw:lg:w-auto tw:group tw:flex tw:flex-row tw:justify-between'
+      }
+      onClick={() => handleCopied(content, setCopied, setLoadingStatus, label, onCopy)}
+    >
+      {sup ? children : null}
+      {copied ? (
+        <OkIcon
+          className={`${style} tw:text-success-content tw:bg-success tw:rounded-full tw:p-1`}
+          stroke={4}
+        />
+      ) : (
+        <CopyIcon className={`${style} tw:text-inherit tw:group-hover:text-secondary`} />
+      )}
+      {sup ? null : children}
+    </button>
+  )
+}
 
 /**
  * A button with an icon and a label, something which we commonly use across our UI.

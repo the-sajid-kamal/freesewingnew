@@ -1,17 +1,13 @@
 // Dependencies
 import { welcomeSteps } from './shared.mjs'
-
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
-
 // Hooks
 import React, { useState, useContext } from 'react'
 import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
-
 // Components
-import { Link as WebLink } from '@freesewing/react/components/Link'
-import { NoIcon, OkIcon, SaveIcon, RightIcon } from '@freesewing/react/components/Icon'
+import { NoIcon, OkIcon, RightIcon } from '@freesewing/react/components/Icon'
 import { ListInput } from '@freesewing/react/components/Input'
 import { IconButton } from '@freesewing/react/components/Button'
 import { WelcomeIcons } from './shared.mjs'
@@ -31,11 +27,12 @@ const strings = {
   },
 }
 
-/*
- * Component for the account/preferences/compare page
+/**
+ * A component to manage the user's compare setting
  *
- * @params {object} props - All React props
- * @params {bool} props.welcome - Set to true to use this component on the welcome page
+ * @component
+ * @params {bool} [props.welcome = false] - Set to true to render the welcome/onboarding view
+ * @returns {JSX.Element}
  */
 export const Compare = ({ welcome = false }) => {
   // Hooks

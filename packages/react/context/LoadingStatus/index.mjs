@@ -48,7 +48,7 @@ const LoadingStatus = ({ loadingStatus }) => {
 
   return (
     <div
-      className="tw:fixed tw:bottom-14 tw:md:top-28 tw:left-0 tw:w-full tw:z-50 tw:md:px-4 tw:md:mx-auto"
+      className="tw:fixed tw:bottom-14 tw:md:bottom-auto tw:md:top-28 tw:left-0 tw:z-50 tw:md:px-4 tw:w-full"
       style={{ zIndex: 500 }}
     >
       <div
@@ -69,12 +69,17 @@ const LoadingStatus = ({ loadingStatus }) => {
 const LoadingProgress = ({ val = 0, max = 1, msg }) => (
   <div className="tw:flex tw:flex-col tw:gap-2 tw:w-full tw:grow-0">
     {msg}
-    <progress className="tw:progress tw:progress-white" value={val} max={max}></progress>
+    <progress className="tw:daisy-progress tw:text-info-content" value={val} max={max}></progress>
   </div>
 )
 
-/*
- * The Context provider
+/**
+ * The LoadingStatus context provider
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {JSX.Element} props.children - The component children, will be rendered if props.js is not set
+ * @returns {JSX.Element}
  */
 export const LoadingStatusContextProvider = ({ children }) => {
   /*

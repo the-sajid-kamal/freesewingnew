@@ -35,11 +35,6 @@ export const LoadingStatus = ({ state, update }) => {
 
   if (!state._.loading || Object.keys(state._.loading).length < 1) return null
 
-  const colorClasses = {
-    info: 'tw:bg-info tw:text-info-content',
-    primary: 'tw:bg-primary tw:text-primary-content',
-  }
-
   return (
     <div className="tw:fixed tw:bottom-4 md:tw:buttom-28 tw:left-0 tw:w-full tw:z-30 tw:md:px-4 tw:md:mx-auto mb-4">
       <div className="tw:flex tw:flex-col tw:gap-2">

@@ -1,5 +1,4 @@
 import React from 'react'
-import { linkClasses } from '@freesewing/utils'
 import {
   CoverPageIcon,
   PageMarginIcon,
@@ -9,13 +8,6 @@ import {
   ScaleIcon,
 } from '@freesewing/react/components/Icon'
 
-const UiDocsLink = ({ item }) => (
-  <a href={`/docs/about/site/draft/#${item.toLowerCase()}`} className={`${linkClasses} tw:px-2`}>
-    Learn more
-  </a>
-)
-
-const sizes = ['a4', 'a3', 'a2', 'a1', 'a0', 'letter', 'legal', 'tabloid']
 const defaultPrintSettings = (units) => ({
   size: units === 'imperial' ? 'letter' : 'a4',
   orientation: 'portrait',

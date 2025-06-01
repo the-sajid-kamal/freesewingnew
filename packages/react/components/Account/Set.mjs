@@ -15,6 +15,7 @@ import {
   shortDate,
   timeAgo,
 } from '@freesewing/utils'
+import { modalMeasurementHelp } from '@freesewing/react/components/Help'
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
 import { ModalContext } from '@freesewing/react/context/Modal'
@@ -58,21 +59,16 @@ import { bundlePatternTranslations, draft, flattenFlags } from '../Editor/lib/in
 import { Bonny } from '@freesewing/bonny'
 import { MiniNote, MiniTip } from '../Mini/index.mjs'
 
-const t = (input) => {
-  console.log('t called', input)
-  return input
-}
-
-/*
+/**
  * Component to show an individual measurements set
  *
- * @param {object} props - All React props
- * @param {number} id - The ID of the measurements set to load
- * @param {bool} publicOnly - If the set should be used with the backend.getPublicSet method
- * @param {function} Link - An optional framework-specific Link component to use for client-side routing
- * @param {object} measurementHelpProvider - A function that returns a url or action to show help for a specific measurement
+ * @component
+ * @param {object} props - All Component props
+ * @param {number} props.id - The ID of the measurements set to load
+ * @param {bool} [props.publicOnly = false] - If the set should be used with the backend.getPublicSet method
+ * @param {function} [props.Link = false] - An optional framework-specific Link component to use for client-side routing
  */
-export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvider = false }) => {
+export const Set = ({ id, publicOnly = false, Link = false }) => {
   if (!Link) Link = WebLink
 
   // Hooks
@@ -384,7 +380,7 @@ export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvi
       return (
         <div className="tw:w-full">
           {heading}
-          <RenderedCSet {...{ mset, setLoadingStatus, backend, imperial }} />
+          <RenderedCset {...{ mset, setLoadingStatus, backend, imperial }} />
         </div>
       )
 
@@ -490,7 +486,7 @@ export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvi
           current={mset.measies[m]}
           original={mset.measies[m]}
           update={updateMeasies}
-          helpProvider={measurementHelpProvider}
+          help={() => modalMeasurementHelp(m, setModal)}
         />
       ))}
 
@@ -619,36 +615,38 @@ export const Set = ({ id, publicOnly = false, Link = false, measurementHelpProvi
   )
 }
 
-/**
+/*
  * A (helper) component to display a measurements value
  *
+ * @component
  * @param {object} props - All React props
  * @param {string} val - The value
  * @param {string} m - The measurement name
  * @param {bool} imperial - True for imperial measurements, or metric by default
  */
-export const MeasurementValue = ({ val, m, imperial = false }) =>
+const MeasurementValue = ({ val, m, imperial = false }) =>
   isDegreeMeasurement(m) ? (
     <span>{val}°</span>
   ) : (
     <span dangerouslySetInnerHTML={{ __html: formatMm(val, imperial) }}></span>
   )
 
-/**
+/*
  * React component to suggest a measurements set for curation
  *
+ * @component
  * @param {object} props - All React props
  * @param {string} mset - The measurements set
  */
-export const SuggestCset = ({ mset, Link }) => {
+const SuggestCset = ({ mset, Link }) => {
   // State
   const [height, setHeight] = useState('')
   const [img, setImg] = useState('')
   const [name, setName] = useState('')
   const [notes, setNotes] = useState('')
   const [submission, setSubmission] = useState(false)
-
-  console.log(mset)
+  // Context
+  const { setLoadingStatus } = useContext(LoadingStatusContext)
 
   // Hooks
   const backend = useBackend()
@@ -745,7 +743,7 @@ export const SuggestCset = ({ mset, Link }) => {
         Notes
       </h4>
       <p>If you would like to add any notes, you can do so here.</p>
-      <Popout tip compact>
+      <Popout type="tip" compact>
         This field supports markdown
       </Popout>
       <MarkdownInput label="Notes" current={notes} update={setNotes} valid={() => true} />
@@ -760,13 +758,14 @@ export const SuggestCset = ({ mset, Link }) => {
   )
 }
 
-/**
+/*
  * React component to render a preview of a measurement set using the bonny pattern
  *
+ * @component
  * @param {object} props - All React props
  * @param {string} mset - The measurements set
  */
-export const RenderedCSet = ({ mset, imperial }) => {
+const RenderedCset = ({ mset, imperial }) => {
   const [previewVisible, setPreviewVisible] = useState(false)
 
   const missing = []
@@ -799,7 +798,7 @@ export const RenderedCSet = ({ mset, imperial }) => {
         <strong>{formatMm(pattern.parts[0].front.points.head.y * -1, imperial)}</strong> high.
       </p>
       <p>Here is what the automated analysis found:</p>
-      {Object.entries(flattenFlags(flags)).map(([key, flag], i) => {
+      {Object.entries(flattenFlags(flags)).map(([key, flag]) => {
         const desc = strings[flag.desc] || flag.desc
 
         return (
@@ -840,7 +839,7 @@ export const RenderedCSet = ({ mset, imperial }) => {
             </li>
             <li>
               This preview is an <strong>approximation</strong>, not an exact representation. Bodies
-              have many variations that can't be captured with just a few measurements. We are
+              have many variations that can&apos;t be captured with just a few measurements. We are
               missing some information, like how weight is distributed or your posture.
             </li>
             <li>
@@ -867,11 +866,17 @@ export const RenderedCSet = ({ mset, imperial }) => {
   )
 }
 
+/**
+ * A component to create a new measurements set.
+ *
+ * @component
+ * @returns {JSX.Element}
+ */
 export const NewSet = () => {
   // Hooks
   const backend = useBackend()
   const { account } = useAccount()
-  const { setLoadingStatus, LoadingProgress } = useContext(LoadingStatusContext)
+  const { setLoadingStatus } = useContext(LoadingStatusContext)
 
   // State
   const [name, setName] = useState('')

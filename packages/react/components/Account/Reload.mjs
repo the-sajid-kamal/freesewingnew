@@ -1,19 +1,18 @@
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
-
 // Hooks
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
-
 // Components
-import { Link as WebLink } from '@freesewing/react/components/Link'
 import { ReloadIcon } from '@freesewing/react/components/Icon'
-import { Popout } from '@freesewing/react/components/Popout'
 import { IconButton } from '@freesewing/react/components/Button'
 
-/*
- * Component for the account/actions/export page
+/**
+ * A component handle a reload of the account data
+ *
+ * @component
+ * @returns {JSX.Element}
  */
 export const Reload = () => {
   // Hooks

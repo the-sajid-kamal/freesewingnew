@@ -10,7 +10,7 @@ export default function WelcomeAvatarPage() {
         <h1>Avatar</h1>
         <p>A picture says more than a 1000 words.</p>
         <DocusaurusDoc>
-          <RoleBlock user>
+          <RoleBlock role="user">
             <Avatar welcome />
           </RoleBlock>
         </DocusaurusDoc>

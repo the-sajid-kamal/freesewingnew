@@ -47,7 +47,7 @@ export const UserSetPicker = ({
   if (!hasSets)
     return (
       <div className="tw:w-full tw:max-w-3xl tw:mx-auto">
-        <Popout tip>
+        <Popout type="tip">
           <h5> You do not (yet) have any of your own measurements sets</h5>
           <p>
             You can store your measurements as a measurements set, after which you can generate as
@@ -58,7 +58,7 @@ export const UserSetPicker = ({
               href={config.hrefNewSet}
               className="tw:daisy-btn tw:daisy-btn-accent tw:capitalize"
               target="_BLANK"
-              rel="nofollow"
+              rel="noreferrer"
             >
               Create a new measurements set
             </a>
@@ -88,7 +88,7 @@ export const UserSetPicker = ({
       )}
       {lackingSets.length > 0 ? (
         <div className="tw:my-4">
-          <Popout note>
+          <Popout type="note">
             <h5>
               Some of your measurements sets lack the measurements required to generate this pattern
             </h5>
@@ -174,7 +174,7 @@ export const BookmarkedSetPicker = ({
       )}
       {lackingSets.length > 0 && (
         <div className="tw:my-4">
-          <Popout note>
+          <Popout type="note">
             <h5>
               Some of these measurements sets lack the measurements required to generate this
               pattern

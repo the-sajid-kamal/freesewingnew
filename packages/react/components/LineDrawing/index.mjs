@@ -36,10 +36,13 @@ import { Uma, UmaFront, UmaBack } from './uma.mjs'
 import { Umbra, UmbraFront, UmbraBack } from './umbra.mjs'
 import { Wahid, WahidFront, WahidBack } from './wahid.mjs'
 
-/*
- * Bundle all fronts
+/**
+ * An object where the key is the design name and the value the front LineDrawing component
+ *
+ * @constant
+ * @public
  */
-const lineDrawingsFront = {
+export const lineDrawingsFront = {
   aaron: AaronFront,
   albert: AlbertFront,
   bee: BeeFront,
@@ -83,10 +86,13 @@ const lineDrawingsFront = {
   wahid: WahidFront,
 }
 
-/*
- * Bundle all backs
+/**
+ * An object where the key is the design name and the value the back LineDrawing component
+ *
+ * @constant
+ * @public
  */
-const lineDrawingsBack = {
+export const lineDrawingsBack = {
   aaron: AaronBack,
   bella: BellaBack,
   bent: BentBack,
@@ -116,10 +122,13 @@ const lineDrawingsBack = {
   wahid: WahidBack,
 }
 
-/*
- * Bundle all linedrawings
+/**
+ * An object where the key is the design name and the value the full LineDrawing component
+ *
+ * @constant
+ * @public
  */
-const lineDrawings = {
+export const lineDrawings = {
   aaron: Aaron,
   albert: Albert,
   bee: Bee,
@@ -146,17 +155,13 @@ const lineDrawings = {
   huey: Huey,
   hugo: Hugo,
   jane: Jane,
-
   lucy: Lucy,
   lumina: Lumina,
   lumira: Lumira,
   lunetius: Lunetius,
   noble: Noble,
-
   simon: Simon,
-
   teagan: Teagan,
-
   tristan: Tristan,
   uma: Uma,
   umbra: Umbra,
@@ -167,10 +172,6 @@ const lineDrawings = {
  * Named exports
  */
 export {
-  // Bundles
-  lineDrawings,
-  lineDrawingsBack,
-  lineDrawingsFront,
   // Aaron
   Aaron,
   AaronFront,

@@ -12,17 +12,20 @@ const slideClasses = {
 /**
  * This component wraps modal content, making sure the layout is ok and handling transitions
  *
- * @param {object} props - All React props
- * @param {array} children - Content to render inside the modal
- * @param {string} flex - Flexbox direction (row or col)
- * @param {string} justify - Flexbox justify value
- * @param {string} items - Flexbox items value
- * @param {string} bg - Background
- * @param {string} bgOpacity - Background opacity
- * @param {bool} bare - Set true to not handle layout
- * @param {bool} keepOpenOnClick - Set to true to prevent a click in the modal content to close the modal
- * @param {string} slideFrom - Direction to slide in from
- * @param {bool} fullWidth - Set to true to not constrain the width
+ * @component
+ * @param {object} props - All component props
+ * @param {JSX.Element} props.children - The component children, will be rendered inside the mini tip
+ * @param {string} [props.flex = row] - Flexbox direction (row or col)
+ * @param {string} [props.justify = center] - Flexbox justify value
+ * @param {string} [props.items = center] - Flexbox items value
+ * @param {string} [props.bg = neutral] - Background color (one of the DaisyUI named colors)
+ * @param {string} [props.bgOpacity = 70] - Background opacity
+ * @param {bool} [props.bare = false] - Set true to not handle layout within the wrapper
+ * @param {bool} [keepOpenOnClick = false] - Set to true to prevent a click in the modal content from closing the modal
+ * @param {string} [slideFrom = left] - Direction to slide in from on mobile
+ * @param {bool} [fullWidth = false] - Set to true to not constrain the width
+ * @param {bool} [wide = false] - Set to true to not set a wide max width
+ * @returns {JSX.Element}
  */
 export const ModalWrapper = ({
   children = null,
@@ -35,6 +38,7 @@ export const ModalWrapper = ({
   keepOpenOnClick = false,
   slideFrom = 'left',
   fullWidth = false,
+  wide = false,
 }) => {
   const { clearModal } = useContext(ModalContext)
   const [animate, setAnimate] = useState('in')
@@ -80,7 +84,7 @@ export const ModalWrapper = ({
           onClick={keepOpenOnClick ? stopClick : null}
           className={`tw:z-30 tw:bg-base-100 tw:p-4 tw:lg:px-8 tw:lg:rounded-lg tw:lg:shadow-lg tw:max-h-full tw:overflow-auto tw:hover:cursor-default ${
             fullWidth ? 'tw:w-full' : ''
-          }`}
+          } ${wide ? 'tw:max-w-5xl tw:w-full' : ''} `}
         >
           {children}
           <button

@@ -10,9 +10,11 @@ const strokeScale = 0.5
 /**
  * A linedrawing component for Brian
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Brian = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 -40 189 189" {...{ className }}>
@@ -24,9 +26,11 @@ export const Brian = ({ className, stroke = 1 }) => (
 /**
  * A linedrawing component for the front of Brian
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const BrianFront = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 0 93 93" {...{ className, stroke }}>
@@ -34,8 +38,14 @@ export const BrianFront = ({ className, stroke = 1 }) => (
   </LineDrawingWrapper>
 )
 
-/*
- * React component for the back
+/**
+ * A linedrawing component for the back of Brian
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.className - Any CSS classes to apply
+ * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const BrianBack = ({
   className = 'tw:w-full', // CSS classes to apply
@@ -54,7 +64,7 @@ export const BrianBack = ({
 /*
  * SVG elements for the front
  */
-export const Front = ({ stroke }) => (
+const Front = ({ stroke }) => (
   <>
     <path
       key="stitches"

@@ -1,30 +1,26 @@
 // Dependencies
-import { welcomeSteps } from './shared.mjs'
 import { horFlexClasses } from '@freesewing/utils'
-
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
-
 // Hooks
 import React, { useState, useContext } from 'react'
 import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
-
 // Components
-import { Link as WebLink } from '@freesewing/react/components/Link'
 import { NoIcon, LockIcon } from '@freesewing/react/components/Icon'
 import { PasswordInput } from '@freesewing/react/components/Input'
 import { Popout } from '@freesewing/react/components/Popout'
-import { NumberCircle } from '@freesewing/react/components/Number'
-import { CopyToClipboardButton } from '@freesewing/react/components/CopyToClipboardButton'
+import { CopyToClipboardButton } from '@freesewing/react/components/Button'
 
-/*
- * Component for the account/security/password page
+/**
+ * A component to manage the user's MFA settings
  *
- * @params {object} props - All React props
- * @params {bool} props.welcome - Set to true to use this component on the welcome page
+ * @component
+ * @param {object} props - All component props
+ * @param {string} [props.title = false] - Whether or not to display a title
+ * @returns {JSX.Element}
  */
-export const Mfa = ({ welcome = false, title = true }) => {
+export const Mfa = ({ title = true }) => {
   // Hooks
   const backend = useBackend()
   const { account, setAccount } = useAccount()
@@ -199,7 +195,7 @@ export const Mfa = ({ welcome = false, title = true }) => {
                 <LockIcon />
                 Set up Mult-Factor Authentication
               </button>
-              <Popout tip>
+              <Popout type="tip">
                 <h5>Please consider enabling Two-Factor Authentication</h5>
                 <p>
                   We do not enforce a password policy, but we do recommend you enable Multi-Factor

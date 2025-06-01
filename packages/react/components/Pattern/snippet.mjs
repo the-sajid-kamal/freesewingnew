@@ -1,8 +1,15 @@
-//  __SDEFILE__ - This file is a dependency for the stand-alone environment
-// eslint-disable-next-line no-unused-vars
 import React from 'react'
 import { getProps } from './utils.mjs'
 
+/**
+ * A component to render a FreeSewing Snippet in a pattern
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {object} props.snippet - The snippet object itself
+ * @param {object} props.settings - The pattern settings object
+ * @returns {JSX.Element}
+ */
 export const Snippet = ({ snippet, settings }) => {
   if (!snippet?.anchor || !snippet.def) return null
   if (!settings[0].complete && !snippet.attributes.list?.['data-force']?.[0]) return null

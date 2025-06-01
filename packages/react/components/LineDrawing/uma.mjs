@@ -10,9 +10,11 @@ const strokeScale = 0.5
 /**
  * A linedrawing component for Uma
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Uma = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 0 221 75" {...{ className }}>
@@ -24,9 +26,11 @@ export const Uma = ({ className, stroke = 1 }) => (
 /**
  * A linedrawing component for the front of Uma
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const UmaFront = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 -15 105 105" {...{ className }}>
@@ -34,8 +38,14 @@ export const UmaFront = ({ className, stroke = 1 }) => (
   </LineDrawingWrapper>
 )
 
-/*
- * React component for the back
+/**
+ * A linedrawing component for the back of Uma
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.className - Any CSS classes to apply
+ * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const UmaBack = ({
   className = 'w-64', // CSS classes to apply
@@ -54,7 +64,7 @@ export const UmaBack = ({
 /*
  * SVG elements for the front
  */
-export const Front = ({ stroke }) => (
+const Front = ({ stroke }) => (
   <>
     <path
       key="stitches"

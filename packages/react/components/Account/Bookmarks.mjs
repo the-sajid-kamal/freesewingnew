@@ -7,7 +7,7 @@ import { useBackend } from '@freesewing/react/hooks/useBackend'
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
 import { ModalContext } from '@freesewing/react/context/Modal'
 // Components
-import { BookmarkIcon, LeftIcon, PlusIcon, TrashIcon } from '@freesewing/react/components/Icon'
+import { BookmarkIcon, PlusIcon, TrashIcon } from '@freesewing/react/components/Icon'
 import { Link as WebLink } from '@freesewing/react/components/Link'
 import { ModalWrapper } from '@freesewing/react/components/Modal'
 import { StringInput } from '@freesewing/react/components/Input'
@@ -25,12 +25,15 @@ const types = {
 }
 
 /**
- * Component for the account/bookmarks page
+ * A component to manage the user's bookmarks
+ *
+ * @component
+ * @returns {JSX.Element}
  */
 export const Bookmarks = () => {
   // Hooks & Context
   const backend = useBackend()
-  const { setModal, clearModal } = useContext(ModalContext)
+  const { setModal } = useContext(ModalContext)
   const { setLoadingStatus, LoadingProgress } = useContext(LoadingStatusContext)
 
   // State
@@ -178,7 +181,7 @@ export const Bookmarks = () => {
  * @param {object} props - All the React props
  * @param {function} onCreated - An optional method to call when the bookmark is created
  */
-export const NewBookmark = ({ onCreated = false }) => {
+const NewBookmark = ({ onCreated = false }) => {
   // Hooks
   const { setLoadingStatus } = useContext(LoadingStatusContext)
   const { clearModal } = useContext(ModalContext)
@@ -191,7 +194,7 @@ export const NewBookmark = ({ onCreated = false }) => {
   // This method will create the bookmark
   const createBookmark = async () => {
     setLoadingStatus([true, 'Processing update'])
-    const [status, body] = await backend.createBookmark({
+    const [status] = await backend.createBookmark({
       title,
       url,
       type: 'custom',
@@ -242,13 +245,15 @@ export const NewBookmark = ({ onCreated = false }) => {
   )
 }
 
-/*
- * A component to add a bookmark from wherever
+/**
+ * Component to add a bookmark to the user's account
  *
- * @params {object} props - All React props
- * @params {string} props.href - The bookmark href
- * @params {string} props.title - The bookmark title
- * @params {string} props.type - The bookmark type
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.slug - The bookmark slug/href
+ * @param {string} props.title - The bookmark title
+ * @param {string} props.type - The bookmark type, one of design, pattern, set, cset, doc, or custom
+ * @returns {JSX.Element}
  */
 export const BookmarkButton = ({ slug, type, title }) => {
   const { setModal } = useContext(ModalContext)
@@ -279,19 +284,20 @@ export const BookmarkButton = ({ slug, type, title }) => {
 /*
  * A component to create a bookmark, preloaded with props
  *
- * @params {object} props - All React props
- * @params {string} props.href - The bookmark href
- * @params {string} props.title - The bookmark title
- * @params {string} props.type - The bookmark type
- *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.href - The bookmark href
+ * @param {string} props.title - The bookmark title
+ * @param {string} props.type - The bookmark type
+ * @returns {JSX.Element}
  */
-export const CreateBookmark = ({ type, title, slug }) => {
+const CreateBookmark = ({ type, title, slug }) => {
   const backend = useBackend()
   const [name, setName] = useState(title)
   const { setLoadingStatus } = useContext(LoadingStatusContext)
   const { setModal } = useContext(ModalContext)
 
-  const url = `/${slug}`
+  const url = slug.toLowerCase().slice(0, 4) === 'http' ? slug : `/${slug}`
 
   const bookmark = async (evt) => {
     evt.stopPropagation()

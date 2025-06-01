@@ -1,58 +1,45 @@
 // Dependencies
 import { DateTime } from 'luxon'
 import orderBy from 'lodash/orderBy.js'
-import { capitalize, shortDate } from '@freesewing/utils'
+import { shortDate } from '@freesewing/utils'
 import { apikeyLevels } from '@freesewing/config'
 // Context
 import { ModalContext } from '@freesewing/react/context/Modal'
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
-
 // Hooks
 import React, { useState, useEffect, useContext } from 'react'
 import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
 import { useSelection } from '@freesewing/react/hooks/useSelection'
-
 // Components
 import { TableWrapper } from '@freesewing/react/components/Table'
 import { Link as WebLink } from '@freesewing/react/components/Link'
-import {
-  BoolNoIcon,
-  BoolYesIcon,
-  PlusIcon,
-  RightIcon,
-  TrashIcon,
-} from '@freesewing/react/components/Icon'
+import { PlusIcon, RightIcon, TrashIcon } from '@freesewing/react/components/Icon'
 import { Uuid } from '@freesewing/react/components/Uuid'
 import { Popout } from '@freesewing/react/components/Popout'
 import { ModalWrapper } from '@freesewing/react/components/Modal'
 import { NumberCircle } from '@freesewing/react/components/Number'
-import { StringInput, FormControl, ListInput } from '@freesewing/react/components/Input'
-import { DisplayRow } from './shared.mjs'
-import { CopyToClipboardButton } from '@freesewing/react/components/CopyToClipboardButton'
+import { StringInput, Fieldset, ListInput } from '@freesewing/react/components/Input'
+import { CopyToClipboardButton } from '@freesewing/react/components/Button'
 import { TimeAgo, TimeToGo } from '@freesewing/react/components/Time'
 import { KeyVal } from '@freesewing/react/components/KeyVal'
-
-const t = (input) => {
-  console.log('t called', input)
-  return input
-}
 
 const fields = {
   id: 'Key',
   name: 'Name',
   calls: 'Calls',
   level: 'Level',
-  level: 'Level',
   createdAt: 'Created',
   expiresAt: 'Expires',
 }
 
-/*
- * Component for the account/apikeys page
+/**
+ * A component to mange the user's API keys
  *
- * @params {object} props - All React props
- * @params {function} Link - A framework specific Link component for client-side routing
+ * @component
+ * @param {object} props - All component props
+ * @param {JSX.Element} [props.Link] - An optional framework-specific Link component
+ * @returns {JSX.Element}
  */
 export const Apikeys = ({ Link = false }) => {
   if (!Link) Link = WebLink
@@ -240,13 +227,6 @@ const NewApikey = ({ onCreate = false }) => {
     } else setLoadingStatus([true, 'An error occured. Please report this', true, false])
   }
 
-  const clear = () => {
-    setApikey(false)
-    setGenerate(false)
-    setName('')
-    setLevel(1)
-  }
-
   return (
     <div className="tw:w-full">
       <h2>New API key {apikey ? `: ${apikey.name}` : ''}</h2>
@@ -311,7 +291,7 @@ const ShowNewApikey = ({ apikey }) => (
       <CopyToClipboardButton sup content={apikey.secret} label="API key secret" />
     </h6>
     <pre>{apikey.secret}</pre>
-    <Popout warning compact>
+    <Popout type="warning" compact>
       This is the only time you can see the key secret, make sure to copy it.
     </Popout>
   </div>
@@ -331,7 +311,7 @@ const ExpiryPicker = ({ expires, setExpires }) => {
 
   return (
     <div className="tw:flex tw:flex-row tw:gap-2 tw:items-center">
-      <FormControl
+      <Fieldset
         label="Key Expiry"
         labelBL={shortDate(expires)}
         labelBR={<TimeToGo iso={expires} />}
@@ -344,7 +324,7 @@ const ExpiryPicker = ({ expires, setExpires }) => {
           className="tw:daisy-range tw:daisy-range-secondary tw:w-full"
           onChange={update}
         />
-      </FormControl>
+      </Fieldset>
     </div>
   )
 }

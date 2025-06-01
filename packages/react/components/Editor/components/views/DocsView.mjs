@@ -1,11 +1,14 @@
 // Dependencies
-import { linkClasses, capitalize } from '@freesewing/utils'
+import { linkClasses } from '@freesewing/utils'
+// Context
+import { ModalContext } from '@freesewing/react/context/Modal'
 // Hooks
-import React from 'react'
+import React, { useContext } from 'react'
 // Components
-import { H1, H5 } from '@freesewing/react/components/Heading'
-import { Popout } from '@freesewing/react/components/Popout'
+import { H1, H2 } from '@freesewing/react/components/Heading'
+import { modalDocsHelp } from '@freesewing/react/components/Help'
 import { HeaderMenu } from '../HeaderMenu.mjs'
+import { Popout } from '@freesewing/react/components/Popout'
 
 /**
  * This is the docs view, it just shows content
@@ -16,51 +19,55 @@ import { HeaderMenu } from '../HeaderMenu.mjs'
  * @param {Object} props.update - Helper object for updating the editor state
  */
 export const DocsView = ({ state, config, update }) => {
+  const { setModal, modalContent } = useContext(ModalContext)
+
   return (
     <>
       <HeaderMenu state={state} {...{ config, update }} />
       <div className="tw:m-auto tw:mt-8 tw:max-w-2xl tw:px-4 tw:mb-8">
         <H1>Documentation</H1>
         {state?.design ? (
-          <Popout link>
-            <H5>Design Documentation</H5>
-            <p className="tw:text-lg">
-              You can find documentation for the {capitalize(state.design)} design at:
-              <br />
-              <b>
+          <>
+            <H2>Design Documentation</H2>
+            <Popout type="link" compact dense>
+              <div className="tw:font-bold tw:py-1">
                 <a
                   className={linkClasses}
                   href={`https://freesewing.eu/docs/designs/${state.design}`}
                 >{`FreeSewing.eu/docs/designs/${state.design}`}</a>
-              </b>
-            </p>
-          </Popout>
+              </div>
+            </Popout>
+            <button
+              className="tw:daisy-btn tw:daisy-btn-secondary tw:daisy-btn-outline tw:mt-4"
+              onClick={() => modalDocsHelp(`docs/designs/${state.design}`, setModal)}
+            >
+              Open without leaving the Editor
+            </button>
+          </>
         ) : null}
-        <Popout link>
-          <H5>Understanding the FreeSewing Pattern Editor</H5>
-          <p className="tw:text-lg">
-            Please refer to the pattern editor documentation at:
-            <br />
-            <b>
-              <a
-                className={linkClasses}
-                href="https://freesewing.eu/docs/about/editor"
-              >{`FreeSewing.eu/docs/about/editor`}</a>
-            </b>
-          </p>
+        <H2>Editor Documentation</H2>
+        <Popout type="link" compact dense>
+          <div className="tw:font-bold tw:py-1">
+            <a
+              className={linkClasses}
+              href="https://freesewing.eu/docs/editor"
+            >{`FreeSewing.eu/docs/editor`}</a>
+          </div>
         </Popout>
-        <Popout tip>
-          <H5>
-            Looking for info on how it <em>really</em> works?
-          </H5>
-          <p>
-            Documentation for developers and contributors is available at{' '}
-            <b>
-              <a className={linkClasses} href="https://freesewing.dev/">{`FreeSewing.dev`}</a>
-            </b>
-          </p>
+        <button
+          className="tw:daisy-btn tw:daisy-btn-secondary tw:daisy-btn-outline tw:mt-4"
+          onClick={() => modalDocsHelp(`docs/editor`, setModal)}
+        >
+          Open without leaving the Editor
+        </button>
+        <H2>Developer Documentation</H2>
+        <Popout type="link" compact>
+          <b>
+            <a className={linkClasses} href="https://freesewing.dev/">{`FreeSewing.dev`}</a>
+          </b>
         </Popout>
       </div>
+      {modalContent}
     </>
   )
 }

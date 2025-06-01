@@ -1,9 +1,20 @@
 // Dependencies
 import { linkClasses } from '@freesewing/utils'
 // Hooks
-import React, { useEffect, useState } from 'react'
-import { useAccount } from '@freesewing/react/hooks/useAccount'
+import React, { useState } from 'react'
 
+/**
+ * A component to ask people to support FreeSewing financially
+ *
+ * This component will pass down all props to the Subscribe component
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {boolean} [props.dense = undefined] - Whether to render a more dense view
+ * @param {object} [props.js = undefined] - An optional Javascript Object to highlight
+ * @param {JSX.Element} props.children - The component children, will be rendered if props.js is not set
+ * @returns {JSX.Element}
+ */
 export const PleaseSubscribe = (props = {}) => (
   <div
     className={`tw:max-w-7xl tw:m-auto tw:px-0 tw:-mt-12 tw:mb-24 ${props.dense ? '' : 'tw:md:my-24'}`}
@@ -20,6 +31,13 @@ export const PleaseSubscribe = (props = {}) => (
   </div>
 )
 
+/**
+ * A component that shows a plea for financial support
+ *
+ * @component
+ * @param {object} props - All component props
+ * @returns {JSX.Element}
+ */
 export const Plea = () => (
   <div className="tw:md:pt-8 tw:pb-8 tw:lg:py-12 tw:max-w-prose tw:w-full tw:m-auto">
     <h2 className="tw:text-inherit tw:mb-4">
@@ -71,6 +89,17 @@ const PaypalFormBody = ({ amount, period, currency }) => (
   </>
 )
 
+/**
+ * A component to set up a finciancial subscription to FreeSewing, also can handle one-time donations
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} [props.color = secondary] - One of the DaisyUI colors
+ * @param {boolean} [props.subscribeOnly = undefined] - Set this to true to remove the option to make a one-time donation
+ * @param {number} [props.amountPreset = 25] - The amount to preset
+ * @param {number} [props.periodPreset = m] - The period to preset
+ * @returns {JSX.Element}
+ */
 export const Subscribe = ({
   color = 'secondary',
   subscribeOnly,
@@ -181,7 +210,12 @@ export const Subscribe = ({
         </button>
         <p className="tw:text-center tw:text-sm tw:text-neutral-content tw:mt-2 tw:opacity-80">
           Don&apos;t have a PayPal account?
-          <a href="https://ko-fi.com/freesewing" target="_BLANK" className={linkClasses}>
+          <a
+            href="https://ko-fi.com/freesewing"
+            target="_BLANK"
+            rel="noreferrer"
+            className={linkClasses}
+          >
             <b className="tw:text-neutral-content tw:pl-2">Ko-fi.com/FreeSewing</b>
           </a>
         </p>
@@ -190,6 +224,15 @@ export const Subscribe = ({
   )
 }
 
+/**
+ * A component that renders the signed name for joost, the FreeSewing maintainer, as SVG
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} [props.className = 'tw:w-32'] - Allows you to override the styling, including the size
+ * @param {number} [props.stroke = 0] - An optional stroke width
+ * @returns {JSX.Element}
+ */
 export const Joost = ({ className = 'tw:w-32', stroke = 0 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

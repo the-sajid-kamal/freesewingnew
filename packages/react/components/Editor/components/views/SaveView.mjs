@@ -8,8 +8,8 @@ import { useBackend } from '@freesewing/react/hooks/useBackend'
 // Components
 import { RoleBlock } from '@freesewing/react/components/Role'
 import { Popout } from '@freesewing/react/components/Popout'
-import { StringInput } from '@freesewing/react/components/Input'
-import { SaveAsIcon } from '@freesewing/react/components/Icon'
+import { StringInput, MarkdownInput } from '@freesewing/react/components/Input'
+import { SaveAsIcon, SaveIcon } from '@freesewing/react/components/Icon'
 import { H1 } from '@freesewing/react/components/Heading'
 import { Link, SuccessLink } from '@freesewing/react/components/Link'
 import { HeaderMenu } from '../HeaderMenu.mjs'
@@ -67,7 +67,8 @@ export const SaveView = ({ config, state, update }) => {
   }
 
   const savePattern = async () => {
-    setLoadingStatus([true, 'Saving pattern...'])
+    const loadingId = 'savePattern'
+    update.startLoading(loadingId)
     const patternData = {
       design: state.design,
       settings,
@@ -77,17 +78,10 @@ export const SaveView = ({ config, state, update }) => {
     }
     const result = await backend.updatePattern(saveAs.pattern, patternData)
     if (result.success) {
-      //setLoadingStatus([
-      //  true,
-      //  <>
-      //    {t('status:patternSaved')} <small>[#{saveAs.pattern}]</small>
-      //  </>,
-      //  true,
-      //  true,
-      //])
+      update.stopLoading(loadingId)
       setSavedId(saveAs.pattern)
-      update.notify({ color: 'success', msg: 'boom' }, saveAs.pattern)
-    } //else setLoadingStatus([true, 'backendError', true, false])
+      update.notifySuccess('Pattern saved', loadingId)
+    }
   }
 
   return (
@@ -98,17 +92,17 @@ export const SaveView = ({ config, state, update }) => {
           <>
             <h2>Save Pattern</h2>
             {savedId && (
-              <Popout link>
+              <Popout type="link">
                 <h5>Pattern Saved</h5>
                 See: <Link href={`/account/patterns/${savedId}`}>/account/patterns/{savedId}</Link>
               </Popout>
             )}
             <button
-              className={`${classeshorFlexNoSm} tw:btn tw:btn-primary tw:btn-lg tw:w-full tw:mt-2 tw:my-8`}
+              className={`tw:flex tw:flex-row tw:items-center tw:gap-2 tw:btn tw:btn-primary tw:btn-lg tw:w-full tw:mt-2 tw:my-8`}
               onClick={savePattern}
             >
               <SaveIcon className="tw:h-8 tw:w-8" />
-              Save Patter #{saveAs.pattern}
+              Save Pattern #{saveAs.pattern}
             </button>
           </>
         ) : null}
@@ -145,11 +139,7 @@ export const SaveView = ({ config, state, update }) => {
             }
           />
           {withNotes ? (
-            <Swizzled.components.MarkdownInput
-              label="Pattern notes"
-              current={notes}
-              update={setNotes}
-            />
+            <MarkdownInput label="Pattern notes" current={notes} update={setNotes} />
           ) : null}
           <div className="tw:flex tw:flex-row tw:gap-2 tw:mt-8">
             <button
@@ -172,7 +162,7 @@ export const SaveView = ({ config, state, update }) => {
             To access your saved patterns, go to:
             <b>
               {' '}
-              <Link href="/account/patterns">/account/patterns</Link>
+              <Link href="/account/data/patterns/">/account/data/patterns</Link>
             </b>
           </p>
         </div>

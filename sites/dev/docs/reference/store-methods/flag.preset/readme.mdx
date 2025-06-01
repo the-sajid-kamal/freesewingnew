@@ -22,18 +22,15 @@ The example above is from our implementation, which uses the following propertie
 
 ## Configuration
 
-| Property   | Type                | Description |
-| ----------:| ------------------- | ----------- |
-| `preset`   | String              | The ID of an existing preset |
+| Property | Type   | Description                  |
+| -------: | ------ | ---------------------------- |
+| `preset` | String | The ID of an existing preset |
 
 ## Example
 
 ```js
-({ store, expand,  part }) => {
-  store.flag.preset(expand
-    ? 'expandIsOn'
-    : 'expandIsOff'
-  )
+;({ store, expand, part }) => {
+  store.flag.preset(expand ? 'expandIsOn' : 'expandIsOff')
 
   return part
 }

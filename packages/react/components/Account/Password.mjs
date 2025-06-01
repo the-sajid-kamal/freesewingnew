@@ -1,28 +1,25 @@
-// Dependencies
-import { welcomeSteps } from './shared.mjs'
-import { horFlexClasses } from '@freesewing/utils'
-
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
-
 // Hooks
 import React, { useState, useContext } from 'react'
 import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
-
 // Components
 import { Link as WebLink } from '@freesewing/react/components/Link'
 import { RightIcon, SaveIcon } from '@freesewing/react/components/Icon'
 import { PasswordInput } from '@freesewing/react/components/Input'
 import { Popout } from '@freesewing/react/components/Popout'
 
-/*
- * Component for the account/security/password page
+/**
+ * A component to manage the user's password
  *
- * @params {object} props - All React props
- * @params {bool} props.welcome - Set to true to use this component on the welcome page
+ * @component
+ * @param {object} props - All component props
+ * @param {bool} [props.welcome = false] - Set to true to render the welcome/onboarding view
+ * @param {React.Component} props.Link - A framework specific Link component for client-side routing
+ * @returns {JSX.Element}
  */
-export const Password = ({ welcome = false, Link = false }) => {
+export const Password = ({ Link = false }) => {
   if (!Link) Link = WebLink
   // Hooks
   const backend = useBackend()
@@ -60,7 +57,7 @@ export const Password = ({ welcome = false, Link = false }) => {
         <SaveIcon /> Save
       </button>
       {!account.mfaEnabled && (
-        <Popout tip>
+        <Popout type="tip">
           <h5>Please consider enabling Two-Factor Authentication</h5>
           <p>
             We do not enforce a password policy, but we do recommend you enable Two-Factor

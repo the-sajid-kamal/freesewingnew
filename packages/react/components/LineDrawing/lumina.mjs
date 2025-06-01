@@ -10,9 +10,11 @@ const strokeScale = 0.7
 /**
  * A linedrawing component for Lumina
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Lumina = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 0 187 117" {...{ className, stroke }}>
@@ -24,9 +26,11 @@ export const Lumina = ({ className, stroke = 1 }) => (
 /**
  * A linedrawing component for the front of Lumina
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const LuminaFront = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="-20 0 127 127" {...{ className, stroke }}>
@@ -34,8 +38,14 @@ export const LuminaFront = ({ className, stroke = 1 }) => (
   </LineDrawingWrapper>
 )
 
-/*
- * React component for the back
+/**
+ * A linedrawing component for the back of Lumina
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.className - Any CSS classes to apply
+ * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const LuminaBack = ({
   className = 'w-64', // CSS classes to apply
@@ -54,7 +64,7 @@ export const LuminaBack = ({
 /*
  * SVG elements for the front
  */
-export const Front = ({ stroke }) => (
+const Front = ({ stroke }) => (
   <>
     <path
       key="stitches"

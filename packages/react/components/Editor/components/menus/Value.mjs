@@ -160,11 +160,10 @@ export const MenuScaleSettingValue = ({ current, config, changed }) => (
 /**
  * Displays the value for core's only setting
  *
- * @param {object} config - The option config
  * @param {number} current - The current (count) value
  * @param {bool} changed - Whether or not the value is non-default
  */
-export const MenuOnlySettingValue = ({ current, config }) => (
+export const MenuOnlySettingValue = ({ current }) => (
   <MenuHighlightValue changed={current !== undefined}>
     {current === undefined ? '-' : current.length}
   </MenuHighlightValue>

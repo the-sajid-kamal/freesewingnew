@@ -1,25 +1,13 @@
 // Dependencies
-import orderBy from 'lodash/orderBy.js'
-import {
-  cloudflareImageUrl,
-  capitalize,
-  shortDate,
-  horFlexClasses,
-  newPatternUrl,
-  patternUrlFromState,
-} from '@freesewing/utils'
+import { cloudflareImageUrl, horFlexClasses, patternUrlFromState } from '@freesewing/utils'
 import { urls, control as controlConfig } from '@freesewing/config'
-
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
 import { ModalContext } from '@freesewing/react/context/Modal'
-
 // Hooks
 import React, { useState, useEffect, useContext } from 'react'
 import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
-import { useSelection } from '@freesewing/react/hooks/useSelection'
-
 // Components
 import Markdown from 'react-markdown'
 import {
@@ -28,7 +16,7 @@ import {
   PassiveImageInput,
   ListInput,
 } from '@freesewing/react/components/Input'
-import { Link as WebLink, AnchorLink } from '@freesewing/react/components/Link'
+import { Link as WebLink } from '@freesewing/react/components/Link'
 import {
   BoolNoIcon,
   BoolYesIcon,
@@ -42,12 +30,20 @@ import {
   ResetIcon,
   UploadIcon,
 } from '@freesewing/react/components/Icon'
-import { DisplayRow } from './shared.mjs'
 import { TimeAgo } from '@freesewing/react/components/Time'
 import { Popout } from '@freesewing/react/components/Popout'
 import { ModalWrapper } from '@freesewing/react/components/Modal'
 import { KeyVal } from '@freesewing/react/components/KeyVal'
 
+/**
+ * A component to manage a pattern in the user's account data
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {number} props.id - The pattern ID to load
+ * @param {React.Component} props.Link - A framework specific Link component for client-side routing
+ * @returns {JSX.Element}
+ */
 export const Pattern = ({ id, Link }) => {
   if (!Link) Link = WebLink
   // Hooks
@@ -137,7 +133,7 @@ export const Pattern = ({ id, Link }) => {
     return (
       <div className="tw:w-full">
         {pattern.public ? (
-          <Popout note>
+          <Popout type="note">
             <h5>This is the private view of your pattern</h5>
             <p>
               Everyone can access the public view since this is a public pattern.
@@ -254,6 +250,21 @@ export const Pattern = ({ id, Link }) => {
   )
 }
 
+/**
+ * A component to display a card representing a pattern in the user's account data.
+ *
+ * This is a pure render component, you have to pass in the data.
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {React.Component} props.Link - A framework specific Link component for client-side routing
+ * @param {string} [props.href = false] - An optional URL the pattern card should link to
+ * @param {function} [props.onClick = false] - An optional onClick handler
+ * @param {object} props.pattern - An object holding the pattern data
+ * @param {string} [props.size = 'md'] - The size, one of lg, md, sm, or xs
+ * @param {boolean} [props.useA = false] - Whether to use an a tag of Link component when passing in a href prop
+ * @returns {JSX.Element}
+ */
 export const PatternCard = ({
   pattern,
   href = false,
@@ -265,7 +276,7 @@ export const PatternCard = ({
   if (!Link) Link = WebLink
   const sizes = {
     lg: 96,
-    md: 52,
+    md: 48,
     sm: 36,
     xs: 20,
   }
@@ -315,25 +326,16 @@ export const PatternCard = ({
 const BadgeLink = ({ label, href }) => (
   <a
     href={href}
-    className="tw:daisy-badge tw:daisy-badge-secondary tw:font-bold tw:daisy-badge-lg tw:hover:text-secondary-content tw:hover:no-underline"
+    className="tw:daisy-badge tw:daisy-badge-secondary tw:font-bold tw:daisy-badge-lg tw:hover:text-secondary-content tw:hover:cursor-pointer"
   >
-    {label}
+    <span className="tw:text-secondary-content hover:tw:decoration-0">{label}</span>
   </a>
 )
 
 /**
  * Helper component to show the pattern title, image, and various buttons
  */
-const PatternHeader = ({
-  pattern,
-  Link,
-  account,
-  setModal,
-  setEdit,
-  togglePublic,
-  save,
-  clone,
-}) => (
+const PatternHeader = ({ pattern, Link, account, setModal, setEdit, togglePublic, clone }) => (
   <>
     <h2>{pattern.name}</h2>
     <div className="tw:flex tw:flex-row tw:flex-wrap tw:gap-2 tw:text-sm tw:items-center tw:mb-2">

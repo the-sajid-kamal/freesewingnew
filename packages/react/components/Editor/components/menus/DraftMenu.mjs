@@ -3,7 +3,7 @@ import { OptionsIcon, SettingsIcon, UiIcon } from '@freesewing/react/components/
 import { DesignOptionsMenu } from './DesignOptionsMenu.mjs'
 import { CoreSettingsMenu } from './CoreSettingsMenu.mjs'
 import { UiPreferencesMenu } from './UiPreferencesMenu.mjs'
-import { FlagsAccordionEntries } from '../Flag.mjs'
+import { FlagsAccordionEntries, FlagsAccordionTitle } from '../Flag.mjs'
 import { Accordion } from '../Accordion.mjs'
 
 export const DraftMenu = ({ Design, pattern, state, update, i18n }) => {

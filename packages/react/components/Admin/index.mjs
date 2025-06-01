@@ -1,8 +1,7 @@
 // Dependencies
-import { uiRoles as roles } from '@freesewing/config'
 import { userAvatarUrl } from '@freesewing/utils'
 // Hooks
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
 // Context
@@ -14,11 +13,16 @@ import { Spinner } from '@freesewing/react/components/Spinner'
 import { Link as WebLink } from '@freesewing/react/components/Link'
 import { SearchIcon } from '@freesewing/react/components/Icon'
 import { KeyVal } from '@freesewing/react/components/KeyVal'
-import { Markdown } from '@freesewing/react/components/Markdown'
 import { ModalWrapper } from '@freesewing/react/components/Modal'
 import { AccountStatus, UserRole } from '@freesewing/react/components/Account'
 
-export const SubscriberAdministration = ({ page }) => {
+/**
+ * A component to manage FreeSewing newsletter subscribers (requires admin role)
+ *
+ * @component
+ * @returns {JSX.Element}
+ */
+export const SubscriberAdministration = () => {
   const [subscribers, setSubscribers] = useState()
   const [q, setQ] = useState()
   const [hits, setHits] = useState([])
@@ -106,6 +110,14 @@ export const SubscriberAdministration = ({ page }) => {
   )
 }
 
+/**
+ * A component to manage FreeSewing users (requires the admin role)
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {React.Component} props.Link - A framework specific Link component for client-side routing
+ * @returns {JSX.Element}
+ */
 export const UserAdministration = ({ Link = false }) => {
   const backend = useBackend()
 
@@ -154,7 +166,7 @@ export const UserAdministration = ({ Link = false }) => {
   )
 }
 
-export const Hits = ({ results, Link = false }) => {
+const Hits = ({ results, Link = false }) => {
   if (!Link) Link = WebLink
 
   return (
@@ -179,7 +191,7 @@ export const Hits = ({ results, Link = false }) => {
   )
 }
 
-export const User = ({ user, Link }) => {
+const User = ({ user, Link }) => {
   const { setModal } = useContext(ModalContext)
   const { setLoadingStatus } = useContext(LoadingStatusContext)
   const backend = useBackend()
@@ -274,7 +286,7 @@ export const User = ({ user, Link }) => {
   )
 }
 
-export const ImpersonateButton = ({ userId }) => {
+const ImpersonateButton = ({ userId }) => {
   const backend = useBackend()
   const { setLoadingStatus } = useContext(LoadingStatusContext)
   const { impersonate } = useAccount()
@@ -297,97 +309,5 @@ export const ImpersonateButton = ({ userId }) => {
     >
       Impersonate
     </button>
-  )
-}
-
-export const Row = ({ title, val }) => (
-  <tr className="py-1">
-    <td className="text-sm px-2 text-right font-bold">{title}</td>
-    <td className="text-sm">{val}</td>
-  </tr>
-)
-
-export const ManageUser = ({ userId }) => {
-  // Hooks
-  const backend = useBackend()
-  const { setLoadingStatus } = useContext(LoadingStatusContext)
-  const { account } = useAccount()
-  const { role } = account
-
-  // State
-  const [user, setUser] = useState({})
-  const [patterns, setPatterns] = useState({})
-  const [sets, setSets] = useState({})
-
-  // Effect
-  useEffect(() => {
-    const loadUser = async () => {
-      const result = await backend.adminLoadUser(userId)
-      if (result.success) {
-        setUser(result.data.user)
-        setPatterns(result.data.patterns)
-        setSets(result.data.sets)
-      }
-    }
-    loadUser()
-  }, [userId])
-
-  const updateUser = async (data) => {
-    setLoadingStatus([true, 'status:contactingBackend'])
-    const result = await backend.adminUpdateUser({ id: userId, data })
-    if (result.success) {
-      setLoadingStatus([true, 'status:settingsSaved', true, true])
-      setUser(result.data.user)
-    } else setLoadingStatus([true, 'status:backendError', true, false])
-  }
-
-  return user.id ? (
-    <div className="my-8">
-      <ShowUser
-        user={user}
-        button={role === 'admin' ? <ImpersonateButton userId={user.id} /> : null}
-      />
-      {role === 'admin' ? (
-        <div className="flex flex-row flex-wrap gap-2 my-2">
-          {roles.map((role) => (
-            <button
-              key={role}
-              className="btn btn-primary btn-outline btn-sm"
-              onClick={() => updateUser({ role })}
-              disabled={role === user.role}
-            >
-              Assign {role} role
-            </button>
-          ))}
-        </div>
-      ) : null}
-      <div className="flex flex-row flex-wrap gap-2 my-2 mb-4">
-        {user.mfaEnabled && (
-          <button
-            className="btn btn-warning btn-outline btn-sm"
-            onClick={() => updateUser({ mfaEnabled: false })}
-          >
-            Disable MFA
-          </button>
-        )}
-        {Object.keys(freeSewingConfig.statuses).map((status) => (
-          <button
-            key={status}
-            className="btn btn-warning btn-outline btn-sm"
-            onClick={() => updateUser({ status })}
-            disabled={Number(status) === user.status}
-          >
-            Set {freeSewingConfig.statuses[status].name.toUpperCase()} status
-          </button>
-        ))}
-      </div>
-      <Tabs tabs="Account, Patterns, Sets">
-        <Tab tabId="Account">{user.id ? <Json js={user} /> : null}</Tab>
-        <Tab tabId="Patterns">{patterns ? <Json js={patterns} /> : null}</Tab>
-        <Tab id="Sets">{sets ? <Json js={sets} /> : null}</Tab>
-      </Tabs>
-    </div>
-  ) : (
-    <Loading />
   )
 }

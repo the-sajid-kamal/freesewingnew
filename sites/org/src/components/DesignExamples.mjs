@@ -7,7 +7,7 @@ import { Popout } from '@freesewing/react/components/Popout'
 function DesignExamples({ design }) {
   if (!design || !examples[design] || examples[design].length < 1)
     return (
-      <Popout note>
+      <Popout type="note">
         Unfortunately, we do not have examples for this design yet. Hopefully, someone will post one
         soon.
       </Popout>

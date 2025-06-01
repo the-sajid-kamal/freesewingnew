@@ -2,8 +2,10 @@
 import { designMeasurements } from '../../lib/index.mjs'
 import { capitalize, horFlexClasses as horFlexClasses } from '@freesewing/utils'
 import { measurements as measurementsTranslations } from '@freesewing/i18n'
+// Context
+import { ModalContext } from '@freesewing/react/context/Modal'
 // Hooks
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment, useState, useEffect, useContext } from 'react'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
 // Components
 import { Popout } from '@freesewing/react/components/Popout'
@@ -37,7 +39,6 @@ const iconClasses = {
  * @param {Array} props.missingMeasurements - List of missing measurements for the current design
  * @param {Object} props.state - The editor state object
  * @param {Object} props.update - Helper object for updating the editor state
- * @param {object} props.helpProvider - A function that takes a measurement and returns a url or action to show help for that measurement
  * @return {Function} MeasurementsView - React component
  */
 export const MeasurementsView = ({
@@ -47,8 +48,8 @@ export const MeasurementsView = ({
   state,
   update,
   design,
-  measurementHelpProvider = false,
 }) => {
+  const { modalContent } = useContext(ModalContext)
   /*
    * If there is no view set, completing measurements will switch to the view picker
    * Which is a bit confusing. So in this case, set the view to measurements.
@@ -170,10 +171,7 @@ export const MeasurementsView = ({
       </div>
       <p className="tw:text-left">You can manually set or override measurements below.</p>
     </Fragment>,
-    <MeasurementsEditor
-      key={2}
-      {...{ Design, config, update, state, helpProvider: measurementHelpProvider }}
-    />,
+    <MeasurementsEditor key={2} {...{ Design, config, update, state }} />,
     'edit',
   ])
 
@@ -183,7 +181,7 @@ export const MeasurementsView = ({
       <div className="tw:max-w-7xl tw:mt-8 tw:mx-auto tw:px-4 tw:mb-4">
         <H1>Measurements</H1>
         {missingMeasurements && missingMeasurements.length > 0 ? (
-          <Popout note dense noP>
+          <Popout type="note" dense>
             <h3>
               To generate this pattern, we need {missingMeasurements.length} additional measurement
               {missingMeasurements.length === 1 ? '' : 's'}:
@@ -198,7 +196,7 @@ export const MeasurementsView = ({
             </ol>
           </Popout>
         ) : (
-          <Popout tip dense noP>
+          <Popout type="tip" dense>
             <H5>We have all required measurements to draft this pattern</H5>
             <div className="tw:flex tw:flex-row tw:flex-wrap tw:gap-2 tw:mt-2">
               <button
@@ -218,6 +216,7 @@ export const MeasurementsView = ({
         )}
         {items.length > 1 ? <Accordion items={items} /> : items}
       </div>
+      {modalContent}
     </>
   )
 }

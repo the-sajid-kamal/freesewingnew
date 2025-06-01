@@ -1,5 +1,5 @@
 // Dependencies
-import { linkClasses, cloudflareImageUrl, getSearchParam } from '@freesewing/utils'
+import { cloudflareImageUrl, getSearchParam } from '@freesewing/utils'
 // Context
 import { ModalContext } from '@freesewing/react/context/Modal'
 // Hooks
@@ -9,38 +9,37 @@ import { useBackend } from '@freesewing/react/hooks/useBackend'
 // Components
 import { ModalWrapper } from '@freesewing/react/components/Modal'
 import { Link as WebLink } from '@freesewing/react/components/Link'
-import { NoIcon, OkIcon, SaveIcon, RightIcon, WarningIcon } from '@freesewing/react/components/Icon'
 import { MiniWarning } from '@freesewing/react/components/Mini'
 import { KeyVal } from '@freesewing/react/components/KeyVal'
 import Markdown from 'react-markdown'
 
-/*
- * Component for the currently authenticated user's profile
+/**
+ * A component for to display the current user's profile.
  *
- * @params {object} props - All React props
- * @param {number} props.uid - The user ID for which to show the profile
- * @param {function} props.Link - An optional framework-specific Link component
+ * @component
+ * @param {object} props - All component props
+ * @param {React.FC} [props.Link = false] - An optional framework-specific Link component
+ * @param {function} [props.setTitle = false] - An optional method to set the page title
+ * @returns {JSX.Element}
  */
 export const OwnProfile = (props) => {
   const { account } = useAccount()
 
-  return <UserProfile uid={account.id} {...props} />
+  return <UserProfile {...props} uid={account.id} />
 }
 
-/*
- * Component for a user profile
+/**
+ * A component for to display a user profile. Either props.uid or props.fromUrl should be set.
  *
- * @params {object} props - All React props
- * @param {number} props.uid - The user ID for which to show the profile
- * @param {function} props.Link - An optional framework-specific Link component
+ * @component
+ * @param {object} props - All component props
+ * @param {boolean} [props.fromUrl = false] - Set this to the nbame of the search parameters in the URL to extract the UID from
+ * @param {React.FC} [props.Link = false] - An optional framework-specific Link component
+ * @param {function} [props.setTitle = false] - An optional method to set the page title
+ * @param {number} [props.uid = false] - The user ID for which to show the profile
+ * @returns {JSX.Element}
  */
-export const UserProfile = ({
-  Link = false,
-  setTitle = false,
-  uid = false,
-  noBox = false,
-  fromUrl = false,
-}) => {
+export const UserProfile = ({ Link = false, setTitle = false, uid = false, fromUrl = false }) => {
   if (!uid && !fromUrl)
     return (
       <MiniWarning>
@@ -64,7 +63,7 @@ export const UserProfile = ({
       const urlId = getSearchParam(fromUrl)
       if (urlId && urlId !== ruid) setRuid(urlId)
     }
-    if (ruid) loadProfileData(ruid, backend, setData)
+    if (ruid) loadProfileData(ruid, backend, setData, setTitle)
   }, [uid, fromUrl, ruid])
 
   return (
@@ -85,10 +84,12 @@ export const UserProfile = ({
   )
 }
 
-/*
- * Shows an avatar image
+/**
+ * A component to render an avatar image
  *
+ * @component
  * @param {string} ihash - The ihash of the account
+ * @returns {JSX.Element}
  */
 export const Avatar = ({ ihash }) => {
   const { setModal } = useContext(ModalContext)
@@ -114,7 +115,10 @@ export const Avatar = ({ ihash }) => {
   )
 }
 
-async function loadProfileData(uid, backend, setData) {
+async function loadProfileData(uid, backend, setData, setTitle = false) {
   const [status, body] = await backend.getUserProfile(uid)
-  if (status === 200 && body.result === 'success' && body.profile) setData(body.profile)
+  if (status === 200 && body.result === 'success' && body.profile) {
+    setData(body.profile)
+    if (typeof setTitle === 'function' && body.profile.username) setTitle(body.profile.username)
+  }
 }

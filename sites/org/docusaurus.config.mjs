@@ -8,9 +8,10 @@ import smartypants from 'remark-smartypants'
  *  - We hide certain dynamic pages (like for measurements sets, patterns, and so on)
  */
 function customizeSidebar(items) {
-  // Filter out design options
+  // Filter out docs
   const docs = items.filter((entry) => entry.label === 'Docs').pop().items
   for (const item in docs) {
+    // Filter out design options
     if (docs[item].label === 'FreeSewing Designs') {
       for (const design in docs[item].items) {
         for (const subpage in docs[item].items[design].items) {
@@ -20,8 +21,9 @@ function customizeSidebar(items) {
         }
       }
     }
-    if (docs[item].label === 'hidden') {
-      console.log(docs[item])
+    // Filter out submenus in Editor docs
+    if (docs[item].label === 'FreeSewing Editor') {
+      docs[item].items = []
     }
   }
 
@@ -54,11 +56,12 @@ const config = {
   // Not time to look into this now
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
-
   future: {
     experimental_faster: false, // Too many bugs for now
+    v4: {
+      useCssCascadeLayers: true,
+    },
   },
-
   plugins: [
     ...docusaurusPlugins,
     [
@@ -186,6 +189,7 @@ const config = {
         { type: 'custom-FreeSewingNavbarItem', position: 'left', id: 'blog' },
         { type: 'custom-FreeSewingNavbarItem', position: 'left', id: 'forum' },
         { type: 'custom-FreeSewingNavbarItem', position: 'right', id: 'account' },
+        { type: 'custom-FreeSewingNavbarItem', position: 'right', id: 'support' },
       ],
     },
     footer: {

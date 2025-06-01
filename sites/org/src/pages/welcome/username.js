@@ -10,7 +10,7 @@ export default function WelcomeComparePage() {
         <h1>Username</h1>
         <p>Everyone needs one. What will yours be?</p>
         <DocusaurusDoc>
-          <RoleBlock user>
+          <RoleBlock role="user">
             <Username welcome />
           </RoleBlock>
         </DocusaurusDoc>

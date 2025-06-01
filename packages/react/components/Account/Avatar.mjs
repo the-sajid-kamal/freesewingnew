@@ -17,12 +17,14 @@ import { PassiveImageInput } from '@freesewing/react/components/Input'
 import { IconButton } from '@freesewing/react/components/Button'
 import { WelcomeIcons } from './shared.mjs'
 
-/*
- * Component for the account/bio page
+/**
+ * Component to manage the user's Avatar
  *
- * @params {object} props - All React props
- * @params {bool} props.welcome - Set to true to use this component on the welcome page
- * @params {function} props.Link - A framework specific Link component for client-side routing
+ * @component
+ * @param {object} props - All component props
+ * @param {boolean} [props.welcome = false] - Set to true to render the welcome/onboarding flow
+ * @param {function} props.Link - A framework specific Link component for client-side routing
+ * @returns {JSX.Element}
  */
 export const Avatar = ({ welcome = false, Link = false }) => {
   if (!Link) Link = WebLink
@@ -98,7 +100,7 @@ export const Avatar = ({ welcome = false, Link = false }) => {
         <>
           <p className="tw:text-right">
             <button
-              className="tw:daisy-btn tw:daisy-btn-primary tw:w-full tw:lg:w-auto mt-8"
+              className="tw:daisy-btn tw:daisy-btn-primary tw:w-full tw:lg:w-auto tw:mt-4"
               onClick={save}
             >
               <SaveIcon /> Save Avatar

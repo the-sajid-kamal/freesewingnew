@@ -2,6 +2,37 @@
 title: Docusaurus
 ---
 
-:::note
-This page is yet to be created
-:::
+import { DocusaurusDoc } from '@freesewing/react/components/Docusaurus'
+import { ComponentDocs } from '@site/src/components/component-docs.js'
+import {
+  jsdocDocusaurusDoc,
+  jsdocDocusaurusPage,
+  jsdocNavbarItem,
+} from '@site/prebuild/jsdoc/components.docusaurus.mjs'
+import { DocusaurusDocExample, DocusaurusPageExample, NavbarItemExample } from './_examples.js'
+
+<DocusaurusDoc>
+
+- [Components](#components)
+
+## Components
+
+The **Docusaurus** component family provides the following components:
+
+- [DocusaurusDoc](#docusaurusdoc)
+- [DocusaurusPage](#docusauruspage)
+- [NavbarItem](#navbaritem)
+
+### DocusaurusDoc
+
+<ComponentDocs docs={jsdocDocusaurusDoc} example={DocusaurusDocExample} />
+
+### DocusaurusPage
+
+<ComponentDocs docs={jsdocDocusaurusPage} example={DocusaurusPageExample} />
+
+### NavbarItem
+
+<ComponentDocs docs={jsdocNavbarItem} example={NavbarItemExample} />
+
+</DocusaurusDoc>

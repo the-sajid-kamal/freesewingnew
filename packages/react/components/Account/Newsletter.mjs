@@ -1,29 +1,28 @@
 // Dependencies
 import { welcomeSteps } from './shared.mjs'
 import { linkClasses } from '@freesewing/utils'
-
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
-
 // Hooks
 import React, { useState, useContext } from 'react'
 import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
-
 // Components
 import { Link as WebLink } from '@freesewing/react/components/Link'
-import { NoIcon, OkIcon, SaveIcon, RightIcon } from '@freesewing/react/components/Icon'
+import { NoIcon, OkIcon, RightIcon } from '@freesewing/react/components/Icon'
 import { ListInput } from '@freesewing/react/components/Input'
 import { Popout } from '@freesewing/react/components/Popout'
 import { IconButton } from '@freesewing/react/components/Button'
 import { WelcomeIcons } from './shared.mjs'
 
-/*
- * Component for the account/preferences/newsletter page
+/**
+ * A component to manage the user's newsletter subscription in their account data
  *
- * @params {object} props - All React props
- * @params {bool} props.welcome - Set to true to use this component on the welcome page
- * @param {function} props.Link - An optional framework-specific Link component
+ * @component
+ * @params {object} props - All Component props
+ * @param {bool} props.welcome - Set to true to use this component on the welcome page
+ * @param {React.Component} props.Link - An optional framework-specific Link component
+ * @returns {JSX.Element}
  */
 export const Newsletter = ({ welcome = false, Link = false }) => {
   if (!Link) Link = WebLink
@@ -109,7 +108,7 @@ export const Newsletter = ({ welcome = false, Link = false }) => {
         </>
       ) : null}
       {welcome ? null : (
-        <Popout tip>
+        <Popout type="tip">
           <h5>You can unsubscribe at any time with the link below</h5>
           <p>
             This unsubscribe link will also be included at the bottom of every newsletter we send

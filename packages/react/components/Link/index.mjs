@@ -4,10 +4,12 @@ import { linkClasses } from '@freesewing/utils'
 /**
  * An anchor link component
  *
- * @param {object} props - All React props
- * @param {array} props.children - The content to go in the layout
- * @param {array} props.id - The ID of the anchor to link to
- * @param {array} props.title - An optional link title
+ * @component
+ * @param {object} props - All component props
+ * @param {JSX.Element} props.children - The component children, will be rendered inside the link
+ * @param {string} [props.id = ''] - The ID of the anchor to link to
+ * @param {string} [props.title = false] - An optional link title
+ * @returns {JSX.Element}
  */
 export const AnchorLink = ({ children, id = '', title = false }) => (
   <a href={`#${id}`} className={linkClasses} title={title ? title : ''}>
@@ -18,20 +20,23 @@ export const AnchorLink = ({ children, id = '', title = false }) => (
 /**
  * A regular link component
  *
- * @param {object} props - All React props
- * @param {array} props.children - The content to go in the layout
- * @param {array} props.href - The target to link to
- * @param {array} props.title - An optional link title
- * @param {string} props.className - Any non-default CSS classes to apply
- * @param {string} props.style - Any non-default styles to apply
+ * @component
+ * @param {object} props - All component props
+ * @param {JSX.Element} props.children - The component children, will be rendered inside the link
+ * @param {string} [props.className = @freesewing/utils/linkClasses] - Any non-default CSS classes to apply
+ * @param {string} props.href - The URL to link to
+ * @param {object} [props.style = {}] - Any non-default styles to apply
+ * @param {string} [props.target = undefined] - An optional link title
+ * @param {string} [props.title = false] - An optional link title
+ * @returns {JSX.Element}
  */
 export const Link = ({
-  href,
-  title = false,
   children,
   className = linkClasses,
-  target,
+  href,
   style = {},
+  target,
+  title = false,
 }) => (
   <a href={href} target={target} className={className} title={title ? title : ''} style={style}>
     {children}
@@ -41,34 +46,47 @@ export const Link = ({
 const BaseLink = Link
 
 /**
- * A regular link, but on a success background
+ * A regular link, but intended to be used on a success background
  *
- * @param {object} props - All React props
- * @param {array} props.children - The content to go in the layout
- * @param {array} props.href - The target to link to
- * @param {array} props.title - An optional link title
- * @param {string} props.className - Any non-default CSS classes to apply
- * @param {string} props.style - Any non-default styles to apply
+ * @component
+ * @param {object} props - All component props
+ * @param {JSX.Element} props.children - The component children, will be rendered inside the link
+ * @param {string} props.href - The URL to link to
+ * @param {string} [props.title = false] - An optional link title
+ * @param {React.FC} [Link = undefined] - An optional framework-specific Link component
+ * @returns {JSX.Element}
  */
-export const SuccessLink = ({
-  href,
-  title = false,
-  children,
-  className = `${linkClasses} tw:text-success-content tw:hover:text-success-content`,
-  style = {},
-}) => (
-  <a href={href} className={className} title={title ? title : ''} style={style}>
-    {children}
-  </a>
-)
+export const SuccessLink = ({ children, href, title = false, Link }) =>
+  Link ? (
+    <Link href={href} className={linkClasses} title={title ? title : ''}>
+      <span className="tw:text-success-content tw:hover:text-success-content">{children}</span>
+    </Link>
+  ) : (
+    <a href={href} className={linkClasses} title={title ? title : ''}>
+      <span className="tw:text-success-content tw:hover:text-success-content">{children}</span>
+    </a>
+  )
 
+/**
+ * A link styled as a card
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {JSX.Element} props.children - The component children, will be rendered inside the link
+ * @param {string} [props.className = @freesewing/utils/linkClasses + "tw:text-success-content tw:hover:text-success-content"] - Any non-default CSS classes to apply
+ * @param {string} props.href - The URL to link to
+ * @param {string} [props.title = false] - An optional link title
+ * @param {JSX.Element} props.icon - An icon to render
+ * @param {React.FC} [Link = undefined] - An optional framework-specific Link component
+ * @returns {JSX.Element}
+ */
 export const CardLink = ({
+  children,
+  className = 'tw:bg-base-200 tw:text-base-content',
   href,
   title,
   icon,
-  children,
   Link,
-  className = 'tw:bg-base-200 tw:text-base-content',
 }) => {
   if (!Link) Link = BaseLink
 

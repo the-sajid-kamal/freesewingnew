@@ -16,12 +16,14 @@ import { StringInput } from '@freesewing/react/components/Input'
 import { IconButton } from '@freesewing/react/components/Button'
 import { WelcomeIcons } from './shared.mjs'
 
-/*
- * Component for the account/username page
+/**
+ * A component to manage the user's username
  *
- * @params {object} props - All React props
- * @params {bool} props.welcome - Set to true to use this component on the welcome page
- * @params {function} props.Link - A framework specific Link component for client-side routing
+ * @component
+ * @param {object} props - All component props
+ * @param {bool} [props.welcome = false] - Set to true to render the welcome/onboarding view
+ * @param {React.Component} [props.Link  = false] - A framework specific Link component for client-side routing
+ * @returns {JSX.Element}
  */
 export const Username = ({ welcome = false, Link = false }) => {
   if (!Link) Link = WebLink
@@ -54,10 +56,6 @@ export const Username = ({ welcome = false, Link = false }) => {
     welcomeSteps[account.control].length > 5
       ? '/welcome/' + welcomeSteps[account.control][5]
       : '/docs/about/guide'
-
-  let btnClasses = 'daisy-btn mt-4 capitalize '
-  if (welcome) btnClasses += 'w-64 daisy-btn-secondary'
-  else btnClasses += 'w-full daisy-btn-primary'
 
   return (
     <div className="tw:w-full">

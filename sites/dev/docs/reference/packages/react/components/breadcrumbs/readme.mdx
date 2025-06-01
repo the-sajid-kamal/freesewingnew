@@ -2,6 +2,26 @@
 title: Breadcrumbs
 ---
 
-:::note
-This page is yet to be created
-:::
+import { DocusaurusDoc } from '@freesewing/react/components/Docusaurus'
+import { ComponentDocs } from '@site/src/components/component-docs.js'
+import { MiniNote } from '@freesewing/react/components/Mini'
+import { jsdocBreadcrumbs } from '@site/prebuild/jsdoc/components.breadcrumbs.mjs'
+import { BreadcrumbsExample } from './_examples.js'
+
+<DocusaurusDoc>
+
+- [Components](#components)
+
+## Components
+
+The **Breadcrumbs** component family provides the following components:
+
+- [Breadcrumbs ](#breadcrumbs)
+
+### Breadcrumbs
+
+<MiniNote>This component is different from the Docusaurus breadcrumbs</MiniNote>
+<br />
+<ComponentDocs docs={jsdocBreadcrumbs} example={BreadcrumbsExample} />
+
+</DocusaurusDoc>

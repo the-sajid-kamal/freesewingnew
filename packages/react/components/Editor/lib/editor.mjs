@@ -2,7 +2,7 @@
 import React from 'react'
 import { defaultConfig } from '../config/index.mjs'
 import { round, formatMm, randomLoadingMessage } from '@freesewing/utils'
-import { formatDesignOptionValue, menuCoreSettingsStructure } from './index.mjs'
+import { formatDesignOptionValue, menuCoreSettingsStructure, fractionToDecimal } from './index.mjs'
 import { menuUiPreferencesStructure } from './ui-preferences.mjs'
 import { i18n } from '@freesewing/collection'
 import { i18n as pluginI18n } from '@freesewing/core-plugins'
@@ -320,7 +320,7 @@ export function initialEditorState(preload = {}, config) {
   return initial
 }
 
-/**
+/*
  * round a value to the correct number of decimal places to display all supplied digits after multiplication
  * this is a workaround for floating point errors
  * examples:
@@ -721,15 +721,15 @@ export function cloudImageUrl({ id = 'default-avatar', variant = 'public' }) {
   /*
    * Return something default so that people will actually change it
    */
-  if (!id || id === 'default-avatar') return config.cloudImageDflt
+  if (!id || id === 'default-avatar') return defaultConfig.cloudImageDflt
 
   /*
    * If the variant is invalid, set it to the smallest thumbnail so
    * people don't load enourmous images by accident
    */
-  if (!config.cloudImageVariants.includes(variant)) variant = 'sq100'
+  if (!defaultConfig.cloudImageVariants.includes(variant)) variant = 'sq100'
 
-  return `${config.cloudImageUrl}${id}/${variant}`
+  return `${defaultConfig.cloudImageUrl}${id}/${variant}`
 }
 /**
  * This method does nothing. It is used to disable certain methods
@@ -745,25 +745,6 @@ export function noop() {
  */
 export function notEmpty(value) {
   return String(value).length > 0
-}
-/**
- * Helper method to merge arrays of translation namespaces
- *
- * Note that this method is variadic
- *
- * @param {[string]} namespaces - A string or array of strings of namespaces
- * @return {[string]} namespaces - A merged array of all namespaces
- */
-export function nsMerge(...args) {
-  const ns = new Set()
-  for (const arg of args) {
-    if (typeof arg === 'string') ns.add(arg)
-    else if (Array.isArray(arg)) {
-      for (const el of nsMerge(...arg)) ns.add(el)
-    }
-  }
-
-  return [...ns]
 }
 
 /*

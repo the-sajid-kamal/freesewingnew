@@ -9,6 +9,7 @@ import {
   ChatIcon,
   DesignIcon,
   DocsIcon,
+  HelpIcon,
   ShowcaseIcon,
   RssIcon,
   LockIcon,
@@ -16,16 +17,25 @@ import {
 } from '@freesewing/react/components/Icon'
 import { Layout as DefaultLayout } from '@freesewing/react/components/Layout'
 
-/*
- * This component should be the top level of a Docusaurus page
+/**
+ * This component should be the top level of a Docusaurus page where you want access to context.
  *
  * This sets up the various context providers before
  * passing all props down to the InnerPageWrapper.
  * This is required because the context providers need to
- * be setup for the modal and loading state work we do in the InnerPageWrapper
- *
+ * be set up for the modal and loading state work.
  * We also re-use the Docusaurus Layout component here, which needs to be at
- * the top level of the page
+ * the top level of the page.
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {React.Component} props.DocusaurusLayout - The docusaurus layout to apply
+ * @param {React.Component} props.Layout - The layout to apply inside docusaurus
+ * @param {JSX.Element} props.children - The component children
+ * @param {array} props.crumbs - The page breadcrumbs
+ * @param {string} props.description - The page description
+ * @param {string} props.title - The page title
+ * @returns {JSX.Element}
  */
 export const DocusaurusPage = (props) => {
   const DocusaurusLayout = props.DocusaurusLayout
@@ -42,14 +52,23 @@ export const DocusaurusPage = (props) => {
   )
 }
 
-/*
+/**
  * This component should be the top level of any Docusaurus content that's not
- * a full page where you want access to context (typically account pages and so on)
+ * a full page where you want access to context (typically account pages and so on).
  *
  * This sets up the various context providers before
  * passing all props down to the InnerPageWrapper.
  * This is required because the context providers need to
  * be setup for the modal and loading state work we do in the InnerPageWrapper
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {React.Component} props.Layout - The layout to apply inside docusaurus
+ * @param {JSX.Element} props.children - The component children
+ * @param {array} props.crumbs - The page breadcrumbs
+ * @param {string} props.description - The page description
+ * @param {string} props.title - The page title
+ * @returns {JSX.Element}
  */
 export const DocusaurusDoc = (props) => (
   <ModalContextProvider>
@@ -94,6 +113,19 @@ const InnerDocusaurusPage = ({
   )
 }
 
+/**
+ * A component to render (some) custom navbar items in Docusaurus
+ *
+ * This can be used to swizzle the default NavbarItem in Docusaurus.
+ * You should pass it in the default NavbarItem and it will use that
+ * for all but the following: account, designs, docs, blog, showcase, forum
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.id - The navbar item ID
+ * @param {React.Component} props.Default - The default NavbarItem component to use
+ * @returns {JSX.Element}
+ */
 export const NavbarItem = (props) => {
   const { id, Default } = props
 
@@ -152,5 +184,8 @@ const navbarItems = {
       Icon={ChatIcon}
       Link={props.Link}
     />
+  ),
+  support: (props) => (
+    <SimpleNavbarItem label="Support" href="/support/" Icon={HelpIcon} Link={props.Link} />
   ),
 }

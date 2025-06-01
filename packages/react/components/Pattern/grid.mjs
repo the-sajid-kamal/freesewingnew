@@ -1,7 +1,14 @@
-//  __SDEFILE__ - This file is a dependency for the stand-alone environment
-// eslint-disable-next-line no-unused-vars
 import React from 'react'
 
+/**
+ * A component to render the grid for a paperless FreeSewing pattern' stack
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {Stack} props.stack - The FreeSewing Stack object for the pattern
+ * @param {string} props.stackName - The name of the FreeSewing Stack
+ * @returns {JSX.Element}
+ */
 export const Grid = ({ stack, stackName }) => (
   <rect
     x={stack.topLeft.x}

@@ -1,16 +1,12 @@
 // Dependencies
 import orderBy from 'lodash/orderBy.js'
 import { capitalize, shortDate } from '@freesewing/utils'
-
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
-
 // Hooks
 import React, { useState, useEffect, useContext } from 'react'
-import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
 import { useSelection } from '@freesewing/react/hooks/useSelection'
-
 // Components
 import { TableWrapper } from '@freesewing/react/components/Table'
 import { PatternCard } from '@freesewing/react/components/Account'
@@ -23,16 +19,13 @@ import {
   TrashIcon,
 } from '@freesewing/react/components/Icon'
 
-const t = (input) => {
-  console.log('t called', input)
-  return input
-}
-
-/*
- * Component for the account/patterns page
+/**
+ * A component to display and manage the list of patterns in the user's account
  *
- * @params {object} props - All React props
- * @params {function} Link - A framework specific Link component for client-side routing
+ * @component
+ * @param {object} props - All component props
+ * @param {React.Component} props.Link - A framework specific Link component for client-side routing
+ * @returns {JSX.Element}
  */
 export const Patterns = ({ Link = false }) => {
   if (!Link) Link = WebLink
@@ -95,14 +88,16 @@ export const Patterns = ({ Link = false }) => {
           onClick={removeSelectedPatterns}
           disabled={count < 1}
         >
-          <TrashIcon /> {count} {t('patterns')}
+          <TrashIcon /> {count} Patterns
         </button>
         <Link
           className="tw:daisy-btn tw:daisy-btn-primary tw:capitalize tw:w-full tw:md:w-auto tw:hover:text-primary-content"
           href="/editor/"
         >
-          <PlusIcon />
-          Create a new pattern
+          <span className="tw:text-primary-content">
+            <PlusIcon />
+          </span>
+          <span className="tw:text-primary-content">Create a new pattern</span>
         </Link>
       </div>
       <TableWrapper>

@@ -1,12 +1,16 @@
 import React from 'react'
 
-/*
- * The actual Breadcrumbs component
+/**
+ * A component to render breadcrumbs
  *
- * @param {object} props - All the React props
- * @param {array} props.crumbs - The crumbs, an array with objects with href, label keys
- * @param {function} Link - An optional custom component to use to render the Link
- * @param {text} title - The title of the current page
+ * This is a pure render component, you need to pass in the data.
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {React.Component} props.Link - A framework specific Link component for client-side routing
+ * @param {array} [props.crumbs = []] - The crumbs, an array with objects with href & label properties
+ * @param {text} title - The title of the current (final) page the breadcrumbs lead to
+ * @returns {JSX.Element}
  */
 export const Breadcrumbs = ({ crumbs = [], title, Link = false }) => {
   if (Link === false) Link = RegularLink
@@ -18,13 +22,20 @@ export const Breadcrumbs = ({ crumbs = [], title, Link = false }) => {
         style={{ paddingLeft: 0 }}
       >
         <li className="tw:inline">
-          <Link href="/">Home</Link>
+          <Link href="/">
+            <b>Home</b>
+          </Link>
         </li>
         <Spacer />
         {crumbs.map((crumb, i) => (
-          <li key={i} className="tw:inline">
-            <Link href={crumb.href}>{crumb.label}</Link>
-          </li>
+          <React.Fragment key={i}>
+            <li key={i} className="tw:inline">
+              <Link href={crumb.href}>{crumb.label}</Link>
+            </li>
+            <li key={i} className="tw:inline">
+              <Spacer />
+            </li>
+          </React.Fragment>
         ))}
         <li className="tw:inline">{title}</li>
       </ul>

@@ -18,7 +18,7 @@ export default function WelcomeComparePage() {
           </small>
         </p>
         <DocusaurusDoc>
-          <RoleBlock user>
+          <RoleBlock role="user">
             <Compare welcome />
           </RoleBlock>
         </DocusaurusDoc>

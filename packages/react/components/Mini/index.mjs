@@ -1,6 +1,14 @@
 import React from 'react'
 import { TipIcon, ChatIcon, WarningIcon } from '@freesewing/react/components/Icon'
 
+/**
+ * A component to display a mini tip
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {JSX.Element} props.children - The component children, will be rendered inside the mini tip
+ * @returns {JSX.Element}
+ */
 export const MiniTip = ({ children }) => (
   <div className="tw:flex tw:flex-row tw:border tw:border-success tw:rounded">
     <div className="tw:bg-success tw:text-success-content tw:p-1 tw:rounded-l tw:flex tw:flex-row tw:items-center">
@@ -12,6 +20,14 @@ export const MiniTip = ({ children }) => (
   </div>
 )
 
+/**
+ * A component to display a mini note
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {JSX.Element} props.children - The component children, will be rendered inside the mini note
+ * @returns {JSX.Element}
+ */
 export const MiniNote = ({ children }) => (
   <div className="tw:flex tw:flex-row tw:border tw:border-info tw:rounded">
     <div className="tw:bg-info tw:text-info-content tw:p-1 tw:rounded-l tw:flex tw:flex-row tw:items-center">
@@ -23,6 +39,14 @@ export const MiniNote = ({ children }) => (
   </div>
 )
 
+/**
+ * A component to display a mini warning
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {JSX.Element} props.children - The component children, will be rendered inside the mini warning
+ * @returns {JSX.Element}
+ */
 export const MiniWarning = ({ children }) => (
   <div className="tw:flex tw:flex-row tw:border tw:border-warning tw:rounded">
     <div className="tw:bg-warning tw:text-warning-content tw:p-1 tw:rounded-l tw:flex tw:flex-row tw:items-center">

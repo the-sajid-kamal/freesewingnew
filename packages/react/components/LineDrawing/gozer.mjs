@@ -10,9 +10,11 @@ const strokeScale = 1.3
 /**
  * A linedrawing component for Gozer
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Gozer = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 0 186 178" {...{ className }}>
@@ -24,9 +26,11 @@ export const Gozer = ({ className, stroke = 1 }) => (
 /**
  * A linedrawing component for the front of Gozer
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const GozerFront = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="-40 0 178 178" {...{ className, stroke }}>
@@ -34,8 +38,14 @@ export const GozerFront = ({ className, stroke = 1 }) => (
   </LineDrawingWrapper>
 )
 
-/*
- * React component for the back
+/**
+ * A linedrawing component for the back of Gozer
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.className - Any CSS classes to apply
+ * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const GozerBack = ({
   className = 'w-64', // CSS classes to apply
@@ -54,7 +64,7 @@ export const GozerBack = ({
 /*
  * SVG elements for the front
  */
-export const Front = ({ stroke }) => (
+const Front = ({ stroke }) => (
   <>
     <path
       key="folds"

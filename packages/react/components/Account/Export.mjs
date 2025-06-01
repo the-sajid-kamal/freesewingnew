@@ -1,19 +1,19 @@
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
-
 // Hooks
 import React, { useState, useContext } from 'react'
-import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
-
 // Components
 import { Link as WebLink } from '@freesewing/react/components/Link'
 import { DownloadIcon } from '@freesewing/react/components/Icon'
 import { Popout } from '@freesewing/react/components/Popout'
 import { IconButton } from '@freesewing/react/components/Button'
 
-/*
- * Component for the account/actions/export page
+/**
+ * A component to manage the user's export account data action
+ *
+ * @component
+ * @returns {JSX.Element}
  */
 export const Export = () => {
   // Hooks
@@ -36,7 +36,7 @@ export const Export = () => {
   return (
     <div className="tw:max-w-xl">
       {link ? (
-        <Popout link>
+        <Popout type="link">
           <h5>Your data was exported and is available for download at the following location:</h5>
           <p className="tw:text-lg">
             <WebLink href={link}>{link}</WebLink>

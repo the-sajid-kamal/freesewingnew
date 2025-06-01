@@ -1,24 +1,21 @@
+// Dependencies
+import yaml from 'js-yaml'
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
-
 // Hooks
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
-
 // Components
-import { Link as WebLink } from '@freesewing/react/components/Link'
-import { SaveIcon } from '@freesewing/react/components/Icon'
 import { FileInput } from '@freesewing/react/components/Input'
 import { Popout } from '@freesewing/react/components/Popout'
 import { Yaml } from '@freesewing/react/components/Yaml'
 
-/*
- * Component for the account/bio page
+/**
+ * A component to manage the importing of a measurements set into a user's account data
  *
- * @params {object} props - All React props
- * @params {bool} props.welcome - Set to true to use this component on the welcome page
- * @params {function} props.Link - A framework specific Link component for client-side routing
+ * @component
+ * @returns {JSX.Element}
  */
 export const ImportSet = () => {
   // Hooks
@@ -42,7 +39,7 @@ export const ImportSet = () => {
         if (set.measurements || set.measies) {
           const name = set.name || 'J. Doe'
           setLoadingStatus([true, `Importing ${name}`])
-          const [status, body] = await backend.createSet({
+          const [status] = await backend.createSet({
             name: set.name || 'J. Doe',
             units: set.units || 'metric',
             notes: set.notes || '',
@@ -77,7 +74,7 @@ export const ImportSet = () => {
           multiple: false,
         }}
       />
-      <Popout tip>
+      <Popout type="tip">
         <p>
           To import a measurement set, you should have a JSON or YAML file that has the following
           structure:

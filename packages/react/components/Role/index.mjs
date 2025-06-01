@@ -9,7 +9,7 @@ import { Link as DefaultLink } from '@freesewing/react/components/Link'
 import { LockIcon, PlusIcon } from '@freesewing/react/components/Icon'
 import { Spinner } from '@freesewing/react/components/Spinner'
 import { Popout } from '@freesewing/react/components/Popout'
-import { H1, H2, H3 } from '@freesewing/react/components/Heading'
+import { H3 } from '@freesewing/react/components/Heading'
 import { Consent } from '@freesewing/react/components/Account'
 
 const Wrap = ({ children }) => (
@@ -104,7 +104,7 @@ const AccountStatusUnknown = ({ banner }) => (
   </Wrap>
 )
 
-const RoleLacking = ({ t, requiredRole, role, banner }) => (
+const RoleLacking = ({ requiredRole, role, banner }) => (
   <Wrap>
     {banner}
     <H3>You lack the required role to access this content</H3>
@@ -142,7 +142,7 @@ const ConsentLacking = ({ banner, refresh }) => {
     <Wrap>
       <div className="tw:text-left">
         {banner}
-        <Popout warning>
+        <Popout type="warning">
           <h2>Your account lacks consent</h2>
           <p>
             This should have been taken care of when onboarding your account, but due to a earlier
@@ -161,10 +161,22 @@ const ConsentLacking = ({ banner, refresh }) => {
   )
 }
 
-export const RoleBlock = ({ children, user = false, Link = false }) => {
+/**
+ * A component to block access based on a FreeSewing role.
+ *
+ * Note that in an SPA, blocking access to the user is merely a matter of providing a
+ * more intuitive UI. That actual access control is implemented on the backend.
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {React.FC} [props.Link = false] - An optional framework-specific Link component
+ * @param {string} [props.role = admin] - The role required to access the content. Typically admin or user.
+ * @param {JSX.Element} props.children - The component children, will be rendered if props.js is not set
+ * @returns {JSX.Element}
+ */
+export const RoleBlock = ({ children, role = 'admin', Link = false }) => {
   if (!Link) Link = DefaultLink
-  let requiredRole = 'admin'
-  if (user) requiredRole = user
+  const requiredRole = role
 
   const { account, setAccount, token, admin, stopImpersonating, signOut } = useAccount()
   const backend = useBackend()
@@ -198,7 +210,6 @@ export const RoleBlock = ({ children, user = false, Link = false }) => {
           })
         } else if (status === 451) setError('consentLacking')
         else {
-          console.log({ status, data })
           if (data?.error?.error) setError(data.error.error)
           else signOut()
         }
@@ -246,13 +257,24 @@ export const RoleBlock = ({ children, user = false, Link = false }) => {
   return children
 }
 
+/**
+ * A component to display different content to users or visitors.
+ *
+ * This is a convenience component to not have to check
+ * for a user account is many different places.
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {JSX.Element} userContent - The content to show to users
+ * @param {JSX.Element} visitorContent - The content to show to visitors (not-logged in)
+ * @returns {JSX.Element}
+ */
 export const UserVisitorContent = ({ userContent = null, visitorContent = null }) => {
   const { account, setAccount, token } = useAccount()
   const backend = useBackend()
 
   const [ready, setReady] = useState(false)
   const [error, setError] = useState(false)
-  const [refreshCount, setRefreshCount] = useState(0)
 
   /*
    * Avoid hydration errors
@@ -277,14 +299,15 @@ export const UserVisitorContent = ({ userContent = null, visitorContent = null }
       if (!account.bestBefore || account.bestBefore < Date.now()) verifyUser()
     }
     setReady(true)
-  }, [refreshCount])
-
-  const refresh = () => {
-    setRefreshCount(refreshCount + 1)
-    setError(false)
-  }
+  }, [])
 
   if (!ready) return <Spinner />
+  if (error)
+    return (
+      <Popout type="error" title="Something went wrong" compact>
+        This is unexpected. You may want to report this.
+      </Popout>
+    )
 
   return token && account.username ? userContent : visitorContent
 }

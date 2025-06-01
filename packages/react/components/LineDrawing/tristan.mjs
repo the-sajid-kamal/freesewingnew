@@ -10,9 +10,11 @@ const strokeScale = 0.5
 /**
  * A linedrawing component for Tristan
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Tristan = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 0 152 102" {...{ className }}>
@@ -24,9 +26,11 @@ export const Tristan = ({ className, stroke = 1 }) => (
 /**
  * A linedrawing component for the front of Tristan
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const TristanFront = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="-15 0 102 102" {...{ className }}>
@@ -34,8 +38,14 @@ export const TristanFront = ({ className, stroke = 1 }) => (
   </LineDrawingWrapper>
 )
 
-/*
- * React component for the back
+/**
+ * A linedrawing component for the back of Tristan
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.className - Any CSS classes to apply
+ * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const TristanBack = ({
   className = 'w-64', // CSS classes to apply
@@ -54,7 +64,7 @@ export const TristanBack = ({
 /*
  * SVG elements for the front
  */
-export const Front = ({ stroke }) => (
+const Front = ({ stroke }) => (
   <>
     <path
       key="folds"

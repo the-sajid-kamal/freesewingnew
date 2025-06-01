@@ -150,7 +150,7 @@ FlowModel.prototype.uploadImage = async function ({ body, user }, anon = false) 
    * Is type set and valid?
    */
   if (!body.type) return this.setResponse(400, 'typeMissing')
-  if (!['blog', 'showcase', 'support'].includes(body.type))
+  if (!['blog', 'showcase'].includes(body.type))
     return this.setResponse(400, 'typeInvalid')
 
   /*

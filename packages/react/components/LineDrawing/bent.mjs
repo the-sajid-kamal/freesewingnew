@@ -10,12 +10,14 @@ const strokeScale = 0.7
 /**
  * A linedrawing component for Bent
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Bent = ({ className, stroke = 1 }) => (
-  <LineDrawingWrapper viewBox="0 -70 210 210" {...{ stroke }}>
+  <LineDrawingWrapper viewBox="0 -70 210 210" {...{ className, stroke }}>
     <Front stroke={strokeScale * stroke} />
     <Back stroke={strokeScale * stroke} />
   </LineDrawingWrapper>
@@ -24,9 +26,11 @@ export const Bent = ({ className, stroke = 1 }) => (
 /**
  * A linedrawing component for the front of Bent
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const BentFront = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 -1 103 103" {...{ className, stroke }}>
@@ -34,8 +38,14 @@ export const BentFront = ({ className, stroke = 1 }) => (
   </LineDrawingWrapper>
 )
 
-/*
- * React component for the back
+/**
+ * A linedrawing component for the back of Bent
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.className - Any CSS classes to apply
+ * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const BentBack = ({
   className = 'tw:w-full', // CSS classes to apply
@@ -54,7 +64,7 @@ export const BentBack = ({
 /*
  * SVG elements for the front
  */
-export const Front = ({ stroke }) => (
+const Front = ({ stroke }) => (
   <>
     <path
       key="stitches"

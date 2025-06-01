@@ -1,25 +1,27 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { shortUuid } from '@freesewing/utils'
-import { Link } from '@freesewing/react/components/Link'
-import { CopyToClipboardButton } from '@freesewing/react/components/CopyToClipboardButton'
+import { Link as WebLink } from '@freesewing/react/components/Link'
+import { CopyToClipboardButton } from '@freesewing/react/components/Button'
 
-/*
- * Displays a UUID, but shorter
+/**
+ * A component to display a short version of a (v4) UUID
  *
- * @param {object} props - All React props
- * @param {string} uuid - The UUID
- * @param {string} href - An optional href to make this UUID a link
- * @param {string} label - An optional label to show in the loading status
+ * @component
+ * @param {object} props - All component props
+ * @param {React.FC} [props.Link = false] - An optional framework-specific Link component
+ * @param {string} props.uuid - The UUID
+ * @param {string} [props.href = false] - An optional href to make this into a link
+ * @param {string} [props.label = false] - An optional label to pass to the CopyToClipboardButton
+ * @returns {JSX.Element}
  */
-export const Uuid = ({ uuid, href = false, label = false }) => {
-  const [full, setFull] = useState()
-  const short = shortUuid(uuid)
+export const Uuid = ({ uuid, href = false, label = 'UUID', Link = false }) => {
+  if (!Link) Link = WebLink
 
   if (href === false)
     return (
       <span className="flex flex-row items-center">
         <span className="daisy-badge daisy-badge-secondary font-mono">{shortUuid(uuid)}</span>
-        <CopyToClipboard content={uuid} label="UUID" sup />
+        <CopyToClipboardButton content={uuid} label={label} sup />
       </span>
     )
 
@@ -28,7 +30,7 @@ export const Uuid = ({ uuid, href = false, label = false }) => {
       <Link href={href} title={uuid}>
         <span className="daisy-badge daisy-badge-secondary font-mono">{shortUuid(uuid)}</span>
       </Link>
-      <CopyToClipboard content={uuid} label="UUID" sup label />
+      <CopyToClipboardButton content={uuid} label={label} sup />
     </span>
   )
 }

@@ -19,7 +19,7 @@ export const UiPreferencesMenu = ({ update, state, Design }) => {
   }
   const values = {
     aside: MenuListValue,
-    ux: (props) => <span>{state.ui.ux}/5</span>,
+    ux: () => <span>{state.ui.ux}/5</span>,
     rotate: MenuListValue,
     renderer: MenuListValue,
   }
@@ -53,5 +53,11 @@ export const UiPreferencesMenu = ({ update, state, Design }) => {
 }
 
 export const UiPreference = ({ name, ux, ...rest }) => (
-  <MenuItem {...rest} name={name} allowToggle={!['ux', 'view'].includes(name) && ux > 3} ux={ux} />
+  <MenuItem
+    type="uiPreference"
+    {...rest}
+    name={name}
+    allowToggle={!['ux', 'view'].includes(name) && ux > 3}
+    ux={ux}
+  />
 )

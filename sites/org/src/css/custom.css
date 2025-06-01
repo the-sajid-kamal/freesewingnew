@@ -226,3 +226,13 @@ nav.navbar {
     justify-content: start;
   }
 }
+
+/*
+ * Styles for embedding docs in iframes
+ */
+html[data-fs-embed='true'] .navbar,
+html[data-fs-embed='true'] nav,
+html[data-fs-embed='true'] aside,
+html[data-fs-embed='true'] footer {
+  display: none;
+}

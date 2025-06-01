@@ -68,9 +68,11 @@ async function withoutBody(method = 'GET', url, headers = {}, raw = false, log =
   try {
     body = raw ? await response.text() : await response.json()
   } catch (err) {
+    console.log(err)
     try {
       body = await response.text()
     } catch (err) {
+      console.log(err)
       body = false
     }
   }
@@ -125,9 +127,11 @@ async function withBody(method = 'POST', url, data, headers, raw = false, log = 
   try {
     body = raw ? await response.text() : await response.json()
   } catch (err) {
+    console.log(err)
     try {
       body = await response.text()
     } catch (err) {
+      console.log(err)
       body = false
     }
   }

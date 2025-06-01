@@ -2,17 +2,6 @@ import React from 'react'
 import { mergeOptions } from '@freesewing/core'
 import { designOptionType, set, orderBy } from '@freesewing/utils'
 import { i18n } from '@freesewing/collection'
-import { linkClasses } from '@freesewing/utils'
-
-const DesignDocsLink = ({ design, item }) => (
-  <a
-    href={`/docs/designs/${design}/options/#${item.toLowerCase()}`}
-    className={`${linkClasses} tw:px-2`}
-    target="_BLANK"
-  >
-    Learn more
-  </a>
-)
 
 export function menuDesignOptionsStructure(design, options, settings, asFullList = false) {
   if (!options) return options
@@ -23,12 +12,7 @@ export function menuDesignOptionsStructure(design, options, settings, asFullList
         ...option,
         name,
         title: i18n[design]?.en?.o?.[name]?.t || name,
-        about: (
-          <span>
-            {i18n[design]?.en?.o?.[name]?.d || name}
-            <DesignDocsLink item={name} design={design} />
-          </span>
-        ),
+        about: <span>{i18n[design]?.en?.o?.[name]?.d || name}</span>,
         dense: true,
         sideBySide: true,
       }
@@ -62,14 +46,14 @@ export function menuDesignOptionsStructure(design, options, settings, asFullList
         option.valueTitles = {}
         option.choiceTitles = {}
         option.choiceDescriptions = {}
-        for (const entry of option.list) {
+        option.list.forEach(() => {
           option.choiceTitles.false = eno[`${option.name}No`]?.t || option.name
           option.choiceDescriptions.false = eno[`${option.name}No`]?.d || 'No'
           option.valueTitles.false = 'No'
           option.choiceTitles.true = eno[`${option.name}Yes`]?.t || 'Yes'
           option.choiceDescriptions.true = eno[`${option.name}Yes`]?.d || 'No'
           option.valueTitles.true = 'Yes'
-        }
+        })
       }
       if (typeof option.menu === 'function')
         option.menu = asFullList

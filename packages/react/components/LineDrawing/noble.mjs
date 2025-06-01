@@ -10,9 +10,11 @@ const strokeScale = 0.4
 /**
  * A linedrawing component for Noble
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Noble = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 0 152 83" {...{ className, stroke }}>
@@ -24,9 +26,11 @@ export const Noble = ({ className, stroke = 1 }) => (
 /**
  * A linedrawing component for the front of Noble
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const NobleFront = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="-5 0 83 83" {...{ className, stroke }}>
@@ -34,8 +38,14 @@ export const NobleFront = ({ className, stroke = 1 }) => (
   </LineDrawingWrapper>
 )
 
-/*
- * React component for the back
+/**
+ * A linedrawing component for the back of Noble
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.className - Any CSS classes to apply
+ * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const NobleBack = ({
   className = 'w-64', // CSS classes to apply
@@ -54,7 +64,7 @@ export const NobleBack = ({
 /*
  * SVG elements for the front
  */
-export const Front = ({ stroke }) => (
+const Front = ({ stroke }) => (
   <>
     <path
       key="stitches"

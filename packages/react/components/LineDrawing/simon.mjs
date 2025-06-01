@@ -10,9 +10,11 @@ const strokeScale = 0.15
 /**
  * A linedrawing component for Simon
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Simon = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 0 157 121" {...{ className, stroke }}>
@@ -24,9 +26,11 @@ export const Simon = ({ className, stroke = 1 }) => (
 /**
  * A linedrawing component for the front of Simon
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const SimonFront = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="-20 0 122 122" {...{ className, stroke }}>
@@ -34,8 +38,14 @@ export const SimonFront = ({ className, stroke = 1 }) => (
   </LineDrawingWrapper>
 )
 
-/*
- * React component for the back
+/**
+ * A linedrawing component for the back of Simon
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.className - Any CSS classes to apply
+ * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const SimonBack = ({
   className = 'w-64', // CSS classes to apply

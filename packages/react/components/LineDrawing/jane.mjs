@@ -1,5 +1,5 @@
 import React from 'react'
-import { LineDrawingWrapper, thin, dashed } from './shared.mjs'
+import { LineDrawingWrapper } from './shared.mjs'
 
 /*
  * This strokeScale factor is used to normalize the stroke across
@@ -8,11 +8,13 @@ import { LineDrawingWrapper, thin, dashed } from './shared.mjs'
 const strokeScale = 0.5
 
 /**
- * A linedrawing component for Aaron
+ * A linedrawing component for Jane
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Jane = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 0 1052.0441 2409.9082" {...{ stroke, className }}>
@@ -22,11 +24,13 @@ export const Jane = ({ className, stroke = 1 }) => (
 )
 
 /**
- * A linedrawing component for the front of Aaron
+ * A linedrawing component for the front of Jane
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const JaneFront = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 0 1052.0441 1204.9541" {...{ className }}>
@@ -35,11 +39,13 @@ export const JaneFront = ({ className, stroke = 1 }) => (
 )
 
 /**
- * A linedrawing component for the front of Aaron
+ * A linedrawing component for the back of Jane
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const JaneBack = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 0 1052.0441 1204.9541" {...{ className }}>
@@ -50,7 +56,7 @@ export const JaneBack = ({ className, stroke = 1 }) => (
 /*
  * SVG elements for the front
  */
-export const Front = ({ stroke }) => (
+const Front = () => (
   <>
     <path
       key="outline"
@@ -63,7 +69,7 @@ export const Front = ({ stroke }) => (
 /*
  * SVG elements for the back
  */
-const Back = ({ stroke }) => (
+const Back = () => (
   <>
     <path
       key="outline"

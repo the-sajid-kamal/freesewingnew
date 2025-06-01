@@ -1,27 +1,24 @@
 // Dependencies
 import { welcomeSteps } from './shared.mjs'
-
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
-
 // Hooks
 import React, { useState, useContext } from 'react'
 import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
-
 // Components
-import { Link as WebLink } from '@freesewing/react/components/Link'
-import { SaveIcon, RightIcon } from '@freesewing/react/components/Icon'
+import { RightIcon } from '@freesewing/react/components/Icon'
 import { ListInput } from '@freesewing/react/components/Input'
 import { NumberCircle } from '@freesewing/react/components/Number'
 import { IconButton } from '@freesewing/react/components/Button'
 import { WelcomeIcons } from './shared.mjs'
 
-/*
- * Component for the account/preferences/units page
+/**
+ * A component to manage the user's units
  *
- * @params {object} props - All React props
- * @params {bool} props.welcome - Set to true to use this component on the welcome page
+ * @component
+ * @param {bool} [props.welcome = false] - Set to true to render the welcome/onboarding view
+ * @returns {JSX.Element}
  */
 export const Units = ({ welcome = false }) => {
   // Hooks

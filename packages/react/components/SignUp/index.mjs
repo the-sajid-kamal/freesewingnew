@@ -3,7 +3,6 @@ import { validateEmail, validateTld, getSearchParam } from '@freesewing/utils'
 
 // Hooks
 import React, { useState, useContext, useEffect } from 'react'
-import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
 
 // Context
@@ -12,28 +11,27 @@ import { ModalContext } from '@freesewing/react/context/Modal'
 
 // Components
 import { Link } from '@freesewing/react/components/Link'
-import {
-  LeftIcon,
-  RightIcon,
-  HelpIcon,
-  GoogleIcon,
-  GitHubIcon,
-  KeyIcon,
-  EmailIcon,
-  DownIcon,
-} from '@freesewing/react/components/Icon'
+import { LeftIcon, HelpIcon, KeyIcon, EmailIcon } from '@freesewing/react/components/Icon'
 import { ModalWrapper } from '@freesewing/react/components/Modal'
 import { EmailInput } from '@freesewing/react/components/Input'
 import { IconButton } from '@freesewing/react/components/Button'
 import { Spinner } from '@freesewing/react/components/Spinner'
 import { Consent } from '@freesewing/react/components/Account'
+import { Popout } from '@freesewing/react/components/Popout'
 
+/**
+ * The SignUp component holds the entire sign-up form
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {boolean} [props.embed = false] - Set this tot rue to use a H2 level heading instead of H1 so the form can be embedded in an existing page
+ * @returns {JSX.Element}
+ */
 export const SignUp = ({ embed = false }) => {
   // State
   const [email, setEmail] = useState('')
   const [emailValid, setEmailValid] = useState(false)
   const [result, setResult] = useState(false)
-  const [showAll, setShowAll] = useState(false)
 
   // Hooks
   const backend = useBackend()
@@ -84,14 +82,6 @@ export const SignUp = ({ embed = false }) => {
     }
   }
 
-  const initOauth = async (provider) => {
-    setLoadingStatus([true, 'Contacting the backend'])
-    const [status, body] = await backend.oauthInit(provider.toLowerCase())
-    if (status === 200 && body.result === 'success') {
-      setLoadingStatus([true, `Contacting ${provider}`])
-      window.location.href = body.authUrl
-    }
-  }
   const Heading = embed
     ? ({ children }) => <h2 className="tw:text-inherit">{children}</h2>
     : ({ children }) => <h1 className="tw:text-inherit">{children}</h1>
@@ -186,19 +176,35 @@ export const SignUp = ({ embed = false }) => {
   )
 }
 
-export const SignUpConfirmation = ({ onSuccess = false }) => {
+/**
+ * A component to handle the confirmation URL for a passwordless signup link (aka magic link).
+ *
+ * @component
+ * @param {object} props - All component props
+ * @returns {JSX.Element}
+ */
+export const SignUpConfirmation = () => {
   // State
   const [id, setId] = useState()
+  const [error, setError] = useState(false)
   const [check, setCheck] = useState()
 
   // Effects
   useEffect(() => {
     const newId = getSearchParam('id')
+    if (!newId) setError('noId')
     const newCheck = getSearchParam('check')
     if (newId !== id) setId(newId)
     if (newCheck !== check) setCheck(newCheck)
   }, [id, check])
 
+  // Short-circuit errors
+  if (error === 'noId')
+    return (
+      <Popout type="error" title="Invalid Sign Up URL">
+        You seem to have arrived on this page in a way that is not supported
+      </Popout>
+    )
   // If we do not (yet) have the data, show a loader
   if (!id || !check)
     return (

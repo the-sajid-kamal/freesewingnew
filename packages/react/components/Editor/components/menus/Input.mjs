@@ -16,12 +16,7 @@ import { mergeOptions } from '@freesewing/core'
 import { KeyVal } from '@freesewing/react/components/KeyVal'
 
 /** A boolean version of {@see MenuListInput} that sets up the necessary configuration */
-export const MenuBoolInput = (props) => {
-  const { name, config } = props
-  //const boolConfig = useBoolConfig(name, config)
-
-  return <MenuListInput {...props} />
-}
+export const MenuBoolInput = (props) => <MenuListInput {...props} />
 
 /** A placeholder for an input to handle constant values */
 export const MenuConstantInput = ({
@@ -59,41 +54,6 @@ export const MenuDegInput = (props) => {
   )
 }
 
-const getTitleAndDesc = (config = {}, i18n = {}, isDesignOption = false) => {
-  if (config.choiceTitles && config.choiceDescriptions) {
-    const current = typeof config.current === 'undefined' ? config.dflt : config.current
-    return {
-      title: config.choiceTitles[current],
-      desc: config.choiceDescriptions[current],
-    }
-  }
-
-  let titleKey = config.choiceTitles
-    ? 'fixme' //config.choiceTitles[entry]
-    : isDesignOption
-      ? i18n?.en?.o?.[name] || name
-      : `${name}.o.${entry}`
-  if (!config.choiceTitles && i18n && i18n.en.o[`${name}.${entry}`])
-    titleKey = i18n.en.o[`${name}.${entry}`]
-  const title = config.title
-    ? config.title
-    : config.titleMethod
-      ? config.titleMethod(entry)
-      : typeof titleKey === 'string'
-        ? i18n.en.o[titleKey]?.t
-        : titleKey.t
-  const desc = config.valueMethod
-    ? config.valueMethod(entry)
-    : typeof titleKey === 'string'
-      ? i18n.en.o[titleKey]?.d
-      : titleKey.d
-
-  return {
-    title: 'fixmeTitle',
-    desc: 'fixmeDesc',
-  }
-}
-
 /**
  * An input for selecting and item from a list
  * @param  {String}  options.name       the name of the property this input changes
@@ -111,11 +71,9 @@ export const MenuListInput = ({
   current,
   updateHandler,
   compact = false,
-  t,
   changed,
   design,
   isDesignOption = false,
-  i18n,
 }) => {
   const handleChange = useSharedHandlers({
     dflt: config.dflt,
@@ -125,7 +83,7 @@ export const MenuListInput = ({
   })
 
   return config.list.map((entry) => {
-    const { title = false, about = false } = config //getTitleAndDesc(config, i18n, isDesignOption)
+    const { title = false, about = false } = config
     if (!title || !about) console.log('No title or about in', { name, config, design })
     const sideBySide = config.sideBySide || about.length + title.length < 42
 
@@ -286,7 +244,6 @@ export const MenuSliderInput = ({
   setReset,
   children,
   changed,
-  i18n,
   state,
   Design,
 }) => {

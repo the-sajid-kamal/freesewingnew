@@ -6,19 +6,23 @@ import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
 import { ModalContext } from '@freesewing/react/context/Modal'
 
 // Hooks
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
 
 // Components
 import { Link as WebLink } from '@freesewing/react/components/Link'
 import { BackIcon, NoIcon } from '@freesewing/react/components/Icon'
-import { Popout } from '@freesewing/react/components/Popout'
 import { IconButton } from '@freesewing/react/components/Button'
 import { ModalWrapper } from '@freesewing/react/components/Modal'
 
-/*
- * Component for the account/actions/restrict page
+/**
+ * A component to manage the user's options to restrict processing of their data
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {React.Component} props.Link - A framework specific Link component for client-side routing
+ * @returns {JSX.Element}
  */
 export const Restrict = ({ Link = false }) => {
   if (!Link) Link = WebLink
@@ -34,7 +38,7 @@ export const Restrict = ({ Link = false }) => {
   // Helper method to restrict the account
   const restrictAccount = async () => {
     setLoadingStatus([true, 'Talking to the backend'])
-    const [status, body] = await backend.restrictAccount()
+    const [status] = await backend.restrictAccount()
     if (status === 200) {
       setLoadingStatus([true, 'Done. Consider yourself restrcited.', true, true])
       signOut()
@@ -46,7 +50,7 @@ export const Restrict = ({ Link = false }) => {
       <>
         <p>This button is red for a reason.</p>
         <IconButton onClick={restrictAccount} color="error">
-          <Nocon />
+          <NoIcon />
           Remove your FreeSewing account
         </IconButton>
       </>

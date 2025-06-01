@@ -1,11 +1,5 @@
 // Utils
-import {
-  linkClasses,
-  horFlexClasses,
-  horFlexClassesNoSm,
-  capitalize,
-  getSearchParam,
-} from '@freesewing/utils'
+import { horFlexClasses, horFlexClassesNoSm, getSearchParam, navigate } from '@freesewing/utils'
 // Context
 import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
 // Hooks
@@ -21,23 +15,28 @@ import {
   KeyIcon,
   LockIcon,
   WarningIcon,
-  GoogleIcon,
-  GitHubIcon,
   FreeSewingIcon,
   UserIcon,
 } from '@freesewing/react/components/Icon'
 import { MfaInput, StringInput, PasswordInput } from '@freesewing/react/components/Input'
-import { H1, H2, H3, H4 } from '@freesewing/react/components/Heading'
+import { H1 } from '@freesewing/react/components/Heading'
 
 /*
- * This SignIn component holds the entire sign-in form
  *
  * @param {object} props - All React props
- * @param {function} props.onSuccess - Optional: A method to run when the sign in is successful
- * @param {function} props.silent - Optional: Silently login the user if we have a valid session
+ */
+
+/**
+ * The SignIn component holds the entire sign-in form
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {function} [props.onSuccess = false] - A method to run when the sign in is successful
+ * @param {boolean} [props.silent] - Silently login the user if we have a valid session
+ * @returns {JSX.Element}
  */
 export const SignIn = ({ onSuccess = false, silent = false }) => {
-  const { account, setAccount, setToken, seenUser, setSeenUser } = useAccount()
+  const { setAccount, setToken, seenUser, setSeenUser } = useAccount()
   const backend = useBackend()
   const { setLoadingStatus } = useContext(LoadingStatusContext)
 
@@ -139,15 +138,6 @@ export const SignIn = ({ onSuccess = false, silent = false }) => {
         true,
         true,
       ])
-    }
-  }
-
-  const initOauth = async (provider) => {
-    setLoadingStatus([true, 'Contacting the FreeSewing backend'])
-    const [status, body] = await backend.oauthInit(provider.toLowerCase())
-    if (status === 200 && body.result === 'success') {
-      setLoadingStatus([true, `Contacting ${capitalize(provider)}`])
-      window.location.href = body.authUrl
     }
   }
 
@@ -331,6 +321,14 @@ const MfaForm = ({ mfaCode, setMfaCode, onSubmit, post = [] }) => (
   </WrapForm>
 )
 
+/**
+ * A component to handle the confirmation URL for a passwordless login link (aka magic link).
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {function} [props.onSuccess = false] - A method to run when the sign in is successful
+ * @returns {JSX.Element}
+ */
 export const SignInConfirmation = ({ onSuccess = false }) => {
   // State
   const [error, setError] = useState(false)
@@ -349,6 +347,7 @@ export const SignInConfirmation = ({ onSuccess = false }) => {
   // Effects
   useEffect(() => {
     const newId = getSearchParam('id')
+    if (!newId) setError('noId')
     const newCheck = getSearchParam('check')
     if (newId !== id) setId(newId)
     if (newCheck !== check) setCheck(newCheck)
@@ -396,11 +395,17 @@ export const SignInConfirmation = ({ onSuccess = false }) => {
   }
 
   // Short-circuit errors
+  if (error === 'noId')
+    return (
+      <Popout type="error" title="Invalid Sign In URL">
+        You seem to have arrived on this page in a way that is not supported
+      </Popout>
+    )
   if (error && mfa)
     return error === 'signInFailed' ? (
       <>
         <MfaForm {...{ mfaCode, setMfaCode }} onSubmit={getConfirmation} />
-        <Popout warning title="Sign In Failed">
+        <Popout type="warning" title="Sign In Failed">
           <p>Your one-time token is either invalid of expired.</p>
         </Popout>
       </>
@@ -424,48 +429,4 @@ export const SignInConfirmation = ({ onSuccess = false }) => {
     )
 
   return <p>fixme</p>
-}
-
-/*
- * This is the generic component that will handle the Oauth callback
- */
-export const OauthCallback = ({ provider = false }) => {
-  const [error, setError] = useState(false)
-  const backend = useBackend()
-  const { setAccount, setToken, setSeenUser } = useAccount()
-
-  // Handle callback
-  useEffect(() => {
-    const oauthFlow = async () => {
-      const state = getSearchParam('state')
-      const code = getSearchParam('state')
-      const [status, body] = await backend.oauthSignIn({ state, code, provider })
-      if (status === 200 && body.account && body.token) {
-        setAccount(body.account)
-        setToken(body.token)
-        setSeenUser(body.data.account.username)
-        navigate('/welcome', true)
-      } else setError(true)
-    }
-    oauthFlow()
-  }, [])
-
-  if (!provider) return <p>You must provide a provider prop to this component</p>
-
-  return error ? (
-    <>
-      <h2>Oh no, something went wrong</h2>
-      <p>
-        Please{' '}
-        <Link className={linkClasses} href="/support">
-          escalate this to support
-        </Link>
-      </p>
-    </>
-  ) : (
-    <>
-      <h2>One moment please</h2>
-      <Spinner className="tw:w-8 tw:h-8 tw:m-auto tw:animate-spin" />
-    </>
-  )
 }

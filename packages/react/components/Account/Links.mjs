@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react'
 import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
 // Components
-import { Link as DefautLink } from '@freesewing/react/components/Link'
+import { Link as DefaultLink } from '@freesewing/react/components/Link'
 import { ControlScore } from '@freesewing/react/components/Control'
 import {
   MeasurementsSetIcon,
@@ -93,13 +93,13 @@ const titles = {
 
 const YesNo = ({ check }) => (check ? <BoolYesIcon /> : <BoolNoIcon />)
 
-const t = (input) => input
-
 /**
- * The Links component shows all of the links to manage your account
+ * A component to manage the user's Instagram handle in their account data
  *
- * @param {object} props - All the React props
- * @param {function} Link - A custom Link component, typically the Docusaurus one, but it's optional
+ * @component
+ * @param {object} props - All component props
+ * @param {React.Component} props.Link - A framework specific Link component for client-side routing
+ * @returns {JSX.Element}
  */
 export const Links = ({ Link = false }) => {
   // Use custom Link component if available

@@ -108,7 +108,7 @@ The `suggest.update` object has only two possible top-level keys:
 They both take the same parameter, an array with two elements:
 
 ```mjs
-Array [`path`, `value`]
+Array[(`path`, `value`)]
 ```
 
 This will be used to update the `settings` of the pattern, or the `ui` settings on FreeSewing.org.
@@ -132,7 +132,7 @@ So to set the `waistEase` option to `0.2`, it should look like this:
 ## Example
 
 ```js
-({ store, part }) => {
+;({ store, part }) => {
   store.flag.info({
     msg: `aaron:cutNeckBinding`,
     notes: ['flag:saUnused', 'flag:partHiddenByExpand'],

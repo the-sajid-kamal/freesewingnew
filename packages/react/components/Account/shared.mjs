@@ -8,9 +8,6 @@ import {
   CompareIcon,
   DocsIcon,
   UserIcon,
-  LeftIcon,
-  OkIcon,
-  NoIcon,
   ShowcaseIcon,
 } from '@freesewing/react/components/Icon'
 

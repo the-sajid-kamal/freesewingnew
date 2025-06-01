@@ -1,7 +1,20 @@
-// eslint-disable-next-line no-unused-vars
 import React, { forwardRef } from 'react'
 import { getId, getProps } from './utils.mjs'
 
+/**
+ * A component to render an inner FreeSewing Part in a pattern (no group)
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.stackName - The name of the stack the part belongs to
+ * @param {string} props.partName - The name of the part
+ * @param {object} props.part - The part object itself
+ * @param {object} props.settings - The pattern settings object
+ * @param {object} props.components - An object holding the pattern compnents to use
+ * @param {object} props.strings - An object holding translations
+ * @param {object} props.drillProps - An object holding extra props to pass down (used in Xray mode)
+ * @returns {JSX.Element}
+ */
 export const PartInner = forwardRef(
   ({ stackName, partName, part, settings, components, strings, drillProps }, ref) => {
     const { Group, Path, Point, Snippet } = components
@@ -50,6 +63,20 @@ export const PartInner = forwardRef(
 
 PartInner.displayName = 'PartInner'
 
+/**
+ * A component to render a FreeSewing Part (group) in a pattern
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.stackName - The name of the stack the part belongs to
+ * @param {string} props.partName - The name of the part
+ * @param {object} props.part - The part object itself
+ * @param {object} props.settings - The pattern settings object
+ * @param {object} props.components - An object holding the pattern compnents to use
+ * @param {object} props.strings - An object holding translations
+ * @param {object} props.drillProps - An object holding extra props to pass down (used in Xray mode)
+ * @returns {JSX.Element}
+ */
 export const Part = ({ stackName, partName, part, settings, components, strings, drillProps }) => {
   const { Group } = components
 

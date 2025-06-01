@@ -1,36 +1,25 @@
 // Dependencies
-import { atomWithHash } from 'jotai-location'
 import {
   about,
   collection,
   tags,
   techniques,
-  designers,
-  developers,
   examples,
-  measurements,
   requiredMeasurements,
   optionalMeasurements,
 } from '@freesewing/collection'
 import { capitalize, linkClasses, mutateObject } from '@freesewing/utils'
 import { measurements as measurementsTranslations } from '@freesewing/i18n'
-
-// Context
-import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
-import { ModalContext } from '@freesewing/react/context/Modal'
-
 // Hooks
-import React, { useState, useContext, Fragment } from 'react'
-import { useAtom } from 'jotai'
-
+import React, { useState, Fragment } from 'react'
+import { useFilter } from '@freesewing/react/hooks/useFilter'
 // Components
-import { Link as WebLink, AnchorLink } from '@freesewing/react/components/Link'
+import { Link as WebLink } from '@freesewing/react/components/Link'
 import {
   CircleIcon,
   CisFemaleIcon,
   DocsIcon,
   FilterIcon,
-  HeartIcon,
   NewPatternIcon,
   ResetIcon,
   ShowcaseIcon,
@@ -40,23 +29,19 @@ import {
   lineDrawingsBack,
 } from '@freesewing/react/components/LineDrawing'
 import { IconButton } from '@freesewing/react/components/Button'
-import { ModalWrapper } from '@freesewing/react/components/Modal'
 import { KeyVal } from '@freesewing/react/components/KeyVal'
 import { MissingLinedrawing } from '../LineDrawing/missing.mjs'
 
-const filterAtom = atomWithHash('filter', { example: true })
-
-export const useFilter = () => {
-  return useAtom(filterAtom)
-}
-
 /**
- * React component to show the FreeSewing collection and pick a design
+ * A component to show the FreeSewing collection and pick a design.
  *
- * @param {object} props - All React props
- * @param {function} Link - An optional framework specific Link component for client-side routing
- * @param {bool} editor - Set this to when loaded in the editor (this will make the display more dense)
- * @param {bool} onClick - Set this to trigger an onClick event, rather than using links
+ * @component
+ * @param {object} props - All component props
+ * @param {React.Component} [props.Link = false] - A framework specific Link component for client-side routing
+ * @param {boolean} [props.editor = false] - Set this to true when rendering inside the FreeSewing editor
+ * @param {string} [props.linkTo = 'about'] - This controls where to link the design to. One of 'new', 'docs', or 'about'.
+ * @param {functino} [props.onClick = false] - You can pass in an onClick handler rather than using links
+ * @returns {JSX.Element}
  */
 export const Collection = ({ Link = false, linkTo = 'about', editor = false, onClick = false }) => {
   if (!Link) Link = WebLink
@@ -184,17 +169,17 @@ export const Collection = ({ Link = false, linkTo = 'about', editor = false, onC
             <div className="tw:flex tw:flex-row tw:gap-4 tw:items-center tw:justify-center tw:flex-wrap tw:my-2">
               <button
                 className="tw:daisy-btn tw:daisy-btn-secondary tw:daisy-btn-outline"
-                onClick={() => updateFilter('example', !filter.example)}
+                onClick={() => updateFilter('ld', !filter.ld)}
               >
-                {filter.example ? <CisFemaleIcon /> : <ShowcaseIcon />}
-                {filter.example ? 'Show Line Drawings' : 'Show Examples'}
+                {filter.ld ? <CisFemaleIcon /> : <ShowcaseIcon />}
+                {filter.ld ? 'Show Examples' : 'Show Line Drawings'}
               </button>
               <button
                 className="tw:daisy-btn tw:daisy-btn-secondary tw:daisy-btn-outline"
-                onClick={() => setFilter({ example: 1 })}
+                onClick={() => setFilter({ ld: 1 })}
               >
                 <ResetIcon />
-                Clear Filter
+                Clear Filters
               </button>
               <button
                 className="tw:daisy-btn tw:daisy-btn-secondary tw:daisy-btn-outline"
@@ -209,10 +194,10 @@ export const Collection = ({ Link = false, linkTo = 'about', editor = false, onC
           <div className="tw:flex tw:flex-row tw:gap-4 tw:items-center tw:justify-center tw:flex-wrap tw:my-2">
             <button
               className="tw:daisy-btn tw:daisy-btn-secondary tw:daisy-btn-outline"
-              onClick={() => updateFilter('example', !filter.example)}
+              onClick={() => updateFilter('ld', !filter.ld)}
             >
-              {filter.example ? <CisFemaleIcon /> : <ShowcaseIcon />}
-              {filter.example ? 'Show Line Drawings' : 'Show Examples'}
+              {filter.ld ? <ShowcaseIcon /> : <CisFemaleIcon />}
+              {filter.ld ? 'Show Examples' : 'Show Line Drawings'}
             </button>
             <button
               className="tw:daisy-btn tw:daisy-btn-secondary tw:daisy-btn-outline"
@@ -235,45 +220,13 @@ export const Collection = ({ Link = false, linkTo = 'about', editor = false, onC
               key={d}
               linkTo={linkTo}
               onClick={onClick}
-              lineDrawing={filter.example ? false : true}
+              lineDrawing={filter.ld ? true : false}
             />
           ))}
       </div>
     </>
   )
 }
-
-/*
- * A helper component to show a design technique
- *
- * @param {object} props - All React props
- * @param {function} props.Link - A Link component, typically specific to the framework for client-side routing
- * @param {string} props.technique - The technique name/id
- */
-const Technique = ({ Link = WebLink, technique }) => (
-  <Link
-    href={`/designs/techniques/${technique}`}
-    className="tw:daisy-badge tw:daisy-badge-accent hover:tw:daisy-badge-secondary tw:hover:shadow tw:font-medium"
-  >
-    {technique}
-  </Link>
-)
-
-/*
- * A helper component to show a design tag
- *
- * @param {object} props - All React props
- * @param {function} props.Link - A Link component, typically specific to the framework for client-side routing
- * @param {string} props.tag - The tag name/id
- */
-const Tag = ({ Link = WebLink, technique }) => (
-  <Link
-    href={`/designs/tags/${tag}`}
-    className="tw:daisy-badge tw:daisy-badge-primary hover:tw:daisy-badge-secondary tw:hover:shadow tw:font-medium"
-  >
-    {tag}
-  </Link>
-)
 
 const DesignCard = ({ name, lineDrawing = false, linkTo, Link, onClick }) => {
   if (!Link) Link = WebLink
@@ -363,21 +316,20 @@ const noExample =
   'https://images.pexels.com/photos/5626595/pexels-photo-5626595.jpeg?cs=srgb&fm=jpg&w=640&h=427'
 
 /**
- * React component to show info about a FreeSewing design
+ * A component to show info about a FreeSewing design
  *
- * @param {object} props - All React props
- * @param {string} design - The name/id of the design
- * @param {function} Link - An optional framework specific Link component for client-side routing
+ * @component
+ * @param {object} props - All component props
+ * @param {React.Component} props.Link - A framework specific Link component for client-side routing
+ * @param {string} props.design - The name/id of the design
+ * @param {boolean} props.noDocsLink - Set this to true to not render a link to the documentation
+ * @returns {JSX.Element}
  */
 export const DesignInfo = ({ Link = false, design = false, noDocsLink = false }) => {
   if (!Link) Link = WebLink
 
   // State
   const [back, setBack] = useState(false)
-
-  // Context
-  const { setModal, clearModal } = useContext(ModalContext)
-  const { setLoadingStatus } = useContext(LoadingStatusContext)
 
   if (!design) return null
 
@@ -392,13 +344,6 @@ export const DesignInfo = ({ Link = false, design = false, noDocsLink = false })
     : [about[design].design]
   const tags = about[design].tags || []
   const techniques = about[design].techniques || []
-  const colors = {
-    1: 'success',
-    2: 'success',
-    3: 'warning',
-    4: 'warning',
-    5: 'error',
-  }
 
   const makeButton = (
     <div className={`tw:grid tw:grid-cols-1 tw:gap-2 tw:mb-4`}>
@@ -506,7 +451,7 @@ export const DesignInfo = ({ Link = false, design = false, noDocsLink = false })
                 className="tw:daisy-badge tw:daisy-badge-primary tw:font-medium tw:hover:shadow tw:hover:cursor-pointer"
                 href={`/designs/#filter={"example"%3Atrue%2C"tag"%3A["${tag}"]}`}
               >
-                {tag}
+                <span className="tw:text-primary-content">{tag}</span>
               </Link>
             ))}
           </div>
@@ -518,7 +463,7 @@ export const DesignInfo = ({ Link = false, design = false, noDocsLink = false })
                 className="tw:daisy-badge tw:daisy-badge-accent tw:font-medium tw:hover:shadow tw:hover:cursor-pointer"
                 href={`/designs/#filter={"example"%3Atrue%2C"tag"%3A["${tech}"]}`}
               >
-                {tech}
+                <span className="tw:text-accent-content">{tech}</span>
               </Link>
             ))}
           </div>
@@ -555,21 +500,3 @@ export const DesignInfo = ({ Link = false, design = false, noDocsLink = false })
     </>
   )
 }
-
-const SharingIsCaring = ({ design }) => (
-  <>
-    <h2>
-      Use <b>#FreeSewing{capitalize(design)}</b> to facilitate discovery
-    </h2>
-    <p>
-      Please use the{' '}
-      <b>
-        <code>#FreeSewing{capitalize(design)}</code>
-      </b>{' '}
-      hashtag when discussing FreeSewing&apos;s <b>{capitalize(design)}</b> pattern online.
-      <br />
-      Doing so can help others discover your post, which really is a win-win.
-    </p>
-    <p>If you like, you can copy the hashtag below:</p>
-  </>
-)

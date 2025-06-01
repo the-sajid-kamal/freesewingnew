@@ -14,7 +14,7 @@ export const DraftErrorHandler = ({ failure, errors }) => {
   }
 
   return (
-    <Popout error>
+    <Popout type="error">
       <p>
         Sorry, there were problems drafting your pattern with the given measurements and options.
       </p>
@@ -27,8 +27,8 @@ export const DraftErrorHandler = ({ failure, errors }) => {
         .
       </p>
       <p>
-        If you believe your measurements are correct and/or if you'd like further assistance, you
-        can ask for help <Link href="https://forum.freesewing.eu">on our forum</Link>,{' '}
+        If you believe your measurements are correct and/or if you&apos;d like further assistance,
+        you can ask for help <Link href="https://forum.freesewing.eu">on our forum</Link>,{' '}
         <Link href="https://discord.freesewing.org">our Discord server</Link>, or{' '}
         <Link href="https://codeberg.org/freesewing/freesewing/issues">report an issue</Link>.
       </p>

@@ -6,28 +6,29 @@ import { LoadingStatusContext } from '@freesewing/react/context/LoadingStatus'
 
 // Hooks
 import React, { useState, useContext } from 'react'
-import { useAccount } from '@freesewing/react/hooks/useAccount'
 import { useBackend } from '@freesewing/react/hooks/useBackend'
 
 // Components
 import { Link as WebLink } from '@freesewing/react/components/Link'
-import { NoIcon, OkIcon, SaveIcon, RightIcon, WarningIcon } from '@freesewing/react/components/Icon'
+import { OkIcon, WarningIcon } from '@freesewing/react/components/Icon'
 import { EmailInput } from '@freesewing/react/components/Input'
-import { Popout } from '@freesewing/react/components/Popout'
-import { IconButton } from '@freesewing/react/components/Button'
 import { MiniTip } from '@freesewing/react/components/Mini'
 
-/*
- * Component for newsletter signup (by visitors)
+/**
+ * Component for newsletter signup by visitors (not logged-in users)
  *
- * @params {object} props - All React props
- * @param {function} props.Link - An optional framework-specific Link component
+ * @component
+ * @param {object} props - All component props
+ * @param {React.FC} [props.Link = false] - An optional framework-specific Link component
+ * @param {boolean} [props.noP = false] - Set this to true to not display the signup message paragraph
+ * @param {boolean} [props.noTitle = false] - Set this to true to not display the signup title
+ * @param {boolean} [props.noBox = false] - Set this to true to not apply the box style
+ * @returns {JSX.Element}
  */
 export const NewsletterSignup = ({ Link = false, noP = false, noTitle = false, noBox = false }) => {
   if (!Link) Link = WebLink
 
   // Hooks
-  const { account, setAccount } = useAccount()
   const backend = useBackend()
   const { setLoadingStatus } = useContext(LoadingStatusContext)
 
@@ -39,7 +40,7 @@ export const NewsletterSignup = ({ Link = false, noP = false, noTitle = false, n
   // Helper method to handle subscription
   const subscribe = async () => {
     setLoadingStatus([true, 'Contacting backend'])
-    const [status, body] = unsubscribe
+    const [status] = unsubscribe
       ? await backend.newsletterStartUnsubscribe(email)
       : await backend.newsletterSubscribe(email)
     if (status === 200) {
@@ -120,11 +121,13 @@ export const NewsletterSignup = ({ Link = false, noP = false, noTitle = false, n
   )
 }
 
-/*
- * Component to handle newsletter unsubscribe links
+/**
+ * Component for handling newsletter unsubscribe links
  *
- * @params {object} props - All React props
- * @param {function} props.Link - An optional framework-specific Link component
+ * @component
+ * @param {object} props - All component props
+ * @param {React.FC} [props.Link = false] - An optional framework-specific Link component
+ * @returns {JSX.Element}
  */
 export const NewsletterUnsubscribe = ({ Link = false }) => {
   if (!Link) Link = WebLink
@@ -139,7 +142,7 @@ export const NewsletterUnsubscribe = ({ Link = false }) => {
 
   // Helper method to handle subscription
   const unsubscribe = async () => {
-    const [status, body] = await backend.newsletterUnsubscribe(ehash)
+    const [status] = await backend.newsletterUnsubscribe(ehash)
     if (status === 204 || status === 404) setGone(true)
     else setError(true)
   }
@@ -190,6 +193,4 @@ export const NewsletterUnsubscribe = ({ Link = false }) => {
       </MiniTip>
     </>
   )
-
-  return <p>Unsubscribe here {ehash}</p>
 }

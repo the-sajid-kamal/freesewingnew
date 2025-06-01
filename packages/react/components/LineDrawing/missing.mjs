@@ -4,9 +4,11 @@ import { LineDrawingWrapper, regular } from './shared.mjs'
 /**
  * A linedrawing component for designs that do not (yet) have their own
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const MissingLinedrawing = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 0 100 100" {...{ className }}>

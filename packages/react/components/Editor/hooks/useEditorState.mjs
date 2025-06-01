@@ -37,37 +37,13 @@ export const useEditorState = (init = {}, setEphemeralState, config) => {
         if (typeof data.s === 'object') setState(data.s)
         else setState(init)
       } catch (err) {
+        console.log(err)
         setState(init)
       }
     }
   }, [])
 
   return [state, setState, update]
-}
-
-/*
- * Our URL state library does not support storing Javascript objects out of the box.
- * But it allows us to pass a customer parser to handle them, so this is that parser
- */
-const pojoParser = {
-  parse: (v) => {
-    let val
-    try {
-      val = JSON.parse(v)
-    } catch (err) {
-      val = null
-    }
-    return val
-  },
-  serialize: (v) => {
-    let val
-    try {
-      val = JSON.stringify(v)
-    } catch (err) {
-      val = null
-    }
-    return val
-  },
 }
 
 function getHashData() {

@@ -10,9 +10,11 @@ const strokeScale = 0.15
 /**
  * A linedrawing component for Bob
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Bob = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="-1 -26 138 138" {...{ className }}>
@@ -24,9 +26,11 @@ export const Bob = ({ className, stroke = 1 }) => (
 /**
  * A linedrawing component for the front of Bob
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const BobFront = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="-10 1 87 87" {...{ className }}>
@@ -34,8 +38,14 @@ export const BobFront = ({ className, stroke = 1 }) => (
   </LineDrawingWrapper>
 )
 
-/*
- * React component for the back
+/**
+ * A linedrawing component for the back of Bob
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.className - Any CSS classes to apply
+ * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const BobBack = ({
   className = 'tw:w-full', // CSS classes to apply
@@ -54,7 +64,7 @@ export const BobBack = ({
 /*
  * SVG elements for the front
  */
-export const Front = ({ stroke }) => (
+const Front = ({ stroke }) => (
   <>
     <path
       key="stitches"

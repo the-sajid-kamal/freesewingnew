@@ -10,9 +10,11 @@ const strokeScale = 0.5
 /**
  * A linedrawing component for Bibi
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Bibi = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="2 -34 167 167" {...{ className }}>
@@ -24,9 +26,11 @@ export const Bibi = ({ className, stroke = 1 }) => (
 /**
  * A linedrawing component for the front of Bibi
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const BibiFront = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 0 85 90" {...{ className }}>
@@ -34,8 +38,14 @@ export const BibiFront = ({ className, stroke = 1 }) => (
   </LineDrawingWrapper>
 )
 
-/*
- * React component for the back
+/**
+ * A linedrawing component for the back of Bibi
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.className - Any CSS classes to apply
+ * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const BibiBack = ({
   className = 'tw:w-full', // CSS classes to apply
@@ -54,7 +64,7 @@ export const BibiBack = ({
 /*
  * SVG elements for the front
  */
-export const Front = ({ stroke }) => (
+const Front = ({ stroke }) => (
   <>
     <path
       key="stitches"

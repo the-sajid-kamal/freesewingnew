@@ -1,6 +1,5 @@
 // Dependencies
 import React, { useState, useEffect } from 'react'
-import * as echarts from 'echarts'
 import { timingPlugin } from '@freesewing/plugin-timing'
 // Components
 import { ChartWrapper } from '@freesewing/react/components/Echart'
@@ -36,18 +35,6 @@ const TimingHeader = ({ timing, parts }) => {
   ) : null
 }
 
-const resolveColor = (color) => {
-  const [c, i] = color.split('-')
-
-  return tailwindColors[c][i]
-}
-
-const getColor = (i, colors) =>
-  new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-    { offset: 0, color: resolveColor(colors[i % colors.length]) + 'dd' },
-    { offset: 1, color: resolveColor(colors[i % colors.length]) },
-  ])
-
 const timeScore = (took) => {
   if (took < 25) return 'Very Fast'
   if (took < 50) return 'Fast'
@@ -58,7 +45,6 @@ const timeScore = (took) => {
 }
 
 const option = (parts, data, took, setData) => ({
-  //color: colors.map((color) => resolveColor(color)),
   title: {
     text: `Timing of most recent draft: ${timeScore(took)}`,
     left: 'center',
@@ -127,7 +113,7 @@ const option = (parts, data, took, setData) => ({
     },
   ],
   yAxis: [{ type: 'value' }],
-  series: parts.map((name, i) => ({
+  series: parts.map((name) => ({
     name,
     type: 'line',
     stack: 'Total',

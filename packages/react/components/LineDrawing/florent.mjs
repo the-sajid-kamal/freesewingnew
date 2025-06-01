@@ -8,11 +8,13 @@ import { LineDrawingWrapper, thin, dashed } from './shared.mjs'
 const strokeScale = 1.3
 
 /**
- * A linedrawing component for Florence
+ * A linedrawing component for Florent
  *
- * @param {object} props - All React props
+ * @component
+ * @param {object} props - All component props
  * @param {string} props.className - Any CSS classes to apply
  * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
  */
 export const Florent = ({ className, stroke = 1 }) => (
   <LineDrawingWrapper viewBox="0 -30 236 236" {...{ className, stroke }}>
@@ -20,13 +22,21 @@ export const Florent = ({ className, stroke = 1 }) => (
   </LineDrawingWrapper>
 )
 
-// Front is the same
+/**
+ * A linedrawing component for the front of Florent
+ *
+ * @component
+ * @param {object} props - All component props
+ * @param {string} props.className - Any CSS classes to apply
+ * @param {number} props.stroke - The stroke width to apply
+ * @returns {JSX.Element}
+ */
 export const FlorentFront = Florent
 
 /*
  * SVG elements for the front
  */
-export const Front = ({ stroke }) => (
+const Front = ({ stroke }) => (
   <>
     <path
       key="stitches"
