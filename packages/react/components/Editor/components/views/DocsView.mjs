@@ -1,5 +1,5 @@
 // Dependencies
-import { linkClasses, capitalize } from '@freesewing/utils'
+import { linkClasses } from '@freesewing/utils'
 // Context
 import { ModalContext } from '@freesewing/react/context/Modal'
 // Hooks
@@ -9,7 +9,6 @@ import { H1, H2 } from '@freesewing/react/components/Heading'
 import { modalDocsHelp } from '@freesewing/react/components/Help'
 import { HeaderMenu } from '../HeaderMenu.mjs'
 import { Popout } from '@freesewing/react/components/Popout'
-
 
 /**
  * This is the docs view, it just shows content
@@ -41,7 +40,9 @@ export const DocsView = ({ state, config, update }) => {
             <button
               className="tw:daisy-btn tw:daisy-btn-secondary tw:daisy-btn-outline tw:mt-4"
               onClick={() => modalDocsHelp(`docs/designs/${state.design}`, setModal)}
-            >Open without leaving the Editor</button>
+            >
+              Open without leaving the Editor
+            </button>
           </>
         ) : null}
         <H2>Editor Documentation</H2>
@@ -56,7 +57,9 @@ export const DocsView = ({ state, config, update }) => {
         <button
           className="tw:daisy-btn tw:daisy-btn-secondary tw:daisy-btn-outline tw:mt-4"
           onClick={() => modalDocsHelp(`docs/editor`, setModal)}
-        >Open without leaving the Editor</button>
+        >
+          Open without leaving the Editor
+        </button>
         <H2>Developer Documentation</H2>
         <Popout type="link" compact>
           <b>

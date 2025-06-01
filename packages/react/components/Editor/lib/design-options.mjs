@@ -2,7 +2,6 @@ import React from 'react'
 import { mergeOptions } from '@freesewing/core'
 import { designOptionType, set, orderBy } from '@freesewing/utils'
 import { i18n } from '@freesewing/collection'
-import { linkClasses } from '@freesewing/utils'
 
 export function menuDesignOptionsStructure(design, options, settings, asFullList = false) {
   if (!options) return options

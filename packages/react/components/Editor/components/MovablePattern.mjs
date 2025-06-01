@@ -414,7 +414,7 @@ const Button = ({ onClickCb, transform, Icon, title = '' }) => {
 
 const InnerFlipIcon = () => (
   <path
-    strokeLinkecap="round"
+    strokeLinecap="round"
     strokeLinejoin="round"
     d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"
   />
@@ -430,7 +430,6 @@ const InnerRotateIcon = ({ props }) => (
 const InnerResetIcon = () => (
   <path d="M12 9.75 14.25 12m0 0 2.25 2.25M14.25 12l2.25-2.25M14.25 12 12 14.25m-2.58 4.92-6.374-6.375a1.125 1.125 0 0 1 0-1.59L9.42 4.83c.21-.211.497-.33.795-.33H19.5a2.25 2.25 0 0 1 2.25 2.25v10.5a2.25 2.25 0 0 1-2.25 2.25h-9.284c-.298 0-.585-.119-.795-.33Z" />
 )
-
 
 /** buttons for manipulating the part */
 export const Buttons = ({ transform, flip, rotate, resetPart, rotate90, iconSize }) => {

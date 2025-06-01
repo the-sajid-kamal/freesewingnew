@@ -1,6 +1,5 @@
 import React from 'react'
 import { defaultConfig } from '../config/index.mjs'
-import { linkClasses } from '@freesewing/utils'
 import { AsideIcon, RotateIcon, RocketIcon, UxIcon } from '@freesewing/react/components/Icon'
 
 export function menuUiPreferencesStructure() {

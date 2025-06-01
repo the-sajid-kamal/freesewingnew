@@ -2,7 +2,7 @@ import React from 'react'
 // Dependencies
 import { defaultConfig as config } from '../config/index.mjs'
 import { measurementAsMm } from '@freesewing/utils'
-import { linkClasses } from '@freesewing/utils'
+
 /*
  * Components
  * Note that these are only used as returns values

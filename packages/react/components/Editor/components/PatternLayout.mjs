@@ -19,7 +19,7 @@ import { useDesignTranslation } from '@freesewing/react/hooks/useDesignTranslati
  * @param {object] pattern - The drafted pattern
  */
 export const PatternLayout = (props) => {
-  const { Design, pattern, update, config, state } = props
+  const { Design, pattern, update, config } = props
   const i18n = useDesignTranslation(Design.designConfig.data.id)
 
   return (
@@ -42,42 +42,45 @@ export const PatternLayout = (props) => {
 
 const PatternAsideMenu = (props) => {
   if (!props.state.ui?.aside) return null
-  if (props.state.view === 'draft') return (
-    <PatternAsideWrapper>
-      <h5 className="tw:capitalize">{props.pattern.designConfig.data.id} Options</h5>
-      <SideMenuUl>
-        <DesignOptionsMenu {...props} />
-      </SideMenuUl>
-      <h5>Core Settings</h5>
-      <SideMenuUl>
-        <CoreSettingsMenu {...props} />
-      </SideMenuUl>
-      <h5>UI Preferences</h5>
-      <SideMenuUl>
-        <UiPreferencesMenu {...props} />
-      </SideMenuUl>
-    </PatternAsideWrapper>
-  )
-  if (props.state.view === 'layout') return (
-    <PatternAsideWrapper>
-      <h5>Layout Settings</h5>
-      <SideMenuUl>
-        <LayoutSettingsMenu {...props} />
-      </SideMenuUl>
-    </PatternAsideWrapper>
-  )
-  if (props.state.view === 'test') return (
-    <PatternAsideWrapper>
-      <h5>Test Design Options</h5>
-      <SideMenuUl>
-        <TestOptionsMenu {...props} />
-      </SideMenuUl>
-      <h5>Test Measurements</h5>
-      <SideMenuUl>
-        <TestMeasurementsMenu {...props} />
-      </SideMenuUl>
-    </PatternAsideWrapper>
-  )
+  if (props.state.view === 'draft')
+    return (
+      <PatternAsideWrapper>
+        <h5 className="tw:capitalize">{props.pattern.designConfig.data.id} Options</h5>
+        <SideMenuUl>
+          <DesignOptionsMenu {...props} />
+        </SideMenuUl>
+        <h5>Core Settings</h5>
+        <SideMenuUl>
+          <CoreSettingsMenu {...props} />
+        </SideMenuUl>
+        <h5>UI Preferences</h5>
+        <SideMenuUl>
+          <UiPreferencesMenu {...props} />
+        </SideMenuUl>
+      </PatternAsideWrapper>
+    )
+  if (props.state.view === 'layout')
+    return (
+      <PatternAsideWrapper>
+        <h5>Layout Settings</h5>
+        <SideMenuUl>
+          <LayoutSettingsMenu {...props} />
+        </SideMenuUl>
+      </PatternAsideWrapper>
+    )
+  if (props.state.view === 'test')
+    return (
+      <PatternAsideWrapper>
+        <h5>Test Design Options</h5>
+        <SideMenuUl>
+          <TestOptionsMenu {...props} />
+        </SideMenuUl>
+        <h5>Test Measurements</h5>
+        <SideMenuUl>
+          <TestMeasurementsMenu {...props} />
+        </SideMenuUl>
+      </PatternAsideWrapper>
+    )
 
   return null
 }
