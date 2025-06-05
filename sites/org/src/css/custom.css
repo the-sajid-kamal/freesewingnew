@@ -213,6 +213,9 @@ div.mini > p:last-child {
 nav.navbar {
   background-color: var(--ifm-background-surface-color);
 }
+.navbar__logo img {
+  height: 100%;
+}
 
 /*
  * People want the 'account' link in the navbar to show the username
