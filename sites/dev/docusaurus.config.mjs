@@ -118,7 +118,8 @@ const config = {
       title: 'FreeSewing.dev',
       logo: {
         alt: 'FreeSewing Logo',
-        src: 'img/logo-white.svg',
+        src: 'img/logo.svg',
+        srcDark: 'img/logo-white.svg',
       },
       items: [
         { to: '/guides', label: 'Guides', position: 'left' },
