@@ -103,11 +103,11 @@ const config = {
   ],
 
   themeConfig: {
-    colorMode: {
-      // Do not be tempted to change these
-      disableSwitch: true,
-      respectPrefersColorScheme: true,
-    },
+    //colorMode: {
+    //  // Do not be tempted to change these
+    //  disableSwitch: true,
+    //  respectPrefersColorScheme: true,
+    //},
     algolia: {
       appId: 'VBV9JOCO5C',
       apiKey: '663aefa13d332c45801dc32d9d5ea718',
@@ -127,8 +127,8 @@ const config = {
         { to: '/reference', label: 'Reference', position: 'left' },
         { to: '/tutorials', label: 'Tutorials', position: 'left' },
         {
-          href: 'https://freesewing.org/',
-          label: 'FreeSewing.org',
+          to: 'https://freesewing.eu/',
+          label: 'FreeSewing.eu',
           position: 'right',
         },
       ],
