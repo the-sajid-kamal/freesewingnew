@@ -92,7 +92,8 @@ function draftCathrinPanel1(params) {
     paths.panel1Waist = new Path()
       .move(points.waistGap1Left)
       .line(points.waistGap0Left)
-      .attr('class', 'dashed mark')
+      .attr('class', 'dashed mark stroke-sm')
+      .addText('cathrin:waistLine', 'text-xs mark')
   }
 
   return part

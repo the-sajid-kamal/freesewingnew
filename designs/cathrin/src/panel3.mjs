@@ -38,7 +38,8 @@ function draftCathrinPanel3({ macro, sa, points, paths, Point, store, Path, comp
     paths.panel3Waist = new Path()
       .move(points.waistGap2Right)
       .line(points.waistGap3Left)
-      .attr('class', 'dashed mark')
+      .attr('class', 'dashed mark stroke-sm')
+      .addText('cathrin:waistLine', 'text-xs mark')
 
   // Title
   points.title = points.grainlineTop.shift(-90, points.grainlineTop.dy(points.waistGap3Left) / 2)

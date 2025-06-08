@@ -202,11 +202,13 @@ export function draftPanel1ab({
     paths.panel1aWaist = new Path()
       .move(points.waistGap0Left)
       .line(points.waistAB)
-      .attr('class', 'dashed mark')
+      .attr('class', 'dashed mark stroke-sm')
+      .addText('cathrin:waistLine', 'text-xs mark')
     paths.panel1bWaist = new Path()
       .move(points.waistAB)
       .line(points.waistGap1Left)
-      .attr('class', 'dashed mark')
+      .attr('class', 'dashed mark stroke-sm')
+      .addText('cathrin:waistLine', 'text-xs mark')
     paths.panel1bWaist = paths.panel1bWaist.translate(translation, 0)
   }
 
