@@ -170,11 +170,11 @@ const config = {
     ],
   ],
   themeConfig: {
-    //colorMode: {
-    //  // Do not be tempted to change these
-    //  //disableSwitch: true,
-    //  //respectPrefersColorScheme: true,
-    //},
+    colorMode: {
+      // Do not be tempted to change these
+      disableSwitch: true,
+      respectPrefersColorScheme: true,
+    },
     image: 'img/freesewing-social-card.png',
     navbar: {
       title: 'FreeSewing',
