@@ -3,6 +3,8 @@ Unreleased:
   Fixed:
     octoplushy:
       - Use full translation keys (#454)
+    org:
+      - Fixed lack of modal context provider for blog/showcase/newsletter pages
     react:
       - Fix Pattern Layout counter-clockwise button (#453)
 
