@@ -1,6 +1,12 @@
 # Change log for: @freesewing/studio
 
 
+## 4.0.2 (2024-06-09)
+
+### Fixed
+
+ - Add @freesewing/plugin-svgattr as a dependency to the studio
+
 ## 4.0.1 (2024-06-09)
 
 ### Added
