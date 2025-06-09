@@ -1,6 +1,12 @@
 # Change log for: @freesewing/studio
 
 
+## 4.0.3 (2024-06-09)
+
+### Added
+
+ - Include signup / signin pages in studio
+
 ## 4.0.2 (2024-06-09)
 
 ### Fixed
@@ -8,10 +14,6 @@
  - Add @freesewing/plugin-svgattr as a dependency to the studio
 
 ## 4.0.1 (2024-06-09)
-
-### Added
-
- - Include signup / signin pages in studio
 
 ### Changed
 

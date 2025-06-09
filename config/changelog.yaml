@@ -2,6 +2,13 @@ Unreleased:
 
   Added:
 
+4.0.3:
+  date: 2024-06-09
+
+  Added:
+    studio:
+      - Include signup / signin pages in studio
+
 4.0.2:
   date: 2024-06-09
 
@@ -35,8 +42,6 @@ Unreleased:
     react:
       - Add inline help to the Editor
       - Added new useFilter hook
-    studio:
-      - Include signup / signin pages in studio
 
   Fixed:
     backend:

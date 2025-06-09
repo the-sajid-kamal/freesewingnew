@@ -4,6 +4,15 @@
 ## Unreleased
 
 
+## 4.0.3 (2024-06-09)
+
+### studio
+
+#### Added
+
+ - Include signup / signin pages in studio
+
+
 ## 4.0.2 (2024-06-09)
 
 ### studio
@@ -174,10 +183,6 @@
  - Gracefully fail the Editor when a part translation is not available
 
 ### studio
-
-#### Added
-
- - Include signup / signin pages in studio
 
 #### Changed
 
