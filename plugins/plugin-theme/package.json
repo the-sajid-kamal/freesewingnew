@@ -1,6 +1,6 @@
 {
   "name": "@freesewing/plugin-theme",
-  "version": "4.0.1-rc.1",
+  "version": "4.0.1",
   "author": "Joost De Cock <joost@joost.at> (https://github.com/joostdecock)",
   "homepage": "https://freesewing.org/",
   "repository": "github:freesewing/freesewing",
@@ -35,7 +35,7 @@
     "testci": "NODE_OPTIONS=\"--conditions=internal\" npx mocha tests/*.test.mjs --reporter ../../tests/reporters/terse.js"
   },
   "peerDependencies": {
-    "@freesewing/core": "4.0.1-rc.1"
+    "@freesewing/core": "4.0.1"
   },
   "dependencies": {},
   "devDependencies": {
@@ -50,7 +50,7 @@
   ],
   "publishConfig": {
     "access": "public",
-    "tag": "next"
+    "tag": "latest"
   },
   "engines": {
     "node": ">= 20"

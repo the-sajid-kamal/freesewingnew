@@ -1,6 +1,6 @@
 {
   "name": "@freesewing/utils",
-  "version": "4.0.1-rc.1",
+  "version": "4.0.1",
   "description": "A number of utilities, typically used by FreeSewing frontend code",
   "author": "Joost De Cock <joost@joost.at> (https://github.com/joostdecock)",
   "homepage": "https://freesewing.org/",
@@ -44,7 +44,7 @@
   ],
   "publishConfig": {
     "access": "public",
-    "tag": "next"
+    "tag": "latest"
   },
   "engines": {
     "node": ">= 20"
