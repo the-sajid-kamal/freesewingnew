@@ -14,7 +14,7 @@
     "ribbing",
     "raglan-sleeve"
   ],
-  "version": "4.0.2",
+  "version": "4.0.3",
   "pkg": "@freesewing/hugo",
   "collection": true
 }
