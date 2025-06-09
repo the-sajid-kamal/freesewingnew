@@ -16,5 +16,6 @@
     "precision"
   ],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/bee"
+  "pkg": "@freesewing/bee",
+  "collection": true
 }

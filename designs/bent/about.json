@@ -15,5 +15,6 @@
     "set-sleeve"
   ],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/bent"
+  "pkg": "@freesewing/bent",
+  "collection": true
 }

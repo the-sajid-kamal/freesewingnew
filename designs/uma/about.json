@@ -14,5 +14,6 @@
     "curved-seam"
   ],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/uma"
+  "pkg": "@freesewing/uma",
+  "collection": true
 }

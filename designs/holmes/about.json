@@ -17,5 +17,6 @@
     "lining"
   ],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/holmes"
+  "pkg": "@freesewing/holmes",
+  "collection": true
 }

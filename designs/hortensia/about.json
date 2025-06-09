@@ -19,5 +19,6 @@
     "zipper"
   ],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/hortensia"
+  "pkg": "@freesewing/hortensia",
+  "collection": true
 }

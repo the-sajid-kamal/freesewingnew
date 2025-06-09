@@ -25,5 +25,6 @@
     "button"
   ],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/carlita"
+  "pkg": "@freesewing/carlita",
+  "collection": true
 }

@@ -15,5 +15,6 @@
     "flat-sleeve"
   ],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/bibi"
+  "pkg": "@freesewing/bibi",
+  "collection": true
 }

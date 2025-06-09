@@ -17,5 +17,6 @@
     "block"
   ],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/bella"
+  "pkg": "@freesewing/bella",
+  "collection": true
 }

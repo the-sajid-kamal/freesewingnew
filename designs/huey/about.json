@@ -16,5 +16,6 @@
     "flat-sleeve"
   ],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/huey"
+  "pkg": "@freesewing/huey",
+  "collection": true
 }

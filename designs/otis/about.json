@@ -8,5 +8,6 @@
   "tags": [],
   "techniques": [],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/otis"
+  "pkg": "@freesewing/otis",
+  "collection": true
 }

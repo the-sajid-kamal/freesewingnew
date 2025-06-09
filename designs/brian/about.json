@@ -14,5 +14,6 @@
     "flat-sleeve"
   ],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/brian"
+  "pkg": "@freesewing/brian",
+  "collection": true
 }

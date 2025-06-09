@@ -16,5 +16,6 @@
     "zipper"
   ],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/penelope"
+  "pkg": "@freesewing/penelope",
+  "collection": true
 }

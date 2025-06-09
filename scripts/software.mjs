@@ -1,5 +1,15 @@
 import { path, globDir, readJsonFile } from './fs.mjs'
 
+export const getCollection = async () => {
+  const designs = await getDesigns()
+  const collection = {}
+  for (const design in designs) {
+    if (designs[design].collection) collection[design] = designs[design]
+  }
+
+  return collection
+}
+
 export const getDesigns = async () => {
   const designs = {}
   const list = await getFolders('designs')
@@ -34,6 +44,7 @@ export const getPlugins = async () => {
 }
 
 export const getSoftware = async () => ({
+  collection: await getCollection(),
   designs: await getDesigns(),
   packages: await getPackages(),
   plugins: await getPlugins(),
@@ -42,3 +53,5 @@ export const getSoftware = async () => ({
 // Helper
 const getFolders = async (dir) =>
   (await globDir(dir, '*')).map((file) => path.basename(file)).sort()
+
+getCollection()

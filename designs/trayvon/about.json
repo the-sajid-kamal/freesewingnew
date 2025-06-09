@@ -13,5 +13,6 @@
     "lining"
   ],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/trayvon"
+  "pkg": "@freesewing/trayvon",
+  "collection": true
 }

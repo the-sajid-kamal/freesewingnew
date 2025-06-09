@@ -12,5 +12,6 @@
     "curved-seam"
   ],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/florence"
+  "pkg": "@freesewing/florence",
+  "collection": true
 }

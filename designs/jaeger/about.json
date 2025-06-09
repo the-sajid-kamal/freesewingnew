@@ -21,5 +21,6 @@
     "button"
   ],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/jaeger"
+  "pkg": "@freesewing/jaeger",
+  "collection": true
 }

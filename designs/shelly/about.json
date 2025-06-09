@@ -16,5 +16,6 @@
     "raglan-sleeve"
   ],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/shelly"
+  "pkg": "@freesewing/shelly",
+  "collection": true
 }

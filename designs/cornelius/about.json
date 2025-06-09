@@ -17,5 +17,6 @@
     "pocket"
   ],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/cornelius"
+  "pkg": "@freesewing/cornelius",
+  "collection": true
 }

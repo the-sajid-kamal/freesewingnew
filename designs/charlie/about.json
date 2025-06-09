@@ -21,5 +21,6 @@
     "seam-pocket"
   ],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/charlie"
+  "pkg": "@freesewing/charlie",
+  "collection": true
 }

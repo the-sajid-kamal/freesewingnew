@@ -14,5 +14,6 @@
     "hem"
   ],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/lunetius"
+  "pkg": "@freesewing/lunetius",
+  "collection": true
 }

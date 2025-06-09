@@ -15,5 +15,6 @@
     "knit-band"
   ],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/teagan"
+  "pkg": "@freesewing/teagan",
+  "collection": true
 }

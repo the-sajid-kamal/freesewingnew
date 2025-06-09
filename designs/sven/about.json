@@ -14,5 +14,6 @@
     "ribbing"
   ],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/sven"
+  "pkg": "@freesewing/sven",
+  "collection": true
 }

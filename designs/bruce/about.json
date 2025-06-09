@@ -16,5 +16,6 @@
     "elastic"
   ],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/bruce"
+  "pkg": "@freesewing/bruce",
+  "collection": true
 }

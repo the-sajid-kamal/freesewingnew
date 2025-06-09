@@ -20,5 +20,6 @@
     "curved-seam"
   ],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/umbra"
+  "pkg": "@freesewing/umbra",
+  "collection": true
 }

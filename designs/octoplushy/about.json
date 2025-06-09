@@ -14,5 +14,6 @@
     "precision"
   ],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/octoplushy"
+  "pkg": "@freesewing/octoplushy",
+  "collection": true
 }

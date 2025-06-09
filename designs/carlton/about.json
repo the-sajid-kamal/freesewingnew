@@ -24,5 +24,6 @@
     "button"
   ],
   "version": "4.0.1-rc.1",
-  "pkg": "@freesewing/carlton"
+  "pkg": "@freesewing/carlton",
+  "collection": true
 }
