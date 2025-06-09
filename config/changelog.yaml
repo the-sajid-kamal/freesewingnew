@@ -2,6 +2,13 @@ Unreleased:
 
   Added:
 
+4.0.2:
+  date: 2024-06-09
+
+  Fixed:
+    studio:
+      - Add @freesewing/plugin-svgattr as a dependency to the studio
+
 4.0.1:
   date: 2024-06-09
 

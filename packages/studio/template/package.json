@@ -28,6 +28,7 @@
     "@freesewing/plugin-i18n": "latest",
     "@freesewing/plugin-theme": "latest",
     "@freesewing/plugin-timing": "latest",
+    "@freesewing/plugin-svgattr": "latest",
     "clsx": "^2.0.0",
     "lodash": "^4.17.21",
     "prism-react-renderer": "^2.3.0",
