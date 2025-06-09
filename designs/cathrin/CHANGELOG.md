@@ -1,6 +1,12 @@
 # Change log for: @freesewing/cathrin
 
 
+## 4.0.1 (2024-06-09)
+
+### Added
+
+ - Added waistline markings
+
 ## 4.0.0 (2024-04-01)
 
 ### Changed

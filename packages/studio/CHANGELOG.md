@@ -1,6 +1,21 @@
 # Change log for: @freesewing/studio
 
 
+## 4.0.1 (2024-06-09)
+
+### Added
+
+ - Include signup / signin pages in studio
+
+### Changed
+
+ - Update to docusaurus 3.8.1
+
+### Fixed
+
+ - Remove submenus from account sets and patterns pages (#355)
+ - Use a dedicated logo image for dark mode
+
 ## 4.0.0 (2024-04-01)
 
 ### Added

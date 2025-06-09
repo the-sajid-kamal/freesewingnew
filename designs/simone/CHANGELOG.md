@@ -1,6 +1,12 @@
 # Change log for: @freesewing/simone
 
 
+## 4.0.1 (2024-06-09)
+
+### Fixed
+
+ - Hide buttonFreeLength option when bustAlignedButtons is even
+
 ## 4.0.0 (2024-04-01)
 
 ### Fixed

@@ -1,6 +1,16 @@
 # Change log for: @freesewing/core
 
 
+## 4.0.1 (2024-06-09)
+
+### Changed
+
+ - Override the reduce function in the BezierJS dependency with FreeSewing's own version
+
+### Fixed
+
+ - Fix stack anchoring (#258)
+
 ## 4.0.0 (2024-04-01)
 
 ### Breaking

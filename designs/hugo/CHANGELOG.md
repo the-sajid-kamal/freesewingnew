@@ -1,6 +1,12 @@
 # Change log for: @freesewing/hugo
 
 
+## 4.0.1 (2024-06-09)
+
+### Added
+
+ - Add Collar Ease option to allow neck opening size adjustments
+
 ## 4.0.0 (2024-04-01)
 
 ### Fixed
