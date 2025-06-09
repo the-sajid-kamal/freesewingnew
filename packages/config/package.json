@@ -1,6 +1,6 @@
 {
   "name": "@freesewing/config",
-  "version": "4.0.0",
+  "version": "4.0.1-rc.1",
   "description": "Various configurations for FreeSewing",
   "author": "Joost De Cock <joost@joost.at> (https://github.com/joostdecock)",
   "homepage": "https://freesewing.org/",
@@ -44,7 +44,7 @@
   ],
   "publishConfig": {
     "access": "public",
-    "tag": "latest"
+    "tag": "next"
   },
   "engines": {
     "node": ">= 20"
