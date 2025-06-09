@@ -115,7 +115,7 @@ export const designs = {
   wahid,
   walburga,
   waralee,
-  yuri,
+  yuri
 }
 
 export const useDesign = (design) => (designs[design] ? designs[design] : false)

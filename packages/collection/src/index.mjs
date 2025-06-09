@@ -123,7 +123,7 @@ export const designs = {
   wahid,
   walburga,
   waralee,
-  yuri,
+  yuri
 }
 
 /*

@@ -119,5 +119,5 @@ export const i18n = {
   wahid,
   walburga,
   waralee,
-  yuri,
+  yuri
 }
