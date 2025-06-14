@@ -63,6 +63,37 @@ const config = {
     },
   },
   plugins: [
+    // Use LightningCSS for CSS minification as it handles Tailwind v4 better
+    () => ({
+      name: 'lightningcss-minimizer',
+      configureWebpack(config, isServer, { isDev }) {
+        if (!isDev && !isServer) {
+          const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+
+          // Replace the default CSS minimizer with LightningCSS
+          if (config.optimization?.minimizer) {
+            config.optimization.minimizer = config.optimization.minimizer.map((plugin) => {
+              if (plugin.constructor.name.includes('CssMinimizerPlugin')) {
+                return new CssMinimizerPlugin({
+                  minify: CssMinimizerPlugin.lightningCssMinify,
+                  minimizerOptions: {
+                    // LightningCSS targets for modern browser support
+                    targets: {
+                      chrome: 120,
+                      firefox: 115,
+                      safari: 16,
+                      edge: 120,
+                    },
+                  },
+                })
+              }
+              return plugin
+            })
+          }
+        }
+        return {}
+      },
+    }),
     ...docusaurusPlugins,
     [
       '@docusaurus/plugin-content-blog',
