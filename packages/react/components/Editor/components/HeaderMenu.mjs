@@ -630,27 +630,27 @@ export const HeaderMenuLayoutViewIcons = (props) => {
   const [tweaks, setTweaks] = useState(0)
 
   // Is the current custom layout an actual layout?
-  const layoutValid = typeof state.ui.layout === 'object'
+  const layoutValid =
+    typeof state.ui.layout === 'object' &&
+    state.ui.layout.width &&
+    state.ui.layout.height &&
+    state.ui.layout.stacks
 
   useEffect(() => {
-    /*
-     * When the layout is reset, the UI won't update to changes
-     * unless we apply them on the first change
-     */
-    if (
-      tweaks === 0 &&
-      typeof state.ui?.layout === 'object' &&
-      typeof settings?.layout !== 'object'
-    )
-      applyLayout()
+    // Handle layout update on drag end
+    if (layoutValid) applyLayout()
     setTweaks(tweaks + 1)
   }, [state.ui.layout])
 
   const applyLayout = () => {
     setTweaks(-1)
     // Do not apply layout if it is not valid
-    if (layoutValid) update.settings('layout', state.ui.layout)
-    else update.notify({ msg: 'First create a custom layout', icon: 'tip' })
+    if (layoutValid) {
+      // The state is overloaded with extra data which we need to strip
+      const newLayout = { ...state.ui.layout }
+      if (newLayout.size) delete newLayout.size
+      update.settings('layout', newLayout)
+    } else update.notify({ msg: 'First create a custom layout', icon: 'tip' })
   }
   const resetLayout = () => {
     setTweaks(-1)
@@ -673,15 +673,6 @@ export const HeaderMenuLayoutViewIcons = (props) => {
             </span>
           </span>
         </span>
-      </Tooltip>
-      <Tooltip tip="Apply this layout to the pattern">
-        <button
-          className="tw:daisy-btn tw:daisy-btn-ghost tw:daisy-btn-sm tw:px-1 tw:disabled:bg-transparent tw:text-secondary"
-          onClick={applyLayout}
-          disabled={!layoutValid}
-        >
-          Apply Layout
-        </button>
       </Tooltip>
       <Tooltip tip="Generate a PDF that you can print">
         <button
