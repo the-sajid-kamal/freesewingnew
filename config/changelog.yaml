@@ -1,5 +1,9 @@
 Unreleased:
 
+  Added:
+    react:
+      - Added ARCH D and ARCH E paper sizes to export
+
   Fixed:
     octoplushy:
       - Use full translation keys (#454)
@@ -7,6 +11,8 @@ Unreleased:
       - Fixed lack of modal context provider for blog/showcase/newsletter pages
     react:
       - Fix Pattern Layout counter-clockwise button (#453)
+      - Fixed issue with custom pattern layout not getting applied (#241)
+      - Fixed crash in pattern layout view (#340)
 
 4.0.3:
   date: 2024-06-09
