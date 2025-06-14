@@ -3,6 +3,7 @@ Unreleased:
   Added:
     react:
       - Added ARCH D and ARCH E paper sizes to export
+      - Added ability to unfreeze an account in the in Admin component
 
   Fixed:
     octoplushy:
