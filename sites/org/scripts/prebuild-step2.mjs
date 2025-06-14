@@ -197,4 +197,4 @@ async function generateDesignsDocs() {
   }
 }
 
-export const step2 = generateDesignsDocs
+generateDesignsDocs()

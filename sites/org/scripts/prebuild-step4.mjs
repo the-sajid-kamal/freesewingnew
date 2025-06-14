@@ -92,7 +92,5 @@ const ensureTerminologyImports = async () => {
   )
 }
 
-export const step4 = () => {
-  ensureJargonImports()
-  ensureTerminologyImports()
-}
+ensureJargonImports()
+ensureTerminologyImports()

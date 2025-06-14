@@ -94,4 +94,4 @@ async function prebuild() {
   )
 }
 
-export const step3 = prebuild
+prebuild()

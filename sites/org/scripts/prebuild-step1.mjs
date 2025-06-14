@@ -97,4 +97,4 @@ function prebuild() {
   writeDesignInfo()
 }
 
-export const step1 = prebuild
+prebuild()
