@@ -15,8 +15,8 @@ export const Pdf = ({ size, layout }) => {
   const customSizes = {
     // For paper sizes not predefined in PDFKit, we need to provide
     // the dimensions, not the size name.
-    'ARCH D': [609.6, 914.4],
-    'ARCH E': [914.4, 1219.2],
+    'ARCH D': [1728, 2592],
+    'ARCH E': [2592, 3456],
   }
   if (customSizes[size]) size = customSizes[size]
   const pdf = new PDFDocument({
