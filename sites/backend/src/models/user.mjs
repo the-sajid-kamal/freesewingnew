@@ -39,24 +39,14 @@ UserModel.prototype.oauthInit = async function ({ body }) {
   )
     return this.setResponse(403, 'invalidProvider')
 
-  /*
-   * Is the language set and a known langauge?
-   */
-  if (
-    typeof body.language === 'undefined' ||
-    !this.config.languages.includes(body.language.toLowerCase())
-  )
-    return this.setResponse(403, 'invalidLanguage')
-
   const provider = body.provider.toLowerCase()
-  const language = body.language.toLowerCase()
 
   /*
    * Create confirmation
    */
   await this.Confirmation.createRecord({
     type: 'oauth-init',
-    data: { provider, language },
+    data: { provider },
   })
 
   /*
@@ -64,7 +54,7 @@ UserModel.prototype.oauthInit = async function ({ body }) {
    * authentication URL the client should use.
    */
   return this.setResponse200({
-    authUrl: this.config.oauth[provider].url(this.Confirmation.record.id, language),
+    authUrl: this.config.oauth[provider].url(this.Confirmation.record.id),
   })
 }
 
@@ -158,7 +148,7 @@ UserModel.prototype.oauthSignIn = async function ({ body }) {
     initial: this.encrypt(email),
     username: lusername,
     lusername: lusername,
-    language: this.Confirmation.clear.data.language,
+    language: 'en',
     mfaEnabled: false,
     mfaSecret: '',
     password: asJson(hashPassword(randomString())),
