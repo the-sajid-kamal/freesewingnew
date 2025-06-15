@@ -18,9 +18,9 @@ export const Pdf = ({ size, layout }) => {
     'ARCH D': [609.6, 914.4],
     'ARCH E': [914.4, 1219.2],
   }
-  const pdfkitSize = customSizes[size] || size
+  if (customSizes[size]) size = customSizes[size]
   const pdf = new PDFDocument({
-    pdfkitSize,
+    size,
     layout,
   })
 
