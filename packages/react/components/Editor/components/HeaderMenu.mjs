@@ -645,12 +645,8 @@ export const HeaderMenuLayoutViewIcons = (props) => {
   const applyLayout = () => {
     setTweaks(-1)
     // Do not apply layout if it is not valid
-    if (layoutValid) {
-      // The state is overloaded with extra data which we need to strip
-      const newLayout = { ...state.ui.layout }
-      if (newLayout.size) delete newLayout.size
-      update.settings('layout', newLayout)
-    } else update.notify({ msg: 'First create a custom layout', icon: 'tip' })
+    if (layoutValid) update.settings('layout', state.ui.layout)
+    else update.notify({ msg: 'First create a custom layout', icon: 'tip' })
   }
   const resetLayout = () => {
     setTweaks(-1)
