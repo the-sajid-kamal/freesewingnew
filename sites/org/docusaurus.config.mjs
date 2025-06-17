@@ -103,6 +103,7 @@ const config = {
         path: './showcase',
         authorsMapPath: '../authors.json',
         postsPerPage: 50,
+        blogTitle: 'FreeSewing Showcase',
         blogSidebarCount: 10,
         blogSidebarTitle: 'Recent Showcases',
       },
