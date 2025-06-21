@@ -124,7 +124,7 @@ const config = {
         docs: {
           routeBasePath: '/',
           sidebarPath: './sidebars.js',
-          editUrl: 'https://codeberg.com/freesewing/freesewing/tree/develop/sites/dev/',
+          editUrl: 'https://codeberg.org/freesewing/freesewing/src/branch/develop/sites/dev/',
         },
         theme: {
           customCss: './src/css/custom.css',
