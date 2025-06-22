@@ -75,6 +75,10 @@ const ensureTerminologyImports = async () => {
     for (const page of pages[section]) {
       const file = path.resolve(`${glob[section]}/${page}/readme.mdx`)
       const md = await readFile(file)
+      if (md === false) {
+        // empty folder, ignore
+        continue
+      }
       const fm = matter(md)
       const key = page
       data.push(
