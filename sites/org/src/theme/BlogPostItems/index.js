@@ -151,7 +151,7 @@ const ShowcaseItems = ({ items, slug }) => {
                     href={`/showcase/tags/${d}`}
                     className="tw:daisy-badge tw:daisy-badge-sm tw:daisy-badge-secondary tw:capitalize tw:text-xs tw:font-medium"
                   >
-                    {d}
+                    <span className="tw:text-secondary-content">{d}</span>
                   </Link>
                 </li>
               ))}
