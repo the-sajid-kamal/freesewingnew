@@ -9,6 +9,12 @@
 
  - Use full translation keys (#454)
 
+### core
+
+#### Added
+
+ - Added the snappedPctOption named export for wrapping snapped percentage options
+
 ### react
 
 #### Added
@@ -21,6 +27,7 @@
  - Fix Pattern Layout counter-clockwise button (#453)
  - Fixed issue with custom pattern layout not getting applied (#241)
  - Fixed crash in pattern layout view (#340)
+ - Show snapped value for snapped percentage options with toAbs() set
 
 
 ## 4.0.3 (2024-06-09)

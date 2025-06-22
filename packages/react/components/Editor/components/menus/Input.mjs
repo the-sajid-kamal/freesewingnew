@@ -291,6 +291,9 @@ export const MenuSliderInput = ({
           {typeof config.toAbs === 'function' ? (
             <span>
               <span className="tw:px-2">|</span>
+              {typeof config.snap !== 'undefined' ? (
+                <span className="tw:pr-1">Snapped to</span>
+              ) : null}
               <span
                 dangerouslySetInnerHTML={{
                   __html: formatMm(

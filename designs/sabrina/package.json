@@ -38,7 +38,8 @@
     "testci": "NODE_OPTIONS=\"--conditions=internal\" npx mocha tests/*.test.mjs --reporter ../../tests/reporters/terse.js"
   },
   "peerDependencies": {
-    "@freesewing/core": "4.0.3"
+    "@freesewing/core": "4.0.3",
+    "@freesewing/snapseries": "4.0.3"
   },
   "dependencies": {},
   "devDependencies": {

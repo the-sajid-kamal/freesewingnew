@@ -1,9 +1,11 @@
-import { pctBasedOn } from '@freesewing/core'
+import { snappedPctOption } from '@freesewing/core'
 import { base } from './base.mjs'
 import { capitalize } from '@freesewing/core'
 import { pathUtilsPlugin } from '@freesewing/plugin-path-utils'
+import { elastics } from '@freesewing/snapseries'
 
 function draftWaistband({
+  absoluteOptions,
   options,
   Point,
   Path,
@@ -16,9 +18,10 @@ function draftWaistband({
   complete,
   store,
   part,
+  measurements,
 }) {
   const halfWaist = store.get('waistband') / 2
-  const height = options.elasticWidth * (1 + options.waistbandEase)
+  const height = absoluteOptions.elasticWidth * (1 + options.waistbandEase)
 
   if (expand) {
     store.flag.preset('expandIsOn')
@@ -121,12 +124,13 @@ export const waistband = {
   measurements: ['chest'],
   after: base,
   options: {
-    elasticWidth: {
-      mm: 20,
-      min: 5,
-      max: 100,
+    elasticWidth: snappedPctOption('chest', {
+      pct: 2,
+      min: 0.5,
+      max: 5,
       menu: 'construction',
-    },
+      snap: elastics,
+    }),
     waistbandEase: 0.05,
   },
   plugins: [pathUtilsPlugin],

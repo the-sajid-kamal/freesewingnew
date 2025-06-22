@@ -1,6 +1,8 @@
 Unreleased:
 
   Added:
+    core:
+      - Added the snappedPctOption named export for wrapping snapped percentage options
     react:
       - Added ARCH D and ARCH E paper sizes to export
       - Added ability to unfreeze an account in the in Admin component
@@ -14,6 +16,7 @@ Unreleased:
       - Fix Pattern Layout counter-clockwise button (#453)
       - Fixed issue with custom pattern layout not getting applied (#241)
       - Fixed crash in pattern layout view (#340)
+      - Show snapped value for snapped percentage options with toAbs() set
 
 4.0.3:
   date: 2024-06-09
