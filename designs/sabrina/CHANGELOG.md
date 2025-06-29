@@ -1,6 +1,12 @@
 # Change log for: @freesewing/sabrina
 
 
+## 4.1.0 (2025-06-29)
+
+### Added
+
+ - Initial release of the Sabrina design
+
 ## 3.0.0 (2023-09-30)
 
 ### Changed

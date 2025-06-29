@@ -1,7 +1,21 @@
 # Change log for: @freesewing/react
 
 
-## 4.0.1 (2024-06-09)
+## 4.1.0 (2025-06-29)
+
+### Added
+
+ - Added ARCH D and ARCH E paper sizes to export
+ - Added ability to unfreeze an account in the in Admin component
+
+### Fixed
+
+ - Fix Pattern Layout counter-clockwise button (#453)
+ - Fixed issue with custom pattern layout not getting applied (#241)
+ - Fixed crash in pattern layout view (#340)
+ - Show snapped value for snapped percentage options with toAbs() set
+
+## 4.0.1 (2025-06-09)
 
 ### Added
 
@@ -47,7 +61,7 @@
  - Change the expand icon to have the arrows point inwards if expand is disabled
  - Gracefully fail the Editor when a part translation is not available
 
-## 4.0.0 (2024-04-01)
+## 4.0.0 (2025-04-01)
 
 ### Added
 

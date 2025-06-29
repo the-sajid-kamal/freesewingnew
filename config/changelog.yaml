@@ -1,8 +1,14 @@
 Unreleased:
+  Added:
+
+4.1.0:
+  date: 2025-06-29
 
   Added:
     core:
       - Added the snappedPctOption named export for wrapping snapped percentage options
+    sabrina:
+      - Initial release of the Sabrina design
     react:
       - Added ARCH D and ARCH E paper sizes to export
       - Added ability to unfreeze an account in the in Admin component
@@ -19,21 +25,21 @@ Unreleased:
       - Show snapped value for snapped percentage options with toAbs() set
 
 4.0.3:
-  date: 2024-06-09
+  date: 2025-06-09
 
   Added:
     studio:
       - Include signup / signin pages in studio
 
 4.0.2:
-  date: 2024-06-09
+  date: 2025-06-09
 
   Fixed:
     studio:
       - Add @freesewing/plugin-svgattr as a dependency to the studio
 
 4.0.1:
-  date: 2024-06-09
+  date: 2025-06-09
 
   Added:
     bee:
@@ -186,7 +192,7 @@ Unreleased:
 
 
 4.0.0:
-  date: 2024-04-01
+  date: 2025-04-01
 
   Breaking:
     core:

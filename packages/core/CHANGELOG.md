@@ -1,7 +1,13 @@
 # Change log for: @freesewing/core
 
 
-## 4.0.1 (2024-06-09)
+## 4.1.0 (2025-06-29)
+
+### Added
+
+ - Added the snappedPctOption named export for wrapping snapped percentage options
+
+## 4.0.1 (2025-06-09)
 
 ### Changed
 
@@ -11,7 +17,7 @@
 
  - Fix stack anchoring (#258)
 
-## 4.0.0 (2024-04-01)
+## 4.0.0 (2025-04-01)
 
 ### Breaking
 

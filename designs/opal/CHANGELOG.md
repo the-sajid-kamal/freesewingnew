@@ -1,7 +1,7 @@
 # Change log for: @freesewing/opal
 
 
-## 4.0.1 (2024-06-09)
+## 4.0.1 (2025-06-09)
 
 ### Fixed
 

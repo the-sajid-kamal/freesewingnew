@@ -1,19 +1,19 @@
 # Change log for: @freesewing/studio
 
 
-## 4.0.3 (2024-06-09)
+## 4.0.3 (2025-06-09)
 
 ### Added
 
  - Include signup / signin pages in studio
 
-## 4.0.2 (2024-06-09)
+## 4.0.2 (2025-06-09)
 
 ### Fixed
 
  - Add @freesewing/plugin-svgattr as a dependency to the studio
 
-## 4.0.1 (2024-06-09)
+## 4.0.1 (2025-06-09)
 
 ### Changed
 
@@ -24,7 +24,7 @@
  - Remove submenus from account sets and patterns pages (#355)
  - Use a dedicated logo image for dark mode
 
-## 4.0.0 (2024-04-01)
+## 4.0.0 (2025-04-01)
 
 ### Added
 

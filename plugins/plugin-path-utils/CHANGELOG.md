@@ -1,7 +1,7 @@
 # Change log for: @freesewing/plugin-path-utils
 
 
-## 4.0.1 (2024-06-09)
+## 4.0.1 (2025-06-09)
 
 ### Added
 
