@@ -13,7 +13,7 @@ import {
 import yaml from 'js-yaml'
 import chalk from 'chalk'
 import mustache from 'mustache'
-import conf from '../lerna.json' assert { type: 'json' }
+import conf from '../lerna.json' with { type: 'json' }
 const { version } = conf
 import { getSoftware } from './software.mjs'
 import { capitalize } from '../packages/utils/src/index.mjs'
