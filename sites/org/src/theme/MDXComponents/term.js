@@ -72,7 +72,7 @@ export const Term = ({ children }) => {
 
   // Jargon has a content prop, whereas terminology does not
   const modalContent = term.content ? (
-    <ModalWrapper wide>
+    <ModalWrapper wide keepOpenOnClick={true}>
       <JargonInfo term={term} />
     </ModalWrapper>
   ) : null
