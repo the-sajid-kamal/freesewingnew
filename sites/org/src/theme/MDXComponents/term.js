@@ -4,6 +4,8 @@ import { ModalWrapper } from '@freesewing/react/components/Modal'
 import jargon from '@site/prebuild/jargon.js'
 import terminology from '@site/prebuild/terminology.js'
 import { linkClasses } from '@freesewing/utils'
+import MDXComponents from './index'
+import { MDXProvider } from '@mdx-js/react'
 
 /*
  * Helper to intersperse an array
@@ -43,7 +45,9 @@ const JargonInfo = ({ term }) => {
   return (
     <div>
       <h2>{term.title}</h2>
-      <Content />
+      <MDXProvider components={MDXComponents}>
+        <Content />
+      </MDXProvider>
     </div>
   )
 }
