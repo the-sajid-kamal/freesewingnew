@@ -265,14 +265,16 @@ function draftBase({ options, measurements, Point, Path, points, paths, utils, s
     .beamIntersectsX(points.sbBandCp2Dart, points.sbBandDartRight, points.cbBand.x)
     .shiftFractionTowards(points.cbBand, 0.6)
 
-  paths.front = new Path()
+  paths.frontSa = new Path()
     .move(points.cfBand)
     ._curve(points.sfBandCp1Dart, points.sfBandDartLeft)
     .curve(points.sfDart, points.sfDart, points.sfArmpitDartRight)
     .curve(points.sfArmpitCp2Dart, points.strapFrontRightCp, points.strapFrontRight)
     .line(points.strapFrontLeft)
     .curve(points.strapFrontLeftCp, points.cfNeckCp, points.cfNeck)
-    .close()
+    .hide()
+
+  paths.front = paths.frontSa.clone().unhide().close()
 
   paths.frontStrap = new Path().move(points.strapFrontRight).line(points.strapFrontLeft).hide()
 
@@ -286,16 +288,17 @@ function draftBase({ options, measurements, Point, Path, points, paths, utils, s
     ._curve(points.sfBandCp1Dart, points.sfBandDartLeft)
     .hide()
 
-  paths.back = new Path()
-    .move(points.sbBandDartRight)
-    .curve_(points.sbBandCp2Dart, points.cbBand)
-    .line(points.cbNeck)
+  paths.backSa = new Path()
+    .move(points.cbNeck)
     .curve(points.cbNeckCp, points.strapBackLeftCp, points.strapBackLeft)
     .line(points.strapBackRight)
     .curve(points.strapBackRightCp, points.backCCenterCp1, points.backCCenter)
     .curve(points.backCCenterCp2, points.sbArmpitCp2Dart, points.sbArmpitDartLeft)
     .curve(points.sbDart, points.sbDart, points.sbBandDartRight)
-    .close()
+    .curve_(points.sbBandCp2Dart, points.cbBand)
+    .hide()
+
+  paths.back = paths.backSa.clone().unhide().close()
 
   paths.backBand = new Path()
     .move(points.sbBandDartRight)
@@ -370,6 +373,7 @@ export const base = {
     strapPosition: { pct: 40, min: 20, max: 60, menu: 'fit' },
     strapAngle: { deg: 25, min: 0, max: 45, menu: 'fit' },
     strapWidth: { pct: 33, min: 15, max: 50, menu: 'style' },
+    fullSa: { bool: false, menu: 'style' },
     backWidth: {
       pct: 18,
       min: 5,

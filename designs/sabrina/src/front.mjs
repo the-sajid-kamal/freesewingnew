@@ -1,7 +1,7 @@
 import { base } from './base.mjs'
 import { pathUtilsPlugin } from '@freesewing/plugin-path-utils'
 
-function draftFront({ points, paths, Snippet, snippets, sa, macro, store, part }) {
+function draftFront({ points, paths, Snippet, snippets, sa, macro, store, part, options }) {
   paths.back.hide()
   paths.side.hide()
   paths.front.addClass('fabric')
@@ -23,9 +23,15 @@ function draftFront({ points, paths, Snippet, snippets, sa, macro, store, part }
   snippets.frontJoin = new Snippet('notch', points.frontJoin)
 
   if (sa) {
-    paths.sa = macro('sa', {
-      paths: ['frontBand', 'frontSideJoin', null, 'frontStrap', null],
-    })
+    if (options.fullSa) {
+      paths.sa = macro('sa', {
+        paths: ['frontSa', null],
+      })
+    } else {
+      paths.sa = macro('sa', {
+        paths: ['frontBand', 'frontSideJoin', null, 'frontStrap', null],
+      })
+    }
   }
 
   macro('cutonfold', {

@@ -96,6 +96,18 @@
     "splitOffsetBack": {
       "t": "Back split offset",
       "d": "Shifts the back seam towards the side or the back"
+    },
+    "fullSa": {
+      "t": "Full seam allowance",
+      "d": "Determines how the seam allowance is generated"
+    },
+    "fullSaNo":  {
+      "t": "Default",
+      "d": "No seam allowance in the armscyes and neck opening"
+    },
+    "fullSaYes":{
+      "t": "Burrito method",
+      "d": "Seam allowance on the complete part outline"
     }
   }
 }

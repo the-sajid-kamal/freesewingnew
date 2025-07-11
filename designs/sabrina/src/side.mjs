@@ -1,7 +1,7 @@
 import { base } from './base.mjs'
 import { pathUtilsPlugin } from '@freesewing/plugin-path-utils'
 
-function draftSide({ Point, points, paths, Snippet, snippets, sa, macro, store, part }) {
+function draftSide({ Point, points, paths, Snippet, snippets, sa, macro, store, part, options }) {
   paths.back.hide()
   paths.front.hide()
   paths.side.addClass('fabric')
@@ -21,9 +21,15 @@ function draftSide({ Point, points, paths, Snippet, snippets, sa, macro, store, 
   })
 
   if (sa) {
-    paths.sa = macro('sa', {
-      paths: ['sideFrontJoin', 'sideBand', 'sideBackJoin', null],
-    })
+    if (options.fullSa) {
+      paths.sa = macro('sa', {
+        paths: ['side'],
+      })
+    } else {
+      paths.sa = macro('sa', {
+        paths: ['sideFrontJoin', 'sideBand', 'sideBackJoin', null],
+      })
+    }
   }
 
   macro('grainline', {
