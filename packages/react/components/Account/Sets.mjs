@@ -86,59 +86,45 @@ export const Sets = ({ Link = false }) => {
 
   return (
     <div className="tw-max-w-7xl xl:tw-pl-4">
-      {sets.length > 0 ? (
-        <>
-          <p className="tw-text-center md:tw-text-right">
-            <Link
-              className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-outline tw-capitalize tw-w-full md:tw-w-auto tw-mr-2 tw-mb-2 hover:tw-no-underline hover:tw-text-primary-content"
-              bottom
-              primary
-              href="/account/import"
-            >
-              <UploadIcon />
-              Import Measurements Sets
-            </Link>
-            <button
-              className="tw-daisy-btn tw-daisy-btn-primary tw-capitalize tw-w-full md:tw-w-auto hover:tw-no-underline hover:tw-text-primary-content"
-              onClick={() =>
-                setModal(
-                  <ModalWrapper keepOpenOnClick>
-                    <NewSet />
-                  </ModalWrapper>
-                )
-              }
-            >
-              <PlusIcon />
-              Create a new Measurements Set
-            </button>
-          </p>
-          <div className="tw-flex tw-flex-row tw-gap-2 tw-border-b-2 tw-mb-4 tw-pb-4 tw-mt-8 tw-h-14 tw-items-center">
-            <input
-              type="checkbox"
-              className="tw-daisy-checkbox tw-daisy-checkbox-secondary"
-              onClick={toggleSelectAll}
-              checked={sets.length === selCount}
-            />
-            <button
-              className="tw-daisy-btn tw-daisy-btn-error"
-              onClick={removeSelectedSets}
-              disabled={selCount < 1}
-            >
-              <TrashIcon /> {selCount} Measurements Sets
-            </button>
-          </div>
-        </>
-      ) : (
+      <p className="tw-text-center md:tw-text-right">
         <Link
-          className="tw-daisy-btn tw-daisy-btn-primary tw-capitalize tw-w-full md:tw-w-auto tw-btn-lg hover:tw-no-underline hover:tw-text-primary-content"
+          className="tw-daisy-btn tw-daisy-btn-primary tw-daisy-btn-outline tw-capitalize tw-w-full md:tw-w-auto tw-mr-2 tw-mb-2 hover:tw-no-underline hover:tw-text-primary-content"
           bottom
           primary
-          href="/new/set"
+          href="/account/import"
+        >
+          <UploadIcon />
+          Import Measurements Sets
+        </Link>
+        <button
+          className="tw-daisy-btn tw-daisy-btn-primary tw-capitalize tw-w-full md:tw-w-auto hover:tw-no-underline hover:tw-text-primary-content"
+          onClick={() =>
+            setModal(
+              <ModalWrapper keepOpenOnClick>
+                <NewSet />
+              </ModalWrapper>
+            )
+          }
         >
           <PlusIcon />
           Create a new Measurements Set
-        </Link>
-      )}
+        </button>
+      </p>
+      <div className="tw-flex tw-flex-row tw-gap-2 tw-border-b-2 tw-mb-4 tw-pb-4 tw-mt-8 tw-h-14 tw-items-center">
+        <input
+          type="checkbox"
+          className="tw-daisy-checkbox tw-daisy-checkbox-secondary"
+          onClick={toggleSelectAll}
+          checked={sets.length === selCount}
+        />
+        <button
+          className="tw-daisy-btn tw-daisy-btn-error"
+          onClick={removeSelectedSets}
+          disabled={selCount < 1}
+        >
+          <TrashIcon /> {selCount} Measurements Sets
+        </button>
+      </div>
       <div className="tw-grid tw-grid-cols-2 lg:tw-grid-cols-4 tw-gap-2">
         {sets.map((set, i) => (
           <div

@@ -437,6 +437,8 @@ export const patternUrlFromState = (state = {}, includeMeasurements = false, vie
     settings,
     view,
   }
+  // When restoring a stored pattern, it will have an ID that we should re-use for saving.
+  if (state.id) obj.pid = state.id
 
   return `/editor/#s=${encodeURIComponent(JSON.stringify(obj))}`
 }

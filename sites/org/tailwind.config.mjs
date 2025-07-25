@@ -5,6 +5,7 @@ import daisyui from 'daisyui'
 export default {
   content: [
     './src/**/*.{js,mjs,mdx}',
+    './docs/**/*.mdx',
     '../../node_modules/daisyui/**/*.{js,mjs,ts,tsx}',
     '../../packages/react/components/**/*.mjs',
     '../../packages/react/context/**/*.mjs',
@@ -15,6 +16,7 @@ export default {
   ],
   plugins: [daisyui],
   prefix: 'tw-',
+  darkMode: ['selector', 'data-theme="dark"]'],
   daisyui: {
     themes: [{ dark, light }],
     logs: true,

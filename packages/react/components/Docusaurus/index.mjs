@@ -6,6 +6,7 @@ import {
 } from '@freesewing/react/context/LoadingStatus'
 import { ModalContext, ModalContextProvider } from '@freesewing/react/context/Modal'
 import {
+  ChatIcon,
   DesignIcon,
   DocsIcon,
   ShowcaseIcon,
@@ -144,4 +145,12 @@ const navbarItems = {
     <SimpleNavbarItem label="Showcase" href="/showcase/" Icon={ShowcaseIcon} Link={props.Link} />
   ),
   blog: (props) => <SimpleNavbarItem label="Blog" href="/blog/" Icon={RssIcon} Link={props.Link} />,
+  forum: (props) => (
+    <SimpleNavbarItem
+      label="Forum"
+      href="https://forum.freesewing.eu/"
+      Icon={ChatIcon}
+      Link={props.Link}
+    />
+  ),
 }

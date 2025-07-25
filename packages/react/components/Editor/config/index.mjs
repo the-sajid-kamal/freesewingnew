@@ -5,7 +5,9 @@ export const defaultConfig = {
   // Enable use of a (FreeSewing) backend to load data from
   enableBackend: true,
   // Link to create a new measurements set, set to false to disable
-  hrefNewSet: '/new/set',
+  // TODO: this is the link to the sets page, the new set button is a dynamic popover on that page
+  // TODO and not directly linkable
+  hrefNewSet: 'account/data/sets/',
   // Cloud default image
   cloudImageDflt:
     'https://imagedelivery.net/ouSuR9yY1bHt-fuAokSA5Q/365cc64e-1502-4d2b-60e0-cc8beee73f00/public',

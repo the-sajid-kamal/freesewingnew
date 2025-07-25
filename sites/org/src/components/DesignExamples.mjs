@@ -22,7 +22,7 @@ function DesignExamples({ design }) {
           title={example.title}
           className="tw-w-full tw-aspect-square tw-rounded-lg tw-shadow"
           style={{
-            backgroundImage: `url(${cloudflareImageUrl({ id: 'showcase-' + example.id })}`,
+            backgroundImage: `url(${cloudflareImageUrl({ id: 'showcase-' + example.id })})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
           }}
